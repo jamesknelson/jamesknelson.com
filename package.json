@@ -1,0 +1,34 @@
+{
+  "name": "jamesknelson",
+  "author": "James K Nelson <james@jamesknelson.com>",
+  "version": "0.1.0",
+  "description": "Blog for jamesknelson",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "sitepack start -c sitepack.config.js",
+    "clean": "rimraf build",
+    "build": "npm run clean && sitepack build -c sitepack.config.js -o build",
+    "publish": "npm run build && cp ./CNAME build && cd build && git init && git commit --allow-empty -m 'update site' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update site' && git push git@github.com:jamesknelson/junctions gh-pages --force",
+    "view": "sitepack view -d build"
+  },
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-transform-class-properties": "6.16.0",
+    "babel-plugin-transform-object-rest-spread": "6.19.0",
+    "babel-preset-latest": "6.16.0",
+    "babel-preset-react": "^6.11.1",
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3",
+    "prismjs": "^1.6.0",
+    "rimraf": "^2.3.4"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "sitepack": "^1.0.0-beta.1",
+    "sitepack-mdx-page-loader": "^1.0.0-beta.2",
+    "sitepack-react": "^1.0.0-beta.1"
+  }
+}
