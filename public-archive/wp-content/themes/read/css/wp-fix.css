@@ -1,0 +1,130 @@
+/* ============================================================================= */
+
+.main-navigation ul .current_page_item > a { color: #cc3300; }
+
+.navigation .nav-next { float: right; }
+
+/* ============================================================================= */
+
+a.loadmore:hover { color: #ffffff; }
+
+.widget-area a:hover { color:#333; }
+
+/* ============================================================================= */
+
+/* TWITTER WIDGET */
+.widget_twitter ul li { margin-bottom:3em; padding-top:.4em; max-width:26em; }
+.widget_twitter ul li:before { content: "\f099"; font-size:22px; top:-0.2em; }
+.widget_twitter ul li span.entry-content { position:relative; display:block; margin-left:2em; padding:1em 1.4em; background:#f7f7f7; }
+.widget_twitter ul li span.entry-content:before { content:''; position:absolute; top:0; right:100%; width: 0; height: 0; border-top: 13px solid #e7e7e7; border-left: 15px solid transparent; }
+.widget_twitter ul li .time-meta a { float:right; margin-top:.4em; color:#aaa; border-bottom: none; letter-spacing: 0px; }
+.widget_twitter ul li .time-meta a:hover { border-bottom: 1px dotted #aaaaaa; }
+.widget_twitter .from-meta, .widget_twitter .in-reply-to-meta { display: none; }
+
+/* ============================================================================= */
+
+.page-links { padding: 3em 0; }
+.page-links a { padding: 0 .2em; }
+td.label { display: block; background: #ffffff; padding: .8em 2em .6em 0; }
+
+/* ============================================================================= */
+
+.related-posts, .entry-meta, .about-author, .nav-single, .comments-area, .page-links { clear: both; }
+
+/* ============================================================================= */
+
+.single-format-aside .entry-content { margin-bottom: 5em; }
+
+.single-format-link .entry-content, 
+.single-format-status .entry-content,
+.single-format-video .entry-content
+{ margin-bottom: 3em; }
+
+/* ============================================================================= */
+
+.single .entry-meta { margin-top: 2em; }
+
+/* ============================================================================= */
+
+.post-password-required label { display: inline-block; }
+
+/* ============================================================================= */
+
+dd.gallery-caption:before { display: none; }
+
+/* ============================================================================= */
+
+.attachment img { display: block; margin-left: auto; margin-right: auto; }
+
+/* ============================================================================= */
+
+blockquote p { margin: 0px; }
+
+/* ============================================================================= */
+
+.portfolio-single .entry-header .share-links { margin-left: 0px; }
+.portfolio-single .entry-header .share-links > a:hover { color: #000000; }
+
+.single-gallery .entry-header .share-links { margin-left: 0px; }
+.single-gallery .entry-header .share-links > a:hover { color: #000000; }
+
+/* ============================================================================= */
+
+#dynamic-to-top
+{
+	background: #272727 !important;
+	border: 0 !important;
+	
+	-webkit-border-radius: 0px !important;
+	        border-radius: 0px !important;
+	           
+	   	    box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+}
+
+#dynamic-to-top:hover
+{
+	background: #000 !important;
+}
+
+/* ============================================================================= */
+
+.blog-masonry .page-header { width: 100%; }
+
+/* ============================================================================= */
+
+.widget_text .tabs ul li
+{
+	padding-left: 0px;
+	margin-bottom: 0px;
+}
+
+.widget_text .tabs ul li:before
+{
+	content: "";
+}
+
+/* ============================================================================= */
+
+.site-header .textwidget ul.social { margin-top: 0px; }
+
+.entry-meta .comments-link { white-space: nowrap; }
+
+/* ============================================================================= */
+
+.share-wrap .fb_iframe_widget > span,
+.share-wrap .fb_iframe_widget iframe
+{
+	height: 20px !important;
+	width: 78px !important;
+}
+
+/* ============================================================================= */
+
+.wp-video,
+.wp-video .wp-video-shortcode
+{
+    width: 100% !important;
+}
+
+/* ============================================================================= */
