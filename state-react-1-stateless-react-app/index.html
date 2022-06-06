@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>State of React #1: A Stateless React App? - James K Nelson</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content=""> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="/state-react-1-stateless-react-app/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="State of React #1: A Stateless React App? - James K Nelson">
+<meta property="og:description" content="Have you ever been frustrated with the task of making loading spinners appear at the right time? Or maybe you&#8217;ve had trouble making a popup appear when and where you want it? These are both signs that your code suffers from unmanaged state &#8212; the bane of basically every web developer on the planet. And... Continue reading &#8594;">
+<meta property="og:url" content="httpjamesknelson.com/state-react-1-stateless-react-app/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="State Of React">
+<meta property="article:published_time" content="2016-07-31T07:14:39+00:00">
+<meta property="article:modified_time" content="2016-08-06T09:41:14+00:00">
+<meta property="og:updated_time" content="2016-08-06T09:41:14+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Have you ever been frustrated with the task of making loading spinners appear at the right time? Or maybe you&#8217;ve had trouble making a popup appear when and where you want it? These are both signs that your code suffers from unmanaged state &#8212; the bane of basically every web developer on the planet. And... Continue reading &#8594;">
+<meta name="twitter:title" content="State of React #1: A Stateless React App? - James K Nelson">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; State of React #1: A Stateless React App? Comments Feed" href="/state-react-1-stateless-react-app/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/1031">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=1031">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fstate-react-1-stateless-react-app%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fstate-react-1-stateless-react-app%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-1031 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-1031" class="clearfix post-1031 post type-post status-publish format-standard hentry category-javascript category-react category-state-of-react">
+								<header class="entry-header">
+																		<h1 class="entry-title">State of React #1: A Stateless React App?</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/javascript/" rel="category tag">Javascript</a>, <a href="/category/react/" rel="category tag">React</a>, <a href="/category/state-of-react/" rel="category tag">State Of React</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/state-react-1-stateless-react-app/" title="7:14 am" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">July 31, 2016</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p>Have you ever been frustrated with the task of making loading spinners appear at the right time? Or maybe you&#8217;ve had trouble making a popup appear when and where you want it? These are both signs that your code suffers from <em>unmanaged state</em> &#8212; the bane of basically every web developer on the planet.</p>
+<p>And luckily, the React ecosystem is brimming with tools to help. <a href="http://redux.js.org/">Redux</a>, <a href="https://mobxjs.github.io/mobx/">MobX</a>, <a href="https://facebook.github.io/react/docs/flux-overview.html">Flux</a> and <a href="http://qiita.com/kimagure/items/22cf4bb2a967fcba376e">RxJS</a> are just a few. And while they have a number of things in common (including for some reason the letter &#8220;x&#8221;), the one which stands out the most is that they just convert the problem of &#8220;managing&#8221; state into the problem of &#8220;structuring it&#8221;.</p>
+<p>But if it seems that there is no way to dull the state of pain, it begs the question &#8212; instead of <em>managing</em> our state, why don&#8217;t we just avoid it?</p>
+<p><span id="more-1031"></span></p>
+<h2>But how?</h2>
+<p>Well, given a React app generally stores most of its state with <code>setState</code>, it stands to reason that the first thing we&#8217;d want to do is ban it.</p>
+<p>By definition, this means that if we had a form, we&#8217;d need to pass any changes back up to the root of the application via callbacks. And we&#8217;d also need to pass any new values down the tree via <code>props</code>.</p>
+<p>We&#8217;d also rule out the use of <a href="https://facebook.github.io/react/docs/forms.html#uncontrolled-components">uncontrolled components</a>, as they&#8217;re inherently stateful.</p>
+<p>This would leave something like this:</p>
+<pre><code>class CommentForm extends React.Component {
+    static propTypes = {
+        value: React.PropTypes.object.isRequired,
+        onChange: React.PropTypes.func.isRequired,
+    }
+
+    handleChange(field, e) {
+        this.props.onChange({
+            ...this.props.value,
+            [field]: e.target.value,
+        })
+    }
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;input
+                    placeholder="Name"
+                    value={this.props.value.name}
+                    onChange={this.handleChange.bind(this, 'name')}
+                /&gt;
+                &lt;input
+                    placeholder="Message"
+                    value={this.props.value.message}
+                    onChange={this.handleChange.bind(this, 'message')}
+                /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+</code></pre>
+<h2>It&#8217;s a form? No wait, it&#8217;s an input?</h2>
+<p>Notice how the <code>ContactForm</code> has the same signature as the inputs inside it? By structuring our format to take and emit Contact objects via its <code>value</code> prop and <code>onChange</code> callback, we&#8217;ve basically made a &#8220;Contact Input&#8221;. This form is to Contact objects as an <code>&lt;input&gt;</code> is to strings.</p>
+<p>By itself, this is nothing special &#8211; but let me throw this at you. If a Contact input can be created from a number of string inputs, can an Invoice input be created from a Contact input, a number of Line Item inputs, and etc.?</p>
+<p>The answer, of course, is yes. And the cool part is that this pattern isn&#8217;t just limited to forms. For example, we could use a similar pattern of nested callbacks and objects to hold an entire application worth of data.</p>
+<p>But whether we&#8217;ve banned <code>setState</code> from a single form or an entire application, we&#8217;re still going to have <code>props</code> on the root object which hold the app&#8217;s callbacks and data:</p>
+<pre><code>ReactDOM.render(
+    &lt;CommentForm
+        value={...}
+        onChange={...}
+    /&gt;,
+    document.getElementById("react-app")
+)
+</code></pre>
+<p>And whatever are we going to do with these?</p>
+<h2>Takes a value, emits changed values</h2>
+<p>Well, since our <code>value</code> prop takes exactly the same format as the <code>onChange</code> callback emits, why don&#8217;t we just plug them into each other?</p>
+<pre><code>// Handle updated values by re-rendering the app
+function render(value) {
+    ReactDOM.render(
+        &lt;CommentForm
+            value={value}
+            onChange={render}
+        /&gt;,
+        document.getElementById("react-app")
+    )
+}
+
+// Initialise the app by rendering it
+render({
+    name: "James",
+    message: "",
+})
+</code></pre>
+<p>Don&#8217;t believe its possible? Check for yourself with <a href="https://jsfiddle.net/jamesknelson/8acuh8e0/1/">this JSBin</a>.</p>
+<h2>Look Ma, No Component State!</h2>
+<p>By calling <code>render</code> every time anything changes, we ensure our changes are visible, without storing them within <em>any</em> React component&#8217;s state.</p>
+<p>And just to cap things off, we have access to enough information to render the <em>entire</em> application at any point in the app&#8217;s life cycle, all within that single <code>value</code> object. That surely has to be useful.</p>
+<p>But wait a minute. If this solves all our problems, why does it seem nobody is doing anything this way? And doesn&#8217;t having enough information to render our application stored within <code>value</code> sound suspiciously like state?</p>
+<p><strong>So my question to you is: does this app have state? And if so, where is it?</strong></p>
+<p>And the bonus question: <em>Why don&#8217;t more apps follow this pattern?</em></p>
+<p>Tweet your responses on hash tag <a href="https://twitter.com/search?f=tweets&amp;q=%23stateofreact&amp;src=typd">#stateofreact</a>, and I&#8217;ll respond in next week&#8217;s episode of <em>State Of React</em>! Sign up to my newsletter to make sure you don&#8217;t miss out &#8212; and grab a bunch of exclusive cheat sheets while you&#8217;re at it:</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<p><em>Update: <a href="/state-react-2-inception-redux/">Part 2</a> is now out!</em></p>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/announcing-reactjs-tokyo/" rel="prev"><span class="meta-nav">&#8592;</span> Announcing ReactJS Tokyo</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/state-react-2-inception-redux/" rel="next">State of React #2 &#8211; From Inception to Redux <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					11 Comments <span class="on">&#8594;</span> <span>State of React #1: A Stateless React App?</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-22393">
+						<article id="comment-22393" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/376deae39b17fad6cfb354fb62f69f41?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/376deae39b17fad6cfb354fb62f69f41?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">MaxArt </cite><a href="/state-react-1-stateless-react-app/#comment-22393"><time datetime="2016-08-01T05:14:22+00:00">August 1, 2016 at 5:14 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>That&#8217;s intresting, I ws wondering the same thing too. Why having a second layer of data when everything can be passed forth and back through properties?<br>
+I&#8217;m a total React noob so I couldn&#8217;t really put these thoughts on the table, nor I actually made any efforts in this sense. I just presumed states were especially helpful when things were getting complicated.</p>
+<p>(By the way, can you change `CommentForm` into `ContactForm`?)</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22393" data-commentid="22393" data-postid="1031" data-belowelement="comment-22393" data-respondelement="respond" data-replyto="Reply to MaxArt" aria-label="Reply to MaxArt">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-22576">
+						<article id="comment-22576" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/a72548335ecb2df85264d15b33ded8a2?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/a72548335ecb2df85264d15b33ded8a2?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jonathan </cite><a href="/state-react-1-stateless-react-app/#comment-22576"><time datetime="2016-08-08T07:35:36+00:00">August 8, 2016 at 7:35 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>It all depends on your use case, in simple examples the advantages are covered in an excessive amount of boilerplate of course. Once you get to more complex one-page apps the advantages definitely take over. Esp. if you need to maybe even save your application state and recover it for a later use. Don&#8217;t think about this concept as having 2 data layers but replacing reacts native layer with a 2nd one.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22576" data-commentid="22576" data-postid="1031" data-belowelement="comment-22576" data-respondelement="respond" data-replyto="Reply to Jonathan" aria-label="Reply to Jonathan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-22397">
+						<article id="comment-22397" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/60a5ce418250e26b42baef8ef7314f39?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/60a5ce418250e26b42baef8ef7314f39?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.christianalfoni.com/" rel="external nofollow ugc" class="url">Christian Alfoni</a> </cite><a href="/state-react-1-stateless-react-app/#comment-22397"><time datetime="2016-08-01T09:46:57+00:00">August 1, 2016 at 9:46 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hi James and thanks for pointing out the problem so beautifully, &#8220;the one which stands out the most is that they just convert the problem of “managing” state into the problem of “structuring it”&#8221; 🙂</p>
+<p>What I want to challenge with this approach though is scalability. Have you tried this approach with an application that has hundreds of components and hundreds of state values that needs to move into different parts of the app. And what about render performance? If all props comes from the top it means that all depending components which just passes props down to some nested component somewhere also needs to rerender. Or is this more of a theoretical approach?</p>
+<p>I think also this approach hits an other pain point which the others solve. Passing props all around creates a very rigid component structure, not allowing you to move components around as they completely depend on a potentially complex &#8220;chain of passing props&#8221;. Also the fact that you pass props down so many components makes it hard to reason about where the props really come from.</p>
+<p>That said it is really great that new patterns are explored, but I think I can theoretically answer your question: &#8220;It is not used because it does not scale&#8221; 😉</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22397" data-commentid="22397" data-postid="1031" data-belowelement="comment-22397" data-respondelement="respond" data-replyto="Reply to Christian Alfoni" aria-label="Reply to Christian Alfoni">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-22402">
+						<article id="comment-22402" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/4f3a5ba4a60d4a7a9b434709eda934fb?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4f3a5ba4a60d4a7a9b434709eda934fb?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://jwsdev.net/" rel="external nofollow ugc" class="url">Joseph Shelby</a> </cite><a href="/state-react-1-stateless-react-app/#comment-22402"><time datetime="2016-08-01T14:44:22+00:00">August 1, 2016 at 2:44 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>My first thought is scale. When you get to large apps, having EVERY single component look through the part of the &#8216;value&#8217; object to see if anything has changed would be impressively slow. All of the (alleged) speed advantages of the shadow-dom would be lost.</p>
+<p>If your app is just a little thing like my work-in-progress playlist editor for Subsonic, that&#8217;s probably fine.</p>
+<p>If your app is a wysiwyg editor with a lot of dialogs and buttons for every possible text formatting, that is a lot of components constantly looking at the contained DOM or a state-value container, to determine if they need to in an &#8216;on&#8217; or &#8216;off&#8217; state.</p>
+<p>It is the classic trade-off: execution time, memory. The single-render uses a lot less memory (no individual event handlers), but is costly in execution time. At a certain level, that maxes out and using more memory for state management gives much better performance.</p>
+<p>And in mobile, performance is everything.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22402" data-commentid="22402" data-postid="1031" data-belowelement="comment-22402" data-respondelement="respond" data-replyto="Reply to Joseph Shelby" aria-label="Reply to Joseph Shelby">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-22407">
+						<article id="comment-22407" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/23448e78d187fba56d8bc263081ac5d8?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/23448e78d187fba56d8bc263081ac5d8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.stephencleary.com/" rel="external nofollow ugc" class="url">Stephen Cleary</a> </cite><a href="/state-react-1-stateless-react-app/#comment-22407"><time datetime="2016-08-01T17:57:14+00:00">August 1, 2016 at 5:57 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Very interesting!</p>
+<p>The biggest problem is that there&#8217;s no way for external code to affect state, including asynchronous methods. So, a button to download and display data can&#8217;t be modeled with the short-circuit approach.</p>
+<p>It&#8217;s interesting how close this is to Redux, though: if you pull the state out into a global component and add some functions that can change the state (through a queue, not immediately), then you&#8217;re practically at Redux.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22407" data-commentid="22407" data-postid="1031" data-belowelement="comment-22407" data-respondelement="respond" data-replyto="Reply to Stephen Cleary" aria-label="Reply to Stephen Cleary">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-22409">
+						<article id="comment-22409" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/b3d0d27c01d183d7770c060f5e29e9ad?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b3d0d27c01d183d7770c060f5e29e9ad?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Michael J Ryan </cite><a href="/state-react-1-stateless-react-app/#comment-22409"><time datetime="2016-08-01T21:09:15+00:00">August 1, 2016 at 9:09 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>It&#8217;s still state, it&#8217;s just abstracted to a higher level, and it&#8217;s stored as component properties&#8230; This is really close to what Redux does, minus a persistent store for reducers&#8230; although you usually have a larger structure than a form or two&#8230;</p>
+<p>You could use a redux-like store passing the state, and dispatch down as properties instead of a higher level component.  The point is where you draw the line and still how you manage state.</p>
+<p>In your example, you&#8217;d wind up creating many middle-level actions at the component level for child components in a larger application, and this isn&#8217;t necessarily better than using a service bus, or reducer pattern, or even multiple stores.</p>
+<p>There are a few other negative side effects of these patterns as well in terms of re-render, but that&#8217;s really only an issue with a *lot* in the components/app.  CRUD apps should be okay.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22409" data-commentid="22409" data-postid="1031" data-belowelement="comment-22409" data-respondelement="respond" data-replyto="Reply to Michael J Ryan" aria-label="Reply to Michael J Ryan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-22537">
+						<article id="comment-22537" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/cc1a77327ba079c8625b86f166601f15?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/cc1a77327ba079c8625b86f166601f15?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jeff </cite><a href="/state-react-1-stateless-react-app/#comment-22537"><time datetime="2016-08-06T13:31:58+00:00">August 6, 2016 at 1:31 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>You mention ContactForm but there is only CommentForm. Seems to be  typo.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22537" data-commentid="22537" data-postid="1031" data-belowelement="comment-22537" data-respondelement="respond" data-replyto="Reply to Jeff" aria-label="Reply to Jeff">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-22593">
+						<article id="comment-22593" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/state-react-1-stateless-react-app/#comment-22593"><time datetime="2016-08-08T22:04:37+00:00">August 8, 2016 at 10:04 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks, fixed 🙂</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22593" data-commentid="22593" data-postid="1031" data-belowelement="comment-22593" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-23126">
+						<article id="comment-23126" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/2d38aaa604c40c6e67424c8f61ebf776?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/2d38aaa604c40c6e67424c8f61ebf776?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.logicea.com/" rel="external nofollow ugc" class="url">Aggelos Karalias</a> </cite><a href="/state-react-1-stateless-react-app/#comment-23126"><time datetime="2016-09-06T17:32:36+00:00">September 6, 2016 at 5:32 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This is exactly what we&#8217;re doing in almost every app.</p>
+<p>For a simple proof-of-concept check this gist <a href="https://gist.github.com/mehiel/cd8bd5be02349b3c7c2e8cec627854a2" rel="nofollow ugc">https://gist.github.com/mehiel/cd8bd5be02349b3c7c2e8cec627854a2</a>.</p>
+<p>For a prod ready result we&#8217;re trying this on top of react-joi-forms at <a href="https://github.com/mehiel/react-joi-forms" rel="nofollow ugc">https://github.com/mehiel/react-joi-forms</a>.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23126" data-commentid="23126" data-postid="1031" data-belowelement="comment-23126" data-respondelement="respond" data-replyto="Reply to Aggelos Karalias" aria-label="Reply to Aggelos Karalias">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-23136">
+						<article id="comment-23136" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/b2495caca536aa0a730da3f0aeace952?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b2495caca536aa0a730da3f0aeace952?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Sebastien Lorber </cite><a href="/state-react-1-stateless-react-app/#comment-23136"><time datetime="2016-09-07T08:55:55+00:00">September 7, 2016 at 8:55 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hey,</p>
+<p>I&#8217;ve been using React this way from React 0.5.2 more than 2 years ago.</p>
+<p>The result is that it does not perform so well even with very agressive shouldComponentUpdate everywhere (particularly on text inputs on mobile devices), and is very hard to maintain as props have to be passed down to a lot of intermediate components (unlike Redux&#8217;s connect())</p>
+<p>Also you won&#8217;t be able to use ReactRouter easily with this approach as RR does not like the routing code to render everytime, and it&#8217;s generally placed at the root of your app so&#8230;</p>
+<p>For these reasons we are migrating to Redux.</p>
+<p>For some details of our legacy stack: <a href="http://stackoverflow.com/questions/25791034/om-but-in-javascript" rel="nofollow ugc">http://stackoverflow.com/questions/25791034/om-but-in-javascript</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23136" data-commentid="23136" data-postid="1031" data-belowelement="comment-23136" data-respondelement="respond" data-replyto="Reply to Sebastien Lorber" aria-label="Reply to Sebastien Lorber">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-23165">
+						<article id="comment-23165" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/fe7e0a33810f4741485bf54228c4bb5c?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/fe7e0a33810f4741485bf54228c4bb5c?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Lars Jeppesen </cite><a href="/state-react-1-stateless-react-app/#comment-23165"><time datetime="2016-09-09T11:37:33+00:00">September 9, 2016 at 11:37 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>How come RxJS, Redux etc are considered part of the &#8220;React Ecosystem&#8221; for you, when they are totally independent libraries?</p>
+<p>For example; I&#8217;m using Redux and RxJS in my Angular2 applications, without any problems&#8230;</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23165" data-commentid="23165" data-postid="1031" data-belowelement="comment-23165" data-respondelement="respond" data-replyto="Reply to Lars Jeppesen" aria-label="Reply to Lars Jeppesen">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/state-react-1-stateless-react-app/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="1031" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="0c1b71bb35"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="157"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

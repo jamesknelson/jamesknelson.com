@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Re-exporting ES6 modules	</title>
+	<atom:link href="/re-exporting-es6-modules/feed/" rel="self" type="application/rss+xml" />
+	<link>/re-exporting-es6-modules/</link>
+	<description></description>
+	<lastBuildDate>Wed, 06 Jul 2016 07:34:28 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: HappyJoe		</title>
+		<link>/re-exporting-es6-modules/#comment-21797</link>
+
+		<dc:creator><![CDATA[HappyJoe]]></dc:creator>
+		<pubDate>Wed, 06 Jul 2016 07:34:28 +0000</pubDate>
+		<guid isPermaLink="false">/?p=266#comment-21797</guid>
+
+					<description><![CDATA[It&#039;s wrong with me &#039;export AppBar, AppCanvas; //, ...&#039; with out {}..]]></description>
+			<content:encoded><![CDATA[<p>It&#8217;s wrong with me &#8216;export AppBar, AppCanvas; //, &#8230;&#8217; with out {}..</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Song Yangyu		</title>
+		<link>/re-exporting-es6-modules/#comment-18592</link>
+
+		<dc:creator><![CDATA[Song Yangyu]]></dc:creator>
+		<pubDate>Wed, 20 Apr 2016 03:18:45 +0000</pubDate>
+		<guid isPermaLink="false">/?p=266#comment-18592</guid>
+
+					<description><![CDATA[Thanks for your post, it&#039;s quite helpful.
+
+However, what if I want to do `export {* as api_utils} from &#039;./config&#039;;`]]></description>
+			<content:encoded><![CDATA[<p>Thanks for your post, it&#8217;s quite helpful.</p>
+<p>However, what if I want to do `export {* as api_utils} from &#8216;./config&#8217;;`</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/re-exporting-es6-modules/#comment-6002</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Wed, 23 Dec 2015 06:28:21 +0000</pubDate>
+		<guid isPermaLink="false">/?p=266#comment-6002</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/re-exporting-es6-modules/#comment-5359&quot;&gt;Tim Branyen&lt;/a&gt;.
+
+Thanks Tim, I&#039;ve updated the article with this.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/re-exporting-es6-modules/#comment-5359">Tim Branyen</a>.</p>
+<p>Thanks Tim, I&#8217;ve updated the article with this.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Tim Branyen		</title>
+		<link>/re-exporting-es6-modules/#comment-5359</link>
+
+		<dc:creator><![CDATA[Tim Branyen]]></dc:creator>
+		<pubDate>Thu, 10 Dec 2015 17:17:49 +0000</pubDate>
+		<guid isPermaLink="false">/?p=266#comment-5359</guid>
+
+					<description><![CDATA[I recently tried the:
+
+&#062; export AppBar, AppCanvas; //, ...
+But Babel doesn’t even compile this.
+
+feature and realized that it does work, you just forgot to add the surrounding { ... }. It should look something like:
+
+export { AppBar, AppCanvas };]]></description>
+			<content:encoded><![CDATA[<p>I recently tried the:</p>
+<p>&gt; export AppBar, AppCanvas; //, &#8230;<br />
+But Babel doesn’t even compile this.</p>
+<p>feature and realized that it does work, you just forgot to add the surrounding { &#8230; }. It should look something like:</p>
+<p>export { AppBar, AppCanvas };</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>Writing NPM packages with ES6 using the Babel 6 CLI</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content=""> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Even if you write your NPM package with ES6, your *published* package should be pure ES5. And that means compiling your code before publishing it.">
+<link rel="canonical" href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Writing NPM packages with ES6 using the Babel 6 CLI">
+<meta property="og:description" content="Even if you write your NPM package with ES6, your *published* package should be pure ES5. And that means compiling your code before publishing it.">
+<meta property="og:url" content="httpjamesknelson.com/writing-npm-packages-with-es6-using-the-babel-6-cli/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="Build Systems">
+<meta property="article:published_time" content="2015-11-09T09:27:36+00:00">
+<meta property="article:modified_time" content="2015-11-15T08:41:36+00:00">
+<meta property="og:updated_time" content="2015-11-15T08:41:36+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Even if you write your NPM package with ES6, your *published* package should be pure ES5. And that means compiling your code before publishing it.">
+<meta name="twitter:title" content="Writing NPM packages with ES6 using the Babel 6 CLI">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Writing NPM packages with ES6 using the Babel 6 CLI Comments Feed" href="/writing-npm-packages-with-es6-using-the-babel-6-cli/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/877">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=877">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fwriting-npm-packages-with-es6-using-the-babel-6-cli%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fwriting-npm-packages-with-es6-using-the-babel-6-cli%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-877 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-877" class="clearfix post-877 post type-post status-publish format-standard hentry category-build-systems category-es6 category-javascript">
+								<header class="entry-header">
+																		<h1 class="entry-title">Writing NPM packages with ES6 using the Babel 6 CLI</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/build-systems/" rel="category tag">Build Systems</a>, <a href="/category/es6/" rel="category tag">ES6</a>, <a href="/category/javascript/" rel="category tag">Javascript</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/" title="9:27 am" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">November 9, 2015</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p><em>This guide is part of <a href="/the-complete-guide-to-es6-with-babel-6">The Complete Guide to ES6 with Babel 6</a> series. If you&#8217;re having trouble upgrading to Babel 6, start with <a href="/the-six-things-you-need-to-know-about-babel-6">Six Things You Need To Know About Babel 6</a>.</em></p>
+<p>Even if you write your NPM package with ES2015, it is important that the code you publish is compatible with <em>everyone else&#8217;s</em> JavaScript environments. That means compiling your code to ES5 before publishing it. And of course, the best way to do so is with the Babel CLI.</p>
+<p><span id="more-877"></span></p>
+<p>Before we set up compilation with Babel 6, make sure to delete any <em>previous</em> Babel-related packages from your project&#8217;s <code>node_modules</code> directory &#8212; <code>babel</code>, <code>babel-core</code>, etc.. Once you&#8217;ve done so, install the <code>babel-cli</code> package and ES2015 preset:</p>
+<pre><code>npm install babel-cli babel-preset-es2015 --save-dev
+</code></pre>
+<p>If you&#8217;d like to use proposed ES7 features, you&#8217;ll also need to install the <code>babel-preset-stage-0</code> package:</p>
+<pre><code>npm install babel-preset-stage-0 --save-dev
+</code></pre>
+<p>To instruct Babel to <em>use</em> the installed presets, pass them to to the <code>--presets</code> option as a comma-separated list. So assuming your source is in a <code>src</code> directory and you want to place your output in <code>lib</code>, you&#8217;d do this:</p>
+<pre><code>./node_modules/.bin/babel --presets es2015,stage-0 -d lib/ src/
+</code></pre>
+<p>We call Babel from <code>./node_modules/.bin/babel</code> instead of installing babel globally with <code>npm install babel-cli -g</code> to ensure that we&#8217;re not messing up the environment of any other projects using Babel 5. But typing out this command sure doesn&#8217;t sound like much fun, so let&#8217;s record this in <code>package.json</code> as a <code>compile</code> script:</p>
+<pre><code>"scripts": {
+    "compile": "babel --presets es2015,stage-0 -d lib/ src/"
+}
+</code></pre>
+<p>You can now compile your project by just typing <code>npm run compile</code> from your project root.</p>
+<p>Finally, let&#8217;s add a <code>prepublish</code> script to ensure compilation happens automatically before uploading to NPM:</p>
+<pre><code>"scripts": {
+    "compile": "babel --presets es2015,stage-0 -d lib/ src/",
+    "prepublish": "npm run compile"
+}
+</code></pre>
+<p>Don&#8217;t forget to add <code>lib</code> to your <code>.gitignore</code> file, and <code>src/</code> to your <code>.npmignore</code> file!</p>
+<pre><code># .gitignore - the files to not push via git
+lib
+
+# .npmignore - the files to not push to NPM
+src/
+</code></pre>
+<div class="hint">
+<strong>Hint: <code>.babelrc</code></strong>
+<p>Note that you <em>could</em> omit the <code>--presets es2015,stage-0</code>, and instead add a <code>.babelrc</code> file:</p>
+<pre><code>{
+  "presets": ["es2015","stage-0"]
+}
+</code></pre>
+<p>However, my recommendation is to keep the options to your command-line tools on the command line.
+</p>
+</div>
+<h2>Babel Runtime</h2>
+<p>Babel can&#8217;t support all of ES6 with compilation alone &#8211; it also needs to add some code to your application.</p>
+<p>This is generally solved by requiring the <a href="https://babeljs.io/docs/usage/polyfill/">babel-polyfill</a> package at the entry point of your application. This package polyfills new ES6 Built-ins like Map, Set and Promise, while also requiring <a href="https://www.npmjs.com/package/babel-runtime">babel-runtime</a> to add runtime support for Babel&#8217;s generators.</p>
+<p><em>However.</em> If you&#8217;re publishing a library to NPM, it is bad practice to mess with the entire global environment. In this case, you have three options:</p>
+<ol>
+<li>Avoid features which require runtime support (including new Built-ins and generators)</li>
+<li>Require <code>babel-runtime</code> directly, allowing usage of generators, but not polyfills which would modify the global environment</li>
+<li>Require <code>babel-polyfill</code> as a peer dependency and document that the consuming app must require it</li>
+</ol>
+<h2>Examples</h2>
+<p>For an example of an NPM package configured with Babel 6, see <a href="https://github.com/unicorn-standard/react-pacomo">react-pacomo</a>.</p>
+<h2>More ways to Babel</h2>
+<p>Now that you&#8217;ve got your library building with ES6, why not test it with ES6 too? And write your tasks with it. And write your app with it&#8230;</p>
+<ul>
+<li><a href="/testing-in-es6-with-mocha-and-babel-6/"><strong>Testing with Mocha</strong> and Babel&#8217;s <code>register</code> script</a></li>
+<li><a href="/teaching-gulp-es6-with-babel-6/"><strong>Running tasks</strong> with <code>gulpfile.babel.js</code></a></li>
+<li><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/"><strong>Using ES6 in the Browser</strong> with Webpack&#8217;s babel-loader</a></li>
+</ul>
+<h2>Keeping up to date</h2>
+<p>So you&#8217;ve made Babel 6 work. But the JavaScript world moves fast &#8212; how long will it <em>stay</em> working?</p>
+<p>If trying to keep up feel overwhelming, I&#8217;d love to help! Just subscribe to my free Newsletter to receive news and guides on the most important tools for <strong>people making small apps with React</strong>. And in return for your e-mail, you&#8217;ll <em>immediately receive</em> three bonus <em>print-optimised</em> PDF cheatsheets &#8211; on React <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">(see preview)</a>, ES6 and JavaScript promises. All for free!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 &#8211; The Bits You’ll Actually Use</a></li>
+<li>
+<a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="/the-six-things-you-need-to-know-about-babel-6">The Six Things You Need To Know About Babel 6</a></li>
+</ul>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/the-six-things-you-need-to-know-about-babel-6/" rel="prev"><span class="meta-nav">&#8592;</span> The Six Things You Need To Know About Babel 6</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/using-es6-in-the-browser-with-babel-6-and-webpack/" rel="next">Using ES6 and ES7 in the Browser, with Babel 6 and Webpack <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					10 Comments <span class="on">&#8594;</span> <span>Writing NPM packages with ES6 using the Babel 6 CLI</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-4104">
+						<article id="comment-4104" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/b87d95c8b76d951b2ec2d67d34a343e6?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b87d95c8b76d951b2ec2d67d34a343e6?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Ivan Yan </cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4104"><time datetime="2015-11-13T08:10:28+00:00">November 13, 2015 at 8:10 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>`&#8221;prepublish&#8221;: &#8220;npm run compile&#8221;,` has a extra comma</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4104" data-commentid="4104" data-postid="877" data-belowelement="comment-4104" data-respondelement="respond" data-replyto="Reply to Ivan Yan" aria-label="Reply to Ivan Yan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-4109">
+						<article id="comment-4109" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4109"><time datetime="2015-11-13T09:50:13+00:00">November 13, 2015 at 9:50 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for picking that up! I&#8217;ve made an update.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4109" data-commentid="4109" data-postid="877" data-belowelement="comment-4109" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-4414">
+						<article id="comment-4414" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/7c4565a4a60bb16f7d5e9ac66402b1dd?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/7c4565a4a60bb16f7d5e9ac66402b1dd?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">dmitry </cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4414"><time datetime="2015-11-18T07:21:06+00:00">November 18, 2015 at 7:21 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Can you help me with compile decorators? I wrote the following commands:<br>
+$ npm install -g babel-cli<br>
+$ npm install babel-preset-es2015 babel-preset-stage-0 &#8211;save-dev<br>
+$ npm install core-decorators &#8211;save</p>
+<p>Сreate file with name src/main.js:<br>
+<a href="https://github.com/jayphelps/core-decorators.js#readonly" rel="nofollow ugc">https://github.com/jayphelps/core-decorators.js#readonly</a></p>
+<p>The last command:<br>
+$ babel &#8211;presets es2015,stage-0 -d lib/ src/</p>
+<p>Result in console:<br>
+src\main.js -&gt; lib\main.js</p>
+<p>result in file:<br>
+&#8216;use strict&#8217;;</p>
+<p>var _coreDecorators = require(&#8216;core-decorators&#8217;);</p>
+<p>function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&#8220;Cannot call a class as a function&#8221;); } }</p>
+<p>var Meal = function Meal() {<br>
+  _classCallCheck(this, Meal);<br>
+};</p>
+<p>var dinner = new Meal();<br>
+dinner.entree = &#8216;salmon&#8217;;</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4414" data-commentid="4414" data-postid="877" data-belowelement="comment-4414" data-respondelement="respond" data-replyto="Reply to dmitry" aria-label="Reply to dmitry">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-4474">
+						<article id="comment-4474" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/2c0075b362fd9e453aad2ed98af59cc5?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/2c0075b362fd9e453aad2ed98af59cc5?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://kentcdodds.com/" rel="external nofollow ugc" class="url">Kent C. Dodds</a> </cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4474"><time datetime="2015-11-19T18:30:19+00:00">November 19, 2015 at 6:30 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for the blogpost. But beware of prepublish!!! <a href="https://github.com/npm/npm/issues/10074" rel="nofollow ugc">https://github.com/npm/npm/issues/10074</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4474" data-commentid="4474" data-postid="877" data-belowelement="comment-4474" data-respondelement="respond" data-replyto="Reply to Kent C. Dodds" aria-label="Reply to Kent C. Dodds">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor even depth-2" id="li-comment-4508">
+						<article id="comment-4508" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4508"><time datetime="2015-11-20T02:35:39+00:00">November 20, 2015 at 2:35 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for the heads-up, Kent. I&#8217;ll keep a watch on that issue.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4508" data-commentid="4508" data-postid="877" data-belowelement="comment-4508" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-4504">
+						<article id="comment-4504" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/25f46c2e54320b58d87804b7a7027a66?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/25f46c2e54320b58d87804b7a7027a66?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://iamstarkov.com/" rel="external nofollow ugc" class="url">Vladimir Starkov</a> </cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4504"><time datetime="2015-11-20T00:38:29+00:00">November 20, 2015 at 12:38 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I made yeoman `babel` generator to simplify process of getting babel up and running in your project <a href="https://github.com/iamstarkov/generator-babel" rel="nofollow ugc">https://github.com/iamstarkov/generator-babel</a><br>
+Please, take a look if you are interested or file an issue if you will find any bug</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4504" data-commentid="4504" data-postid="877" data-belowelement="comment-4504" data-respondelement="respond" data-replyto="Reply to Vladimir Starkov" aria-label="Reply to Vladimir Starkov">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-4768">
+						<article id="comment-4768" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/2e5b46a024b0f6ff93d5caaffaf9361d?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/2e5b46a024b0f6ff93d5caaffaf9361d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jesper Ek </cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4768"><time datetime="2015-11-27T11:24:22+00:00">November 27, 2015 at 11:24 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for the awesome guide! I really liked how you cleared up the usage of polyfill/runtime.</p>
+<p>However, I&#8217;m a bit troubled how to run our applications in production. The official documentation states that you should not use babel-node in production: &#8220;You should not be using babel-node in production. It is unnecessarily heavy, with high memory usage due to the cache being stored in memory. You will also always experience a startup performance penalty as the entire app needs to be compiled on the fly.&#8221;</p>
+<p>But the docs doesn&#8217;t say anything about the require-hook / babel-register. My understanding is that they are quite similar in function, they both compile on the fly and cache files and they both include the polyfill. So, if you want to run your application in production properly, is the only way to transpile ahead of time? I wouldn&#8217;t mind seeing a guide on this topic 😉</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4768" data-commentid="4768" data-postid="877" data-belowelement="comment-4768" data-respondelement="respond" data-replyto="Reply to Jesper Ek" aria-label="Reply to Jesper Ek">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-5620">
+						<article id="comment-5620" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/6ef1ebcd2b5f628ddf5b3db4ec940811?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/6ef1ebcd2b5f628ddf5b3db4ec940811?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Ajedi32 </cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-5620"><time datetime="2015-12-16T16:01:50+00:00">December 16, 2015 at 4:01 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>&gt; However, my recommendation is to keep the options to your command-line tools on the command line.</p>
+<p>I would argue instead that you should keep your config options for your project in a config file.</p>
+<p>Just because you *can* pass something as a command line argument doesn&#8217;t mean that&#8217;s the right way to do it.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-5620" data-commentid="5620" data-postid="877" data-belowelement="comment-5620" data-respondelement="respond" data-replyto="Reply to Ajedi32" aria-label="Reply to Ajedi32">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-19283">
+						<article id="comment-19283" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/7f7e03349644a42c6f129c4ffa5645d4?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/7f7e03349644a42c6f129c4ffa5645d4?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://gmsecrie.ru/" rel="external nofollow ugc" class="url">George Secrieru</a> </cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-19283"><time datetime="2016-05-04T12:08:42+00:00">May 4, 2016 at 12:08 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for the tip! Found your blog after serving npm with ES2015 source in a first attempt to publish a package 🙂</p>
+<p>Regards,<br>
+George</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-19283" data-commentid="19283" data-postid="877" data-belowelement="comment-19283" data-respondelement="respond" data-replyto="Reply to George Secrieru" aria-label="Reply to George Secrieru">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-22459">
+						<article id="comment-22459" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/3c332c65106a0978fd85a6f90c57a659?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/3c332c65106a0978fd85a6f90c57a659?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Justin Yip </cite><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-22459"><time datetime="2016-08-04T08:24:07+00:00">August 4, 2016 at 8:24 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>&#8220;prepublish&#8221;: &#8220;npm run compile&#8221;</p>
+<p>this automatic script is good. but in some case, npm will not publish the lib/ dir randomly.</p>
+<p>if somebody ran into this issue, just remove this script and compile manual before publish.</p>
+<p>ref: <a href="https://github.com/npm/npm/issues/5082" rel="nofollow ugc">https://github.com/npm/npm/issues/5082</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22459" data-commentid="22459" data-postid="877" data-belowelement="comment-22459" data-respondelement="respond" data-replyto="Reply to Justin Yip" aria-label="Reply to Justin Yip">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="877" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7864e3c511"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="241"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

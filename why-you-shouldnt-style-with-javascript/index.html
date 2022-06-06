@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>Why You Shouldn&#039;t Style React Components With JavaScript</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content=""> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="A handy dandy list of problems which you *could* have fixed with plain old CSS instead, and *new* problems you&#039;ll have if you use Inline Style anyway.">
+<link rel="canonical" href="/why-you-shouldnt-style-with-javascript/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why You Shouldn&#039;t Style React Components With JavaScript">
+<meta property="og:description" content="A handy dandy list of problems which you *could* have fixed with plain old CSS instead, and *new* problems you&#039;ll have if you use Inline Style anyway.">
+<meta property="og:url" content="httpjamesknelson.com/why-you-shouldnt-style-with-javascript/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="Design">
+<meta property="article:published_time" content="2015-10-28T06:04:33+00:00">
+<meta property="article:modified_time" content="2015-10-30T11:05:30+00:00">
+<meta property="og:updated_time" content="2015-10-30T11:05:30+00:00">
+<meta property="og:image" content="httpjamesknelson.com/wp-content/uploads/2015/10/Inline-Style.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="A handy dandy list of problems which you *could* have fixed with plain old CSS instead, and *new* problems you&#039;ll have if you use Inline Style anyway.">
+<meta name="twitter:title" content="Why You Shouldn&#039;t Style React Components With JavaScript">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:image" content="httpjamesknelson.com/wp-content/uploads/2015/10/Inline-Style.png">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Why You Shouldn&#8217;t Style React Components With JavaScript Comments Feed" href="/why-you-shouldnt-style-with-javascript/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/753">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=753">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fwhy-you-shouldnt-style-with-javascript%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fwhy-you-shouldnt-style-with-javascript%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-753 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-753" class="clearfix post-753 post type-post status-publish format-standard hentry category-design category-javascript category-react category-theming">
+								<header class="entry-header">
+																		<h1 class="entry-title">Why You Shouldn&#8217;t Style React Components With JavaScript</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/design/" rel="category tag">Design</a>, <a href="/category/javascript/" rel="category tag">Javascript</a>, <a href="/category/react/" rel="category tag">React</a>, <a href="/category/theming/" rel="category tag">Theming</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/why-you-shouldnt-style-with-javascript/" title="6:04 am" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">October 28, 2015</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p><em>Update: <a href="/taming-css-globals-with-react-without-webpack-or-inline-style/">I&#8217;ve announced react-pacomo</a>, a solution for some of the problems with CSS outlined here, without the downsides of Inline Style.</em></p>
+<p>So one of the hottest topics in the React world lately is <em>Inline Style</em>, i.e. setting styles with an element&#8217;s <code>style</code> property instead of CSS.</p>
+<p>This new and shiny way of doing things promises to <em>make your life easier</em>. It eliminates the <em>bugs</em> caused by global styles, it allows you to <em>package</em> styles with your components, and it <em>unifies</em> the entire development process under the single language of JavaScript, <em>fuck yeah</em>. And now that all the cool kids are using it, it&#8217;s time to jump on the bandwagon too!</p>
+<p>But don&#8217;t just take my word for it! See for yourself with this handy dandy list of all the problems which you <em>could</em> have fixed with plain old CSS if you hadn&#8217;t of drunk the cool-aid, and the <em>new</em> problems you&#8217;ll now have to deal with too.</p>
+<p><span id="more-753"></span></p>
+<h2>Problems which Inline Style didn&#8217;t have to solve</h2>
+<h3>Everything in CSS is a global</h3>
+<p>Let&#8217;s get this one out of the way first, because it is always the first thing that comes up in any list of reasons not to use CSS.</p>
+<p>Yes, everything in CSS is a global:</p>
+<pre><code>.active {
+    background: red;
+}
+
+/* ... lines and lines of unrelated code ... */
+
+.active {
+    /* oops */
+    background: blue;
+}
+</code></pre>
+<p>So namespace your classes and deal with it:</p>
+<pre><code>.app-NavItem-active {
+    background: red;
+}
+
+/* ... lines and lines of unrelated code ... */
+
+.app-ContactForm-active {
+    background: blue;
+}
+</code></pre>
+<p>While this may look long-winded, if you&#8217;re using SCSS or LESS then the parent selector with a dash (<code>&amp;-</code>) will make wonder what you were ever worried about:</p>
+<pre><code>.app-ContactForm {
+  &amp;-active {
+    background: blue;
+  }
+
+  &amp;-saving, &amp;-fetching {
+    /* style goes here */
+  }
+}
+</code></pre>
+<p>And on the React side, there are <a href="http://unicornstandard.com/packages/react-pacomo.html">tools to generate these scoped class names for you</a>. Or if you&#8217;re stuck outside the kingdom of React, <a href="https://github.com/css-modules/css-modules">CSS modules</a> will accomplish basically the same thing.</p>
+<p>But then again, sometimes you <em>want</em> global styles, like this:</p>
+<pre><code>@import url('http://fonts.googleapis.com/css?family=Roboto:300,400');
+</code></pre>
+<p>Or this:</p>
+<pre><code>html, body {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  font-family: Roboto;
+}
+</code></pre>
+<p>And good luck implementing <em>these</em> with Inline Style.</p>
+<h3>Cascading gets in the way</h3>
+<p>There are a number of meanings of &#8220;cascading&#8221;, so let&#8217;s pick one: styles sometimes <em>inherit</em> their value from parent styles. For example, defining <code>font-family: "Comic Sans MS"</code> on <code>body</code> will cause most everything on your page to be cheerful and happy. Some people don&#8217;t like this, because it means that your component may end up with style which you didn&#8217;t specifically give to it. <em>But style will still cascade, even when defined with Inline Style.</em></p>
+<p>So why is Inline Style a benefit? Well, Inline Style let&#8217;s you write JavaScript helper functions to ensure that your components overwrite any inherited styles with their <em>own</em> styles. But seriously, let&#8217;s think about this for a moment: all you&#8217;ve <em>really</em> done is re-implemented cascading through JavaScript helper functions. Though at least it&#8217;s written with JavaScript now, amiright?</p>
+<p>So let&#8217;s move onto the next meaning of cascading: if you create a selector for <code>ul li</code>, then your styles will be applied to <code>ul li ul li</code> and <code>ul li ul li ul li</code> too. Selectors aren&#8217;t very specific.</p>
+<p>Easy fix: <em>don&#8217;t use HTML elements in selectors.</em> Instead, give your elements namespaced CSS classes which double as a way of documenting what they actually do. Your code will be clearer and more precise as a result.</p>
+<h3>Inline Style can be included directly from your component modules</h3>
+<p>This is actually a huge benefit. Nobody likes maintaining entirely separate project trees just for their CSS, or managing CSS files which live in completely separate locations to their corresponding JSX.</p>
+<p>But now that we all have access to wonderful tools like <a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack</a>, this benefit isn&#8217;t limited to Inline Style anymore. In fact, I place my LESS files right next to my JSX (or JS with Angular), and then include them like this:</p>
+<pre><code>import './DocumentForm.less'
+</code></pre>
+<p><em>But James</em> &#8211; you tell me &#8211; those LESS files still depend on other LESS files which are separate to your components. And it isn&#8217;t like you can use JavaScript-loaded styles in production!</p>
+<p>Half true.  The LESS files <em>do</em> depend on other LESS files &#8211; but only ones included like this:</p>
+<pre><code>@import (reference) '~cloth-util-less/index.less';
+</code></pre>
+<p>That little <code>(reference)</code> ensures that <em>no</em> output is generated by the <code>@import</code>; it is just a way of importing variables and mixins. This allows each component&#8217;s CSS to be <em>completely</em> independent of the other components.</p>
+<p>And with Webpack&#8217;s <code>ExtractTextPlugin</code>, the generated CSS is all extracted to a real CSS file. Which can be cached separately! <em>Have fun caching your inline styles separately.</em></p>
+<h3>Inline Style lets you use JavaScript, so you won&#8217;t have to learn CSS</h3>
+<p>Except that you <em>will</em>. Seriously, <em>what are you people smoking?!</em> See those property names in your Inline Styles? <em>They&#8217;re CSS.</em></p>
+<p>Ok, maybe you won&#8217;t have to learn media queries and pseudo selectors. But instead, you&#8217;re going to have to learn the equivalents for whatever framework you choose. Or maybe you won&#8217;t &#8211; because if you don&#8217;t use an Inline Style framework, <em>you&#8217;ll spend so much time re-implementing media queries and pseudo selectors that you&#8217;ll know how they work back to front.</em></p>
+<h3>Inline Style gives you <em>more power</em>
+</h3>
+<p>This is about the only valid point that people make. You <em>do</em> get more power with Inline Styling than you would with CSS, or even with CSS compilers like LESS, SCSS or PostCSS. <em>But do you really need it?</em></p>
+<p>No website is complete without a terrible car analogy, and this might be my only chance to ever write one, so here goes: <em>CSS is a moped.</em> It sucks, but it is what you start out with. It is dangerous, slow, and it quickly teaches you why you need more power. <em>LESS/SCSS</em> is a Japanese car. It is reliable, it gets you where you need to go, it won&#8217;t need fixing any time soon, and it&#8217;ll still hit the speed limit if you want it to. Inline Style is this:</p>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/YYpRTEcyqGw" frameborder="0" allowfullscreen></iframe></p>
+<hr>
+<h2>Problems you would have avoided if you just used boring old CSS</h2>
+<h3>You can&#8217;t use any existing tooling</h3>
+<p>Sure, CSS is a bit shit. But that is why people have made a number of amazingly useful tools which <em>aren&#8217;t</em>:</p>
+<ul>
+<li><a href="http://lesscss.org/">LESS</a></li>
+<li><a href="http://sass-lang.com/">SCSS</a></li>
+<li><a href="https://github.com/postcss/postcss">PostCSS</a></li>
+<li><a href="https://github.com/postcss/autoprefixer">Autoprefixer</a></li>
+</ul>
+<p>Maybe you don&#8217;t use any of these tools. Which would surprise me, because it would be silly to jump on this bandwagon without having at least <em>tried</em> the industry standard solutions first. But let&#8217;s say you haven&#8217;t, and then a brilliant new tool arrives which targets CSS. <em>Too bad.</em></p>
+<p>But tools aren&#8217;t all you&#8217;ll be missing.</p>
+<h3>You can&#8217;t use any existing CSS</h3>
+<p>So you know all those styles you&#8217;ve written over the years? You can kiss them goodbye. But maybe you don&#8217;t write many styles, so it&#8217;s all good.</p>
+<p>Except, you know all those <a href="https://github.com/trending?l=css">styles</a> that <em>other</em> people have written over the years? You may as well forget they ever existed, because they&#8217;ll be incompatible with yours.</p>
+<p>But no worries, it isn&#8217;t like you have to put <em>all</em> your style in Inline Style. You can just gradually move your style over, and pull in parts of the occasional CSS library when it makes sense. Except that you can&#8217;t, because:</p>
+<h3>Inline Style is infectious</h3>
+<p>So you know how you can define CSS styles with a number of priorities?</p>
+<p>Element selectors have the lowest priority &#8212; you can override them with CSS classes. Classes can be overridden with IDs, which can in turn be overridden with <code>!important</code>.</p>
+<p>And you know what overrides everything? <em>Inline Style.</em></p>
+<p>Now you may be thinking, &#8220;That&#8217;s great, because now I never have to worry about anything overriding my styles&#8221;. Which is true, but you wouldn&#8217;t have to worry about this <em>anyway</em> if you just namespaced your classes properly. <em>Notice a pattern here?</em></p>
+<p>But you <em>will</em> have to worry if you ever need to apply third-party styles, because Inline Style will kill them dead. And if you want to add some CSS to a component which defines its own Inline Styles? You&#8217;re shit out of luck. And if you want to override <em>anything</em> without passing in options as more Inline Styles? <em>You just can&#8217;t.</em></p>
+<p>And this might not be a problem for you. But unless your project is just a toy, you&#8217;re not the only one who counts.</p>
+<h3>Designers speak CSS</h3>
+<p>If you work on a team of anything other than the most <em>talented</em> people, you&#8217;ve probably already experienced this. In fact, you&#8217;re probably reading this rant for entertainment, not education. I hope you enjoyed the show, and don&#8217;t forget that sharing cat videos and JavaScript rants is caring!</p>
+<p>But let&#8217;s say you&#8217;re a lone front-end developer experienced in both CSS and JavaScript. You&#8217;re building something which you&#8217;d like to eventually pay the bills, and scaling sounds like a problem you&#8217;d <em>like to have</em>. Part of scaling is that your code will at some point be handled by other people. And even if <em>you</em> don&#8217;t find anything in this article scary, <em>everyone else</em> certainly will.</p>
+<h2>But CSS still has problems too!</h2>
+<p>You&#8217;re absolutely correct. The thing is, there are better ways of solving these problems than using Inline Style. I&#8217;ve already alluded to a few of these solutions:</p>
+<ul>
+<li>Using LESS to avoid repetitive style definitions</li>
+<li>Using React to transform your CSS classes into <em>namespaced</em> CSS classes</li>
+<li>Using Webpack to modularise your CSS</li>
+</ul>
+<p>Not sure how to accomplish these? You <em>could</em> learn them the hard way: with Google and trial and error. Or, you could learn them the easy way: <em>Join my Newsletter</em>, then read the guides I&#8217;ll be sending out over the next couple weeks on namespacing and modularising CSS.</p>
+<p>And to sweeten the deal, in return for your e-mail you&#8217;ll <em>immediately</em> receive three <em>print-optimised</em> PDF cheatsheets. One on React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), another for ES6 and yet another for JavaScript promises. <em>All for free!</em></p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<p>One more thing &#8211; <em>I love hearing your opinions, questions, and offers of money.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/taming-css-globals-with-react-without-webpack-or-inline-style/">Introducing react-pacomo: Automatic namespacing for className</a></li>
+<li><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack Made Simple: Build ES6 &amp; LESS with autorefresh in 26 lines</a></li>
+<li><a href="/which-build-system-should-i-use-for-my-javascript-app/">Choosing a JavaScript Build Tool – Babel, Browserify, Webpack, Grunt and Gulp</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li><a href="http://unicornstandard.com/packages/pacomo.html">pacomo</a></li>
+<li><a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
+<li><a href="http://unicornstandard.com/packages/boilerplate.html">See namespaced CSS in action in the Unicorn Standard Starter Kit</a></li>
+</ul>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/" rel="prev"><span class="meta-nav">&#8592;</span> Join The Dark Side Of The Flux: Responding to Actions with Actors</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/taming-css-globals-with-react-without-webpack-or-inline-style/" rel="next">Introducing react-pacomo: Automatic namespacing for className <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					37 Comments <span class="on">&#8594;</span> <span>Why You Shouldn&#8217;t Style React Components With JavaScript</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-3423">
+						<article id="comment-3423" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/5cbad4ccbdbabd275c74962f0c5798d6?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/5cbad4ccbdbabd275c74962f0c5798d6?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">SylvainPV </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3423"><time datetime="2015-10-28T13:07:59+00:00">October 28, 2015 at 1:07 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I started to use inline styles only for some layout properties (positionning and sizing), aside my classical SCSS styles that defines the graphical charter and the other styles.</p>
+<p>CSS specificity is really useful to define color schemes, alternative states, modifiers etc&#8230; but from my experience, it is terrible with layout. When dealing with layout, you often want to set several properties at the same time, like position-top-left-margin or display-width-height. If one of these is overridden, things quicky become complex.</p>
+<p>When working with a component approach, where the HTML/JS and scoped CSS are bound together, using inline styles for layout gave me good results until now. This is also an approach used by some JS UI libraries that works with layout, like Masonry or jQuery.equalize.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3423" data-commentid="3423" data-postid="753" data-belowelement="comment-3423" data-respondelement="respond" data-replyto="Reply to SylvainPV" aria-label="Reply to SylvainPV">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-3429">
+						<article id="comment-3429" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/7e5d4152d07b4705b159db241fd5768b?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/7e5d4152d07b4705b159db241fd5768b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Alex </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3429"><time datetime="2015-10-28T18:22:42+00:00">October 28, 2015 at 6:22 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I agree 70% of the time. There are times when you have some fancy component, that it totally makes sense to use the inline-styling. An example would be a calendar component. I want to be able to build 1 calendar component and it be ready to be used in all my project, without fiddling with a million different css files.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3429" data-commentid="3429" data-postid="753" data-belowelement="comment-3429" data-respondelement="respond" data-replyto="Reply to Alex" aria-label="Reply to Alex">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-3433">
+						<article id="comment-3433" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/90849d9bd51a1910544cf09d2170460d?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/90849d9bd51a1910544cf09d2170460d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://serapath.de/" rel="external nofollow ugc" class="url">serapath</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3433"><time datetime="2015-10-29T01:17:01+00:00">October 29, 2015 at 1:17 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I think styling components from javascript is the future, because it makes everything easier in the same way JSX or &#8220;inline markup&#8221; makes things easier.</p>
+<p>You can use inline styles and if you need the features of stylesheets, use <a href="https://github.com/jsstyles/jss" rel="nofollow ugc">https://github.com/jsstyles/jss</a></p>
+<p>You can even define your &#8220;jss&#8221; in &#8220;css&#8221; by using es6 template strings (which even enables you to use variables) and converting the &#8220;es6 template string css&#8221; into &#8220;jss&#8221; on the fly using <a href="https://github.com/jsstyles/jss-cli/blob/master/lib/cssToJss.js" rel="nofollow ugc">https://github.com/jsstyles/jss-cli/blob/master/lib/cssToJss.js</a></p>
+<p>Honestly, all the disadvantages you mention will go away and the benefits stay.<br>
+I agree, that maybe it&#8217;s not ready for prime-time, because it needs some more &#8220;user friendlyness&#8221; and usage examples.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3433" data-commentid="3433" data-postid="753" data-belowelement="comment-3433" data-respondelement="respond" data-replyto="Reply to serapath" aria-label="Reply to serapath">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-3528">
+						<article id="comment-3528" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/0952b219674743e4d2bf396eb12032dc?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/0952b219674743e4d2bf396eb12032dc?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://keithjgrant.com/" rel="external nofollow ugc" class="url">Keith J. Grant</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3528"><time datetime="2015-10-30T17:29:55+00:00">October 30, 2015 at 5:29 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>You lose a lot when you switch to CSS in JS. CSS is doing a lot of things for you that you are probably taking for granted. (<a href="http://keithjgrant.com/posts/against-css-in-js.html" rel="nofollow ugc">http://keithjgrant.com/posts/against-css-in-js.html</a>)</p>
+<p>If you want the benefits of both, but the drawbacks of neither, I strongly encourage you to check out CSS Modules: <a href="http://glenmaddern.com/articles/css-modules" rel="nofollow ugc">http://glenmaddern.com/articles/css-modules</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3528" data-commentid="3528" data-postid="753" data-belowelement="comment-3528" data-respondelement="respond" data-replyto="Reply to Keith J. Grant" aria-label="Reply to Keith J. Grant">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-3" id="li-comment-4894">
+						<article id="comment-4894" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/90849d9bd51a1910544cf09d2170460d?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/90849d9bd51a1910544cf09d2170460d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://serapath.de/" rel="external nofollow ugc" class="url">serapath</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-4894"><time datetime="2015-11-30T14:03:01+00:00">November 30, 2015 at 2:03 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>css modules are better than css but dont fix css for real.</p>
+<p>&#8211; css modules cannot be customized by passing in arguments, thus a &#8220;button component&#8221; cannot receive it&#8217;s &#8220;box-shadow&#8221; as an argument.</p>
+<p>&#8211; css modules cannot adapt styling based on real-time user interaction.</p>
+<p>Both features you get with javascript and thats why jss and co. are so awesome.<br>
+In the past &#8211; databinding or &#8220;reactivity&#8221; were not important and now it&#8217;s state of the art.<br>
+My bet is that the same will be true for styling in the near future.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4894" data-commentid="4894" data-postid="753" data-belowelement="comment-4894" data-respondelement="respond" data-replyto="Reply to serapath" aria-label="Reply to serapath">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-4" id="li-comment-19602">
+						<article id="comment-19602" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/dd044f341340b36490c0c0c9a65f8524?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/dd044f341340b36490c0c0c9a65f8524?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">uscareme </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-19602"><time datetime="2016-05-09T22:36:03+00:00">May 9, 2016 at 10:36 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Except that CSS is addressing these lacks through WEB STANDARDS right now. </p>
+<p>See these standards&#8230;</p>
+<p><a href="https://www.w3.org/TR/css-variables-1/" rel="nofollow ugc">https://www.w3.org/TR/css-variables-1/</a><br>
+Not only do CSS variables (aka custom properties) bring variables a la preprocessors to CSS, variable values have the added benefit of being both scoped and live variables. Meaning CSS can adapt styling based on real-time user interaction. This has already shipped in Chrome.</p>
+<p><a href="https://tabatkins.github.io/specs/css-apply-rule/" rel="nofollow ugc">https://tabatkins.github.io/specs/css-apply-rule/</a><br>
+Variables are nice for simple theming, but more complex needs are common. There are properties within themes which are inter-reliant. Or maybe a user wants to add a box shadow the default theme didn&#8217;t have and therefore a component didn&#8217;t provide a variable. (Plus, if components provided variables for EVERY theming possibility, it&#8217;d be reinventing CSS properties via variables&#8211;not possible, and a mess.) A good solution, simulate-able with Sass mixins, is a &#8220;block variable&#8221;, a variable that can contain any rule ad hoc. This proposal will bring this powerful and elegant feature to CSS&#8211;which, like the CSS variables above, will be dynamic and can respond to real-time user interaction and to scope.</p>
+<p>&#8230;to name two.</p>
+<p>No solution that requires an investment into a commercially supported framework will ever be a better option than an open web platform standard. The article <a href="http://www.sitepoint.com/importance-web-standards/" rel="nofollow ugc">http://www.sitepoint.com/importance-web-standards/</a> covers a brief history supporting this assertion.</p>
+<p>I guarantee to you: Inline CSS is a fad. React will eventually go the way of jQuery. Web standards last and are a better economic choice for businesses.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-19602" data-commentid="19602" data-postid="753" data-belowelement="comment-19602" data-respondelement="respond" data-replyto="Reply to uscareme" aria-label="Reply to uscareme">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-3452">
+						<article id="comment-3452" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/6e72b716044e8d1a3366d5d9026db08a?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/6e72b716044e8d1a3366d5d9026db08a?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Andrew </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3452"><time datetime="2015-10-29T14:51:56+00:00">October 29, 2015 at 2:51 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Separation of concerns, enough said.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3452" data-commentid="3452" data-postid="753" data-belowelement="comment-3452" data-respondelement="respond" data-replyto="Reply to Andrew" aria-label="Reply to Andrew">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-3534">
+						<article id="comment-3534" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/90849d9bd51a1910544cf09d2170460d?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/90849d9bd51a1910544cf09d2170460d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://serapath.de/" rel="external nofollow ugc" class="url">serapath</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3534"><time datetime="2015-10-30T20:27:40+00:00">October 30, 2015 at 8:27 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>true 🙂 seperation of concerns is very important, I just don&#8217;t get what it has to do with the above article</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3534" data-commentid="3534" data-postid="753" data-belowelement="comment-3534" data-respondelement="respond" data-replyto="Reply to serapath" aria-label="Reply to serapath">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even depth-2" id="li-comment-3539">
+						<article id="comment-3539" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/edac0086c6f9e076b6235f565092662d?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/edac0086c6f9e076b6235f565092662d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Anton Volt </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3539"><time datetime="2015-10-31T00:12:51+00:00">October 31, 2015 at 12:12 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I used to think that way until I really have react a chance, but now I&#8217;m convinced everything should be grouped with the component that is using it. Separation of concerns only matters if your code isn&#8217;t very modular, but I&#8217;ve been very happy not having to open up 1 giant rats nest of a CSS file or opening up a million SASS partials, just give the react way a real shot and you&#8217;ll see why everyone is switching</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3539" data-commentid="3539" data-postid="753" data-belowelement="comment-3539" data-respondelement="respond" data-replyto="Reply to Anton Volt" aria-label="Reply to Anton Volt">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-3" id="li-comment-4895">
+						<article id="comment-4895" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/90849d9bd51a1910544cf09d2170460d?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/90849d9bd51a1910544cf09d2170460d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://serapath.de/" rel="external nofollow ugc" class="url">serapath</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-4895"><time datetime="2015-11-30T14:04:37+00:00">November 30, 2015 at 2:04 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>+1 🙂<br>
+or any other javascriptish solution.</p>
+<p>You get all the power of pre-processors with a powerful familiar language (javascript)</p>
+<p>You get real-time updates based on user interaction</p>
+<p>Styling calculations and other things can be put into &#8220;npm modules&#8221; and easily shared and re-used</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4895" data-commentid="4895" data-postid="753" data-belowelement="comment-4895" data-respondelement="respond" data-replyto="Reply to serapath" aria-label="Reply to serapath">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even depth-3" id="li-comment-17227">
+						<article id="comment-17227" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/f491828ec5f1ada13b756d54d7c5a971?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/f491828ec5f1ada13b756d54d7c5a971?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">eafw </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-17227"><time datetime="2016-03-30T16:02:41+00:00">March 30, 2016 at 4:02 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>&#8220;&#8230;why everyone AT FACEBOOK is switching.&#8221;</p>
+<p>Corrected for you.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-17227" data-commentid="17227" data-postid="753" data-belowelement="comment-17227" data-respondelement="respond" data-replyto="Reply to eafw" aria-label="Reply to eafw">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-3506">
+						<article id="comment-3506" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/37f7ff029249b3e1879c20e639ba4eef?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/37f7ff029249b3e1879c20e639ba4eef?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Chris Geirman </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3506"><time datetime="2015-10-30T11:50:35+00:00">October 30, 2015 at 11:50 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Not arguing. You make great points, but this helps solve one of the issues you mentioned&#8230;</p>
+<p><a href="https://github.com/kepta/atom-css-to-inline" rel="nofollow ugc">https://github.com/kepta/atom-css-to-inline</a></p>
+<p>I agree with SERAPATH&#8217;s comment that &#8220;the disadvantages you mention will go away and the benefits stay.&#8221;</p>
+<p>We keep matching forward, solving (and creating) problems along the way</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3506" data-commentid="3506" data-postid="753" data-belowelement="comment-3506" data-respondelement="respond" data-replyto="Reply to Chris Geirman" aria-label="Reply to Chris Geirman">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-3509">
+						<article id="comment-3509" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/edac0086c6f9e076b6235f565092662d?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/edac0086c6f9e076b6235f565092662d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Anton Volt </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3509"><time datetime="2015-10-30T12:35:02+00:00">October 30, 2015 at 12:35 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>So we started rebuilding v2 of our app with react/redux and one of the devs was set on only inline styles, at first I was against it but then I started to really appreciate it.<br>
+To counter some points you made, writing our own media queries in JS took 1 day,  I made a sweet flexbox layout helper system in an hour which is the most painless Expetience I&#8217;ve had doing layouts.<br>
+You do raise some valid points but why in the world does it only have to be all CSS or all JS, we use each where it makes sense.<br>
+We have almost all components inline styles and pass props when needed, but we do have 2 components which is just made more sense to import a SASS file, (plus we run with 1 global CSS file for resets and basic styles).<br>
+So why does it have to be one way or the other? I&#8217;m in love with the combination right now, it&#8217;s most fun I&#8217;ve had working in a while.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3509" data-commentid="3509" data-postid="753" data-belowelement="comment-3509" data-respondelement="respond" data-replyto="Reply to Anton Volt" aria-label="Reply to Anton Volt">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-3541">
+						<article id="comment-3541" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3541"><time datetime="2015-10-31T01:44:26+00:00">October 31, 2015 at 1:44 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>A few people have mentioned that they&#8217;ve been using both together, and the pattern of Inline Style for layout, CSS for &#8220;themeing&#8221; comes up a bit. It certainly does sound like there may be some upside to this approach which I&#8217;ve glossed over. Possibly because layout can be thought of independently to theming?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3541" data-commentid="3541" data-postid="753" data-belowelement="comment-3541" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-3" id="li-comment-15000">
+						<article id="comment-15000" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/f9a66442f68abc3295f842571164167f?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/f9a66442f68abc3295f842571164167f?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Brian </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-15000"><time datetime="2016-03-13T02:27:36+00:00">March 13, 2016 at 2:27 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This could potentially work, but at that point you already have separate CSS, why split things up like that?  When it doesn&#8217;t look quite right you now have to look in two places to find the code to fix!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-15000" data-commentid="15000" data-postid="753" data-belowelement="comment-15000" data-respondelement="respond" data-replyto="Reply to Brian" aria-label="Reply to Brian">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-3527">
+						<article id="comment-3527" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/393d38a4f33cda7940f84ed378a0b553?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/393d38a4f33cda7940f84ed378a0b553?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://replete.nu/" rel="external nofollow ugc" class="url">Phil Ricketts</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3527"><time datetime="2015-10-30T17:15:00+00:00">October 30, 2015 at 5:15 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Agreed.<br>
+If you find yourself wanting to add some CSS to a DOM element, don’t.</p>
+<p>Namespace your CSS if there’s just too much to deal with.<br>
+If you must, write your styles to a `style` tag in the head.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3527" data-commentid="3527" data-postid="753" data-belowelement="comment-3527" data-respondelement="respond" data-replyto="Reply to Phil Ricketts" aria-label="Reply to Phil Ricketts">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-2" id="li-comment-22357">
+						<article id="comment-22357" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/63692d6dbb0511ac24ebcbd585f684b3?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/63692d6dbb0511ac24ebcbd585f684b3?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Tom </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-22357"><time datetime="2016-07-28T06:00:35+00:00">July 28, 2016 at 6:00 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>hi guys. i have a problem.can you help me ? how can i let many Namespace CSS modules into one `style` DOM element tag in the `head`?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22357" data-commentid="22357" data-postid="753" data-belowelement="comment-22357" data-respondelement="respond" data-replyto="Reply to Tom" aria-label="Reply to Tom">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-3537">
+						<article id="comment-3537" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/b3d0d27c01d183d7770c060f5e29e9ad?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b3d0d27c01d183d7770c060f5e29e9ad?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://tracker1.info/" rel="external nofollow ugc" class="url">Michael J. Ryan</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3537"><time datetime="2015-10-30T22:54:55+00:00">October 30, 2015 at 10:54 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Just started spec&#8217;ing out a component/decorator to deal with this&#8230; 🙂  comments welcome.</p>
+<p><a href="https://github.com/react-derma/derma" rel="nofollow ugc">https://github.com/react-derma/derma</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3537" data-commentid="3537" data-postid="753" data-belowelement="comment-3537" data-respondelement="respond" data-replyto="Reply to Michael J. Ryan" aria-label="Reply to Michael J. Ryan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-3554">
+						<article id="comment-3554" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/32e3a5e470f509284fc6ee9a7237acdd?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/32e3a5e470f509284fc6ee9a7237acdd?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://hiddentao.com/" rel="external nofollow ugc" class="url">Ram</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3554"><time datetime="2015-10-31T07:39:51+00:00">October 31, 2015 at 7:39 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>The only issue here is React Native. You need inline styles for that, no other way as far as I&#8217;m aware.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3554" data-commentid="3554" data-postid="753" data-belowelement="comment-3554" data-respondelement="respond" data-replyto="Reply to Ram" aria-label="Reply to Ram">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-3556">
+						<article id="comment-3556" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3556"><time datetime="2015-10-31T08:23:03+00:00">October 31, 2015 at 8:23 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Yep. That said, outside of Layout (which Inline Style seems to do a good job of), it might make sense to make separate Presentation components for both native and web &#8211; they&#8217;re different, after all.</p>
+<p>I&#8217;m going to be looking into the react-native conundrum a little more. Stay tuned for an update.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3556" data-commentid="3556" data-postid="753" data-belowelement="comment-3556" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-3" id="li-comment-18665">
+						<article id="comment-18665" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/a61faad7455911544b828476e9f21a10?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/a61faad7455911544b828476e9f21a10?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://aleembawany.com/" rel="external nofollow ugc" class="url">Aleem B</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-18665"><time datetime="2016-04-21T14:33:00+00:00">April 21, 2016 at 2:33 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Is there anything on the react-native front?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-18665" data-commentid="18665" data-postid="753" data-belowelement="comment-18665" data-respondelement="respond" data-replyto="Reply to Aleem B" aria-label="Reply to Aleem B">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-3662">
+						<article id="comment-3662" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/2ff71b7c80ac1755604a6ae0b2896fcd?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/2ff71b7c80ac1755604a6ae0b2896fcd?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jos de Jong </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3662"><time datetime="2015-11-02T21:02:29+00:00">November 2, 2015 at 9:02 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I Agree with comments from Sylvainpv and Anton Volt: CSS is great for styling like fonts&amp;colors but a huge pain for layouts. </p>
+<p>On the other hand, I experienced React components which did use inline styles in a restrictive way: hard-coded fonts and font sizes without a way to override them all to match your own applications fonts.</p>
+<p>All in all I think inline styles are very valid for layouts, and not so handy for theming.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3662" data-commentid="3662" data-postid="753" data-belowelement="comment-3662" data-respondelement="respond" data-replyto="Reply to Jos de Jong" aria-label="Reply to Jos de Jong">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor even depth-2" id="li-comment-3670">
+						<article id="comment-3670" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3670"><time datetime="2015-11-03T00:17:21+00:00">November 3, 2015 at 12:17 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I&#8217;m coming around to the idea that maybe Inline Style isn&#8217;t so bad for layout. You&#8217;re spot on thought with your observation of components which hard-code things like fonts and colors. They&#8217;re a perfect use case for CSS using pacomo, and it certainly doesn&#8217;t make sense to use Inline Style with them.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3670" data-commentid="3670" data-postid="753" data-belowelement="comment-3670" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt depth-2" id="li-comment-19603">
+						<article id="comment-19603" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/dd044f341340b36490c0c0c9a65f8524?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/dd044f341340b36490c0c0c9a65f8524?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">uscareme </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-19603"><time datetime="2016-05-09T22:59:25+00:00">May 9, 2016 at 10:59 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I&#8217;ve been interviewing JavaScript application developers for the last four years, and the majority of them appear to be incapable of writing viable CSS at all. Forget them having the sophistication to actually architect CSS intelligently, making appropriate choices about which rules to consider essential layout and which rules to consider optional theme.</p>
+<p>How do they get products to market? In most cases the answer appears to be Bootstrap or some other framework/modules of its ilk. Good luck using a pre-written CSS grid system for layout with inline CSS. Oh, but we will eventually finish reinventing the wheel for inline CSS and then everyone will see what a great idea inline CSS really is! Nevermind that whole &#8220;reinventing the wheel&#8221; requirement.</p>
+<p>Now, sure, I don&#8217;t personally need a CSS framework and can both write and architect good, change-tolerant CSS. I could probably use inline CSS in a very effective way. But I see downsides, too, and am aware of better standardized solutions in coming down the pipe to most of my CSS conundrums. Not to mention there&#8217;s a typical learning curve fraught with unknown unknowns (distributed across multiple people and new hires) when making such a fundamental change. Do the potential benefits outweigh this? Not for most applications.</p>
+<p>I&#8217;m comfortable saying that most people evangelizing inline CSS are are the last people I&#8217;d trust for CSS advice. If you only have a hammer, every problem looks like a nail, or so I hear. There&#8217;s not enough nuance in any  fandom, even in tech industry cargo cults. However, I&#8217;m essentially biased against developers embracing React and its JavaScript-obsessed, HTML-and-CSS-phobic mindset in numerous fundamental ways.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-19603" data-commentid="19603" data-postid="753" data-belowelement="comment-19603" data-respondelement="respond" data-replyto="Reply to uscareme" aria-label="Reply to uscareme">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-3" id="li-comment-20320">
+						<article id="comment-20320" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/71021719c60c6ea61a8eb59c2d85c76d?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/71021719c60c6ea61a8eb59c2d85c76d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Nathaniel </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-20320"><time datetime="2016-05-27T16:46:47+00:00">May 27, 2016 at 4:46 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>@USCAREME<br>
+This is the only person here that makes sense. Everyone else sounds like noobs, JS developers who don&#8217;t know CSS, or some combination.</p>
+<p>Inline styles are horrible. Why would you want that? </p>
+<p>You can just as easily have locally scoped css when using external stylesheets, by using css name spaces. The guy who said using CSS namespaces is bad is wrong. How else are you supposed to prevent css collisions?</p>
+<p>Everyone has an opinion. The react way of doing HTML and CSS is wrong and will not last the test of time. </p>
+<p>The angualr2 way is also wrong.</p>
+<p>The best way is the traditional external css with properly defined classes and html structure. The goal is the make the markup as minimally dependent on css structure as possible, and to make the css structure as minimially dependent on the markup structure. In other words, the goal is to try to be flexible so changes are easier later.</p>
+<p>But let&#8217;s face it, writing CSS, SCSS, LESS, is not easy. It&#8217;s not for javascript developers, C# devs, or any object oriented programmed.</p>
+<p>CSS is for those people who can say &#8220;I&#8217;m a front-end developer&#8221; and understand CSS at it&#8217;s core.</p>
+<p>It is possible to be a frontend and backend developer, but only if you truly understand all the languages you are using. Most JS devs are way out of their league with CSS.</p>
+<p>I started with HTML, then CSS, then JS, and this has allowed me a great understanding of the CSS/HTML marriage. </p>
+<p>Please, JS devs, go learn CSS, and then a preprocessor of your choice.</p>
+<p>Stop ruining the CSS workflow with your lazyiness and all this inline-bogus css. I have to work hard with angular2 just to get external css working, but luckily, it works, thanks to webpack and loaders.</p>
+<p>CSS4 is due any month now, and will be MUCH better than every previous version.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-20320" data-commentid="20320" data-postid="753" data-belowelement="comment-20320" data-respondelement="respond" data-replyto="Reply to Nathaniel" aria-label="Reply to Nathaniel">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-3736">
+						<article id="comment-3736" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/ddd444a787926034f663faadadd17e82?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/ddd444a787926034f663faadadd17e82?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Ted </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3736"><time datetime="2015-11-04T14:00:59+00:00">November 4, 2015 at 2:00 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I think there is a small mistake in the article, where it says that inline styles override everything.</p>
+<p>Actually they don&#8217;t override !important.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3736" data-commentid="3736" data-postid="753" data-belowelement="comment-3736" data-respondelement="respond" data-replyto="Reply to Ted" aria-label="Reply to Ted">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-3809">
+						<article id="comment-3809" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/43ebf9694dfb11722e8eea0e63834f7b?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/43ebf9694dfb11722e8eea0e63834f7b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Steve </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-3809"><time datetime="2015-11-05T22:46:35+00:00">November 5, 2015 at 10:46 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I agree with one concept &#8211; do not write inline styles.<br>
+The rest of the article, however, has made my girlfriends blood boil.<br>
+Scss generates css. It isnt better. Hand written css is faster to write than waiting 2 seconds for the whole compile time every change you make. Its popular but so is angular. Using it doesnt automatically make your code architecture more maintainable, scalable, performant, or speed up development. From experience it actually leads to slower development. Also namespacing classes is stupid because  if you change the structure of your html, then your class .parent-child-subchild becomes wrong.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3809" data-commentid="3809" data-postid="753" data-belowelement="comment-3809" data-respondelement="respond" data-replyto="Reply to Steve" aria-label="Reply to Steve">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-4386">
+						<article id="comment-4386" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/7849907c4d2ed886a9c14145344baea1?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/7849907c4d2ed886a9c14145344baea1?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Craig McKenna </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-4386"><time datetime="2015-11-17T02:34:06+00:00">November 17, 2015 at 2:34 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for your articles James.  Especially &#8220;Learn Raw React — no JSX, no Flux, no ES6, no Webpack…&#8221;   For me, with JSX, React was very convoluted and hard for me to wrap my head around.</p>
+<p>I recently became very interested in web apps and so reentered the web development world after an eight (or so) year hiatus.  Back then I was developing static websites on the LAMP/PHP stack.  I used JavaScript mostly for form validation only.  I don&#8217;t think css preprocessors existed then.</p>
+<p>Shifting to the modern web paradigm with JavaScript has been an arduous journey for me.  However, I have found inline styles to be a joy to work with inasmuch as it affords me more maintainability and control. without needing to learn &#8220;yet another technology&#8221; like SASS or LESS or&#8230;  and so far in my very limited experience with React I don&#8217;t see the need to.  Then again I don&#8217;t really know any better. </p>
+<p>Currently I am using css only for layout and for a small amount of global styling.  Time will tell whether or not this approach bites me in the ass.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4386" data-commentid="4386" data-postid="753" data-belowelement="comment-4386" data-respondelement="respond" data-replyto="Reply to Craig McKenna" aria-label="Reply to Craig McKenna">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-11271">
+						<article id="comment-11271" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/5f8d47206f505ef80bf4b4efb14252db?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/5f8d47206f505ef80bf4b4efb14252db?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://github.com/sidjain26" rel="external nofollow ugc" class="url">Sid</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-11271"><time datetime="2016-02-06T13:26:32+00:00">February 6, 2016 at 1:26 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>You can use existing css with any preprocessors like SASS, Less or Styl using the respective webpack-loader and chaining the output to radium-loader for radium. Check this repo out:<br>
+<a href="https://github.com/sidjain26/react-es6-seed" rel="nofollow ugc">https://github.com/sidjain26/react-es6-seed</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-11271" data-commentid="11271" data-postid="753" data-belowelement="comment-11271" data-respondelement="respond" data-replyto="Reply to Sid" aria-label="Reply to Sid">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-20782">
+						<article id="comment-20782" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/5f73f18b33b1e7112b04b00e2f2e3841?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/5f73f18b33b1e7112b04b00e2f2e3841?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Moritz Sattler </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-20782"><time datetime="2016-06-08T16:00:06+00:00">June 8, 2016 at 4:00 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Your main point seems to be that inline style is bad, because you can reach the same results with css + a lot of tooling and convention.<br>
+But why would I put up with all this extra complexity? What BIG benefit is CSS offering over inline that makes this worthwhile?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-20782" data-commentid="20782" data-postid="753" data-belowelement="comment-20782" data-respondelement="respond" data-replyto="Reply to Moritz Sattler" aria-label="Reply to Moritz Sattler">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-2" id="li-comment-21376">
+						<article id="comment-21376" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/6f861b496904952b97ee22380eb7c2c2?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/6f861b496904952b97ee22380eb7c2c2?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Glantucan </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-21376"><time datetime="2016-06-22T07:46:31+00:00">June 22, 2016 at 7:46 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Because if your component gets integrated on another site (a third party one) your styles will overwrite theirs.<br>
+That was the main reason inline-styles were a bad idea on the first place.<br>
+The only exception I understand is positioning, but if you&#8217;ve worked with CSS you now that many things on the page styles (a different font, a different layout aproach) can break that. So you&#8217;ll have to be very carefull if you want ot deliver you positioning rules inline.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-21376" data-commentid="21376" data-postid="753" data-belowelement="comment-21376" data-respondelement="respond" data-replyto="Reply to Glantucan" aria-label="Reply to Glantucan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-3" id="li-comment-22323">
+						<article id="comment-22323" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/34cff73ff71fd2440dd35a1513c17df8?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/34cff73ff71fd2440dd35a1513c17df8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">John Willcocks </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-22323"><time datetime="2016-07-26T15:06:10+00:00">July 26, 2016 at 3:06 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>You know, that&#8217;s kind of horseshit. This is why there are developers worth their salt who can do simple things like Object.assign({}, style, this.props.style}) when they&#8217;ve created their components if they&#8217;d like them to be re-useable and fully-styleable 😛</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22323" data-commentid="22323" data-postid="753" data-belowelement="comment-22323" data-respondelement="respond" data-replyto="Reply to John Willcocks" aria-label="Reply to John Willcocks">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-21392">
+						<article id="comment-21392" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/43ebf9694dfb11722e8eea0e63834f7b?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/43ebf9694dfb11722e8eea0e63834f7b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Steve Tomlin </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-21392"><time datetime="2016-06-23T08:17:36+00:00">June 23, 2016 at 8:17 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I can&#8217;t even believe this is a thing. It&#8217;s like the brexit debate. Since when did even the idea of inline styling get considered as an option? I suspect it was someone who hasn&#8217;t had to deal with performance, or had to share their code, and has only ever worked on silo&#8217;d componentsa, or ever had to work much with browser quirks or hacks, or ever had to outsource work to different skilled developers due to time pressures &#8211; ie non javascripters who are excellent at css, </p>
+<p>Inline styling is for immature developers. period.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-21392" data-commentid="21392" data-postid="753" data-belowelement="comment-21392" data-respondelement="respond" data-replyto="Reply to Steve Tomlin" aria-label="Reply to Steve Tomlin">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-22322">
+						<article id="comment-22322" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/3ba5d2da2429e4c82d8680f21a79f235?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/3ba5d2da2429e4c82d8680f21a79f235?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">John Willcocks </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-22322"><time datetime="2016-07-26T15:01:35+00:00">July 26, 2016 at 3:01 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Close minds and dogmas are for immature developers who are annoying to work with, period.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22322" data-commentid="22322" data-postid="753" data-belowelement="comment-22322" data-respondelement="respond" data-replyto="Reply to John Willcocks" aria-label="Reply to John Willcocks">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even depth-2" id="li-comment-22324">
+						<article id="comment-22324" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/34cff73ff71fd2440dd35a1513c17df8?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/34cff73ff71fd2440dd35a1513c17df8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">John Willcocks </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-22324"><time datetime="2016-07-26T15:09:27+00:00">July 26, 2016 at 3:09 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I am wondering how exactly libraries like Material-UI (<a href="http://www.material-ui.com/" rel="nofollow ugc">http://www.material-ui.com</a>) exist which run directly contrary to what you are saying and have a thriving ecosystem? Your open mind must make you a treat to work with 😛</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22324" data-commentid="22324" data-postid="753" data-belowelement="comment-22324" data-respondelement="respond" data-replyto="Reply to John Willcocks" aria-label="Reply to John Willcocks">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-22501">
+						<article id="comment-22501" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/22113c3309f52145f02a7ff5c2736b1a?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/22113c3309f52145f02a7ff5c2736b1a?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://dremora.com/" rel="external nofollow ugc" class="url">Kirill Korolyov</a> </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-22501"><time datetime="2016-08-05T08:49:49+00:00">August 5, 2016 at 8:49 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>There is precisely one meaning of cascading. What you have described as the first one is actually known as inheritance.<br>
+<a href="https://developer.mozilla.org/en/docs/Web/Guide/CSS/Getting_started/Cascading_and_inheritance" rel="nofollow ugc">https://developer.mozilla.org/en/docs/Web/Guide/CSS/Getting_started/Cascading_and_inheritance</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22501" data-commentid="22501" data-postid="753" data-belowelement="comment-22501" data-respondelement="respond" data-replyto="Reply to Kirill Korolyov" aria-label="Reply to Kirill Korolyov">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-2" id="li-comment-35391">
+						<article id="comment-35391" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/dd044f341340b36490c0c0c9a65f8524?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/dd044f341340b36490c0c0c9a65f8524?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">uscareme </cite><a href="/why-you-shouldnt-style-with-javascript/#comment-35391"><time datetime="2017-04-14T00:12:05+00:00">April 14, 2017 at 12:12 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>But it&#8217;s very common for developers to mistakenly use cascading to mean inheritance, so the author is ensuring that readers are using the same definition he intends. As is appropriate to do on any foreseeable point of confusion. Hope you enjoyed that dopamine surge, though.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-35391" data-commentid="35391" data-postid="753" data-belowelement="comment-35391" data-respondelement="respond" data-replyto="Reply to uscareme" aria-label="Reply to uscareme">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/why-you-shouldnt-style-with-javascript/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="753" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="5f26f48865"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="112"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

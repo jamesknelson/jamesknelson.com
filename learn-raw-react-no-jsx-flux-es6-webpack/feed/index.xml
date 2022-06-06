@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Learn Raw React &#8212; no JSX, no Flux, no ES6, no Webpack&#8230;	</title>
+	<atom:link href="/learn-raw-react-no-jsx-flux-es6-webpack/feed/" rel="self" type="application/rss+xml" />
+	<link>/learn-raw-react-no-jsx-flux-es6-webpack/</link>
+	<description></description>
+	<lastBuildDate>Sun, 26 Aug 2018 13:53:03 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Cody Childers		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23888</link>
+
+		<dc:creator><![CDATA[Cody Childers]]></dc:creator>
+		<pubDate>Tue, 18 Oct 2016 21:18:02 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23888</guid>
+
+					<description><![CDATA[Thank you for actually writing a great tutorial and having the pride to check it before it works. People like you are becoming rarer and rarer. Thanks]]></description>
+			<content:encoded><![CDATA[<p>Thank you for actually writing a great tutorial and having the pride to check it before it works. People like you are becoming rarer and rarer. Thanks</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Gustaf Elbander		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23517</link>
+
+		<dc:creator><![CDATA[Gustaf Elbander]]></dc:creator>
+		<pubDate>Wed, 28 Sep 2016 13:50:36 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23517</guid>
+
+					<description><![CDATA[Thanks a lot for this great article! Super easy to follow to get a basic idea how it works!]]></description>
+			<content:encoded><![CDATA[<p>Thanks a lot for this great article! Super easy to follow to get a basic idea how it works!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Gaurav Kumar		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23494</link>
+
+		<dc:creator><![CDATA[Gaurav Kumar]]></dc:creator>
+		<pubDate>Tue, 27 Sep 2016 11:02:34 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23494</guid>
+
+					<description><![CDATA[I am following your blogs and trying to create a component but stuck with a small problem I am unable to render the ajax response. Can you please guide me what I am doing wrong in that. Here is the code http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002. I am not getting any error in console.]]></description>
+			<content:encoded><![CDATA[<p>I am following your blogs and trying to create a component but stuck with a small problem I am unable to render the ajax response. Can you please guide me what I am doing wrong in that. Here is the code <a href="http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002" rel="nofollow ugc">http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002</a>. I am not getting any error in console.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Greg		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23117</link>
+
+		<dc:creator><![CDATA[Greg]]></dc:creator>
+		<pubDate>Tue, 06 Sep 2016 06:45:06 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23117</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/learn-raw-react-no-jsx-flux-es6-webpack/#comment-21341&quot;&gt;Reggie&lt;/a&gt;.
+
+Updating a component&#039;s state (using the setState method) also triggers a re-render. This discussion is interesting:  http://stackoverflow.com/questions/30626030/can-you-force-a-react-component-to-rerender-without-calling-setstate]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-21341">Reggie</a>.</p>
+<p>Updating a component&#8217;s state (using the setState method) also triggers a re-render. This discussion is interesting:  <a href="http://stackoverflow.com/questions/30626030/can-you-force-a-react-component-to-rerender-without-calling-setstate" rel="nofollow ugc">http://stackoverflow.com/questions/30626030/can-you-force-a-react-component-to-rerender-without-calling-setstate</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Greg		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23093</link>
+
+		<dc:creator><![CDATA[Greg]]></dc:creator>
+		<pubDate>Mon, 05 Sep 2016 03:29:41 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23093</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23091&quot;&gt;Greg&lt;/a&gt;.
+
+Ah - I had to enable local file access for the extension - working now. :)]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23091">Greg</a>.</p>
+<p>Ah &#8211; I had to enable local file access for the extension &#8211; working now. 🙂</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Greg		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23091</link>
+
+		<dc:creator><![CDATA[Greg]]></dc:creator>
+		<pubDate>Mon, 05 Sep 2016 03:19:16 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23091</guid>
+
+					<description><![CDATA[A bit off topic, but just out of curiosity, I tried to use the React Development Tools (Chrome extension) with the tutorial page, but the &quot;React&quot; tab doesn&#039;t show up. If I switch to the Facebook site, it does appear. Any ideas why this is? I have tried updating the tutorial to load the latest React code, but that doesn&#039;t work either.]]></description>
+			<content:encoded><![CDATA[<p>A bit off topic, but just out of curiosity, I tried to use the React Development Tools (Chrome extension) with the tutorial page, but the &#8220;React&#8221; tab doesn&#8217;t show up. If I switch to the Facebook site, it does appear. Any ideas why this is? I have tried updating the tutorial to load the latest React code, but that doesn&#8217;t work either.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Vishz		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23063</link>
+
+		<dc:creator><![CDATA[Vishz]]></dc:creator>
+		<pubDate>Sun, 04 Sep 2016 05:28:24 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23063</guid>
+
+					<description><![CDATA[Dude,
+
+I wish I had seen your blog much earlier.
+
+Thanks a TON buddy,]]></description>
+			<content:encoded><![CDATA[<p>Dude,</p>
+<p>I wish I had seen your blog much earlier.</p>
+<p>Thanks a TON buddy,</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John A.		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-22521</link>
+
+		<dc:creator><![CDATA[John A.]]></dc:creator>
+		<pubDate>Fri, 05 Aug 2016 19:24:52 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-22521</guid>
+
+					<description><![CDATA[Love this tutorial but... should likely be updated to note that the sample code uses an old version of React from the CDN. It still works but I was initially thrown off when I saw things in my generated output (like data-reactid attributes) that were removed a few months ago. Best place to get latest CDNs seems to be https://facebook.github.io/react/downloads.html]]></description>
+			<content:encoded><![CDATA[<p>Love this tutorial but&#8230; should likely be updated to note that the sample code uses an old version of React from the CDN. It still works but I was initially thrown off when I saw things in my generated output (like data-reactid attributes) that were removed a few months ago. Best place to get latest CDNs seems to be <a href="https://facebook.github.io/react/downloads.html" rel="nofollow ugc">https://facebook.github.io/react/downloads.html</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Reggie		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-21341</link>
+
+		<dc:creator><![CDATA[Reggie]]></dc:creator>
+		<pubDate>Sun, 19 Jun 2016 23:55:49 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-21341</guid>
+
+					<description><![CDATA[&quot;React waits for us to manually order a re-render. &quot;
+
+// Render our app to the DOM element with id `react-app`
+var rootElement = React.createElement(ApplicationComponent, initialData)
+ReactDOM.render(rootElement, document.getElementById(&#039;react-app&#039;))
+
+// Actually, there is no re-render. Just render.
+var nextRootElement = React.createElement(ApplicationComponent, updatedData)
+ReactDOM.render(nextRootElement, document.getElementById(&#039;react-app&#039;))
+
+My question is about the above. In other places I have seen ReactDOM.render() just called once and the rest is automatically handled. Do we have to manually call this function?]]></description>
+			<content:encoded><![CDATA[<p>&#8220;React waits for us to manually order a re-render. &#8221;</p>
+<p>// Render our app to the DOM element with id `react-app`<br />
+var rootElement = React.createElement(ApplicationComponent, initialData)<br />
+ReactDOM.render(rootElement, document.getElementById(&#8216;react-app&#8217;))</p>
+<p>// Actually, there is no re-render. Just render.<br />
+var nextRootElement = React.createElement(ApplicationComponent, updatedData)<br />
+ReactDOM.render(nextRootElement, document.getElementById(&#8216;react-app&#8217;))</p>
+<p>My question is about the above. In other places I have seen ReactDOM.render() just called once and the rest is automatically handled. Do we have to manually call this function?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Ed		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-19234</link>
+
+		<dc:creator><![CDATA[Ed]]></dc:creator>
+		<pubDate>Tue, 03 May 2016 19:25:07 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-19234</guid>
+
+					<description><![CDATA[Hi James,
+
+Followed this tutorial and found it to be amazing in starting to learn React. It really is the missing piece.
+
+I followed all the exercises and everything worked when I did it myself (no copy &#038; paste I promise). I do however have aa question: Why is the blank contact object required on the ContactForm instance? My own code works just like yours without it, so maybe I&#039;m missing the point?
+
+I really appreciate your help :)]]></description>
+			<content:encoded><![CDATA[<p>Hi James,</p>
+<p>Followed this tutorial and found it to be amazing in starting to learn React. It really is the missing piece.</p>
+<p>I followed all the exercises and everything worked when I did it myself (no copy &amp; paste I promise). I do however have aa question: Why is the blank contact object required on the ContactForm instance? My own code works just like yours without it, so maybe I&#8217;m missing the point?</p>
+<p>I really appreciate your help 🙂</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

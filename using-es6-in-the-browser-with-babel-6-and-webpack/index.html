@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content=""> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="While Babel is great for compiling ES6/ES7 on a file-by-file basis, it can&#039;t handle modules in a browser friendly way without a little help from Webpack.">
+<link rel="canonical" href="/using-es6-in-the-browser-with-babel-6-and-webpack/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using ES6 and ES7 in the Browser, with Babel 6 and Webpack">
+<meta property="og:description" content="While Babel is great for compiling ES6/ES7 on a file-by-file basis, it can&#039;t handle modules in a browser friendly way without a little help from Webpack.">
+<meta property="og:url" content="httpjamesknelson.com/using-es6-in-the-browser-with-babel-6-and-webpack/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="ES6">
+<meta property="article:published_time" content="2015-11-10T03:06:52+00:00">
+<meta property="article:modified_time" content="2015-11-15T08:34:51+00:00">
+<meta property="og:updated_time" content="2015-11-15T08:34:51+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="While Babel is great for compiling ES6/ES7 on a file-by-file basis, it can&#039;t handle modules in a browser friendly way without a little help from Webpack.">
+<meta name="twitter:title" content="Using ES6 and ES7 in the Browser, with Babel 6 and Webpack">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:image" content="httpjamesknelson.com/wp-content/uploads/2015/11/Transforming-Web-Apps-with-Webpacks-babel-loader.png">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Using ES6 and ES7 in the Browser, with Babel 6 and Webpack Comments Feed" href="/using-es6-in-the-browser-with-babel-6-and-webpack/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/905">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=905">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fusing-es6-in-the-browser-with-babel-6-and-webpack%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fusing-es6-in-the-browser-with-babel-6-and-webpack%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-905 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-905" class="clearfix post-905 post type-post status-publish format-standard has-post-thumbnail hentry category-es6 category-javascript category-meta category-react">
+								<header class="entry-header">
+																		<h1 class="entry-title">Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/es6/" rel="category tag">ES6</a>, <a href="/category/javascript/" rel="category tag">Javascript</a>, <a href="/category/meta/" rel="category tag">Meta</a>, <a href="/category/react/" rel="category tag">React</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/using-es6-in-the-browser-with-babel-6-and-webpack/" title="3:06 am" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">November 10, 2015</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																			<div class="featured-image">
+												<img width="700" height="123" src="/wp-content/uploads/2015/11/Transforming-Web-Apps-with-Webpacks-babel-loader.png" class="attachment-full size-full wp-post-image" alt="Using ES6 and ES7 in the Browser, with Babel 6 and Webpack" title="" srcset="/wp-content/uploads/2015/11/Transforming-Web-Apps-with-Webpacks-babel-loader.png 700w, /wp-content/uploads/2015/11/Transforming-Web-Apps-with-Webpacks-babel-loader-300x53.png 300w, /wp-content/uploads/2015/11/Transforming-Web-Apps-with-Webpacks-babel-loader-150x26.png 150w, /wp-content/uploads/2015/11/Transforming-Web-Apps-with-Webpacks-babel-loader-400x70.png 400w, /wp-content/uploads/2015/11/Transforming-Web-Apps-with-Webpacks-babel-loader-200x35.png 200w" sizes="(max-width: 700px) 100vw, 700px">											</div>
+											<!-- end .featured-image -->
+																		
+								<div class="entry-content clearfix">
+									<p><em>This guide is part of <a href="/the-complete-guide-to-es6-with-babel-6">The Complete Guide to ES6 with Babel 6</a> series. If you&#8217;re having trouble upgrading to Babel 6, start with <a href="/the-six-things-you-need-to-know-about-babel-6">Six Things You Need To Know About Babel 6</a>.</em></p>
+<p>The <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Babel CLI</a> is great for compiling ES6 to ES5 on a file-by-file basis. However, when Babel encounters an <code>import</code> statement, it outputs a <code>require</code> call &#8211; which won&#8217;t get you very far in the browser.</p>
+<p>To make our Babel output browser friendly, we&#8217;ll need to <em>bundle</em> it. My favourite tool for this is Webpack, and as it happens, Webpack has great Babel support through <code>babel-loader</code>&#8230;</p>
+<p><span id="more-905"></span></p>
+<h2>Installing packages</h2>
+<p>Before we start &#8212; if you&#8217;re currently using Babel 5, first remove its packages from your project&#8217;s <code>package.json</code> file and then <code>npm uninstall</code> them &#8212; <code>babel</code>, <code>babel-core</code>, <code>babel-loader</code>, etc.</p>
+<h3>Build-time packages</h3>
+<p>Once you&#8217;re ready, start by installing the <code>babel-core</code> and <code>babel-loader</code> packages:</p>
+<pre><code>npm install babel-core babel-loader --save-dev
+</code></pre>
+<p>Next, you&#8217;ll need to install any <a href="https://babeljs.io/docs/plugins/">presets and plugins</a> you need. Start with <code>babel-preset-es2015</code> &#8211; Babel&#8217;s collection of ES6 transforms. If you&#8217;re using <a href="https://facebook.github.io/jsx/">JSX</a>, you&#8217;ll also want <code>babel-preset-react</code>. And if you want to play with fire, you can add <code>babel-preset-stage-0</code> for access to ES7 decorators, <code>async</code>/<code>await</code>, etc.</p>
+<pre><code># For ES6/ES2015 support
+npm install babel-preset-es2015 --save-dev
+
+# If you want to use JSX
+npm install babel-preset-react --save-dev
+
+# If you want to use experimental ES7 features
+npm install babel-preset-stage-0 --save-dev
+</code></pre>
+<h3>Runtime support</h3>
+<p>Babel can&#8217;t support all of ES6 with compilation alone &#8212; it also requires some runtime support. In particular, the new ES6 built-ins like Set, Map and Promise must be polyfilled, and Babel&#8217;s generator implementation also uses a number of runtime helpers. Given your app doesn&#8217;t have to share a JavaScript environment with other apps, you&#8217;ll be ok to use <code>babel-polyfill</code> to handle this:</p>
+<pre><code>npm install babel-polyfill --save
+</code></pre>
+<p>Babel also bakes a number of smaller helpers directly into your compiled code. This is OK for single files, but when bundling with Webpack, repeated code will result in a heavier file size. It is possible to replace these helpers with calls to the <code>babel-runtime</code> package by adding the <code>transform-runtime</code> plugin:</p>
+<pre><code>npm install babel-runtime --save
+npm install babel-plugin-transform-runtime --save-dev
+</code></pre>
+<h2>Configuring babel-loader</h2>
+<p><em>This guide assumes you know the basics of Webpack. To get up to scratch, read <a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack Made Simple: Building ES6 &amp; LESS with autorefresh</a>.</em></p>
+<p>With Webpack, running your JavaScript and JSX through Babel is a simple as adding a <code>loaders</code> entry for <code>babel-loader</code> to your <code>webpack.config.js</code>:</p>
+<pre><code>module: {
+  loaders: [
+    {
+      loader: "babel-loader",
+
+      // Skip any files outside of your project's `src` directory
+      include: [
+        path.resolve(__dirname, "src"),
+      ],
+
+      // Only run `.js` and `.jsx` files through Babel
+      test: /\.jsx?$/,
+
+      // Options to configure babel with
+      query: {
+        plugins: ['transform-runtime'],
+        presets: ['es2015', 'stage-0', 'react'],
+      }
+    },
+  ]
+}
+</code></pre>
+<p>In the above configuration, I&#8217;ve told Webpack to only apply Babel to files in my <code>src</code> directory. This speeds up the build by making sure that Babel isn&#8217;t applied to your entire <code>node_modules</code> directory &#8211; after all, <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">NPM modules <em>should</em> be published as ES5</a>. You could achieve the same effect with <code>exclude</code>:</p>
+<pre><code>exclude: [
+  path.resolve(__dirname, "node_modules"),
+],
+</code></pre>
+<p>The <code>query</code> object contains the options passed to Babel. I&#8217;ve assumed that you&#8217;ve installed <em>every</em> package from the previous section. If you don&#8217;t want to extract Babel&#8217;s runtime helpers or don&#8217;t want React or experimental ES7 support, just leave out the appropriate string from <code>query</code>.</p>
+<div class="hint">
+<strong>Hint: <code>.babelrc</code></strong>
+<p>Note that you <em>could</em> omit the <code>presets</code> option passed to Webpack&#8217;s <code>query</code>, and instead add a <code>.babelrc</code> file:</p>
+<pre><code>{
+  "presets": ["es2015", "react"]
+}
+</code></pre>
+<p>However, my recommendation is to keep the options to your build process in the build process configuration. It isn&#8217;t unheard of to want different configuration for tests, task runners, etc.
+</p>
+</div>
+<div class="hint">
+<strong>Hint: Babel 5</strong>
+<p>In Babel 5, the above <code>query</code> object would have been equivalent to the following:</p>
+<pre><code>query: {
+  stage: 0,
+  externalHelpers: true,
+},
+</code></pre>
+<p>The difference is that with Babel 5, you didn&#8217;t need to install packages for each of these options.<br>
+
+</p>
+</div>
+<h2>Entry point scripts</h2>
+<p>As discussed above, Babel requires some helper code to be run before your application. To achieve this, add the polyfill to the <code>entry</code> section of your <code>webpack.config.js</code>:</p>
+<pre><code>entry: [
+  // Set up an ES6-ish environment
+  'babel-polyfill',
+
+  // Add your application's scripts below
+  './src/main',
+],
+</code></pre>
+<div class="hint">
+<strong>Hint: Babel 5</strong>
+<p>In Babel 5, you needed two entry point scripts. Both were available in the <code>babel-core</code> package:</p>
+<pre><code>'babel-core/external-helpers',
+'babel-core/polyfill',
+</code></pre>
+<p>
+</p>
+</div>
+<h2>Examples</h2>
+<p>For a simple example of a Webpack-bundled app configured with Babel 6, see <a href="https://github.com/jamesknelson/webpack-black-triangle">webpack-black-triangle</a>.</p>
+<p>For a more full-featured example of a React-based app bundled with Webpack, see the <a href="https://github.com/unicorn-standard/starter-kit">Unicorn Standard Starter Kit</a>.</p>
+<h2>More ways to Babel</h2>
+<p>Now that you&#8217;ve got your app building with ES6, why not test it with ES6 too? And write your libraries with it. And write your tasks with it&#8230;</p>
+<ul>
+<li><a href="/testing-in-es6-with-mocha-and-babel-6/"><strong>Testing with Mocha</strong> and Babel&#8217;s <code>register</code> script</a></li>
+<li><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/writing-npm-packages-with-es6-using-the-babel-6-cli"><strong>Transforming NPM Packages</strong> with the Babel 6 CLI</a></li>
+<li><a href="/teaching-gulp-es6-with-babel-6/"><strong>Running tasks</strong> with <code>gulpfile.babel.js</code></a></li>
+</ul>
+<h2>Keeping up to date</h2>
+<p>So you&#8217;ve made Babel 6 work. But the JavaScript world moves fast &#8212; how long will it <em>stay</em> working?</p>
+<p>If trying to keep up feel overwhelming, I&#8217;d love to help! Just subscribe to my free Newsletter to receive news and guides on the most important tools for <strong>people making small apps with React</strong>. And in return for your e-mail, you&#8217;ll <em>immediately receive</em> three bonus <em>print-optimised</em> PDF cheatsheets &#8211; on React <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">(see preview)</a>, ES6 and JavaScript promises. All for free!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li>
+<a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Writing NPM packages with ES6 using the Babel 6 CLI</a></li>
+<li><a href="/the-six-things-you-need-to-know-about-babel-6">The Six Things You Need To Know About Babel 6</a></li>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 &#8211; The Bits You’ll Actually Use</a></li>
+</ul>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/" rel="prev"><span class="meta-nav">&#8592;</span> Writing NPM packages with ES6 using the Babel 6 CLI</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/testing-in-es6-with-mocha-and-babel-6/" rel="next">Testing in ES6 with Mocha and Babel 6 <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					26 Comments <span class="on">&#8594;</span> <span>Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-3972">
+						<article id="comment-3972" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/70bbebd8aecf0240c7f2b188197d599c?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/70bbebd8aecf0240c7f2b188197d599c?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Frank </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-3972"><time datetime="2015-11-10T16:35:19+00:00">November 10, 2015 at 4:35 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I didn&#8217;t see &#8216;babel-runtime&#8217; in your entry for your &#8216;unicorn-standard/starter-kit&#8217; project.</p>
+<p>wondering why not?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3972" data-commentid="3972" data-postid="905" data-belowelement="comment-3972" data-respondelement="respond" data-replyto="Reply to Frank" aria-label="Reply to Frank">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-3984">
+						<article id="comment-3984" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-3984"><time datetime="2015-11-10T22:50:17+00:00">November 10, 2015 at 10:50 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for mentioning this.</p>
+<p>So it turns out that you need to have <code>babel-runtime</code> installed in <code>node_modules</code>, but don&#8217;t need it in <code>entry</code>. I&#8217;ll update the guide to mention this.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3984" data-commentid="3984" data-postid="905" data-belowelement="comment-3984" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-4003">
+						<article id="comment-4003" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/9bdc4199114197a677e189df91a42025?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/9bdc4199114197a677e189df91a42025?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">AJ </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4003"><time datetime="2015-11-11T12:12:57+00:00">November 11, 2015 at 12:12 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Following the steps I made a async/await function in my entry file. But it pops out with this error:<br>
+&#8220;`<br>
+ERROR in ./~/babel-runtime/regenerator/runtime.js<br>
+    Module not found: Error: Cannot resolve module &#8216;babel-runtime/helpers/typeof&#8217; in /Users/AJ/Desktop/WebLab/node_modules/babel-runtime/regenerator<br>
+     @ ./~/babel-runtime/regenerator/runtime.js 15:15-54<br>
+&#8220;`<br>
+Some help?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4003" data-commentid="4003" data-postid="905" data-belowelement="comment-4003" data-respondelement="respond" data-replyto="Reply to AJ" aria-label="Reply to AJ">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-4025">
+						<article id="comment-4025" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4025"><time datetime="2015-11-12T04:44:11+00:00">November 12, 2015 at 4:44 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This seems to be a problem with the versions of Babel which have been released since I wrote the article (a whopping 3 days ago).</p>
+<p>If you *need* async, you&#8217;re going to have a bit of trouble at the moment, because it doesn&#8217;t play nice with the latest version&#8217;s babel-plugin-transform-runtime, *or* with the register script. Unfortunately, the best course of action is probably to just wait for the Babel team to fix this.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4025" data-commentid="4025" data-postid="905" data-belowelement="comment-4025" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-3" id="li-comment-7280">
+						<article id="comment-7280" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/579a724775b39b7ac9b4a06de30eef1d?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/579a724775b39b7ac9b4a06de30eef1d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://donatoborrello.com/" rel="external nofollow ugc" class="url">Donato</a> </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-7280"><time datetime="2016-01-04T19:35:11+00:00">January 4, 2016 at 7:35 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Any update on this? I&#8217;m not able to transform generators into es5 even now!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-7280" data-commentid="7280" data-postid="905" data-belowelement="comment-7280" data-respondelement="respond" data-replyto="Reply to Donato" aria-label="Reply to Donato">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-4" id="li-comment-8816">
+						<article id="comment-8816" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/f3ada405ce890b6f8204094deb12d8a8?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/f3ada405ce890b6f8204094deb12d8a8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jonathan </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-8816"><time datetime="2016-01-14T16:02:16+00:00">January 14, 2016 at 4:02 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Same, I figured I&#8217;d give babel 6 a few months to iron out the bugs but it&#8217;s still the most broken npm release I&#8217;ve ever seen.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-8816" data-commentid="8816" data-postid="905" data-belowelement="comment-8816" data-respondelement="respond" data-replyto="Reply to Jonathan" aria-label="Reply to Jonathan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-4187">
+						<article id="comment-4187" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/d0e63fad227311af26ec1a42c598bc44?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/d0e63fad227311af26ec1a42c598bc44?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Paddy </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4187"><time datetime="2015-11-14T12:14:01+00:00">November 14, 2015 at 12:14 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks James for this excellent guide 🙂</p>
+<p>I&#8217;ve temporarily had to disable transform-runtime due to <a href="https://github.com/babel/babel/issues/2954" rel="nofollow ugc">https://github.com/babel/babel/issues/2954</a></p>
+<p>I&#8217;m then having an issue with IE8 which can&#8217;t handle the compiled code&#8217;s use of the word &#8216;default&#8217;</p>
+<p>e.g. in the line:</p>
+<p>function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }</p>
+<p>Would this be resolved by having transform-runtime? Or is IE8 not supported? (Googling suggests it is supported, but I can&#8217;t find a solution to the issue I&#8217;m experiencing).</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4187" data-commentid="4187" data-postid="905" data-belowelement="comment-4187" data-respondelement="respond" data-replyto="Reply to Paddy" aria-label="Reply to Paddy">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-4196">
+						<article id="comment-4196" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4196"><time datetime="2015-11-14T14:18:18+00:00">November 14, 2015 at 2:18 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I doubt it would be solved by transform-runtime, somehow. But I&#8217;ve not had the misfortune of needing to target IE8, so I can&#8217;t help you, sorry.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4196" data-commentid="4196" data-postid="905" data-belowelement="comment-4196" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even depth-2" id="li-comment-5572">
+						<article id="comment-5572" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c64b9bff0c68a38517179d71f85ab7ef?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c64b9bff0c68a38517179d71f85ab7ef?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">传 </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5572"><time datetime="2015-12-15T09:15:29+00:00">December 15, 2015 at 9:15 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>try<br>
+babel-plugin-transform-es3-property-literals</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-5572" data-commentid="5572" data-postid="905" data-belowelement="comment-5572" data-respondelement="respond" data-replyto="Reply to 传" aria-label="Reply to 传">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-4358">
+						<article id="comment-4358" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/ffbe5ab7d1201515bf0d9711ad99f507?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/ffbe5ab7d1201515bf0d9711ad99f507?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Eli </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4358"><time datetime="2015-11-16T16:23:29+00:00">November 16, 2015 at 4:23 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hello James,</p>
+<p>I&#8217;ve followed the entire tutorial and still when I try to use decorators like this:</p>
+<p>@connect((state) =&gt; {<br>
+  return {</p>
+<p>  };<br>
+})<br>
+export default class Movie extends Component {</p>
+<p>I get the following error in the terminal:<br>
+&#8220;Decorators are not supported yet in 6.x pending proposal update&#8221;</p>
+<p>Thank you upfront.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4358" data-commentid="4358" data-postid="905" data-belowelement="comment-4358" data-respondelement="respond" data-replyto="Reply to Eli" aria-label="Reply to Eli">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor even depth-2" id="li-comment-4403">
+						<article id="comment-4403" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4403"><time datetime="2015-11-17T14:28:43+00:00">November 17, 2015 at 2:28 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>That&#8217;s bizarre. I&#8217;m using decorators in a number of places, so I doubt they&#8217;re plain not supported. Possibly they&#8217;re not supported in combination with something else. Perhaps try looking in Babel&#8217;s GitHub issues?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4403" data-commentid="4403" data-postid="905" data-belowelement="comment-4403" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-3" id="li-comment-4406">
+						<article id="comment-4406" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/ffbe5ab7d1201515bf0d9711ad99f507?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/ffbe5ab7d1201515bf0d9711ad99f507?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Eli </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4406"><time datetime="2015-11-17T17:55:17+00:00">November 17, 2015 at 5:55 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Already went through Babel&#8217;s GitHub issues, no solution has yet fixed this.</p>
+<p>Nevertheless, thank you for publishing great tutorials.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4406" data-commentid="4406" data-postid="905" data-belowelement="comment-4406" data-respondelement="respond" data-replyto="Reply to Eli" aria-label="Reply to Eli">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even depth-3" id="li-comment-4461">
+						<article id="comment-4461" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c8658ca040c8de894896f0b171981834?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c8658ca040c8de894896f0b171981834?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Lonelind </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4461"><time datetime="2015-11-19T11:09:39+00:00">November 19, 2015 at 11:09 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Have the same issue with decorators, but I use &#8216;stage-0&#8217; and have used it before I decided to update my project deps.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4461" data-commentid="4461" data-postid="905" data-belowelement="comment-4461" data-respondelement="respond" data-replyto="Reply to Lonelind" aria-label="Reply to Lonelind">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt depth-3" id="li-comment-4462">
+						<article id="comment-4462" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/6b7faade90b375cf87d42c97250a9352?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/6b7faade90b375cf87d42c97250a9352?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Kiki </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4462"><time datetime="2015-11-19T12:30:36+00:00">November 19, 2015 at 12:30 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hey! First, thank you for your guide.</p>
+<p>I’ve followed it and I get the following error in the terminal too:<br>
+“Decorators are not supported yet in 6.x pending proposal update”</p>
+<p>You said &#8220;I’m using decorators in a number of places&#8221;.</p>
+<p>How do you use decorators? For me it&#8217;s like that with Redux and React:</p>
+<p>@connect(<br>
+  state =&gt; ({<br>
+    foo: state.foo,<br>
+  })<br>
+)<br>
+class Indicator extends Component {<br>
+   &#8230;<br>
+}</p>
+<p>Thanks for your help.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4462" data-commentid="4462" data-postid="905" data-belowelement="comment-4462" data-respondelement="respond" data-replyto="Reply to Kiki" aria-label="Reply to Kiki">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-4" id="li-comment-4566">
+						<article id="comment-4566" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/7b72123a28e4d5567e9d5f7f2b9b56ee?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/7b72123a28e4d5567e9d5f7f2b9b56ee?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Nikos </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4566"><time datetime="2015-11-21T18:16:05+00:00">November 21, 2015 at 6:16 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Also found the same issue today.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4566" data-commentid="4566" data-postid="905" data-belowelement="comment-4566" data-respondelement="respond" data-replyto="Reply to Nikos" aria-label="Reply to Nikos">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-3" id="li-comment-4600">
+						<article id="comment-4600" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4600"><time datetime="2015-11-23T04:31:19+00:00">November 23, 2015 at 4:31 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Turns out I the decorators of mine which <em>were</em> working were in Babel 5 projects. An upgrade caused them to fail.</p>
+<p>Babel 6 doesn&#8217;t support decorators yet. For more information, see <a href="http://phabricator.babeljs.io/T2645" rel="nofollow">this issue</a> on the Babel 6 tracker</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4600" data-commentid="4600" data-postid="905" data-belowelement="comment-4600" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-4540">
+						<article id="comment-4540" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/789ef0867498df846aafe7b458fc3004?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/789ef0867498df846aafe7b458fc3004?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jovica Aleksic </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4540"><time datetime="2015-11-20T22:57:20+00:00">November 20, 2015 at 10:57 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>It seems that babel has internal issues with handling decorators &#8211; which does worry me personally &#8211; and it seems we must stick with 5.8 until babel 6 supports decorators.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4540" data-commentid="4540" data-postid="905" data-belowelement="comment-4540" data-respondelement="respond" data-replyto="Reply to Jovica Aleksic" aria-label="Reply to Jovica Aleksic">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-4909">
+						<article id="comment-4909" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/09406fbf67b55716df8dcb33a4dd99cd?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/09406fbf67b55716df8dcb33a4dd99cd?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Mike Stop Continues </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4909"><time datetime="2015-12-01T01:05:11+00:00">December 1, 2015 at 1:05 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>It doesn&#8217;t have internal issues with them. It elected not to support them the old way because it doesn&#8217;t match with the new decorator spec&#8230;</p>
+<p><a href="http://phabricator.babeljs.io/T2645" rel="nofollow ugc">http://phabricator.babeljs.io/T2645</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4909" data-commentid="4909" data-postid="905" data-belowelement="comment-4909" data-respondelement="respond" data-replyto="Reply to Mike Stop Continues" aria-label="Reply to Mike Stop Continues">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-4631">
+						<article id="comment-4631" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/0e6b27db367eeaa24f651184c9ba498d?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/0e6b27db367eeaa24f651184c9ba498d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Corey Light </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4631"><time datetime="2015-11-24T17:56:58+00:00">November 24, 2015 at 5:56 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Really helpful, thank you James.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4631" data-commentid="4631" data-postid="905" data-belowelement="comment-4631" data-respondelement="respond" data-replyto="Reply to Corey Light" aria-label="Reply to Corey Light">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-4942">
+						<article id="comment-4942" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/4efbcd4cbfc88d115f4980daee826925?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4efbcd4cbfc88d115f4980daee826925?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Rafael </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4942"><time datetime="2015-12-01T21:39:42+00:00">December 1, 2015 at 9:39 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Great writing.</p>
+<p>I think you should add to your list:<br>
+ 1) Babel6 changes how export default xxx works. There was a hack in the babel5 that is removed in babel6 chat causes cold that was doing require(&#8216;function_exported_as_default&#8217;)() to not work anymore.  (let me know if you need more details on that).<br>
+2)  that decorators were dropped in babel6, so e anyone using is out of luck with babel6 for now. (I&#8217;m working in a plugin to port decorators form 5 to 6, but in the mean time there is nothing.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4942" data-commentid="4942" data-postid="905" data-belowelement="comment-4942" data-respondelement="respond" data-replyto="Reply to Rafael" aria-label="Reply to Rafael">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-2" id="li-comment-5527">
+						<article id="comment-5527" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/db23db91e0a162af230270783cf038c8?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/db23db91e0a162af230270783cf038c8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Dtothefp </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5527"><time datetime="2015-12-14T06:24:58+00:00">December 14, 2015 at 6:24 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Rafael I&#8217;d love more info on the exports default issue and how you&#8217;ve dealt with it. I&#8217;ve been using <a href="https://www.npmjs.com/package/babel-plugin-add-module-exports" rel="nofollow ugc">https://www.npmjs.com/package/babel-plugin-add-module-exports</a> for my build code but unfortunately for my client code I test with karma and require plugin and these two plugins seem to conflict. Looks like I may have to go through all my client code and change syntax. </p>
+<p>On another note generators have really strange behavior when using const and they will yell at you if you don&#8217;t. I added to phabricator issue here so please add on if you experience it as well <a href="https://phabricator.babeljs.io/T2843#68845" rel="nofollow ugc">https://phabricator.babeljs.io/T2843#68845</a></p>
+<p>This whole Babel 6 upgrade has been an incredible nightmare:-((</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-5527" data-commentid="5527" data-postid="905" data-belowelement="comment-5527" data-respondelement="respond" data-replyto="Reply to Dtothefp" aria-label="Reply to Dtothefp">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-3" id="li-comment-5528">
+						<article id="comment-5528" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/db23db91e0a162af230270783cf038c8?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/db23db91e0a162af230270783cf038c8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Dtothefp </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5528"><time datetime="2015-12-14T06:26:07+00:00">December 14, 2015 at 6:26 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Above is &#8220;rewire&#8221; plugin not &#8220;require&#8221; plugin</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-5528" data-commentid="5528" data-postid="905" data-belowelement="comment-5528" data-respondelement="respond" data-replyto="Reply to Dtothefp" aria-label="Reply to Dtothefp">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-5575">
+						<article id="comment-5575" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/147c2fe291740c7183084cf4917febc7?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/147c2fe291740c7183084cf4917febc7?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Apurva B </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5575"><time datetime="2015-12-15T10:55:11+00:00">December 15, 2015 at 10:55 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I am getting following error when I do npm run build</p>
+<p>&gt;npm run build</p>
+<p>&gt; @0.0.1 build<br>
+&gt; babel-node tools/run build</p>
+<p>build<br>
+[16:15:30] Starting &#8216;undefined&#8217;&#8230;<br>
+TypeError: object is not a function<br>
+    at _callee$ (run.js:8:9)<br>
+    at tryCatch ({path}\node_modules\babel-regenerator-runti<br>
+me\runtime.js:61:40)<br>
+    at GeneratorFunctionPrototype.invoke [as _invoke] ({path}\node_modules\babel-regenerator-runtime\runtime.js:329:22)<br>
+    at GeneratorFunctionPrototype.prototype.(anonymous function) [as next] ({path}\node_modules\babel-regenerator-runtime\runtime.js:94:21)<br>
+    at step ({path}\tools\run.js:7:191)<br>
+    at {path}\tools\run.js:7:423<br>
+    at new Promise ({path}\node_modules\core-js\modules\es6.<br>
+promise.js:197:7)<br>
+    at {path}\tools\run.js:7:99<br>
+    at run (run.js:5:19)<br>
+    at Object. (run.js:18:3)</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-5575" data-commentid="5575" data-postid="905" data-belowelement="comment-5575" data-respondelement="respond" data-replyto="Reply to Apurva B" aria-label="Reply to Apurva B">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-21541">
+						<article id="comment-21541" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/58eef6dd9ef620ef99694aa240f52764?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/58eef6dd9ef620ef99694aa240f52764?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">loop </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-21541"><time datetime="2016-06-29T10:37:23+00:00">June 29, 2016 at 10:37 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>hi,James<br>
+when i used babel-runtime to replace the helpers in my code like  _extends ,_interopRequireDefault(obj) eg,but it does not work.what&#8217;s the reason?</p>
+<p>this babel version i used:<br>
+&#8220;`<br>
+     &#8220;babel-core&#8221;: &#8220;^6.10.4&#8221;,<br>
+    &#8220;babel-eslint&#8221;: &#8220;^6.0.0&#8221;,<br>
+    &#8220;babel-loader&#8221;: &#8220;^6.2.4&#8221;,<br>
+    &#8220;babel-polyfill&#8221;: &#8220;^6.9.1&#8221;,<br>
+    &#8220;babel-preset-es2015&#8221;: &#8220;^6.9.0&#8221;,<br>
+    &#8220;babel-runtime&#8221;: &#8220;^6.6.1&#8221;,<br>
+&#8220;`</p>
+<p>can you help me?thx</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-21541" data-commentid="21541" data-postid="905" data-belowelement="comment-21541" data-respondelement="respond" data-replyto="Reply to loop" aria-label="Reply to loop">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-22767">
+						<article id="comment-22767" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/28e682cc5506c06f76150ab79f1b15b6?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/28e682cc5506c06f76150ab79f1b15b6?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Julien </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-22767"><time datetime="2016-08-15T03:07:52+00:00">August 15, 2016 at 3:07 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This was really helpful, thank you.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22767" data-commentid="22767" data-postid="905" data-belowelement="comment-22767" data-respondelement="respond" data-replyto="Reply to Julien" aria-label="Reply to Julien">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-23813">
+						<article id="comment-23813" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/ec0066ac691befbb4edf23d4c174abdd?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/ec0066ac691befbb4edf23d4c174abdd?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Kamal Kumawat </cite><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-23813"><time datetime="2016-10-12T12:37:08+00:00">October 12, 2016 at 12:37 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>How to add css file loader?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23813" data-commentid="23813" data-postid="905" data-belowelement="comment-23813" data-respondelement="respond" data-replyto="Reply to Kamal Kumawat" aria-label="Reply to Kamal Kumawat">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/using-es6-in-the-browser-with-babel-6-and-webpack/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="905" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="0925c52501"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="12"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

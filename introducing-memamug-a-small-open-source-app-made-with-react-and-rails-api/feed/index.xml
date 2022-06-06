@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Introducing Memamug, a small open-source app made with React and Rails-api	</title>
+	<atom:link href="/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/feed/" rel="self" type="application/rss+xml" />
+	<link>/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/</link>
+	<description></description>
+	<lastBuildDate>Tue, 12 Apr 2016 12:19:37 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Johnny		</title>
+		<link>/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/#comment-18169</link>
+
+		<dc:creator><![CDATA[Johnny]]></dc:creator>
+		<pubDate>Tue, 12 Apr 2016 12:19:37 +0000</pubDate>
+		<guid isPermaLink="false">/?p=276#comment-18169</guid>
+
+					<description><![CDATA[This sounds an awesome project thanks for sharing! Just marked on GitHub :-)]]></description>
+			<content:encoded><![CDATA[<p>This sounds an awesome project thanks for sharing! Just marked on GitHub 🙂</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Omid		</title>
+		<link>/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/#comment-2788</link>
+
+		<dc:creator><![CDATA[Omid]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2015 11:24:57 +0000</pubDate>
+		<guid isPermaLink="false">/?p=276#comment-2788</guid>
+
+					<description><![CDATA[Sounds good! Thanks for sharing this with the world. 
+I&#039;m totally with you on this. It&#039;s hard to get passed by the &quot;so what to do with this hammer&quot; phase.]]></description>
+			<content:encoded><![CDATA[<p>Sounds good! Thanks for sharing this with the world.<br />
+I&#8217;m totally with you on this. It&#8217;s hard to get passed by the &#8220;so what to do with this hammer&#8221; phase.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

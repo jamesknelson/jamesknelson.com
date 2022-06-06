@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>Webpack Made Simple - Building ES6 &amp; LESS w/ autorefresh</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content=""> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="While ES6 is the future, browsers are stuck in the past. But with just 26 lines of Webpack magic, you can use modern JavaScript without a care in the world!">
+<link rel="canonical" href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack Made Simple - Building ES6 &amp; LESS w/ autorefresh">
+<meta property="og:description" content="While ES6 is the future, browsers are stuck in the past. But with just 26 lines of Webpack magic, you can use modern JavaScript without a care in the world!">
+<meta property="og:url" content="httpjamesknelson.com/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="ES6">
+<meta property="article:published_time" content="2015-06-28T15:32:54+00:00">
+<meta property="article:modified_time" content="2015-11-08T10:48:51+00:00">
+<meta property="og:updated_time" content="2015-11-08T10:48:51+00:00">
+<meta property="og:image" content="httpjamesknelson.com/wp-content/uploads/2015/06/Webpack-made-simple.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="While ES6 is the future, browsers are stuck in the past. But with just 26 lines of Webpack magic, you can use modern JavaScript without a care in the world!">
+<meta name="twitter:title" content="Webpack Made Simple - Building ES6 &amp; LESS w/ autorefresh">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:image" content="httpjamesknelson.com/wp-content/uploads/2015/06/Webpack-made-simple.png">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Webpack Made Simple: Building ES6 &#038; LESS with autorefresh Comments Feed" href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/241">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=241">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fwebpack-made-simple-build-es6-less-with-autorefresh-in-26-lines%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fwebpack-made-simple-build-es6-less-with-autorefresh-in-26-lines%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-241 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-241" class="clearfix post-241 post type-post status-publish format-standard hentry category-es6 category-javascript">
+								<header class="entry-header">
+																		<h1 class="entry-title">Webpack Made Simple: Building ES6 &#038; LESS with autorefresh</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/es6/" rel="category tag">ES6</a>, <a href="/category/javascript/" rel="category tag">Javascript</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/" title="3:32 pm" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">June 28, 2015</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p><strong>Update on 2015/11/08: Now works with Babel 6.0</strong></p>
+<p><em>Just want a starter kit? Clone <a href="https://github.com/jamesknelson/webpack-black-triangle">webpack-black-triangle</a> for something minimal, or the <a href="http://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Starter Kit</a> for the works.</em></p>
+<p>There&#8217;s been a huge amount of press since ES6 was finalised as ES2015 &#8211; but for all the awesome features it adds, it won&#8217;t help you much if you can&#8217;t actually <em>use it</em>. The problem is that while ES6 is the future, the current crop of browsers are stuck in the past. Want proof? Give Chrome an arrow function, and it&#8217;ll give you this:</p>
+<p><img src="/wp-content/uploads/2015/06/Screen-Shot-2015-06-24-at-9.35.55-pm.png" alt="Chrome being stuck in the present"></p>
+<p>Of course, there is more to the story than this. You <em>can</em> use ES6 in the vast majority of modern browsers, but with a catch: you&#8217;ll need a build step. And while this has been a deal-breaker for many in the past, we&#8217;ve entered an age where it doesn&#8217;t have have to be.</p>
+<p><span id="more-241"></span></p>
+<h2>Build steps no longer mean 300 line configuration files</h2>
+<p>There&#8217;s been a lot of progress in the world of JavaScript build tools over the past few years. In particular, <a href="http://webpack.github.io/">webpack</a> burst onto the scene to the delight of all who&#8217;ve had to deal with long, complicated Gulpfiles and Gruntfiles.</p>
+<p>Webpack lets us do a lot with very little effort &#8211; for example, the configuration file in the <a href="https://github.com/jamesknelson/webpack-black-triangle">github project</a> for this post tells webpack how to transpile ES6 with <a href="http://babeljs.io/">Babel</a>, compile <a href="http://lesscss.org/">LESS</a>, and reload the page when files are changed &#8211; all in 26 lines.</p>
+<p>Reddit&#8217;s <a href="http://www.reddit.com/user/nickguletskii200">/u/nickguletskii200</a> put it like this:</p>
+<blockquote>
+<p>Webpack is the least retarded piece of software I&#8217;ve used that&#8217;s written in JS.</p>
+</blockquote>
+<p>With all this in mind, I recently chose webpack for the build system of <a href="http://www.memamug.com/">memamug.com</a>, a small <a href="https://github.com/jamesknelson/memamug-client">open-source</a> app I&#8217;m writing with a React-based frontend. And given the biggest complaint with webpack is it&#8217;s lack of documentation, I thought I&#8217;d walk you through the process  while it&#8217;s still fresh in my mind.</p>
+<h2>The code we&#8217;ll use to test our build process</h2>
+<p>But before we can start, we need some ES6 code to run our build process on. And as luck might have it, I&#8217;ve made an over-engineered <a href="https://gist.github.com/jamesknelson/9b7db05268e747b4aa4d">black triangle</a>, just for you. It will even start spinning once you&#8217;ve got things working.</p>
+<p>Let&#8217;s give the code a directory and get it displaying in your browser before we worry about the build process. To start, either copy across the files to a new directory, or clone the gist with git:</p>
+<pre><code>$ git clone https://gist.github.com/9b7db05268e747b4aa4d.git black-triangle
+</code></pre>
+<p>Assuming you&#8217;ve now got a <code>black-triangle</code> directory, let&#8217;s change into it and improve the project&#8217;s feng-shui by moving the source files to their own directory:</p>
+<pre><code>$ cd black-triangle
+$ mkdir src
+$ mv index.html main.js BlackTriangle.js src
+</code></pre>
+<p>Then all that&#8217;s left is to start her up &#8211; by opening <code>index.html</code> in a web browser. And assuming you&#8217;re not living in the future, you should see an incredibly boring (and immobile) black triangle, like this:</p>
+<p><img src="/wp-content/uploads/2015/06/Screen-Shot-2015-06-28-at-2.29.01-pm.png" alt="title"></p>
+<h2>Minimum Viable Webpack</h2>
+<p>Of course this isn&#8217;t a blog about black triangles &#8211; it&#8217;s a blog about webpack &amp; Babel &#8211; so let&#8217;s install them. Assuming you have node.js set up, this is as easy as:</p>
+<pre><code>$ npm install webpack-dev-server -g
+$ npm install webpack-dev-server webpack babel-core babel-loader babel-preset-es2015 babel-polyfill
+</code></pre>
+<p>All that&#8217;s left is to start the server! We do so with the <code>webpack-dev-server</code> command, which takes the path to our HTML content (<code>src</code> in our case), and the JavaScript <em>entry point</em> (<code>src/main.js</code>). Give it a shot from your <code>black-triangle</code> directory:</p>
+<pre><code>$ webpack-dev-server --content-base src src/main.js
+</code></pre>
+<p>Doh. It looks like webpack is still choking on ES6. And, if we view our app at <a href="http://localhost:8080/">localhost:8080</a>, we still see an immobile black triangle. What gives?</p>
+<h2>Configuring Webpack</h2>
+<p>While we&#8217;ve <em>installed</em> everything we need to get webpack to understand ES6, we still need to tell it <em>how</em> to do so. We do this with webpack&#8217;s configuration file, <code>webpack.config.js</code>. This file lives in the root directory of your project, and is just plain-ol&#8217; JavaScript.</p>
+<p>To spin your triangle up, add a <code>webpack.config.js</code> file in your <code>black-triangle</code> directory with the following content, then restart <code>webpack-dev-server</code> and reload your page. Don&#8217;t worry about how it works just yet &#8211; I&#8217;ll walk you through it in a moment.</p>
+<pre><code>var path = require('path');
+var webpack = require('webpack');
+
+module.exports = {
+  entry: [
+    'babel-polyfill',
+    './src/main'
+  ],
+  output: {
+      publicPath: '/',
+      filename: 'main.js'
+  },
+  devtool: 'source-map',
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        include: path.join(__dirname, 'src'),
+        loader: 'babel-loader',
+        query: {
+          presets: ["es2015"],  
+        }
+      }
+    ]
+  },
+  debug: true
+};
+</code></pre>
+<div class="hint">
+To stop webpack-dev-server, press ctrl-c (yes, even on a mac).
+</div>
+<div class="hint">
+There is no need to restart the server after changing files other than <code>webpack.config.js</code> &#8211; just refresh the page.
+</div>
+<p>Have you got your triangle spinning? If not &#8211; leave a comment and I&#8217;ll try and help you out! Otherwise, let&#8217;s take a quick tour of the config file.</p>
+<h2>webpack.config.js in two minutes</h2>
+<p>First, about the file itself:</p>
+<ol>
+<li>
+<code>webpack.config.js</code> is a normal JavaScript file, evaluated with node.js.</li>
+<li>You can do normal node.js things like require modules and check environment variables.</li>
+<li>Webpack&#8217;s configuration is placed in the object which the file exports, i.e. whatever you assign to <code>module.exports</code>.</li>
+</ol>
+<p>Now, about the keys in the configuration object we just set up:</p>
+<ol>
+<li>
+<code>entry</code> is an array of files which will be run at startup. We run Babel&#8217;s polyfill first, before running our main JavaScript file.</li>
+<li>
+<code>output</code> tells webpack-dev-server where to serve compiled files from. We tell it to build a single file labeled <code>main.js</code>, directly on the server&#8217;s root &#8211; hiding the original <code>main.js</code> from your browser.</li>
+<li>
+<code>devtool</code> tells webpack to automatically serve us source maps as well, so browsers can display the original source in their development console (as opposed to the compiled source).</li>
+<li>
+<code>module.loaders</code> is a list of <a href="https://github.com/webpack/docs/wiki/list-of-loaders">loaders</a> &#8211; npm packages which allow webpack to transform our source. We tell webpack to run <code>.js</code> files from the <code>src</code> directory through <em>babel-loader</em>, using the <code>es2015</code> plugin to transform ES2015 (i.e. ES6) to ES5.</li>
+<li>
+<code>debug</code> let&#8217;s our loaders know that they don&#8217;t need to make release-ready code</li>
+</ol>
+<p>If you ever need to know more about webpack&#8217;s config object, there is <a href="http://webpack.github.io/docs/configuration.html">documentation</a> available on it&#8217;s website. It&#8217;s not for the faint of heart, though, so don&#8217;t read it until you have to.</p>
+<p>To summarise, you&#8217;ll generally find that all you need to know is:</p>
+<ul>
+<li>
+<code>entry</code> points are where self-contained scripts go</li>
+<li>
+<code>module.loaders</code> is where you put things which transform your code</li>
+</ul>
+<p>There is, as always, an exception: the <code>plugins</code> configuration options is super-useful &#8211; but generally only once you want to deploy. I&#8217;ll explain how to use plugins for things like minification in a future guide, and the only way to ensure you don&#8217;t miss out is to <em>join my Newsletter</em>. And in return for your e-mail, you&#8217;ll <em>immediately</em> receive a <em>free</em> print-optimised ES6 cheatsheet! But for today, let&#8217;s finish by adding a few nifty tweaks to your webpack configuration.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=18"></script>
+<link rel="stylesheet" href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/ck_form.html">
+<div class="ck_form single_line">
+
+  <div class="ck_form_fields">
+  
+    <h3>Get the ES6 Cheatsheet</h3>
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/5999/subscribe" data-remote="true">
+      <input type="hidden" name="id" value="5999" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+        <div>
+          <label class="ck_label" for="ck_firstNameField" style="display:none">First Name</label>
+        
+          <input type="text" name="first_name" placeholder="First name" class="ck_first_name" id="ck_firstNameField" required>
+        </div>
+        <div class="field">
+          <label class="ck_label" for="ck_emailField" style="display:none">Email Address</label>
+        
+          <input type="email" name="email" placeholder="Email address" class="ck_email_address" id="ck_emailField" required>
+        </div>
+
+        <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+          Subscribe to my Newsletter
+        </button>
+    </form>
+  </div>
+ </div>
+ <style type="text/css">.ck_form.single_line {
+  /* divider image */
+  background: #f9f9f9;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border: solid 1px #d1d1d1;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  clear: both;
+  margin: 20px auto;
+  text-align: center;
+  width: 85%;
+  border-radius: 6px;
+}
+
+
+.ck_form.single_line h3, #content .ck_form.single_line h3 { 
+  text-align: center; 
+  margin: 0px 0px 10px; 
+  font-size: 24px;
+}
+
+.ck_form.single_line p {
+  padding: 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+.ck_form.single_line .ck_form_fields {
+  width: 100%;
+  float: left;
+  padding: 24px 0;
+}
+/* Form fields */
+
+.ck_errorArea {
+  display: none; /* temporary */
+}
+
+#ck_success_msg {
+  margin: 0 30px;
+  padding: 0 10px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_form.single_line input[type="text"], .ck_form.single_line input[type="email"] {
+  font-size: 18px;
+  padding: 10px 8px;
+  width: 68%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; /* border radius */
+  background-color: #fff; /* layer fill content */
+  height: auto;
+  margin: 5px 0;
+  height: 42px;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+} 
+
+.ck_form.single_line .ck_checkbox {
+  display: none;
+}
+
+.ck_form.single_line .ck_subscribe_button {
+    color: #fff;
+    margin: 0px;
+    padding:  11px 22px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+    margin: 10px 0 0;
+    height: 42px;
+    width: auto;
+  }
+  
+  
+.ck_form.single_line .ck_guarantee {
+  color: #626262;
+  font-size: 15px;
+  text-align: center;
+  padding: 15px 0px 0px;
+  display: block;
+  clear: both;
+}</style>
+<h2>Tweaks to make your life easier</h2>
+<h3>1. Automatically reload page on save</h3>
+<p>One of the biggest wins from using webpack-dev-server is that it notifies your browser when files change. Of course, nothing will happen unless you listen to these notifications, but luckily, webpack-dev-server includes a handy self-contained script which both listens to the notifications, <em>and</em> reloads the page for you when it receives them.</p>
+<p>The script in question is <code>'webpack-dev-server/client?http://localhost:8080'</code>. Why not have a shot at adding it yourself based on what you learned above. Once you&#8217;re done, touch or hover over the blank box below for an answer.</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+
+<pre><code>  entry: [
+    'babel-polyfill',
+    './src/main',
+    'webpack-dev-server/client?http://localhost:8080'
+  ],
+</code></pre>
+<p>
+</p>
+</div>
+<h3>2. Default options for webpack-dev-server</h3>
+<p>Typing out this monstrosity every time you want to start the server can get a little tiring:</p>
+<pre><code>$ webpack-dev-server --content-base src src/main.js
+</code></pre>
+<p>Luckily, you can specify default options for <code>webpack-dev-server</code> by adding a <code>devServer</code> object in <code>webpack.config.js</code>. The keys in this object are just the camelized versions of those you&#8217;d pass to the command line version.</p>
+<p>If that&#8217;s a bit of a mouthful, don&#8217;t worry &#8211; all you need to know is you should add this to your <code>webpack.config.js</code>:</p>
+<pre><code>  devServer: {
+    contentBase: "./src"
+  }
+</code></pre>
+<p>And then you can omit the <code>--content-base src</code> from the above command.</p>
+<h3>3. Record your dependencies and entry point with package.json</h3>
+<p><em>If you already know how <code>package.json</code> works, you can skip this section.</em></p>
+<p>My final tip is to set up a <code>package.json</code>. There are so many good reasons to use it that I can&#8217;t list all of them, but here are two relevant ones:</p>
+<ul>
+<li>You can record your dependencies (e.g. webpack &amp; babel), then install them again using <code>npm install</code>.</li>
+<li>You can define a <code>start</code> script, so you don&#8217;t even need to remember <code>webpack-dev-server</code> &#8211; just <code>npm start</code>.</li>
+</ul>
+<p>Setting up <code>package.json</code> is so incredibly simple that you really have no reason not to do it, so let&#8217;s do it now. Ready? From your <code>black-triangle</code> directory, type this:</p>
+<pre><code>npm init
+</code></pre>
+<p>Now follow the prompts, remembering to enter <code>src/main.js</code> as your entry point.</p>
+<p>And now you&#8217;ve got your <code>package.json</code>. How easy was that! Let&#8217;s finish it off by telling npm about what to do when we type <code>npm start</code>: do so by adding a new key to the generated <code>package.json</code> file&#8217;s <code>scripts</code> object, as so:</p>
+<pre><code>"start": "node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+</code></pre>
+<p>Finally, test it out by shutting off your existing server (if it is running), typing in <code>npm start</code>, and visiting <a href="http://localhost:8080/">localhost:8080</a>.</p>
+<p>And there you have it &#8211; an ES6-compiling, automatic reloading dev server, which can be started as easily as typing <code>npm start</code>. Neat!</p>
+<p>But don&#8217;t close the tab just yet. To really make it worth your while having read this article, you need to remember the important parts &#8211; and what better way to do so than with a useful exercise.</p>
+<h2>Exercise: Compiling and watching your LESS/SCSS files</h2>
+<p>This exercise is small in scope but big in result. It involves adding only two lines to your <code>webpack.config.js</code>, and in return you&#8217;ll get near-instant updates to your browser&#8217;s stylesheet as soon as you save the changes to your <code>.less</code> or <code>.scss</code> files.</p>
+<p>To get started, you&#8217;ll need to install a few loader packages:</p>
+<pre><code>npm install style-loader autoprefixer-loader css-loader less-loader --save-dev
+</code></pre>
+<p>Substitute <code>less-loader</code> for <code>scss-loader</code> if that&#8217;s how you roll.</p>
+<p>Once the packages are installed, you&#8217;ll need to make two changes to <code>webpack.config.js</code>:</p>
+<ol>
+<li>Add your new loaders to a <code>.less</code> or <code>.css</code> line in the <code>module.loaders</code> section, using the <code>!</code> character to feed loaders into each other (see the <a href="http://webpack.github.io/docs/loaders.html">documentation</a> for more details)</li>
+<li>Add your new stylesheet to the <code>entry</code> section (yep, you can include more than just JavaScript with webpack)</li>
+</ol>
+<div class="hint">
+Don&#8217;t forget to move the styles out of <code>index.html</code> while testing!
+</div>
+<p>Make sure you don&#8217;t get bogged down in this exercise &#8211; feel free to quit after 10 minutes or so. The important thing is that you give it a shot. <em>Once you have given it a shot</em>, you can check out my solution, and how I&#8217;ve wired this whole project together, at <a href="https://github.com/jamesknelson/webpack-black-triangle">github.com/jamesknelson/webpack-black-triangle</a>.</p>
+<h2>Awesome. Now how do I configure my app for deployment?</h2>
+<p>Well, first you&#8217;ll want to minify it. Then, you may want to bake in some environment variables so you can set different API keys in development and production. You&#8217;ll probably want to extract your CSS to a separate file, and you&#8217;ll also want to cache-bust your generated assets. And that will require some way to modify the <code>src</code> attribute of your <code>&lt;script&gt;</code> tag to match.</p>
+<p>Now you <em>could</em> just clone my <a href="http://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Starter Kit</a>. But if you actually want to <em>understand</em> what is going on under the hood, the only way to ensure you don&#8217;t miss the guide is to get on my Newsletter.</p>
+<p>And to sweeten the deal, you&#8217;ll <em>immediately</em> receive three bonus <em>print-optimised</em> PDF cheatsheets &#8211; for React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), ES6 and JavaScript promises &#8211; <em>completely free</em>!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<p>One more thing &#8211; <em>I love hearing from readers.</em> If you have something to say, send <a href="https://twitter.com/james_k_nelson">@james_k_nelson</a> a tweet, or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. <em>Thanks for reading!</em></p>
+<h2>Resources</h2>
+<ul>
+<li>
+<a href="http://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Starter Kit</a> &#8211; a deployable React project skeleton built on webpack-black-triangle</li>
+<li>
+<a href="https://github.com/jamesknelson/webpack-black-triangle">webpack-black-triangle</a> &#8211; a minimal webpack configuration based on this guide</li>
+<li><a href="http://webpack.github.io/docs/">Official Webpack Documentation</a></li>
+</ul>
+<h2>Read more</h2>
+<ul>
+<li><a href="/which-build-system-should-i-use-for-my-javascript-app/">Which build system should I use for my JavaScript app?</a></li>
+<li>
+<a href="https://github.com/petehunt/webpack-howto">Pete Hunt&#8217;s Webpack Howto</a> &#8211; an overview of some of webpack&#8217;s more advanced features</li>
+</ul>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/announcing-maxim/" rel="prev"><span class="meta-nav">&#8592;</span> Announcing Maxim</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/re-exporting-es6-modules/" rel="next">Re-exporting ES6 modules <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					13 Comments <span class="on">&#8594;</span> <span>Webpack Made Simple: Building ES6 &#038; LESS with autorefresh</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-3270">
+						<article id="comment-3270" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/4b4e710d26ac8a3488908a265c61c319?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4b4e710d26ac8a3488908a265c61c319?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://hackerdreamerdoer.com/" rel="external nofollow ugc" class="url">Jeremy</a> </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-3270"><time datetime="2015-10-24T06:19:21+00:00">October 24, 2015 at 6:19 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hey, love the post! You&#8217;re right that Webpack docs are a bit sparse, and this got me started on the right track. One note though, I had to move index.html to the black-triangle/ folder to get it to spin, since that&#8217;s the build target for webpack, but in one of the steps you say to mv index.html into src/. Thanks again! Looking forward to seeing Unicorn Standard grow.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3270" data-commentid="3270" data-postid="241" data-belowelement="comment-3270" data-respondelement="respond" data-replyto="Reply to Jeremy" aria-label="Reply to Jeremy">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-3272">
+						<article id="comment-3272" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-3272"><time datetime="2015-10-24T08:28:42+00:00">October 24, 2015 at 8:28 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Glad you enjoyed the post, Jeremy!</p>
+<p>I just tried following the instructions with a new project, and had no trouble with my index.html in the src/ directory. Not sure what you may have done differently, but as a guess, did you pass the `&#8211;content-base src` option to `webpack-dev-server`?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3272" data-commentid="3272" data-postid="241" data-belowelement="comment-3272" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-3293">
+						<article id="comment-3293" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c5c406c482cbcd1a5e666253c3bcfbae?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c5c406c482cbcd1a5e666253c3bcfbae?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://maxlab.fr/" rel="external nofollow ugc" class="url">Maxime Warnier</a> </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-3293"><time datetime="2015-10-25T08:18:56+00:00">October 25, 2015 at 8:18 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for this article. We found more and more huge and complex starterkit for webpack and people don&#8217;t understand really how it works.</p>
+<p>By the way, in your npm start task ( &#8220;start&#8221;: &#8220;node_modules/webpack-dev-server/bin/webpack-dev-server.js&#8221; ) you can just do : </p>
+<p>&#8220;start&#8221; : &#8220;webpack-dev-server&#8221;</p>
+<p>because npm resolve the path to the local node_modules and the webpack-dev-server bin is in node_modules/.bin</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3293" data-commentid="3293" data-postid="241" data-belowelement="comment-3293" data-respondelement="respond" data-replyto="Reply to Maxime Warnier" aria-label="Reply to Maxime Warnier">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-3718">
+						<article id="comment-3718" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/efe3dcebff1c01cdbb1d8ce459f23343?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/efe3dcebff1c01cdbb1d8ce459f23343?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.edwardbeckett.com/" rel="external nofollow ugc" class="url">Edward Beckett</a> </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-3718"><time datetime="2015-11-04T04:42:14+00:00">November 4, 2015 at 4:42 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Great shares man&#8230; succinct and to the point&#8230; JS dependency management is definitely starting to mature to the point that front-end developers are now &#8216;accepting&#8217; that convention over configuration is the most effective way to produce stable builds&#8230;</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3718" data-commentid="3718" data-postid="241" data-belowelement="comment-3718" data-respondelement="respond" data-replyto="Reply to Edward Beckett" aria-label="Reply to Edward Beckett">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-5217">
+						<article id="comment-5217" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c96c6bcd92aaa989d62cb208e89c10c6?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c96c6bcd92aaa989d62cb208e89c10c6?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Little Brainz </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-5217"><time datetime="2015-12-07T11:36:12+00:00">December 7, 2015 at 11:36 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>In your &#8220;Tweaks&#8221; section, point 1, rather that adding &#8216;webpack-dev-server/client?<a href="http://localhost:8080/" rel="nofollow ugc">http://localhost:8080</a>&#8216; to the &#8220;entry&#8221; property, just add the &#8220;&#8211;inline&#8221; option to the webpack-dev-server command line.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-5217" data-commentid="5217" data-postid="241" data-belowelement="comment-5217" data-respondelement="respond" data-replyto="Reply to Little Brainz" aria-label="Reply to Little Brainz">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-6378">
+						<article id="comment-6378" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/5de8a813939fae27e97c7ff59fe3bdd5?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/5de8a813939fae27e97c7ff59fe3bdd5?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://wmyers.github.io/" rel="external nofollow ugc" class="url">Will Myers</a> </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-6378"><time datetime="2015-12-29T08:03:20+00:00">December 29, 2015 at 8:03 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for this clearly written post. One point is that webpack-dev-server does not generate a bundle.js by default. So the moment you start using it, the output config becomes redundant. This is confusing &#8211; various people are asking for a flag to generate the bundle at <a href="https://github.com/webpack/webpack-dev-server/issues/62" rel="nofollow ugc">https://github.com/webpack/webpack-dev-server/issues/62</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-6378" data-commentid="6378" data-postid="241" data-belowelement="comment-6378" data-respondelement="respond" data-replyto="Reply to Will Myers" aria-label="Reply to Will Myers">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-2" id="li-comment-6398">
+						<article id="comment-6398" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/5de8a813939fae27e97c7ff59fe3bdd5?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/5de8a813939fae27e97c7ff59fe3bdd5?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://wmyers.github.io/" rel="external nofollow ugc" class="url">Will Myers</a> </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-6398"><time datetime="2015-12-29T12:54:46+00:00">December 29, 2015 at 12:54 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>EDIT Re previous comment &#8211; webpack-dev-server actually does not make the output config redundant, as (for example) the filename is used in the index.html. But it is still confusing that webpack-dev-server does not create any output bundle file. The argument seems to be that you don&#8217;t need to have a bundle file in dev mode, but I would disagree with this. I&#8217;ve implemented the <a href="https://github.com/gajus/write-file-webpack-plugin" rel="nofollow ugc">https://github.com/gajus/write-file-webpack-plugin</a> which forces webpack to write a bundle file</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-6398" data-commentid="6398" data-postid="241" data-belowelement="comment-6398" data-respondelement="respond" data-replyto="Reply to Will Myers" aria-label="Reply to Will Myers">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-8939">
+						<article id="comment-8939" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/2fee3b0db2e1246ff31fda43ae46c9eb?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/2fee3b0db2e1246ff31fda43ae46c9eb?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://twitter.com/inancgumus" rel="external nofollow ugc" class="url">Inanc Gumus</a> </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-8939"><time datetime="2016-01-16T15:23:39+00:00">January 16, 2016 at 3:23 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>There are too much to tell as soon as it involves something about Webpack. It&#8217;s complex and non-intuitive.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-8939" data-commentid="8939" data-postid="241" data-belowelement="comment-8939" data-respondelement="respond" data-replyto="Reply to Inanc Gumus" aria-label="Reply to Inanc Gumus">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-17064">
+						<article id="comment-17064" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/f3250146f730c188ba9d79c2da4c3e7d?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/f3250146f730c188ba9d79c2da4c3e7d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jessica Koch </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-17064"><time datetime="2016-03-28T10:05:43+00:00">March 28, 2016 at 10:05 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>this is by far the best webpack tutorial I have found thanks so much!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-17064" data-commentid="17064" data-postid="241" data-belowelement="comment-17064" data-respondelement="respond" data-replyto="Reply to Jessica Koch" aria-label="Reply to Jessica Koch">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-17849">
+						<article id="comment-17849" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/39020b8bfacc0f68242a3217b8beeeca?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/39020b8bfacc0f68242a3217b8beeeca?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Bharat Soni </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-17849"><time datetime="2016-04-09T19:59:05+00:00">April 9, 2016 at 7:59 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hey James, thanks for the nice tutorial! I was going through Memamug&#8217;s webpack config file. I couldn&#8217;t understand much between 7th to 19th line. Could you please help me understand those lines.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-17849" data-commentid="17849" data-postid="241" data-belowelement="comment-17849" data-respondelement="respond" data-replyto="Reply to Bharat Soni" aria-label="Reply to Bharat Soni">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-19216">
+						<article id="comment-19216" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/ab8e56d76be6f61638076b066d0a2e0f?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/ab8e56d76be6f61638076b066d0a2e0f?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Matt Conway </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-19216"><time datetime="2016-05-03T15:02:44+00:00">May 3, 2016 at 3:02 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Going through this today, and I had to install &#8216;webpack&#8217; globally as well to get this to work.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-19216" data-commentid="19216" data-postid="241" data-belowelement="comment-19216" data-respondelement="respond" data-replyto="Reply to Matt Conway" aria-label="Reply to Matt Conway">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-19874">
+						<article id="comment-19874" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/bd4286eab6b1c9b9d37045c6a7e163f9?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/bd4286eab6b1c9b9d37045c6a7e163f9?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jeff </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-19874"><time datetime="2016-05-16T00:43:07+00:00">May 16, 2016 at 12:43 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I am not so convinced by your statement &#8220;long, complicated Gulpfiles and Gruntfiles.&#8221;.</p>
+<p>first, the complexity does not equals to line of configurations, as long as configuration is simple and easy to use, it doesn&#8217;t matter that we need a few more lines.</p>
+<p>second, grunt and gulp do not require you to write your javascript modules to follow any commonjs or requirejs standards. which means that you don&#8217;t need to declare &#8220;require, exports&#8221; everywhere, and you can use so many existing open source without putting them into &#8220;shim&#8221; mode.<br>
+But by using webpack, we have to declare these &#8220;require&#8221; so that webpack can find out the dependencies.  ( I had done a lot with requirejs a few years ago, and requirejs can also compile the bundle with r.js, as same as webpack)</p>
+<p>Back to the problems you want to resolve in this article, don&#8217;t you agree they are easy when using grunt or gulp?  </p>
+<p>Probably, after ES6 becomes standard and everyone starts to write javascript component, and then, webpack will have some advantage there..</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-19874" data-commentid="19874" data-postid="241" data-belowelement="comment-19874" data-respondelement="respond" data-replyto="Reply to Jeff" aria-label="Reply to Jeff">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-22824">
+						<article id="comment-22824" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/f5377c4913e1addccddff2bce408aded?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/f5377c4913e1addccddff2bce408aded?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Ted </cite><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-22824"><time datetime="2016-08-18T19:58:07+00:00">August 18, 2016 at 7:58 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>&#8220;Webpack is the least retarded piece of software I’ve used that’s written in JS.&#8221;<br>
+Webpack is the MOST retarded, stupid, and non-intuitive, piece of junk I&#8217;ve used. It bogs down creativity, speed, and workflow.</p>
+<p>Look around. You see the same &#8220;tutorials&#8221; written over and over and over by different people. WHY? And when you create your own workflow and try to solve it using webpack, you will eventually realize what a pain in the arse time waster nonsense this is.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22824" data-commentid="22824" data-postid="241" data-belowelement="comment-22824" data-respondelement="respond" data-replyto="Reply to Ted" aria-label="Reply to Ted">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="241" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="eec0c936b4"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="59"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Using ES6 and ES7 in the Browser, with Babel 6 and Webpack	</title>
+	<atom:link href="/using-es6-in-the-browser-with-babel-6-and-webpack/feed/" rel="self" type="application/rss+xml" />
+	<link>/using-es6-in-the-browser-with-babel-6-and-webpack/</link>
+	<description></description>
+	<lastBuildDate>Wed, 12 Oct 2016 12:37:08 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Kamal Kumawat		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-23813</link>
+
+		<dc:creator><![CDATA[Kamal Kumawat]]></dc:creator>
+		<pubDate>Wed, 12 Oct 2016 12:37:08 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-23813</guid>
+
+					<description><![CDATA[How to add css file loader?]]></description>
+			<content:encoded><![CDATA[<p>How to add css file loader?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Julien		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-22767</link>
+
+		<dc:creator><![CDATA[Julien]]></dc:creator>
+		<pubDate>Mon, 15 Aug 2016 03:07:52 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-22767</guid>
+
+					<description><![CDATA[This was really helpful, thank you.]]></description>
+			<content:encoded><![CDATA[<p>This was really helpful, thank you.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: loop		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-21541</link>
+
+		<dc:creator><![CDATA[loop]]></dc:creator>
+		<pubDate>Wed, 29 Jun 2016 10:37:23 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-21541</guid>
+
+					<description><![CDATA[hi,James
+when i used babel-runtime to replace the helpers in my code like  _extends ,_interopRequireDefault(obj) eg,but it does not work.what&#039;s the reason?
+
+this babel version i used:
+```
+     &quot;babel-core&quot;: &quot;^6.10.4&quot;,
+    &quot;babel-eslint&quot;: &quot;^6.0.0&quot;,
+    &quot;babel-loader&quot;: &quot;^6.2.4&quot;,
+    &quot;babel-polyfill&quot;: &quot;^6.9.1&quot;,
+    &quot;babel-preset-es2015&quot;: &quot;^6.9.0&quot;,
+    &quot;babel-runtime&quot;: &quot;^6.6.1&quot;,
+```
+
+can you help me?thx]]></description>
+			<content:encoded><![CDATA[<p>hi,James<br />
+when i used babel-runtime to replace the helpers in my code like  _extends ,_interopRequireDefault(obj) eg,but it does not work.what&#8217;s the reason?</p>
+<p>this babel version i used:<br />
+&#8220;`<br />
+     &#8220;babel-core&#8221;: &#8220;^6.10.4&#8221;,<br />
+    &#8220;babel-eslint&#8221;: &#8220;^6.0.0&#8221;,<br />
+    &#8220;babel-loader&#8221;: &#8220;^6.2.4&#8221;,<br />
+    &#8220;babel-polyfill&#8221;: &#8220;^6.9.1&#8221;,<br />
+    &#8220;babel-preset-es2015&#8221;: &#8220;^6.9.0&#8221;,<br />
+    &#8220;babel-runtime&#8221;: &#8220;^6.6.1&#8221;,<br />
+&#8220;`</p>
+<p>can you help me?thx</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jonathan		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-8816</link>
+
+		<dc:creator><![CDATA[Jonathan]]></dc:creator>
+		<pubDate>Thu, 14 Jan 2016 16:02:16 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-8816</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-7280&quot;&gt;Donato&lt;/a&gt;.
+
+Same, I figured I&#039;d give babel 6 a few months to iron out the bugs but it&#039;s still the most broken npm release I&#039;ve ever seen.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-7280">Donato</a>.</p>
+<p>Same, I figured I&#8217;d give babel 6 a few months to iron out the bugs but it&#8217;s still the most broken npm release I&#8217;ve ever seen.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Donato		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-7280</link>
+
+		<dc:creator><![CDATA[Donato]]></dc:creator>
+		<pubDate>Mon, 04 Jan 2016 19:35:11 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-7280</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4025&quot;&gt;James K Nelson&lt;/a&gt;.
+
+Any update on this? I&#039;m not able to transform generators into es5 even now!]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4025">James K Nelson</a>.</p>
+<p>Any update on this? I&#8217;m not able to transform generators into es5 even now!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Apurva B		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5575</link>
+
+		<dc:creator><![CDATA[Apurva B]]></dc:creator>
+		<pubDate>Tue, 15 Dec 2015 10:55:11 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-5575</guid>
+
+					<description><![CDATA[I am getting following error when I do npm run build
+
+&#062;npm run build
+
+&#062; @0.0.1 build 
+&#062; babel-node tools/run build
+
+build
+[16:15:30] Starting &#039;undefined&#039;...
+TypeError: object is not a function
+    at _callee$ (run.js:8:9)
+    at tryCatch ({path}\node_modules\babel-regenerator-runti
+me\runtime.js:61:40)
+    at GeneratorFunctionPrototype.invoke [as _invoke] ({path}\node_modules\babel-regenerator-runtime\runtime.js:329:22)
+    at GeneratorFunctionPrototype.prototype.(anonymous function) [as next] ({path}\node_modules\babel-regenerator-runtime\runtime.js:94:21)
+    at step ({path}\tools\run.js:7:191)
+    at {path}\tools\run.js:7:423
+    at new Promise ({path}\node_modules\core-js\modules\es6.
+promise.js:197:7)
+    at {path}\tools\run.js:7:99
+    at run (run.js:5:19)
+    at Object. (run.js:18:3)]]></description>
+			<content:encoded><![CDATA[<p>I am getting following error when I do npm run build</p>
+<p>&gt;npm run build</p>
+<p>&gt; @0.0.1 build<br />
+&gt; babel-node tools/run build</p>
+<p>build<br />
+[16:15:30] Starting &#8216;undefined&#8217;&#8230;<br />
+TypeError: object is not a function<br />
+    at _callee$ (run.js:8:9)<br />
+    at tryCatch ({path}\node_modules\babel-regenerator-runti<br />
+me\runtime.js:61:40)<br />
+    at GeneratorFunctionPrototype.invoke [as _invoke] ({path}\node_modules\babel-regenerator-runtime\runtime.js:329:22)<br />
+    at GeneratorFunctionPrototype.prototype.(anonymous function) [as next] ({path}\node_modules\babel-regenerator-runtime\runtime.js:94:21)<br />
+    at step ({path}\tools\run.js:7:191)<br />
+    at {path}\tools\run.js:7:423<br />
+    at new Promise ({path}\node_modules\core-js\modules\es6.<br />
+promise.js:197:7)<br />
+    at {path}\tools\run.js:7:99<br />
+    at run (run.js:5:19)<br />
+    at Object. (run.js:18:3)</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: 传		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5572</link>
+
+		<dc:creator><![CDATA[传]]></dc:creator>
+		<pubDate>Tue, 15 Dec 2015 09:15:29 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-5572</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4187&quot;&gt;Paddy&lt;/a&gt;.
+
+try 
+babel-plugin-transform-es3-property-literals]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4187">Paddy</a>.</p>
+<p>try<br />
+babel-plugin-transform-es3-property-literals</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Dtothefp		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5528</link>
+
+		<dc:creator><![CDATA[Dtothefp]]></dc:creator>
+		<pubDate>Mon, 14 Dec 2015 06:26:07 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-5528</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5527&quot;&gt;Dtothefp&lt;/a&gt;.
+
+Above is &quot;rewire&quot; plugin not &quot;require&quot; plugin]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5527">Dtothefp</a>.</p>
+<p>Above is &#8220;rewire&#8221; plugin not &#8220;require&#8221; plugin</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Dtothefp		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-5527</link>
+
+		<dc:creator><![CDATA[Dtothefp]]></dc:creator>
+		<pubDate>Mon, 14 Dec 2015 06:24:58 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-5527</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4942&quot;&gt;Rafael&lt;/a&gt;.
+
+Rafael I&#039;d love more info on the exports default issue and how you&#039;ve dealt with it. I&#039;ve been using https://www.npmjs.com/package/babel-plugin-add-module-exports for my build code but unfortunately for my client code I test with karma and require plugin and these two plugins seem to conflict. Looks like I may have to go through all my client code and change syntax. 
+
+On another note generators have really strange behavior when using const and they will yell at you if you don&#039;t. I added to phabricator issue here so please add on if you experience it as well https://phabricator.babeljs.io/T2843#68845
+
+This whole Babel 6 upgrade has been an incredible nightmare:-((]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4942">Rafael</a>.</p>
+<p>Rafael I&#8217;d love more info on the exports default issue and how you&#8217;ve dealt with it. I&#8217;ve been using <a href="https://www.npmjs.com/package/babel-plugin-add-module-exports" rel="nofollow ugc">https://www.npmjs.com/package/babel-plugin-add-module-exports</a> for my build code but unfortunately for my client code I test with karma and require plugin and these two plugins seem to conflict. Looks like I may have to go through all my client code and change syntax. </p>
+<p>On another note generators have really strange behavior when using const and they will yell at you if you don&#8217;t. I added to phabricator issue here so please add on if you experience it as well <a href="https://phabricator.babeljs.io/T2843#68845" rel="nofollow ugc">https://phabricator.babeljs.io/T2843#68845</a></p>
+<p>This whole Babel 6 upgrade has been an incredible nightmare:-((</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Rafael		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-4942</link>
+
+		<dc:creator><![CDATA[Rafael]]></dc:creator>
+		<pubDate>Tue, 01 Dec 2015 21:39:42 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-4942</guid>
+
+					<description><![CDATA[Great writing.
+
+I think you should add to your list:
+ 1) Babel6 changes how export default xxx works. There was a hack in the babel5 that is removed in babel6 chat causes cold that was doing require(&#039;function_exported_as_default&#039;)() to not work anymore.  (let me know if you need more details on that).
+2)  that decorators were dropped in babel6, so e anyone using is out of luck with babel6 for now. (I&#039;m working in a plugin to port decorators form 5 to 6, but in the mean time there is nothing.]]></description>
+			<content:encoded><![CDATA[<p>Great writing.</p>
+<p>I think you should add to your list:<br />
+ 1) Babel6 changes how export default xxx works. There was a hack in the babel5 that is removed in babel6 chat causes cold that was doing require(&#8216;function_exported_as_default&#8217;)() to not work anymore.  (let me know if you need more details on that).<br />
+2)  that decorators were dropped in babel6, so e anyone using is out of luck with babel6 for now. (I&#8217;m working in a plugin to port decorators form 5 to 6, but in the mean time there is nothing.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

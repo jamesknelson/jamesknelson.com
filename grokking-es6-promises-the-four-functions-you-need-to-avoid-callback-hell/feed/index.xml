@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Introduction to ES6 Promises &#8211; The Four Functions You Need To Avoid Callback Hell	</title>
+	<atom:link href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/feed/" rel="self" type="application/rss+xml" />
+	<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/</link>
+	<description></description>
+	<lastBuildDate>Tue, 23 Oct 2018 06:15:34 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: david		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-22894</link>
+
+		<dc:creator><![CDATA[david]]></dc:creator>
+		<pubDate>Wed, 24 Aug 2016 05:45:11 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-22894</guid>
+
+					<description><![CDATA[Great article. very clear explanation.]]></description>
+			<content:encoded><![CDATA[<p>Great article. very clear explanation.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Nate		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-22893</link>
+
+		<dc:creator><![CDATA[Nate]]></dc:creator>
+		<pubDate>Wed, 24 Aug 2016 02:57:26 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-22893</guid>
+
+					<description><![CDATA[Thank you, this was really helpful!
+
+In this code snippet where you talk about using animationTimeout for rejection (&quot;if an isAnimationSupported(step) function is available, we could implement this with reject:...&quot;), you create a new promise, but you don&#039;t return it. Don&#039;t you have to return that promise?]]></description>
+			<content:encoded><![CDATA[<p>Thank you, this was really helpful!</p>
+<p>In this code snippet where you talk about using animationTimeout for rejection (&#8220;if an isAnimationSupported(step) function is available, we could implement this with reject:&#8230;&#8221;), you create a new promise, but you don&#8217;t return it. Don&#8217;t you have to return that promise?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: TienTran		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-21727</link>
+
+		<dc:creator><![CDATA[TienTran]]></dc:creator>
+		<pubDate>Mon, 04 Jul 2016 03:23:23 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-21727</guid>
+
+					<description><![CDATA[In differences between callback and promise, I don&#039;t understand about statement:
+4. Callbacks can represent multiple events, promises represent at most one
+
+Can you help me explain more detail, thanks! :)]]></description>
+			<content:encoded><![CDATA[<p>In differences between callback and promise, I don&#8217;t understand about statement:<br />
+4. Callbacks can represent multiple events, promises represent at most one</p>
+<p>Can you help me explain more detail, thanks! 🙂</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: An Vad		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-20666</link>
+
+		<dc:creator><![CDATA[An Vad]]></dc:creator>
+		<pubDate>Sat, 04 Jun 2016 00:43:28 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-20666</guid>
+
+					<description><![CDATA[In the section &quot;3. promise.catch(onReject)&quot; we need to call return `delay(1000);` right after calling `runBackup(1);` else there won&#039;t be any delay between `runBackup(1);` and next animation.]]></description>
+			<content:encoded><![CDATA[<p>In the section &#8220;3. promise.catch(onReject)&#8221; we need to call return `delay(1000);` right after calling `runBackup(1);` else there won&#8217;t be any delay between `runBackup(1);` and next animation.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Oleg		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-20109</link>
+
+		<dc:creator><![CDATA[Oleg]]></dc:creator>
+		<pubDate>Sun, 22 May 2016 14:08:57 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-20109</guid>
+
+					<description><![CDATA[But every Haskell programmer know that Promise is just yet another .... ;)]]></description>
+			<content:encoded><![CDATA[<p>But every Haskell programmer know that Promise is just yet another &#8230;. 😉</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Daniel		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-18219</link>
+
+		<dc:creator><![CDATA[Daniel]]></dc:creator>
+		<pubDate>Wed, 13 Apr 2016 21:33:31 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-18219</guid>
+
+					<description><![CDATA[I have a question:
+
+In the 3-step animation exercise, if the first animation fails, it seems to be that there won&#039;t be a delay between runBackup(1) and runAnimation(2). Am I missing something?
+
+Thanks for a great article.]]></description>
+			<content:encoded><![CDATA[<p>I have a question:</p>
+<p>In the 3-step animation exercise, if the first animation fails, it seems to be that there won&#8217;t be a delay between runBackup(1) and runAnimation(2). Am I missing something?</p>
+<p>Thanks for a great article.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Mark		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-16559</link>
+
+		<dc:creator><![CDATA[Mark]]></dc:creator>
+		<pubDate>Tue, 22 Mar 2016 03:45:59 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-16559</guid>
+
+					<description><![CDATA[THANK YOU! After looking at a dozen articles this one finally explains the whole thing well.]]></description>
+			<content:encoded><![CDATA[<p>THANK YOU! After looking at a dozen articles this one finally explains the whole thing well.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Maggie Jones		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-15663</link>
+
+		<dc:creator><![CDATA[Maggie Jones]]></dc:creator>
+		<pubDate>Thu, 17 Mar 2016 13:56:53 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-15663</guid>
+
+					<description><![CDATA[Hi! Just wanted to give a shout out. Great article. Very well written.]]></description>
+			<content:encoded><![CDATA[<p>Hi! Just wanted to give a shout out. Great article. Very well written.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: jamesknelson		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-794</link>
+
+		<dc:creator><![CDATA[jamesknelson]]></dc:creator>
+		<pubDate>Tue, 14 Jul 2015 10:55:12 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-794</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-754&quot;&gt;Kevin L.&lt;/a&gt;.
+
+I&#039;m not sure I&#039;m ready to start relying on anything which requires Object.observe just yet - while it is slated for inclusion in ES7, shimming it doesn&#039;t sound like much fun. Maybe in a few years?]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-754">Kevin L.</a>.</p>
+<p>I&#8217;m not sure I&#8217;m ready to start relying on anything which requires Object.observe just yet &#8211; while it is slated for inclusion in ES7, shimming it doesn&#8217;t sound like much fun. Maybe in a few years?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Kevin L.		</title>
+		<link>/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-754</link>
+
+		<dc:creator><![CDATA[Kevin L.]]></dc:creator>
+		<pubDate>Sat, 11 Jul 2015 19:20:12 +0000</pubDate>
+		<guid isPermaLink="false">/?p=210#comment-754</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-320&quot;&gt;jamesknelson&lt;/a&gt;.
+
+Aren&#039;t Observables an option as well if you&#039;re recommending ES7-level stuff? 
+
+Things like critical data that  can  be retried or aborted  would be a better fit. 
+
+Being lazily done rather than being hot, Observables can be advantageous for certain async operations than Promises as well.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-320">jamesknelson</a>.</p>
+<p>Aren&#8217;t Observables an option as well if you&#8217;re recommending ES7-level stuff? </p>
+<p>Things like critical data that  can  be retried or aborted  would be a better fit. </p>
+<p>Being lazily done rather than being hot, Observables can be advantageous for certain async operations than Promises as well.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

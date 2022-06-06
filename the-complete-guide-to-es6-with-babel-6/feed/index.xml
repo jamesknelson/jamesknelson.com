@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: The Complete Guide to ES6 with Babel 6	</title>
+	<atom:link href="/the-complete-guide-to-es6-with-babel-6/feed/" rel="self" type="application/rss+xml" />
+	<link>/the-complete-guide-to-es6-with-babel-6/</link>
+	<description></description>
+	<lastBuildDate>Tue, 12 Apr 2016 11:58:05 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Johnny		</title>
+		<link>/the-complete-guide-to-es6-with-babel-6/#comment-18167</link>
+
+		<dc:creator><![CDATA[Johnny]]></dc:creator>
+		<pubDate>Tue, 12 Apr 2016 11:58:05 +0000</pubDate>
+		<guid isPermaLink="false">/?p=876#comment-18167</guid>
+
+					<description><![CDATA[Great thanks for the Babel Posts. Really helped! :-)]]></description>
+			<content:encoded><![CDATA[<p>Great thanks for the Babel Posts. Really helped! 🙂</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Water Sun		</title>
+		<link>/the-complete-guide-to-es6-with-babel-6/#comment-6051</link>
+
+		<dc:creator><![CDATA[Water Sun]]></dc:creator>
+		<pubDate>Fri, 25 Dec 2015 02:25:50 +0000</pubDate>
+		<guid isPermaLink="false">/?p=876#comment-6051</guid>
+
+					<description><![CDATA[Greate post. Save me a lot of time!]]></description>
+			<content:encoded><![CDATA[<p>Greate post. Save me a lot of time!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Brian Dukes		</title>
+		<link>/the-complete-guide-to-es6-with-babel-6/#comment-5317</link>
+
+		<dc:creator><![CDATA[Brian Dukes]]></dc:creator>
+		<pubDate>Wed, 09 Dec 2015 16:47:11 +0000</pubDate>
+		<guid isPermaLink="false">/?p=876#comment-5317</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/the-complete-guide-to-es6-with-babel-6/#comment-4459&quot;&gt;aniket&lt;/a&gt;.
+
+The &quot;use strict&quot; that is added comes from the babel-plugin-transform-es2015-modules-commonjs plugin.  There isn&#039;t currently a way to request a preset (e.g. babel-preset-es2015) but exclude one of the plugins that it includes.  So, you can still add a dependency on that npm package, but you&#039;ll need to list all of the other plugins in your .babelrc, instead of specifying the preset directly (look at https://github.com/babel/babel/blob/master/packages/babel-preset-es2015/index.js for the list of them all plus their config).]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/the-complete-guide-to-es6-with-babel-6/#comment-4459">aniket</a>.</p>
+<p>The &#8220;use strict&#8221; that is added comes from the babel-plugin-transform-es2015-modules-commonjs plugin.  There isn&#8217;t currently a way to request a preset (e.g. babel-preset-es2015) but exclude one of the plugins that it includes.  So, you can still add a dependency on that npm package, but you&#8217;ll need to list all of the other plugins in your .babelrc, instead of specifying the preset directly (look at <a href="https://github.com/babel/babel/blob/master/packages/babel-preset-es2015/index.js" rel="nofollow ugc">https://github.com/babel/babel/blob/master/packages/babel-preset-es2015/index.js</a> for the list of them all plus their config).</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: maxi		</title>
+		<link>/the-complete-guide-to-es6-with-babel-6/#comment-5211</link>
+
+		<dc:creator><![CDATA[maxi]]></dc:creator>
+		<pubDate>Mon, 07 Dec 2015 08:48:26 +0000</pubDate>
+		<guid isPermaLink="false">/?p=876#comment-5211</guid>
+
+					<description><![CDATA[thank you for your up-to-date information.
+
+If I am using babel 6 to transplie ES2015 for browser, do I need to hook it up with requirejs? or does babel ES2015 handle import/export by default?]]></description>
+			<content:encoded><![CDATA[<p>thank you for your up-to-date information.</p>
+<p>If I am using babel 6 to transplie ES2015 for browser, do I need to hook it up with requirejs? or does babel ES2015 handle import/export by default?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: aniket		</title>
+		<link>/the-complete-guide-to-es6-with-babel-6/#comment-4459</link>
+
+		<dc:creator><![CDATA[aniket]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2015 10:52:52 +0000</pubDate>
+		<guid isPermaLink="false">/?p=876#comment-4459</guid>
+
+					<description><![CDATA[Hey, 
+
+Nice tutorials introducing Babel 6!
+
+Can you please help me? I don&#039;t want &quot;use strict&quot;; which babel adds by default I&#039;m using it for function scope and don&#039;t want extra one at global scope.]]></description>
+			<content:encoded><![CDATA[<p>Hey, </p>
+<p>Nice tutorials introducing Babel 6!</p>
+<p>Can you please help me? I don&#8217;t want &#8220;use strict&#8221;; which babel adds by default I&#8217;m using it for function scope and don&#8217;t want extra one at global scope.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

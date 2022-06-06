@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Join The Dark Side Of The Flux: Responding to Actions with Actors	</title>
+	<atom:link href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/feed/" rel="self" type="application/rss+xml" />
+	<link>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/</link>
+	<description></description>
+	<lastBuildDate>Wed, 06 Jul 2016 08:02:09 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Karol Selak		</title>
+		<link>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-21799</link>
+
+		<dc:creator><![CDATA[Karol Selak]]></dc:creator>
+		<pubDate>Wed, 06 Jul 2016 08:02:09 +0000</pubDate>
+		<guid isPermaLink="false">/?p=747#comment-21799</guid>
+
+					<description><![CDATA[There&#039;s one potential problem in this solution, I think. What if we will receive two actions in a row? First action will block the subscription until all actors will be finished, so the second action won&#039;t be detected at all. Am I wrong?]]></description>
+			<content:encoded><![CDATA[<p>There&#8217;s one potential problem in this solution, I think. What if we will receive two actions in a row? First action will block the subscription until all actors will be finished, so the second action won&#8217;t be detected at all. Am I wrong?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Sebastien Lorber		</title>
+		<link>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-6137</link>
+
+		<dc:creator><![CDATA[Sebastien Lorber]]></dc:creator>
+		<pubDate>Sun, 27 Dec 2015 01:58:07 +0000</pubDate>
+		<guid isPermaLink="false">/?p=747#comment-6137</guid>
+
+					<description><![CDATA[Just in case you missed it: https://github.com/yelouafi/redux-saga]]></description>
+			<content:encoded><![CDATA[<p>Just in case you missed it: <a href="https://github.com/yelouafi/redux-saga" rel="nofollow ugc">https://github.com/yelouafi/redux-saga</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Sebastien Lorber		</title>
+		<link>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3776</link>
+
+		<dc:creator><![CDATA[Sebastien Lorber]]></dc:creator>
+		<pubDate>Thu, 05 Nov 2015 09:36:37 +0000</pubDate>
+		<guid isPermaLink="false">/?p=747#comment-3776</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3759&quot;&gt;James K Nelson&lt;/a&gt;.
+
+Yes, all my state is outside of React and absolutly immutable (but not with ImmutableJS: it did not exist at this time). There are still little performance issues even if PureRenderMixin kicks in everywhere it can, mostly because when rendering from the VERY TOP, you always have to re-render the layout and it can become quite expensive on complex SPA apps.
+
+
+I understand the point of keeping reducers pure, but actually these &quot;saga reducers&quot; would never be used to drive react renderings but only drive complex transversal features (like an onboarding). The reducers that compute state to render should absolutly stay pure.
+
+With your &quot;actor pattern&quot;, you have side effects on events. Whether it comes from a reducer or not is just an implementation detail that does not matter that much. Just wanted to point out that it is not necessary to introduce new technology like RxJS (see SO post). What I don&#039;t like in your implementation is that the actor has to understand too much of the structure of the state. And it uses the state that is computed for rendering purpose. I think the &quot;actor&quot; should be able to manage its own state instead of using UI state to take appropriate decisions.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3759">James K Nelson</a>.</p>
+<p>Yes, all my state is outside of React and absolutly immutable (but not with ImmutableJS: it did not exist at this time). There are still little performance issues even if PureRenderMixin kicks in everywhere it can, mostly because when rendering from the VERY TOP, you always have to re-render the layout and it can become quite expensive on complex SPA apps.</p>
+<p>I understand the point of keeping reducers pure, but actually these &#8220;saga reducers&#8221; would never be used to drive react renderings but only drive complex transversal features (like an onboarding). The reducers that compute state to render should absolutly stay pure.</p>
+<p>With your &#8220;actor pattern&#8221;, you have side effects on events. Whether it comes from a reducer or not is just an implementation detail that does not matter that much. Just wanted to point out that it is not necessary to introduce new technology like RxJS (see SO post). What I don&#8217;t like in your implementation is that the actor has to understand too much of the structure of the state. And it uses the state that is computed for rendering purpose. I think the &#8220;actor&#8221; should be able to manage its own state instead of using UI state to take appropriate decisions.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3759</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Thu, 05 Nov 2015 00:46:44 +0000</pubDate>
+		<guid isPermaLink="false">/?p=747#comment-3759</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3740&quot;&gt;Sebastien Lorber&lt;/a&gt;.
+
+Good points.
+
+Regarding the performance issues, do you use ImmutableJS (or something similar) and &lt;code&gt;shouldComponentUpdate&lt;/code&gt; in your components, to ensure you&#039;re only rendering Virtual DOM when your props have actually changed?
+
+Regarding reducers being able to be actors - this would undermine Redux&#039;s stance on reducers being pure functions. Too many actors would certainly make code harder to reason about - not easier.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3740">Sebastien Lorber</a>.</p>
+<p>Good points.</p>
+<p>Regarding the performance issues, do you use ImmutableJS (or something similar) and <code>shouldComponentUpdate</code> in your components, to ensure you&#8217;re only rendering Virtual DOM when your props have actually changed?</p>
+<p>Regarding reducers being able to be actors &#8211; this would undermine Redux&#8217;s stance on reducers being pure functions. Too many actors would certainly make code harder to reason about &#8211; not easier.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Sebastien Lorber		</title>
+		<link>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3740</link>
+
+		<dc:creator><![CDATA[Sebastien Lorber]]></dc:creator>
+		<pubDate>Wed, 04 Nov 2015 17:09:36 +0000</pubDate>
+		<guid isPermaLink="false">/?p=747#comment-3740</guid>
+
+					<description><![CDATA[I don&#039;t really like the term &quot;actor&quot; because it makes me think of the actor pattern used in Akka / Erlang. 
+
+
+I agree with your pattern, mostly for coordination purpose. In the backend / CQRS / DDD / EventSourcing world, we use Sagas for this. I&#039;ve written a little bit about that here and this pattern can be applied to React too. 
+http://stackoverflow.com/a/33501899/82609
+
+
+I don&#039;t really agree with the implementation detail, and think this coordinator should be able to manage its own state instead of calling store.getState(). A reducer could be an actor actually if that actor needs state to take a decision.
+
+
+
+
+
+One more thing: connect of redux is also done to solve potential performance issues when rendering from the very top. At Stample we have a production app that renders from the very top, and manage all state outside of React (even text inputs), and we start to see the performance limits of this approach (on inputs mostly) particularly on mobile devices that have a bad CPU.
+See also: 
+-  https://www.youtube.com/watch?v=zxN8FYYBcrI
+-  http://stackoverflow.com/questions/25791034/om-but-in-javascript/25806145#25806145]]></description>
+			<content:encoded><![CDATA[<p>I don&#8217;t really like the term &#8220;actor&#8221; because it makes me think of the actor pattern used in Akka / Erlang. </p>
+<p>I agree with your pattern, mostly for coordination purpose. In the backend / CQRS / DDD / EventSourcing world, we use Sagas for this. I&#8217;ve written a little bit about that here and this pattern can be applied to React too.<br />
+<a href="http://stackoverflow.com/a/33501899/82609" rel="nofollow ugc">http://stackoverflow.com/a/33501899/82609</a></p>
+<p>I don&#8217;t really agree with the implementation detail, and think this coordinator should be able to manage its own state instead of calling store.getState(). A reducer could be an actor actually if that actor needs state to take a decision.</p>
+<p>One more thing: connect of redux is also done to solve potential performance issues when rendering from the very top. At Stample we have a production app that renders from the very top, and manage all state outside of React (even text inputs), and we start to see the performance limits of this approach (on inputs mostly) particularly on mobile devices that have a bad CPU.<br />
+See also:<br />
+&#8211;  <a href="https://www.youtube.com/watch?v=zxN8FYYBcrI" rel="nofollow ugc">https://www.youtube.com/watch?v=zxN8FYYBcrI</a><br />
+&#8211;  <a href="http://stackoverflow.com/questions/25791034/om-but-in-javascript/25806145#25806145" rel="nofollow ugc">http://stackoverflow.com/questions/25791034/om-but-in-javascript/25806145#25806145</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3323</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Mon, 26 Oct 2015 11:32:23 +0000</pubDate>
+		<guid isPermaLink="false">/?p=747#comment-3323</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3306&quot;&gt;Hadrian&lt;/a&gt;.
+
+Actors don&#039;t really have a result, but they &lt;em&gt;can&lt;/em&gt; modify the current application state by dispatching an action. And any dispatched actions are run before the next actor is run - so I guess you could say they&#039;re run in series, not parallel.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3306">Hadrian</a>.</p>
+<p>Actors don&#8217;t really have a result, but they <em>can</em> modify the current application state by dispatching an action. And any dispatched actions are run before the next actor is run &#8211; so I guess you could say they&#8217;re run in series, not parallel.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Hadrian		</title>
+		<link>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comment-3306</link>
+
+		<dc:creator><![CDATA[Hadrian]]></dc:creator>
+		<pubDate>Mon, 26 Oct 2015 01:49:41 +0000</pubDate>
+		<guid isPermaLink="false">/?p=747#comment-3306</guid>
+
+					<description><![CDATA[Hi James, nice post, sounds like a very interesting concept. 
+
+I just had some trouble understanding: would actors work like function composition? ( The result of one actor&#039;s action is passed to the next actor) or do they process in parallel?]]></description>
+			<content:encoded><![CDATA[<p>Hi James, nice post, sounds like a very interesting concept. </p>
+<p>I just had some trouble understanding: would actors work like function composition? ( The result of one actor&#8217;s action is passed to the next actor) or do they process in parallel?</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: The 5 Types Of React Application State	</title>
+	<atom:link href="/5-types-react-application-state/feed/" rel="self" type="application/rss+xml" />
+	<link>/5-types-react-application-state/</link>
+	<description></description>
+	<lastBuildDate>Tue, 25 Oct 2016 14:04:30 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Mirko Stocker		</title>
+		<link>/5-types-react-application-state/#comment-24072</link>
+
+		<dc:creator><![CDATA[Mirko Stocker]]></dc:creator>
+		<pubDate>Tue, 25 Oct 2016 14:04:30 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1081#comment-24072</guid>
+
+					<description><![CDATA[Nice article! Just one question, on the communication state, you recommend a &quot;reducer which manages an array of Request objects&quot;. Could you elaborate on what you store in this Request object?]]></description>
+			<content:encoded><![CDATA[<p>Nice article! Just one question, on the communication state, you recommend a &#8220;reducer which manages an array of Request objects&#8221;. Could you elaborate on what you store in this Request object?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Vinicius Lemes		</title>
+		<link>/5-types-react-application-state/#comment-23337</link>
+
+		<dc:creator><![CDATA[Vinicius Lemes]]></dc:creator>
+		<pubDate>Mon, 19 Sep 2016 23:31:09 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1081#comment-23337</guid>
+
+					<description><![CDATA[Awesome post! I can&#039;t wait to try this out, would be great to have an example too.]]></description>
+			<content:encoded><![CDATA[<p>Awesome post! I can&#8217;t wait to try this out, would be great to have an example too.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Adeeb		</title>
+		<link>/5-types-react-application-state/#comment-23106</link>
+
+		<dc:creator><![CDATA[Adeeb]]></dc:creator>
+		<pubDate>Mon, 05 Sep 2016 22:21:41 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1081#comment-23106</guid>
+
+					<description><![CDATA[Your lovely illustrations explain the confusion of  ReactJs’s Application State nicely! 
+
+
+I featured this article in
+&lt;a href=&quot;https://reactdom.com/4&quot; rel=&quot;nofollow&quot;&gt;ReactDOM&#039;&lt;/a&gt;, a weekly ReactJS Newsletter so others can understand it easier.
+
+Thanks!]]></description>
+			<content:encoded><![CDATA[<p>Your lovely illustrations explain the confusion of  ReactJs’s Application State nicely! </p>
+<p>I featured this article in<br />
+<a href="https://reactdom.com/4" rel="nofollow">ReactDOM&#8217;</a>, a weekly ReactJS Newsletter so others can understand it easier.</p>
+<p>Thanks!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: David Tuite		</title>
+		<link>/5-types-react-application-state/#comment-23008</link>
+
+		<dc:creator><![CDATA[David Tuite]]></dc:creator>
+		<pubDate>Wed, 31 Aug 2016 08:57:22 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1081#comment-23008</guid>
+
+					<description><![CDATA[What does your communication state look like exactly? You mentioned it&#039;s in a separate reducer and you never have to call setState({ saving: false }). If that&#039;s the case, how do you indicate that a request has completed?
+
+Lets say I have some payments in my application which I request from the server:
+
+{
+  payments: [{
+    id: 1,
+    amount: 12,
+    loadingState: &#039;loaded&#039;,
+  }, {
+    id: 2,
+    loadingState: &#039;loading&#039;,
+  }],
+}
+
+How would you represent that communication state in your application?]]></description>
+			<content:encoded><![CDATA[<p>What does your communication state look like exactly? You mentioned it&#8217;s in a separate reducer and you never have to call setState({ saving: false }). If that&#8217;s the case, how do you indicate that a request has completed?</p>
+<p>Lets say I have some payments in my application which I request from the server:</p>
+<p>{<br />
+  payments: [{<br />
+    id: 1,<br />
+    amount: 12,<br />
+    loadingState: &#8216;loaded&#8217;,<br />
+  }, {<br />
+    id: 2,<br />
+    loadingState: &#8216;loading&#8217;,<br />
+  }],<br />
+}</p>
+<p>How would you represent that communication state in your application?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Craig Smitham		</title>
+		<link>/5-types-react-application-state/#comment-22996</link>
+
+		<dc:creator><![CDATA[Craig Smitham]]></dc:creator>
+		<pubDate>Tue, 30 Aug 2016 02:08:13 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1081#comment-22996</guid>
+
+					<description><![CDATA[Good write up. Curious how you structure your communication state/request reducer. Here&#039;s the pattern I follow:
+
+1) For &#039;data&#039;, I usually refer to this state as &#039;entities&#039; which is usually a map ids/objects
+2) For &#039;communication&#039;, I&#039;ll usually define an operation context, which is usually just some booleans as part of my state (creating/updating/deleting etc)
+
+An interesting scenario is paging. I&#039;ll usually have a list of IDs along with a boolean or two to indicate &#039;communication&#039; state. 
+
+So, my state might be structured like this:
+
+{
+  users: {
+    entities: {
+      &quot;1&quot; : { ... }
+    },
+    friends: {
+      ids: [&quot;1&quot;, ...],
+      fetching: false
+    }
+    creating: false,
+    fetching: false,
+    editing: false
+  }
+}
+
+You can see how I&#039;m commingling my communication state with my other state information. Curious to see what your take is on this. This works for me, but sometimes it feels out of place. Maybe this communication state could live in controls, maybe it needs its own reducer?]]></description>
+			<content:encoded><![CDATA[<p>Good write up. Curious how you structure your communication state/request reducer. Here&#8217;s the pattern I follow:</p>
+<p>1) For &#8216;data&#8217;, I usually refer to this state as &#8216;entities&#8217; which is usually a map ids/objects<br />
+2) For &#8216;communication&#8217;, I&#8217;ll usually define an operation context, which is usually just some booleans as part of my state (creating/updating/deleting etc)</p>
+<p>An interesting scenario is paging. I&#8217;ll usually have a list of IDs along with a boolean or two to indicate &#8216;communication&#8217; state. </p>
+<p>So, my state might be structured like this:</p>
+<p>{<br />
+  users: {<br />
+    entities: {<br />
+      &#8220;1&#8221; : { &#8230; }<br />
+    },<br />
+    friends: {<br />
+      ids: [&#8220;1&#8221;, &#8230;],<br />
+      fetching: false<br />
+    }<br />
+    creating: false,<br />
+    fetching: false,<br />
+    editing: false<br />
+  }<br />
+}</p>
+<p>You can see how I&#8217;m commingling my communication state with my other state information. Curious to see what your take is on this. This works for me, but sometimes it feels out of place. Maybe this communication state could live in controls, maybe it needs its own reducer?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Ed G		</title>
+		<link>/5-types-react-application-state/#comment-22994</link>
+
+		<dc:creator><![CDATA[Ed G]]></dc:creator>
+		<pubDate>Mon, 29 Aug 2016 22:33:53 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1081#comment-22994</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/5-types-react-application-state/#comment-22992&quot;&gt;James K Nelson&lt;/a&gt;.
+
+Nah, it&#039;s just a nitpick. Great article, as usual.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/5-types-react-application-state/#comment-22992">James K Nelson</a>.</p>
+<p>Nah, it&#8217;s just a nitpick. Great article, as usual.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/5-types-react-application-state/#comment-22992</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Mon, 29 Aug 2016 21:29:21 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1081#comment-22992</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/5-types-react-application-state/#comment-22984&quot;&gt;Ed G&lt;/a&gt;.
+
+Thanks. That is embarrassing.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/5-types-react-application-state/#comment-22984">Ed G</a>.</p>
+<p>Thanks. That is embarrassing.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Ed G		</title>
+		<link>/5-types-react-application-state/#comment-22984</link>
+
+		<dc:creator><![CDATA[Ed G]]></dc:creator>
+		<pubDate>Mon, 29 Aug 2016 16:34:06 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1081#comment-22984</guid>
+
+					<description><![CDATA[&quot;Without further ado&quot;]]></description>
+			<content:encoded><![CDATA[<p>&#8220;Without further ado&#8221;</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

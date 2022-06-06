@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Learn Raw React: Ridiculously Simple Forms	</title>
+	<atom:link href="/learn-raw-react-ridiculously-simple-forms/feed/" rel="self" type="application/rss+xml" />
+	<link>/learn-raw-react-ridiculously-simple-forms/</link>
+	<description></description>
+	<lastBuildDate>Sun, 26 Aug 2018 13:53:17 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: dmitry		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-23184</link>
+
+		<dc:creator><![CDATA[dmitry]]></dc:creator>
+		<pubDate>Sat, 10 Sep 2016 03:18:40 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-23184</guid>
+
+					<description><![CDATA[Please help me figure out why textfields hasn&#039;t placeholders after sucessful form submit? I must click to field, so placeholders are going visible.]]></description>
+			<content:encoded><![CDATA[<p>Please help me figure out why textfields hasn&#8217;t placeholders after sucessful form submit? I must click to field, so placeholders are going visible.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Greg S		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-23118</link>
+
+		<dc:creator><![CDATA[Greg S]]></dc:creator>
+		<pubDate>Tue, 06 Sep 2016 09:24:25 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-23118</guid>
+
+					<description><![CDATA[I was surprised that the console output in exercise 1 was always a single character - I expected the input field(s) to store each character, and concatenate them to form the input string.  Clearly, the data returned in the (synthetic) element callback is formed by concatenating the current value property, and the entered character, because the tutorial code certainly never does the concatenation, and the fields are correctly concatenated in ex. 2.  I notice that in ex. 1, I can get more than one character to be logged by pasting in a string into the input field - a paste is obviously considered to be a single input event.]]></description>
+			<content:encoded><![CDATA[<p>I was surprised that the console output in exercise 1 was always a single character &#8211; I expected the input field(s) to store each character, and concatenate them to form the input string.  Clearly, the data returned in the (synthetic) element callback is formed by concatenating the current value property, and the entered character, because the tutorial code certainly never does the concatenation, and the fields are correctly concatenated in ex. 2.  I notice that in ex. 1, I can get more than one character to be logged by pasting in a string into the input field &#8211; a paste is obviously considered to be a single input event.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jon		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-23107</link>
+
+		<dc:creator><![CDATA[Jon]]></dc:creator>
+		<pubDate>Mon, 05 Sep 2016 23:08:02 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-23107</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/learn-raw-react-ridiculously-simple-forms/#comment-22646&quot;&gt;Pratik&lt;/a&gt;.
+
+I too am unable to view them. The JSBin sections show a loading bin, but it never loads for me. 
+
+My internet is fine as I can go to other websites.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/learn-raw-react-ridiculously-simple-forms/#comment-22646">Pratik</a>.</p>
+<p>I too am unable to view them. The JSBin sections show a loading bin, but it never loads for me. </p>
+<p>My internet is fine as I can go to other websites.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Ran Yefet		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-22870</link>
+
+		<dc:creator><![CDATA[Ran Yefet]]></dc:creator>
+		<pubDate>Sat, 20 Aug 2016 20:05:52 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-22870</guid>
+
+					<description><![CDATA[You can add a &quot;name&quot; attribute for every input element, and then use a single onChange method that will use e.target.name as &quot;key&quot; for input value :)]]></description>
+			<content:encoded><![CDATA[<p>You can add a &#8220;name&#8221; attribute for every input element, and then use a single onChange method that will use e.target.name as &#8220;key&#8221; for input value 🙂</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-22649</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Thu, 11 Aug 2016 05:45:16 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-22649</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/learn-raw-react-ridiculously-simple-forms/#comment-22646&quot;&gt;Pratik&lt;/a&gt;.
+
+I just checked and am able to view them. Is the problem resolved on your end?]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/learn-raw-react-ridiculously-simple-forms/#comment-22646">Pratik</a>.</p>
+<p>I just checked and am able to view them. Is the problem resolved on your end?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Pratik		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-22646</link>
+
+		<dc:creator><![CDATA[Pratik]]></dc:creator>
+		<pubDate>Thu, 11 Aug 2016 03:19:49 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-22646</guid>
+
+					<description><![CDATA[I am unable to see your jsBin codes. Anyone else also facing this issue?]]></description>
+			<content:encoded><![CDATA[<p>I am unable to see your jsBin codes. Anyone else also facing this issue?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Roger Katona		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-20648</link>
+
+		<dc:creator><![CDATA[Roger Katona]]></dc:creator>
+		<pubDate>Fri, 03 Jun 2016 14:30:52 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-20648</guid>
+
+					<description><![CDATA[James,  Great article!  I am a designer and don&#039;t develop daily.  I am familiar with React and worked for a start-up that used React as framework.  I gained more understanding of how React works by working through your exercises.  Thanks for taking the time to put this together!]]></description>
+			<content:encoded><![CDATA[<p>James,  Great article!  I am a designer and don&#8217;t develop daily.  I am familiar with React and worked for a start-up that used React as framework.  I gained more understanding of how React works by working through your exercises.  Thanks for taking the time to put this together!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Joey B		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-20027</link>
+
+		<dc:creator><![CDATA[Joey B]]></dc:creator>
+		<pubDate>Thu, 19 May 2016 23:06:32 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-20027</guid>
+
+					<description><![CDATA[I like your tutorials, very nicely done!
+
+I do have a question, though. Why use this...
+`state.contacts.slice(0).concat(contact)`
+
+...and not just this:
+`state.contacts.concat(contact)`
+
+What advantage does slicing have in this scenario?]]></description>
+			<content:encoded><![CDATA[<p>I like your tutorials, very nicely done!</p>
+<p>I do have a question, though. Why use this&#8230;<br />
+`state.contacts.slice(0).concat(contact)`</p>
+<p>&#8230;and not just this:<br />
+`state.contacts.concat(contact)`</p>
+<p>What advantage does slicing have in this scenario?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: MEP		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-19243</link>
+
+		<dc:creator><![CDATA[MEP]]></dc:creator>
+		<pubDate>Tue, 03 May 2016 22:13:12 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-19243</guid>
+
+					<description><![CDATA[This is great. Thank you. I signed up for the newsletter and followed you on Twitter.]]></description>
+			<content:encoded><![CDATA[<p>This is great. Thank you. I signed up for the newsletter and followed you on Twitter.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Philipp		</title>
+		<link>/learn-raw-react-ridiculously-simple-forms/#comment-12059</link>
+
+		<dc:creator><![CDATA[Philipp]]></dc:creator>
+		<pubDate>Mon, 15 Feb 2016 09:22:54 +0000</pubDate>
+		<guid isPermaLink="false">/?p=428#comment-12059</guid>
+
+					<description><![CDATA[Best introduction to React I&#039;ve seen yet.]]></description>
+			<content:encoded><![CDATA[<p>Best introduction to React I&#8217;ve seen yet.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Universal React: You&#8217;re doing it wrong	</title>
+	<atom:link href="/universal-react-youre-doing-it-wrong/feed/" rel="self" type="application/rss+xml" />
+	<link>/universal-react-youre-doing-it-wrong/</link>
+	<description></description>
+	<lastBuildDate>Sun, 18 Sep 2016 01:48:58 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Dylan Piercey		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-23310</link>
+
+		<dc:creator><![CDATA[Dylan Piercey]]></dc:creator>
+		<pubDate>Sun, 18 Sep 2016 01:48:58 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-23310</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/universal-react-youre-doing-it-wrong/#comment-16104&quot;&gt;Šime Vidas&lt;/a&gt;.
+
+I think the configuration required to make isomorphic javascript work is ridiculous so I made a framework that abstracts most difference between client and server side code so you can just write JavaScript.
+
+If any one is interested in a modern isomorphic routing solution that is similar to express and alleviates much of the headache I recommend you checkout https://rill.site.]]>/</description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/universal-react-youre-doing-it-wrong/#comment-16104">Šime Vidas</a>.</p>
+<p>I think the configuration required to make isomorphic javascript work is ridiculous so I made a framework that abstracts most difference between client and server side code so you can just write JavaScript.</p>
+<p>If any one is interested in a modern isomorphic routing solution that is similar to express and alleviates much of the headache I recommend you checkout <a href="https://rill.site/" rel="nofollow ugc">https://rill.site/</a>.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: eugene kim		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-23243</link>
+
+		<dc:creator><![CDATA[eugene kim]]></dc:creator>
+		<pubDate>Tue, 13 Sep 2016 12:28:45 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-23243</guid>
+
+					<description><![CDATA[I&#039;m confused.  
+
+If server rendering helps page loading, I don&#039;t see why Facebook doesn&#039;t do it.  
+
+Are you implying that facebook server is merely an api server where client will fetch data from and combine the data with static assets such as HTML, js, css?]]></description>
+			<content:encoded><![CDATA[<p>I&#8217;m confused.  </p>
+<p>If server rendering helps page loading, I don&#8217;t see why Facebook doesn&#8217;t do it.  </p>
+<p>Are you implying that facebook server is merely an api server where client will fetch data from and combine the data with static assets such as HTML, js, css?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Michael		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-22925</link>
+
+		<dc:creator><![CDATA[Michael]]></dc:creator>
+		<pubDate>Sat, 27 Aug 2016 01:31:41 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-22925</guid>
+
+					<description><![CDATA[Although I generally agree with you that universal doesn&#039;t make sense for many use cases; why do you hate on node so much?]]></description>
+			<content:encoded><![CDATA[<p>Although I generally agree with you that universal doesn&#8217;t make sense for many use cases; why do you hate on node so much?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: windsome.feng		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-22538</link>
+
+		<dc:creator><![CDATA[windsome.feng]]></dc:creator>
+		<pubDate>Sat, 06 Aug 2016 14:36:45 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-22538</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/universal-react-youre-doing-it-wrong/#comment-16783&quot;&gt;Alan&lt;/a&gt;.
+
+I totally agree with you. it&#039;s very difficult for me to make a hybrid app which contains &quot;react+react-router+redux+sass+css-module+webpack+express&quot;. 
+
+I start a test project https://github.com/windsome/windpress.git 
+but there are some problems, can you help me?]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/universal-react-youre-doing-it-wrong/#comment-16783">Alan</a>.</p>
+<p>I totally agree with you. it&#8217;s very difficult for me to make a hybrid app which contains &#8220;react+react-router+redux+sass+css-module+webpack+express&#8221;. </p>
+<p>I start a test project <a href="https://github.com/windsome/windpress.git" rel="nofollow ugc">https://github.com/windsome/windpress.git</a><br />
+but there are some problems, can you help me?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Ken Fehling		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-20467</link>
+
+		<dc:creator><![CDATA[Ken Fehling]]></dc:creator>
+		<pubDate>Tue, 31 May 2016 01:27:12 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-20467</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/universal-react-youre-doing-it-wrong/#comment-16534&quot;&gt;Daniel Steigerwald&lt;/a&gt;.
+
+Este is beautiful! Thank you for making this.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/universal-react-youre-doing-it-wrong/#comment-16534">Daniel Steigerwald</a>.</p>
+<p>Este is beautiful! Thank you for making this.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Alan		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-16783</link>
+
+		<dc:creator><![CDATA[Alan]]></dc:creator>
+		<pubDate>Thu, 24 Mar 2016 21:15:29 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-16783</guid>
+
+					<description><![CDATA[You misunderstand the benefits of server-side rendering, but I don&#039;t blame you: most people do.
+
+Because client-side frameworks have trained us to accept server-side rendering as an impossibility or at best a crutch, this isn&#039;t surprising. But before the rise of client-side frameworks (i.e. before &quot;Web 2.0&quot;, when interactive JS was often just called &quot;AJAX&quot; or even &quot;DHTML&quot;) it was unthinkable to serve a bootstrapper/placeholder page and then have the actual code kick in and render the page.
+
+It&#039;s true that server-side rendering isn&#039;t strictly necessary to build a React app. It&#039;s also true that there are scenarios where server-side rendering provides no tangible benefit at all (e.g. an intranet application exclusively used by desktop users with a stable and fast connection).
+
+However unlike previous attempts for Angular or Ember, React server-side rendering is not just about &quot;pre-rendering&quot; or avoiding placeholder pages. It&#039;s not simply about SEO. It&#039;s not about users who intentionally disable JavaScript or who use archaic browsers that don&#039;t fully support the baseline level of JavaScript your app requires.
+
+You need to think of server-side React separately from client-side React. React server-side rendering is a perfectly valid substitute for traditional server-side templates. Instead of generating and updating a DOM tree like React for the browser does, React for the server generates HTML markup. The only difference between ReactDOM vs ReactDOM/Server and ReactDOM vs ReactNative is that ReactDOM/Server is almost completely a strict subset of ReactDOM, just with a different output.
+
+You&#039;re not &quot;rendering your client app on the server&quot;, you&#039;re building an app that works both on the server and in the client. That&#039;s why it&#039;s called &quot;isomorphic&quot; or &quot;universal&quot;: it&#039;s an app that uses a single code base (with possible branching points or multiple entry points) to run either in a browser environment (rendering into the DOM) or a server environment (generating HTML).
+
+This means you can have a hybrid between a traditional server-side application and a client-side application. You can have all the flexibility and responsiveness of a client-side application without giving up on the reliability and universal performance of a server-side application.
+
+If you don&#039;t live in the Bay Area microcosm and if you ever need to use apps on the go, flaky Internet connections are a reality. They are the weak spot of client-side apps -- even &quot;offline first&quot; apps only work if your connection is stable enough to fully load them once: great if you can prepare but lousy if you&#039;re starting with an empty cache. Server-side apps work fine in these situations (aside from universal problems like large images/videos/fonts), they have worked fine and they will continue to work fine.
+
+Of course the key phrase here is &quot;hybrid&quot;: you can make apps that both provide the optimal server-side and the optimal client-side experience and these have always been the holy grail since the idea of AJAX was born, but for most apps there is a point of diminishing returns. Thankfully with React server-side rendering per se is so easy to achieve that this isn&#039;t a concern. But interactivity wise it might not be strictly necessary to replicate every single possible client-side interaction on the server.
+
+Just use a universal router that allows server-side prefetching. Or even one that doesn&#039;t. Server-side React isn&#039;t an all-or-nothing decision. Just don&#039;t pretend your app is immune to the problems of client-side applications because you&#039;re developing for the optimal conditions.]]></description>
+			<content:encoded><![CDATA[<p>You misunderstand the benefits of server-side rendering, but I don&#8217;t blame you: most people do.</p>
+<p>Because client-side frameworks have trained us to accept server-side rendering as an impossibility or at best a crutch, this isn&#8217;t surprising. But before the rise of client-side frameworks (i.e. before &#8220;Web 2.0&#8221;, when interactive JS was often just called &#8220;AJAX&#8221; or even &#8220;DHTML&#8221;) it was unthinkable to serve a bootstrapper/placeholder page and then have the actual code kick in and render the page.</p>
+<p>It&#8217;s true that server-side rendering isn&#8217;t strictly necessary to build a React app. It&#8217;s also true that there are scenarios where server-side rendering provides no tangible benefit at all (e.g. an intranet application exclusively used by desktop users with a stable and fast connection).</p>
+<p>However unlike previous attempts for Angular or Ember, React server-side rendering is not just about &#8220;pre-rendering&#8221; or avoiding placeholder pages. It&#8217;s not simply about SEO. It&#8217;s not about users who intentionally disable JavaScript or who use archaic browsers that don&#8217;t fully support the baseline level of JavaScript your app requires.</p>
+<p>You need to think of server-side React separately from client-side React. React server-side rendering is a perfectly valid substitute for traditional server-side templates. Instead of generating and updating a DOM tree like React for the browser does, React for the server generates HTML markup. The only difference between ReactDOM vs ReactDOM/Server and ReactDOM vs ReactNative is that ReactDOM/Server is almost completely a strict subset of ReactDOM, just with a different output.</p>
+<p>You&#8217;re not &#8220;rendering your client app on the server&#8221;, you&#8217;re building an app that works both on the server and in the client. That&#8217;s why it&#8217;s called &#8220;isomorphic&#8221; or &#8220;universal&#8221;: it&#8217;s an app that uses a single code base (with possible branching points or multiple entry points) to run either in a browser environment (rendering into the DOM) or a server environment (generating HTML).</p>
+<p>This means you can have a hybrid between a traditional server-side application and a client-side application. You can have all the flexibility and responsiveness of a client-side application without giving up on the reliability and universal performance of a server-side application.</p>
+<p>If you don&#8217;t live in the Bay Area microcosm and if you ever need to use apps on the go, flaky Internet connections are a reality. They are the weak spot of client-side apps &#8212; even &#8220;offline first&#8221; apps only work if your connection is stable enough to fully load them once: great if you can prepare but lousy if you&#8217;re starting with an empty cache. Server-side apps work fine in these situations (aside from universal problems like large images/videos/fonts), they have worked fine and they will continue to work fine.</p>
+<p>Of course the key phrase here is &#8220;hybrid&#8221;: you can make apps that both provide the optimal server-side and the optimal client-side experience and these have always been the holy grail since the idea of AJAX was born, but for most apps there is a point of diminishing returns. Thankfully with React server-side rendering per se is so easy to achieve that this isn&#8217;t a concern. But interactivity wise it might not be strictly necessary to replicate every single possible client-side interaction on the server.</p>
+<p>Just use a universal router that allows server-side prefetching. Or even one that doesn&#8217;t. Server-side React isn&#8217;t an all-or-nothing decision. Just don&#8217;t pretend your app is immune to the problems of client-side applications because you&#8217;re developing for the optimal conditions.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Chad Ostrowski		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-16778</link>
+
+		<dc:creator><![CDATA[Chad Ostrowski]]></dc:creator>
+		<pubDate>Thu, 24 Mar 2016 20:28:22 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-16778</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/universal-react-youre-doing-it-wrong/#comment-16777&quot;&gt;Chad Ostrowski&lt;/a&gt;.
+
+(Ok, it wasn&#039;t the only reason. Also, all the reasons mentioned in this article: “load faster, support more devices, and provide a better user experience”)]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/universal-react-youre-doing-it-wrong/#comment-16777">Chad Ostrowski</a>.</p>
+<p>(Ok, it wasn&#8217;t the only reason. Also, all the reasons mentioned in this article: “load faster, support more devices, and provide a better user experience”)</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Chad Ostrowski		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-16777</link>
+
+		<dc:creator><![CDATA[Chad Ostrowski]]></dc:creator>
+		<pubDate>Thu, 24 Mar 2016 20:26:44 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-16777</guid>
+
+					<description><![CDATA[I agree with a much of this. Thanks for writing it. An objection you didn&#039;t mention: JS-rendered apps can&#039;t have customized metadata &#038; &quot;og:image&quot; tags &#038; such on each page. If a product wants to promote sharing of their content, and wants it to show up well when links are pasted into Twitter, Facebook, Slack, whatever—these are a must. This was actually THE reason I invested a month in turning https://entire.life/ into a Universally Rendered app. Those meta tags are an important part of viral marketing!]]></description>
+			<content:encoded><![CDATA[<p>I agree with a much of this. Thanks for writing it. An objection you didn&#8217;t mention: JS-rendered apps can&#8217;t have customized metadata &amp; &#8220;og:image&#8221; tags &amp; such on each page. If a product wants to promote sharing of their content, and wants it to show up well when links are pasted into Twitter, Facebook, Slack, whatever—these are a must. This was actually THE reason I invested a month in turning <a href="https://entire.life/" rel="nofollow ugc">https://entire.life/</a> into a Universally Rendered app. Those meta tags are an important part of viral marketing!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: abac		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-16597</link>
+
+		<dc:creator><![CDATA[abac]]></dc:creator>
+		<pubDate>Tue, 22 Mar 2016 13:16:08 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-16597</guid>
+
+					<description><![CDATA[This means you would serve the same file regardless of route (a .html file with basic html and a body with a div where the app should render)? IF so there&#039;s more issues, like if you want to set different sharing attributes for different urls, and different title/descriptions in your head.]]></description>
+			<content:encoded><![CDATA[<p>This means you would serve the same file regardless of route (a .html file with basic html and a body with a div where the app should render)? IF so there&#8217;s more issues, like if you want to set different sharing attributes for different urls, and different title/descriptions in your head.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jack Callister		</title>
+		<link>/universal-react-youre-doing-it-wrong/#comment-16586</link>
+
+		<dc:creator><![CDATA[Jack Callister]]></dc:creator>
+		<pubDate>Tue, 22 Mar 2016 10:27:10 +0000</pubDate>
+		<guid isPermaLink="false">/?p=975#comment-16586</guid>
+
+					<description><![CDATA[It&#039;s nice to see some opposing ideas being floated about. After all React&#039;s mantra is rethinking best practices. It seems easy to get caught up in the idea that your application should be a fully JavaScript rendered SPA without considering the user requirements and technical overhead. 
+
+I&#039;ve fallen into this trap and regretted it as working with server side templates is often a lot easier, reliable and faster - especially for non-interactive components. With that lesson I now find myself working with smaller &quot;speckles&quot; of interaction across the page and push JavaScript components to the edge rather than make them the focus of the application. Often that doesn&#039;t require server side rendering but if it does it&#039;s usually simple to set up (with Node) if not passing down a data payload and rendering client side is quite sufficient.]]></description>
+			<content:encoded><![CDATA[<p>It&#8217;s nice to see some opposing ideas being floated about. After all React&#8217;s mantra is rethinking best practices. It seems easy to get caught up in the idea that your application should be a fully JavaScript rendered SPA without considering the user requirements and technical overhead. </p>
+<p>I&#8217;ve fallen into this trap and regretted it as working with server side templates is often a lot easier, reliable and faster &#8211; especially for non-interactive components. With that lesson I now find myself working with smaller &#8220;speckles&#8221; of interaction across the page and push JavaScript components to the edge rather than make them the focus of the application. Often that doesn&#8217;t require server side rendering but if it does it&#8217;s usually simple to set up (with Node) if not passing down a data payload and rendering client side is quite sufficient.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

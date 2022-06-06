@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>A Quick Tour Of ES6 (the bits you&#039;ll actually use)</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content="A quick tour of the parts of ES6 I've gotten the most use out of in recent projects, with a handy dandy cheatsheet."> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="ES6 is the future, but the future can be a little overwhelming. So, I&#039;ve put together a list of the bits you&#039;ll *actually* use, with a helpful cheatsheet.">
+<link rel="canonical" href="/es6-the-bits-youll-actually-use/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Quick Tour Of ES6 (the bits you&#039;ll actually use)">
+<meta property="og:description" content="ES6 is the future, but the future can be a little overwhelming. So, I&#039;ve put together a list of the bits you&#039;ll *actually* use, with a helpful cheatsheet.">
+<meta property="og:url" content="httpjamesknelson.com/es6-the-bits-youll-actually-use/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="ES6">
+<meta property="article:published_time" content="2015-07-06T12:06:44+00:00">
+<meta property="article:modified_time" content="2015-11-13T23:23:33+00:00">
+<meta property="og:updated_time" content="2015-11-13T23:23:33+00:00">
+<meta property="og:image" content="httpjamesknelson.com/wp-content/uploads/2015/07/ES6-the-bits-youll-actually-use.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="ES6 is the future, but the future can be a little overwhelming. So, I&#039;ve put together a list of the bits you&#039;ll *actually* use, with a helpful cheatsheet.">
+<meta name="twitter:title" content="A Quick Tour Of ES6 (the bits you&#039;ll actually use)">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:image" content="httpjamesknelson.com/wp-content/uploads/2015/07/ES6-the-bits-youll-actually-use.png">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; A Quick Tour Of ES6 (Or, The Bits You&#8217;ll Actually Use) Comments Feed" href="/es6-the-bits-youll-actually-use/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/284">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=284">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fes6-the-bits-youll-actually-use%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fes6-the-bits-youll-actually-use%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-284 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-284" class="clearfix post-284 post type-post status-publish format-standard hentry category-es6 category-javascript">
+								<header class="entry-header">
+																		<h1 class="entry-title">A Quick Tour Of ES6 (Or, The Bits You&#8217;ll Actually Use)</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/es6/" rel="category tag">ES6</a>, <a href="/category/javascript/" rel="category tag">Javascript</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/es6-the-bits-youll-actually-use/" title="12:06 pm" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">July 6, 2015</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p><em>Just want examples of ES6 in use? I&#8217;ve put four ES6 projects on <a href="#examples">Github</a>.</em></p>
+<p>ES6 has been getting a lot of press lately. And with all of the benefits that the new syntax and built-ins bring, it damn well should. But given the breadth of the <a href="http://kangax.github.io/compat-table/es6/">changes</a>, how is a forward-thinking developer to know where to start? What is worth practicing <em>now</em>, and what is best left for a rainy day?</p>
+<p>Well, after spending the last few weeks writing <a href="https://github.com/jamesknelson/maxim">maxim</a> and <a href="https://github.com/jamesknelson/memamug-client">memamug</a> with ES6, and translating <a href="https://github.com/jamesknelson/numbat-ui">numbat-ui</a> from coffeescript, there are a few parts which have stood out to me.</p>
+<p><span id="more-284"></span></p>
+<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring</a></h2>
+<p>They say the simpler things in life are sometimes the best, and so it goes with ES6. In fact, the feature which has left the biggest impression on me isn&#8217;t Promises, isn&#8217;t Generators, and isn&#8217;t Classes &#8211; it is Destructuring.</p>
+<p>Why? Have an example:</p>
+<h3>ES6</h3>
+<pre><code>function initialize({controls = {}, models = {}, reducers = {}, actors = []}) {
+    // ...
+}
+</code></pre>
+<h3>ES5</h3>
+<pre><code>function initialize(options) {
+    var controls = options.controls || {};
+    var models = options.models || {};
+    var reducers = options.reducers || {};
+    var actors = options.actors || {};
+}
+</code></pre>
+<p><em>ES6 code taken from <a href="https://github.com/jamesknelson/maxim/blob/master/src/index.js#L8">index.js</a> in Maxim</em></p>
+<p>As seen here, destructuring works wonders for function arguments. But it also works great with:</p>
+<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of">for .. of loops</a></h2>
+<p>Say you&#8217;ve got an Array of pairs as you&#8217;d get from the <a href="https://esdiscuss.org/topic/object-entries-object-values">Object.entries</a> method proposed for ES7, and you want to loop through them. <code>for .. of</code> with destructuring makes this (almost) fun:</p>
+<h3>ES6</h3>
+<pre><code>for (let [name, builder] of Object.entries(models)) {
+    // do something
+}
+</code></pre>
+<h3>ES5</h3>
+<pre><code>var entries = Object.entries(models);
+for (var i = 0; i != entries.length; i++) {
+    var entry = entries[i];
+    var name = entry[0];
+    var builder = entry[1];
+}
+</code></pre>
+<p><em>ES6 code taken from <a href="https://github.com/jamesknelson/maxim/blob/master/src/index.js#L37">index.js</a> in Maxim</em></p>
+<p>This is nice, but why limit ourselves to iterating through arrays? The beauty of ES6 is that Arrays aren&#8217;t special anymore &#8211; you can use <code>for .. of</code> to iterate through anything which defines an <a href="http://www.2ality.com/2015/02/es6-iteration.html">Iterator</a>. Like:</p>
+<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></h2>
+<p>Maps are kind of like objects &#8211; they map keys to values. The two major differences are:</p>
+<ul>
+<li>Object can only have Strings and <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbols</a> as keys (Maps can have almost anything)</li>
+<li>Maps are iterable</li>
+</ul>
+<p>In fact, a Map&#8217;s iterator produces 2-element arrays each with a key/value pair &#8211; like the above example. This allows you to do neat things like this:</p>
+<h3>ES6</h3>
+<pre><code>this.propFns = this.propFns || new Map
+
+for (const event of events) {
+  const name = 'on' + capitalize(event)
+  if (!this.propFns.has(name)) {
+    this.propFns.set(name, [])
+  }
+  this.propFns.get(name).push(fn)
+}
+
+// later...
+
+for (let [name, fns] of this.propFns || []) {
+  // ...
+}
+</code></pre>
+<h3>ES5</h3>
+<pre><code>this.propFns = this.propFns || {}
+
+events.forEach(function(event) {
+    const name = 'on' + capitalize(event)
+    if (!this.propFns[name]) {
+        this.propFns[name] = []
+    }
+    this.propFns[name].push(fn)
+})
+
+// later...
+
+for (var name in this.propFns) {
+    if (this.propFns.hasOwnProperty(name)) {
+        var fns = this.propFns[name];
+        // ..
+    }
+}
+</code></pre>
+<p><em>Code inspired by <a href="https://github.com/jamesknelson/react-base/blob/master/src/base.js#L56">base.js</a> in react-base</em></p>
+<p>While there isn&#8217;t too much difference in setting the two examples up, actually <em>using</em> a Map of keys/pairs feels much more elegant than the equivalent example using Objects. Map also has <code>Map.prototype.values</code> and <code>Map.prototype.keys</code> available, in case you don&#8217;t need them both keys <em>and</em> values.</p>
+<p>Have you noticed that I&#8217;ve been using some new syntax without introducing it? <em>Drum roll please</em>. <strong>Let&#8217;s</strong> do so now!</p>
+<h2><a href="https://strongloop.com/strongblog/es6-variable-declarations/">let / const</a></h2>
+<p>While everything I&#8217;ve shown you until now makes JavaScript feel noticeably <em>nicer</em>, <code>let</code> makes it feel a lot less <em>icky</em>.</p>
+<p>Why? Code speaks louder than words:</p>
+<h3>ES5</h3>
+<pre><code>// Find the index of the first ripple which has started but isn't yet ending
+for (var i = 0; i != ripples.length; i++) {
+    if (ripples[i].started &amp;&amp; !ripples[i].ending) {
+        break;
+    }
+}
+
+// Do something unrelated which we probably added at a later date
+for (var j = 0; j != arr.length; j++) {
+    for (var i = 0; i != arr[j].length; i++) {
+        // do something...
+    }
+}
+
+// Oops.
+var endingRipple = ripples[i];
+</code></pre>
+<p><em>Example inspired by <a href="https://github.com/jamesknelson/numbat-ui/blob/master/src/components/TouchRipple/TouchRipple.jsx#L79">TouchRipple.jsx</a> in numbat-ui</em></p>
+<p>So the above code doesn&#8217;t work. I&#8217;m sure you know what the problem is, but have a think about it anyway. Once you&#8217;ve got it, check by touching or clicking the box below:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+<br>
+The <code>i</code> variables which holds the result of our first loop is modified in the second loop, before we try and use it to access the ripple object we were looking for.
+<p>Why? Variables defined with <code>var</code> aren&#8217;t actually defined where the <code>var</code> appears &#8211; they&#8217;re defined at the top of the function they appear in (yes &#8211; the function &#8211; not the loop).<br>
+
+</p>
+</div>
+<p>You may think you won&#8217;t ever make this mistake. But if you&#8217;re using ES5, <a href="http://blog.safeshepherd.com/23/how-one-missing-var-ruined-our-launch/">you will</a>.</p>
+<p>However, using <code>let</code> in place of <code>var</code> in the above code would have actually produced the result we expect, as variables defined with <code>let</code> only come into existence in the block of code they&#8217;re defined in. I.e. they&#8217;re block-scoped variables.</p>
+<div class="hint">
+<br>
+<code>const</code> is just like <code>let</code>, except you can&#8217;t re-assign it. Be careful though, you can still modify any objects/arrays which it points to:
+<pre><code>const lyrics = 'badger';
+lyrics = 'mushroom';
+// ERROR!
+
+const lyrics = ['badger', 'badger', 'badger', 'badger', 'badger', 'badger', 'badger', 'badger', 'badger', 'badger', 'badger', 'badger'];
+lyrics.push('mushroom').
+// OK
+</code></pre>
+<p>
+</p>
+</div>
+<p>Of course we&#8217;d never actually write any code like the above example in ES6, because of the new:</p>
+<h2>ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array methods</a>
+</h2>
+<p>In particular, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex">Array.prototype.findIndex</a> will give you the index of the first item from an array which matches the given predicate function.</p>
+<p>This means we can rewrite the first loop in the above example like this:</p>
+<pre><code>const i = ripples.findIndex(function(r) { return r.started &amp;&amp; !r.ending; });
+</code></pre>
+<p>But why return the index when you can just return the object you&#8217;re looking for straight up with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find">Array.prototype.find</a>?</p>
+<pre><code>const endingRipple = ripples.find(function(r) { return r.started &amp;&amp; !r.ending; });
+</code></pre>
+<p>Other new array methods include:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill">Array.prototype.fill</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin">Array.prototype.copyWithin</a></li>
+</ul>
+<p>Of course, it is all well and good knowing these methods exist &#8211; but unless you&#8217;re a memorisation pro, it&#8217;ll be a while before you can use them without googling. That is, unless you have my print-optimised ES6 cheatsheet! It describes each of the new array methods, and you&#8217;ll receive it immediately after subscribing to my newsletter. Convenient! But I digress.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=18"></script>
+<link rel="stylesheet" href="/es6-the-bits-youll-actually-use/ck_form.html">
+<div class="ck_form single_line">
+
+  <div class="ck_form_fields">
+  
+    <h3>Get the PDF cheatsheet!</h3>
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4417/subscribe" data-remote="true">
+      <input type="hidden" name="id" value="4417" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+        <div>
+          <label class="ck_label" for="ck_firstNameField" style="display:none">First Name</label>
+        
+          <input type="text" name="first_name" placeholder="First name" class="ck_first_name" id="ck_firstNameField" required>
+        </div>
+        <div class="field">
+          <label class="ck_label" for="ck_emailField" style="display:none">Email Address</label>
+        
+          <input type="email" name="email" placeholder="Email address" class="ck_email_address" id="ck_emailField" required>
+        </div>
+
+        <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+          Subscribe to my Newsletter
+        </button>
+    </form>
+  </div>
+ </div>
+ <style type="text/css">.ck_form.single_line {
+  /* divider image */
+  background: #f9f9f9;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border: solid 1px #d1d1d1;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  clear: both;
+  margin: 20px auto;
+  text-align: center;
+  width: 85%;
+  border-radius: 6px;
+}
+
+
+.ck_form.single_line h3, #content .ck_form.single_line h3 { 
+  text-align: center; 
+  margin: 0px 0px 10px; 
+  font-size: 24px;
+}
+
+.ck_form.single_line p {
+  padding: 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+.ck_form.single_line .ck_form_fields {
+  width: 100%;
+  float: left;
+  padding: 24px 0;
+}
+/* Form fields */
+
+.ck_errorArea {
+  display: none; /* temporary */
+}
+
+#ck_success_msg {
+  margin: 0 30px;
+  padding: 0 10px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_form.single_line input[type="text"], .ck_form.single_line input[type="email"] {
+  font-size: 18px;
+  padding: 10px 8px;
+  width: 68%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; /* border radius */
+  background-color: #fff; /* layer fill content */
+  height: auto;
+  margin: 5px 0;
+  height: 42px;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+} 
+
+.ck_form.single_line .ck_checkbox {
+  display: none;
+}
+
+.ck_form.single_line .ck_subscribe_button {
+    color: #fff;
+    margin: 0px;
+    padding:  11px 22px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+    margin: 10px 0 0;
+    height: 42px;
+    width: auto;
+  }
+  
+  
+.ck_form.single_line .ck_guarantee {
+  color: #626262;
+  font-size: 15px;
+  text-align: center;
+  padding: 15px 0px 0px;
+  display: block;
+  clear: both;
+}</style>
+<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">Arrow Functions</a></h2>
+<p>See that one-liner function in the example above? That was a contrived example. In the <em>real</em> ES6 code I took the example from,  instead of using the old <code>function</code> syntax to define a function, I instead used the new <code>=&gt;</code> syntax.</p>
+<pre><code>const endingRipple = ripples.find(r =&gt; r.started &amp;&amp; !r.ending);
+</code></pre>
+<p><em>Code is from <a href="https://github.com/jamesknelson/numbat-ui/blob/master/src/components/TouchRipple/TouchRipple.jsx#L79">TouchRipple.jsx</a> in numbat-ui</em></p>
+<p>Very pretty, right? Actually, very normal if you&#8217;ve been writing coffeescript for the past few years, but I digress.</p>
+<p>Arrow functions can take on a number of forms. Here is a decidedly less pretty one:</p>
+<h3>ES6</h3>
+<pre><code>const targetFactory = ({options, children}) =&gt; {
+  let zIndex = 1
+  if (this.props.disabled) zIndex = 0
+  else if (this.state.touched) zIndex = 2
+
+  const inner = this.props.targetFactory(
+    Object.assign(options, {className: this.c('container')}),
+    React.createElement(Paper, {zDepth}, children)
+  )
+
+  return React.createElement(Target, {on: this.setTouched, off: this.unsetTouched}, inner)
+}
+</code></pre>
+<p><em>Code from <a href="https://github.com/jamesknelson/numbat-ui/blob/master/src/components/RaisedButton/RaisedButton.jsx#L53">RaisedButton.jsx</a> in numbat-ui</em></p>
+<p>See the <code>this</code> inside the function? In a normal function, you&#8217;d have <em>no fucking clue</em> what this <code>this</code> meant if you passed the function to someone else, unless you bound it with <code>Function.prototype.bind</code>. With <code>=&gt;</code>, <code>this</code> means the same thing inside the function as it does outside. Even if you pass it somewhere else. Even if you bind it to something else.</p>
+<p>In short, <code>function(args) { return ... }.bind(this)</code> is equivalent to  <code>args =&gt; ...</code></p>
+<p>Except when it&#8217;s not:</p>
+<ul>
+<li>You need to use braces around the function contents if you use more than a single expression</li>
+<li>If you use braces, you still need a return statement</li>
+<li>You can&#8217;t emit the brackets around a single function argument if you use object destructuring on it</li>
+</ul>
+<p>All these rules can be a little hard to remember. But don&#8217;t worry! It&#8217;s all in the cheatsheet at the bottom of the post. So let&#8217;s move on to:</p>
+<h2><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/template_strings">Template Literals</a></h2>
+<p>Template literals (i.e. strings delimited by <code>``</code> backticks) let you:</p>
+<ul>
+<li>Interpolate JavaScript into your string using <code>${}</code>
+</li>
+<li>Write multiple lines of string</li>
+<li>Do all sorts of other crazy things like &#8220;tagging&#8221; them</li>
+</ul>
+<p>Honestly, I just use the interpolation. That&#8217;s pretty boring, so let&#8217;s throw ES7&#8217;s proposed <a href="https://github.com/github/fetch">fetch</a> method into the example to spice it up a little:</p>
+<pre><code>const promise = fetch('/api/v1/contacts', {
+    method: 'post',
+    headers: {
+        'Authorization': `Token token=${identity.get('accessToken')}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+})
+</code></pre>
+<p><em>Taken from <a href="https://github.com/jamesknelson/memamug-client/blob/master/src/controls/ContactControl.js#L36">ContactControl.js</a> in memamug-client</em></p>
+<p>See that <code>promise</code> variable we assigned the result of <code>fetch</code> to? It&#8217;s value is a built-in class new to ES6. It&#8217;s name, surprise surprise, is:</p>
+<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></h2>
+<p>Promises are a way of making asynchronous code nicer. In the example above, the promise represents the result of the HTTP fetch. We can add callbacks to promises to be notified when the request completes (or fails valiantly) using their <code>then(onSuccess, onFailure)</code> method.</p>
+<p>Promises aren&#8217;t a small topic, so a full explanation wouldn&#8217;t fit here. But heres one I prepared earlier:</p>
+<p><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises &#8211; The Four Functions You Need To Avoid Callback Hell</a></p>
+<p>Now, moving right along to:</p>
+<h2>&#8230; (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">spread operator</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters">rest parameters</a>)</h2>
+<p>Known as <em>splats</em> in some other languages, these provide a convenient way to shove any unnamed arguments passed to your function into an array, or do the inverse by calling a function with arguments extracted from an array.</p>
+<p>Again, you&#8217;ll probably find this easier to understand by looking at it:</p>
+<pre><code>c(...args) {
+  return (
+    classNames(...args)
+      .split(/\s+/)
+      .filter(name =&gt; name !== "")
+      .map(name =&gt; `{namespace}-${this.constructor.name}-${name}`)
+      .join(' ')
+  );
+}
+</code></pre>
+<p><em>Taken from <a href="https://github.com/jamesknelson/react-base/blob/master/src/base.js#L112">base.js</a> in react-base</em></p>
+<p>So you can pass any number of arguments to <code>c</code>, and they&#8217;ll end up in the <code>args</code> array. Similarly, <code>classNames</code> will then receive these as separate arguments, not as a single array.</p>
+<p>On a completely different note, see how we&#8217;re defining this function without the function keyword? This trick is actually part of the syntax for:</p>
+<h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">Classes</a></h2>
+<p>Yep, ES6 has classes. These could have an entire article written about them just by themselves. Maybe I&#8217;ll write one, one day. You&#8217;ll find out if you sign up to my newsletter. Just like you&#8217;ll find out when I write more about:</p>
+<h2>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">import</a> &amp; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export">export</a>
+</h2>
+<p>Actually, <code>import</code> and <code>export</code> are probably my favourite ES6 feature, but I&#8217;ll leave these for a later post. You won&#8217;t be using them directly in browsers anytime soon, but combined with a good build setup, you don&#8217;t <em>have</em> to use them directly in browsers. But why wait until I write about <code>class</code>, <code>import</code> and <code>export</code>, when almost every file I&#8217;ve pulled examples from so far uses them?</p>
+<p><a id="examples"></a></p>
+<h2>Example ES6 code</h2>
+<p>It is all available at my <a href="https://github.com/jamesknelson">github</a>, with four projects I&#8217;d recommend:</p>
+<ul>
+<li>
+<a href="https://github.com/jamesknelson/memamug-client">memamug-client</a> (the source for <a href="http://www.memamug.com/">memamug.com</a>)</li>
+<li>
+<a href="https://github.com/jamesknelson/maxim">maxim</a> (to help structure your single page apps)</li>
+<li>
+<a href="https://github.com/jamesknelson/react-base">react-base</a> (provide common utilities to your react components)</li>
+<li>
+<a href="https://github.com/jamesknelson/numbat-ui">numbat-ui</a> (material design component library for react)</li>
+</ul>
+<p>Need a little help getting an environment where you can use ES6 up and running? Check out my article on <a href="/build-es6-and-less-with-autorefresh-in-only-26-lines-of-configuration/">getting started with webpack</a>.</p>
+<p><a id="es6-cheatsheet"></a></p>
+<h2>Cheatsheet</h2>
+<p>Phew, that was a lot of information. The key to remembering it all is to use it, but searching through this article for just the bit you want each time sure sounds like a lot of work.</p>
+<p>Thats why I’ve created this spiffy print-optimised cheat sheet (see <a href="/wp-content/uploads/2015/09/promises-cheatsheet-thumbnail.png">preview</a>). It is perfect for printing out and hanging next to your monitor or on your toilet door, or to use in fashionable paper-mache clothing.</p>
+<p>The high resolution PDF is available exclusively to my newsletter subscribers – sign up now and it’ll be immediately e-mailed to you for your reading pleasure, along with a handy-dandy <a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#cheatsheet">JavaScript Promises</a> cheatsheet!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<h2>Read More</h2>
+<p>Of course, knowing ES6 isn&#8217;t much help if the browser doesn&#8217;t understand it. And that&#8217;s why you need Webpack/Babel:</p>
+<ul>
+<li><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/">Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</a></li>
+<li><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack Made Simple: Building ES6/LESS with Autorefresh</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li><a href="https://github.com/unicorn-standard/starter-kit">See Babel, Webpack and ES6 in action in the Unicorn Standard Starter Kit</a></li>
+</ul>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/" rel="prev"><span class="meta-nav">&#8592;</span> Introducing Memamug, a small open-source app made with React and Rails-api</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/unlocking-decorators-and-other-es7-features-with-webpack-and-babel/" rel="next">Unlocking decorators and other ES7 features with Webpack and Babel <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					8 Comments <span class="on">&#8594;</span> <span>A Quick Tour Of ES6 (Or, The Bits You&#8217;ll Actually Use)</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-697">
+						<article id="comment-697" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/812d335fd352057dde17e507064c71f3?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/812d335fd352057dde17e507064c71f3?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://sticksnglue.com/" rel="external nofollow ugc" class="url">Chad</a> </cite><a href="/es6-the-bits-youll-actually-use/#comment-697"><time datetime="2015-07-07T16:53:46+00:00">July 7, 2015 at 4:53 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Minor comment, your link to &#8220;Symbols&#8221; actually points to the MDN resource for &#8220;Maps&#8221;</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-697" data-commentid="697" data-postid="284" data-belowelement="comment-697" data-respondelement="respond" data-replyto="Reply to Chad" aria-label="Reply to Chad">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-793">
+						<article id="comment-793" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/es6-the-bits-youll-actually-use/#comment-793"><time datetime="2015-07-14T10:54:00+00:00">July 14, 2015 at 10:54 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Oops, well caught. Thanks.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-793" data-commentid="793" data-postid="284" data-belowelement="comment-793" data-respondelement="respond" data-replyto="Reply to jamesknelson" aria-label="Reply to jamesknelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-3224">
+						<article id="comment-3224" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c7fe97f7c51ba5b911ae646c35b0e850?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c7fe97f7c51ba5b911ae646c35b0e850?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Hans Schenker </cite><a href="/es6-the-bits-youll-actually-use/#comment-3224"><time datetime="2015-10-22T04:44:32+00:00">October 22, 2015 at 4:44 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Beautiful Design and valuable Content!<br>
+Congratulations!!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3224" data-commentid="3224" data-postid="284" data-belowelement="comment-3224" data-respondelement="respond" data-replyto="Reply to Hans Schenker" aria-label="Reply to Hans Schenker">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-4129">
+						<article id="comment-4129" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/19cceb42618edce6f5b638b6cce1d331?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/19cceb42618edce6f5b638b6cce1d331?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Brook Monroe </cite><a href="/es6-the-bits-youll-actually-use/#comment-4129"><time datetime="2015-11-13T17:37:57+00:00">November 13, 2015 at 5:37 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>&#8220;i.e. strings delimeted by&#8230;&#8221;</p>
+<p>*delimited</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4129" data-commentid="4129" data-postid="284" data-belowelement="comment-4129" data-respondelement="respond" data-replyto="Reply to Brook Monroe" aria-label="Reply to Brook Monroe">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor even depth-2" id="li-comment-4144">
+						<article id="comment-4144" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/es6-the-bits-youll-actually-use/#comment-4144"><time datetime="2015-11-13T23:18:57+00:00">November 13, 2015 at 11:18 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4144" data-commentid="4144" data-postid="284" data-belowelement="comment-4144" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-19363">
+						<article id="comment-19363" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/ba9511318998cedd1ab69cead0aaaf1d?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/ba9511318998cedd1ab69cead0aaaf1d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Marc Cornellà </cite><a href="/es6-the-bits-youll-actually-use/#comment-19363"><time datetime="2016-05-05T12:24:37+00:00">May 5, 2016 at 12:24 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>The snippet in the arrow functions is now found in SelectRipple.jsx#L82:</p>
+<p><a href="https://github.com/jamesknelson/numbat-ui/blob/c8c68996c4b2300b7e3a50ff0c69c16bef564b05/src/components/SelectRipple/SelectRipple.jsx#L82" rel="nofollow ugc">https://github.com/jamesknelson/numbat-ui/blob/c8c68996c4b2300b7e3a50ff0c69c16bef564b05/src/components/SelectRipple/SelectRipple.jsx#L82</a></p>
+<p>A trick when linking to GitHub code: you can get the permalink to the current master commit by pressing &#8216;Y&#8217;, which will replace the &#8216;master&#8217; in the URL to the actual commit hash.</p>
+<p>Great post!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-19363" data-commentid="19363" data-postid="284" data-belowelement="comment-19363" data-respondelement="respond" data-replyto="Reply to Marc Cornellà" aria-label="Reply to Marc Cornellà">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-2" id="li-comment-19364">
+						<article id="comment-19364" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/ba9511318998cedd1ab69cead0aaaf1d?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/ba9511318998cedd1ab69cead0aaaf1d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Marc Cornellà </cite><a href="/es6-the-bits-youll-actually-use/#comment-19364"><time datetime="2016-05-05T12:29:05+00:00">May 5, 2016 at 12:29 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Same on the RaisedButton.jsx: <a href="https://github.com/jamesknelson/numbat-ui/blob/6d5e2f8dc347c51f2c268fede0725906babdf9f7/src/components/RaisedButton/RaisedButton.jsx#L53" rel="nofollow ugc">https://github.com/jamesknelson/numbat-ui/blob/6d5e2f8dc347c51f2c268fede0725906babdf9f7/src/components/RaisedButton/RaisedButton.jsx#L53</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-19364" data-commentid="19364" data-postid="284" data-belowelement="comment-19364" data-respondelement="respond" data-replyto="Reply to Marc Cornellà" aria-label="Reply to Marc Cornellà">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-20089">
+						<article id="comment-20089" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/8aa492aad65a8cf3202c55f64576fa23?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/8aa492aad65a8cf3202c55f64576fa23?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Gwyn Evans </cite><a href="/es6-the-bits-youll-actually-use/#comment-20089"><time datetime="2016-05-21T21:07:49+00:00">May 21, 2016 at 9:07 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Where you write &#8220;You can’t emit the brackets&#8221;, I think you mean &#8220;omit&#8221;?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-20089" data-commentid="20089" data-postid="284" data-belowelement="comment-20089" data-respondelement="respond" data-replyto="Reply to Gwyn Evans" aria-label="Reply to Gwyn Evans">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/es6-the-bits-youll-actually-use/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="284" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="9758b46242"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="48"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

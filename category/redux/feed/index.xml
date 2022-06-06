@@ -1,0 +1,1974 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Redux &#8211; James K Nelson</title>
+	<atom:link href="/category/redux/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Mon, 08 Aug 2016 22:04:50 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>State of React #2 &#8211; From Inception to Redux</title>
+		<link>/state-react-2-inception-redux/</link>
+					<comments>/state-react-2-inception-redux/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sat, 06 Aug 2016 09:12:58 +0000</pubDate>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[React]]></category>
+		<category><![CDATA[Redux]]></category>
+		<category><![CDATA[State Of React]]></category>
+		<guid isPermaLink="false">/?p=1039</guid>
+
+					<description><![CDATA[<p>Welcome back to the second instalment of State of React! In case you missed it, the first instalment demonstrated a small app without component state. And it received a bunch of interesting responses, like this one from @metapgmr: using props as state and claiming that components are &#8230; stateless! The React Emperor has no clothes... <a class="more-link" href="/state-react-2-inception-redux/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/state-react-2-inception-redux/">State of React #2 &#8211; From Inception to Redux</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Welcome back to the second instalment of State of React! In case you missed it, the <a href="/state-react-1-stateless-react-app/">first instalment</a> demonstrated <a href="https://jsfiddle.net/jamesknelson/8acuh8e0/1/">a small app</a> without component state. And it received a bunch of interesting responses, like this one from <a href="https://twitter.com/metapgmr">@metapgmr</a>:</p>
+<blockquote>
+<p>using props as state and claiming that components are &#8230; stateless! The React Emperor has no clothes</p>
+</blockquote>
+<p>Yes, the app was basically wearing its birthday suit. And yes, the app <em>did</em> contain state. But no, the state wasn&#8217;t in the props &#8211; and it wasn&#8217;t component state either.</p>
+<p>So what was it?</p>
+<p><span id="more-1039"></span></p>
+<p>In case you missed it, here is the &#8220;React Inception&#8221; pattern (thanks for the great name, <a href="https://twitter.com/mctaylorpants/status/761002705762471936">@mctaylorpants</a>):</p>
+<pre><code>class CommentForm extends React.Component {
+    static propTypes = {
+        value: React.PropTypes.object.isRequired,
+        onChange: React.PropTypes.func.isRequired,
+    }
+
+    handleChange(field, e) {
+        this.props.onChange({
+            ...this.props.value,
+            [field]: e.target.value,
+        })
+    }
+
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;input
+                    placeholder="Name"
+                    value={this.props.value.name}
+                    onChange={this.handleChange.bind(this, 'name')}
+                /&gt;
+                &lt;input
+                    placeholder="Message"
+                    value={this.props.value.message}
+                    onChange={this.handleChange.bind(this, 'message')}
+                /&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+
+// Handle updated values by re-rendering the app
+function render(value) {
+    ReactDOM.render(
+        &lt;CommentForm
+            value={value}
+            onChange={render}
+        /&gt;,
+        document.getElementById("react-app")
+    )
+}
+
+// Initialise the app by rendering it
+render({
+    name: "James",
+    message: "",
+})
+</code></pre>
+<p>Think you know where the state is stored? Check your answer by touching or hovering your mouse over this box:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+The state is stored in the DOM. By calling <code>ReactDOM.render</code> with the new value, we write it to the DOM. The DOM then merges it with the requested changes on every keystroke, and passes it back to the app via an <code>onChange</code> handler.
+</div>
+<p>Okay. So the app isn&#8217;t stateless. That means the pattern is basically useless, right?</p>
+<p>Not so fast. As I mentioned last week, having all our state in one place is pretty handy. But that brings us to the bonus question:</p>
+<h2>So why don&#8217;t people do this?</h2>
+<p>I&#8217;d try and explain this, but Joe Shelby beat me to the punch in a <a href="/state-react-1-stateless-react-app/#comment-22402">comment</a> on last week&#8217;s article:</p>
+<blockquote>
+<p>When you get to large apps, having EVERY single component look through the part of the ‘value’ object to see if anything has changed would be impressively slow.</p>
+</blockquote>
+<p>To get an idea of why this is, you need to remember that every JSX statement in a React file is <a href="/learned-stop-worrying-love-jsx/">actually a function call</a>, which creates a <code>ReactElement</code> object.</p>
+<p>By rendering your page from the root, you need to run the <code>render</code> method of every component on your page. Which will <em>then</em> create a new <code>ReactElement</code> object for every JSX element on your page. <em>Which will then then be diffed with all the React Elements on the previous version of your page</em>. And all you wanted to do was add an <code>active</code> class to your spinner div.</p>
+<p>This is a big reason why people use <code>setState</code> in the real world. <code>setState</code> lets you update a <em>subtree</em> of your react app, without re-rendering the whole thing. But it also lets you use react-router.</p>
+<h2>What has react-router got to do with <code>setState</code>?</h2>
+<p>If you&#8217;ve ever used <a href="https://github.com/reactjs/react-router">react-router</a>, one of the things you may have noticed is that it doesn&#8217;t let you pass <code>props</code> to your components. Instead, you need to pass components. Here is an example from the docs:</p>
+<pre><code>ReactDOM.render((
+  &lt;Router history={browserHistory}&gt;
+    &lt;Route path="/" component={App}&gt;
+      &lt;Route path="about" component={About}/&gt;
+      &lt;Route path="*" component={NoMatch}/&gt;
+    &lt;/Route&gt;
+  &lt;/Router&gt;
+), document.getElementById('root'))
+</code></pre>
+<p>In this example, <code>App</code>, <code>About</code> and <code>NoMatch</code> are all React Components &#8211; i.e. the objects returned by <code>React.createClass</code>, or classes which extend <code>React.Component</code>. By passing components to routes, you&#8217;re able to easily configure routes at the very root of your application. But by <em>only</em> being able to pass components to routes, you also lose the ability to pass props from the parent component without using <code>context</code>.</p>
+<p>I&#8217;m not going to get into the merits/demerits of designing a router this way. But I will say that one consequence of doing things this way is that it removes the possibility of building your app using props passed all the way from the root. This means that the React Inception pattern <em>won&#8217;t work</em>. And honestly, this probably factors more into people&#8217;s decision to avoid the pattern than performance does.</p>
+<p>So to summarise &#8211; the React Inception pattern is a fun novelty which doesn&#8217;t really have any place in the real world. Except that you may already be using it without realising it &#8212; just modified in a way to negate these issues.</p>
+<h2>Making React Inception Useful</h2>
+<p>To fix the two issues mentioned above, we&#8217;ll need to make two changes:</p>
+<ol>
+<li>We&#8217;ll need to split our <code>render</code> function into two parts &#8212; one to <em>make</em> changes to state, and one to <em>handle</em> changes in that state.</li>
+<li>We&#8217;ll need to make it possible to <em>update</em> the state instead of <em>replacing</em> it, as updates from one part of the application shouldn&#8217;t affect state used by other parts of the application.</li>
+</ol>
+<p>Simple, right? And the implementation is even simpler:</p>
+<pre><code>class Store {
+  constructor() {
+    this.listeners = []
+    this.state = {}
+  }
+
+  subscribe(listener) {
+    this.listeners.push(listener)
+
+    // Return a function allowing us to unsubscribe
+    return () =&gt; this.listeners.splice(this.listeners.indexOf(listener), 1)
+  }
+
+  updateState = (updates) =&gt; {
+    this.state = Object.assign({}, this.state, updates)
+    for (let listener of this.listeners) {
+      listener(this.state)
+    }
+  }
+}
+
+const store = new Store()
+</code></pre>
+<p>To use the <code>store</code>, pass its <code>updateState</code> method through to components which need to store state. And then use <code>subscribe</code> to pass the latest version of the state into the components.</p>
+<p>As an example, this is how we&#8217;d implement our familiar React Inception pattern using a <code>Store</code>:</p>
+<pre><code>store.subscribe(state =&gt; {
+  ReactDOM.render(
+    &lt;CommentForm
+        value={state}
+        onChange={store.updateState}
+    /&gt;,
+    document.getElementById("react-app")
+  )
+})
+
+// Set initial state
+store.updateState({
+    name: "James",
+    message: "",
+})
+</code></pre>
+<p>But this just makes our existing code more complicated. What we <em>really</em> want to do is connect our store up to a component <em>inside</em> the application, speeding up our app and getting our data past react-router without using <code>props</code>.</p>
+<p>To do so, let&#8217;s follow Dan Abramov&#8217;s <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.rjjwfiegh">Containers pattern</a>. This is akin to creating a &#8220;sub-application&#8221; which uses <code>setState</code> to store the data for a group of state-free child components &#8212; like the <code>CommentForm</code> from our previous app.</p>
+<pre><code>class CommentFormContainer extends React.Component {
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(state =&gt; {
+      this.setState(state.CommentFormContainer)
+    })
+  }
+
+  componentWillUnmount() {
+    if (this.unsubscribe) {
+      this.unsubscribe()
+    }
+  }
+
+  handleChange(value) {
+    store.updateState({ CommentFormContainer: value })
+  }
+
+  render() {
+    return (
+      &lt;CommentForm
+        value={this.state}
+        onChange={this.handleChange}
+      /&gt;
+    )
+  }
+}
+</code></pre>
+<p>Now place this Container somewhere inside an existing application and <em>presto</em> &#8212; (almost) stateless sub-app.</p>
+<h2>Wait a moment &#8211; haven&#8217;t I seen this before?</h2>
+<p>Container components? Aren&#8217;t they a Redux thing? And stores with a <code>subscribe</code> method which hold the application state at the root of the app?</p>
+<p>So I admit it. I&#8217;ve basically made a shit version of Redux.</p>
+<p>Honestly, I wouldn&#8217;t use the code I&#8217;ve written above &#8212; Redux is better. Reasons:</p>
+<ul>
+<li>Instead of allowing direct mutation of the stored state, it forces you to write <a href="http://redux.js.org/docs/basics/Actions.html">actions</a> and <a href="http://redux.js.org/docs/basics/Reducers.html">reducers</a> which make it easier to understand what-the-hell is going on.</li>
+<li>Redux gives you the <code>connect</code> function to automate creation of container components (my container above is based on the internals of <code>connect</code>).</li>
+<li>It gives you extensibility via <a href="http://redux.js.org/docs/advanced/Middleware.html">middleware</a>, and a whole bunch of neat <a href="https://github.com/gaearon/redux-devtools">tooling</a>.</li>
+</ul>
+<p>So what I&#8217;m saying is that if you want to manage state, <em>Redux is the bees knees</em>. By putting it all in one place, it becomes possible to share state between Containers and cache data between page views. And by keeping most of your components stateless, testing and design becomes a breeze.</p>
+<p>But while Redux does a great job of <em>managing</em> your state, it still leaves you with the problem of <em>structuring</em> it.</p>
+<h1>5 Types of state</h1>
+<p>I have a theory: to understand how to <em>structure</em> state, you first need to understand where the state actually is.</p>
+<p>As far as I can tell, there are five types of state &#8212; and the best way to structure state depends on which of the types it falls under.</p>
+<p>Want to find out what the types are, and the patterns for structuring them? Then subscribe to my newsletter now to make sure you don&#8217;t miss the next instalment of State of React! And in return for your e-mail, you&#8217;ll immediately receive <em>five</em> free ReactJS and JavaScript cheatsheets!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<p>The post <a rel="nofollow" href="/state-react-2-inception-redux/">State of React #2 &#8211; From Inception to Redux</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/state-react-2-inception-redux/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Simple Routing with Redux and React</title>
+		<link>/simple-routing-redux-react/</link>
+					<comments>/simple-routing-redux-react/#respond</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sun, 22 Nov 2015 13:16:03 +0000</pubDate>
+				<category><![CDATA[Flux]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[React]]></category>
+		<category><![CDATA[Redux]]></category>
+		<guid isPermaLink="false">/?p=714</guid>
+
+					<description><![CDATA[<p>TL;DR? Clone the Starter Kit instead. Have you ever wished that libraries for React apps could be simpler? Sure, you know that there are cases when all the bells and whistles are an advantage &#8212; but for you, features aren&#8217;t as important as clarity. Instead of giving up control to fast-moving libraries written by big... <a class="more-link" href="/simple-routing-redux-react/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/simple-routing-redux-react/">Simple Routing with Redux and React</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong>TL;DR?</strong> <em>Clone the <a href="https://github.com/unicorn-standard/starter-kit">Starter Kit</a> instead.</em></p>
+<p>Have you ever wished that libraries for React apps could be <em>simpler</em>?</p>
+<p>Sure, you know that there are cases when all the bells and whistles are an advantage &#8212; but for you, <em>features</em> aren&#8217;t as important as <em>clarity</em>. Instead of giving up control to fast-moving libraries written by big names, you want to <em>understand</em> what is going on under the hood. And instead of sifting through documentation on twenty different tools before getting started, you want to get stuck into it <em>right now</em>.</p>
+<p>And you&#8217;re not alone! In fact, most of my work has involved small projects which don&#8217;t make use of many of the features provided by popular routing libraries. So instead, I&#8217;ve rolled my own routing using Redux and React. And it is so simple that <em>everything</em> you need to know fits into this short guide.</p>
+<p><span id="more-714"></span></p>
+<h2>Overview</h2>
+<p><em>This guides assumes you have experience with both React and Redux. If you&#8217;re still new to React, try my <a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Raw React</a> series instead.</em></p>
+<p>The <em>key</em> to routing with Redux and React is understanding that your current route is Just Application State. And like any other application state, it lives in your Redux store. With this in mind, the rest is just implementation details.</p>
+<p>Of course, the details are still important. In particular, the question of which browser API you use to handle navigation will greatly affect your implementation. But since we&#8217;re aiming for simplicity, I&#8217;ll assume you&#8217;re using hash-based routing for the reasons listed <a href="/push-state-vs-hash-based-routing-with-react-js/">here</a>.</p>
+<h2>Contents</h2>
+<ul>
+<li><a href="#handling-browser-events">Handling browser events</a></li>
+<li><a href="#parsing-uris">Parsing URIs</a></li>
+<li><a href="#storing-navigation-data">Storing navigation state</a></li>
+<li><a href="#handling-state-changes">Connecting your Store to your View</a></li>
+<li><a href="#the-application-component">Choosing views: the <code>Application</code> component</a></li>
+<li><a href="#user-navigation">Navigating with Links</a></li>
+<li><a href="#navigating-programatically">Navigating programatically</a></li>
+<li><a href="#redirections">Redirections</a></li>
+<li><a href="#what-next">What should I do next?</a></li>
+</ul>
+<h2><a id="handling-browser-events" href="#handling-browser-events">Handling browser events</a></h2>
+<p>Routing begins with event handling &#8211; specifically, with handling events produced by changes in the browser&#8217;s current URL.</p>
+<p>For hash-based routing, the event you&#8217;re interested in is <a href="https://developer.mozilla.org/en-US/docs/Web/Events/hashchange">hashchange</a>. The browser emits this event whenever the part of the URL after the <code>#</code> character is updated without the rest of the URL changing. As an example, this happens when the user clicks an <code>&lt;a&gt;</code> tag with a <code>href</code> beginning with <code>#</code>, or when a script updates <code>window.location</code> appropriately.</p>
+<p>Handling changes to the browser hash is simple:  listen for the <code>hashchange</code> event, and then process the new value of <code>window.location.hash</code> when it occurs:</p>
+<pre><code>function onHashChange() {
+    // Do something appropriate with `window.location.hash`
+    console.log(window.location.hash);
+}
+
+// Handle browser navigation events
+window.addEventListener('hashchange', onHashChange, false);
+</code></pre>
+<div class="hint">
+If you want a <code>pushState</code> based router instead of a hash-based router, use <a href="https://github.com/rackt/history">rackt/history</a>&#8216;s <code>history.listen</code> method instead.
+</div>
+<h2><a id="parsing-uris" href="#parsing-uris">Parsing URIs</a></h2>
+<p>Once you have the new URI, you need to match it to a specific view.</p>
+<p>In a really simple app, this could be as simple as removing the leading <code>#</code> and trailing <code>/</code> characters. However, larger apps generally avoid directly coupling views with their URIs. Instead, they define a number of <strong>named routes</strong> which are matched to URI templates. The template format can vary between parsing tools, but sections are generally delineated with <code>/</code>, and named <strong>route parameters</strong> are generally denoted by the <code>:</code> character.</p>
+<p>Here&#8217;s an example of how to define named routes with Unicorn Standard&#8217;s <a href="https://github.com/unicorn-standard/uniloc">uniloc</a> tool:</p>
+<pre><code>var ROUTES = uniloc({ 
+  root: 'GET /',
+  documentList: 'GET /:userID/:documentID',
+  documentEdit: 'GET /:userID/:documentID/edit',
+})
+</code></pre>
+<p>You can then look up a given URL&#8217;s route name and parameters with <code>ROUTES.lookup</code>; this returns an object containing the route name under <code>name</code>, and route parameters under <code>options</code>:</p>
+<pre><code>ROUTES.lookup('/unicorn/pacomo/edit')
+// -&gt; { name: 'documentEdit', options: { userID: 'unicorn', documentID: 'pacomo' } }
+</code></pre>
+<p>You can also generate URLs using <code>ROUTES.generate</code>, which accepts a route name, and optionally an object containing route parameters:</p>
+<pre><code>ROUTES.generate('documentEdit', { userID: 'unicorn', documentID: 'pacomo' })
+// -&gt; "/unicorn/pacomo/edit"
+</code></pre>
+<p>Now that we have an object representing the user&#8217;s <code>location</code>, we need to put it in our Redux store.</p>
+<h2><a id="storing-navigation-data" href="#storing-navigation-data">Storing navigation state</a></h2>
+<p>As a Redux-based app only has one store, we&#8217;ll need to decide where to place our navigation data within that store.</p>
+<p>Personally, I like to set my app up with a <code>navigation</code> reducer which manages any navigation-related state. For the moment, this will only contain the above <code>location</code> object, but we&#8217;ll add to it a little later.</p>
+<p>In addition to our <code>navigation</code> reducer, we&#8217;ll also need to dispatch an action each time the browser emits a navigation event.  Here is my implementation of the two:</p>
+<pre><code>// The action to be called when the browser navigates
+function navigationComplete() {
+  return {
+    type: 'NAVIGATION/COMPLETE',
+    location: ROUTES.lookup(window.location.hash.substr(1)),
+  }
+}
+
+// The reducer to manage navigation-related state
+function navigationReducer(state = {
+  location: null,
+}, action) {
+  switch (action.type) {
+    case 'NAVIGATION/COMPLETE':
+      return {
+        location: action.location,
+      }
+
+    default:
+      return state
+  }
+}
+</code></pre>
+<p>And with that, your store now contains your current location! All that remains is to <em>use</em> this information to choose which view to display.</p>
+<h2><a id="handling-state-changes" href="#handling-state-changes">Connecting your Store to your View</a></h2>
+<p>If you&#8217;ve built a React application with Redux before, you&#8217;ve probably used <a href="https://github.com/rackt/react-redux">react-redux</a> to connect your components with data from your store. And while it is still possible to use react-redux with Simple Routing, I prefer to use <strong>actors</strong> &#8212; a pattern which lets us respond to route changes before rendering the view.</p>
+<p>We&#8217;ll get to <em>how</em> actors work in a moment, but in the meantime let&#8217;s do a little quiz: Can you write the code which re-renders your view?</p>
+<p>Assume that your view resides in an <code>&lt;Application /&gt;</code> component, which accepts a <code>state</code> object and the <code>dispatch</code> function associated with your Redux store. Check your answer by touching or hovering your mouse over this box:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+</p>
+<pre><code>var APP_NODE = document.getElementById('react-app');
+store.subscribe(function() {
+  // Don't re-render if we're in the process of navigating to a new page
+  ReactDOM.render(
+    &lt;Application state={store.getState()} dispatch={store.dispatch} /&gt;,
+    APP_NODE
+  );
+})
+</code></pre>
+<p>
+</div>
+<p><strong>Shameless plug:</strong> If you find React&#8217;s API a little difficult to remember, why not print out my PDF React cheatsheet? It fits most of React&#8217;s API onto a single page (see <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">preview</a>), and you&#8217;ll get it for free immediately after join to my newsletter!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=18"></script>
+<link rel="stylesheet" href="ck_form.html" />
+<div class="ck_form single_line">
+
+  <div class="ck_form_fields">
+  
+    <h3>Get the PDF React Cheatsheet</h3>
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4416/subscribe" data-remote="true">
+      <input type="hidden" name="id" value="4416" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+        <div>
+          <label class="ck_label" for="ck_firstNameField" style="display:none">First Name</label>
+        
+          <input type="text" name="first_name" placeholder="First name" class="ck_first_name" id="ck_firstNameField" required></input>
+        </div>
+        <div class="field">
+          <label class="ck_label" for="ck_emailField" style="display:none">Email Address</label>
+        
+          <input type="email" name="email" placeholder="Email address" class="ck_email_address" id="ck_emailField" required></input>
+        </div>
+
+        <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+          Subscribe to my Newsletter
+        </button>
+    </form>
+  </div>
+ </div>
+ <style type="text/css">
+.ck_form.single_line {
+  /* divider image */
+  background: #f9f9f9;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border: solid 1px #d1d1d1;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  clear: both;
+  margin: 20px auto;
+  text-align: center;
+  width: 85%;
+  border-radius: 6px;
+}
+
+
+.ck_form.single_line h3, #content .ck_form.single_line h3 { 
+  text-align: center; 
+  margin: 0px 0px 10px; 
+  font-size: 24px;
+}
+
+.ck_form.single_line p {
+  padding: 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+.ck_form.single_line .ck_form_fields {
+  width: 100%;
+  float: left;
+  padding: 24px 0;
+}
+/* Form fields */
+
+.ck_errorArea {
+  display: none; /* temporary */
+}
+
+#ck_success_msg {
+  margin: 0 30px;
+  padding: 0 10px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_form.single_line input[type="text"], .ck_form.single_line input[type="email"] {
+  font-size: 18px;
+  padding: 10px 8px;
+  width: 68%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; /* border radius */
+  background-color: #fff; /* layer fill content */
+  height: auto;
+  margin: 5px 0;
+  height: 42px;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+} 
+
+.ck_form.single_line .ck_checkbox {
+  display: none;
+}
+
+.ck_form.single_line .ck_subscribe_button {
+    color: #fff;
+    margin: 0px;
+    padding:  11px 22px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+    margin: 10px 0 0;
+    height: 42px;
+    width: auto;
+  }
+  
+  
+.ck_form.single_line .ck_guarantee {
+  color: #626262;
+  font-size: 15px;
+  text-align: center;
+  padding: 15px 0px 0px;
+  display: block;
+  clear: both;
+}
+ </style>
+<p>The solution to the quiz above has one problem: it will render <em>every single state</em> which your application passes through. Sometimes you&#8217;d like to skip a state &#8212; for example, the intermediate location in a redirect sequence &#8212; and actors make this easy.</p>
+<h3>Transitioning between application states using actors</h3>
+<p>Actors are a sequence of functions which are called each time your store&#8217;s state changes, with one important exception: they <em>aren&#8217;t</em> called in response to actions dispatched from other actors.</p>
+<p>Each actor receives your store&#8217;s <code>dispatch</code> function and <em>current</em> <code>state</code>. The upshot of this is that if an actor dispatches an action, the next actor&#8217;s <code>state</code> will reflect the <em>result</em> of that action.</p>
+<p>If this sounds at all complicated, it won&#8217;t after you see the implementation:</p>
+<pre><code>// An array of actor functions taking a `state` object and `dispatch` function
+var actors = [ ... ]
+
+var acting = false
+store.subscribe(function() {
+  // Ensure that any action dispatched by actors do not result in a new
+  // actor run, allowing actors to dispatch with impunity.
+  if (!acting) {
+    acting = true
+    actors.forEach(function() {
+      actor(store.getState(), store.dispatch)
+    })
+    acting = false
+  }
+})
+</code></pre>
+<p>Implementing our renderer as the final actor in the <code>actors</code> array ensures that it renders the result of any actions dispatched by previous actors:</p>
+<pre><code>var APP_NODE = document.getElementById('react-app')
+function renderer(state, dispatch) {
+  ReactDOM.render(
+    &lt;Application state={state} dispatch={dispatch} /&gt;,
+    APP_NODE
+  )
+}
+</code></pre>
+<p>If you&#8217;d like more examples of actors, see my <a href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors">introduction to actors</a>. Otherwise, let&#8217;s take a look at that mysterious <code>Application</code> component.</p>
+<h2><a id="the-application-component" href="#the-application-component">Choosing views: the <code>Application</code> component</a></h2>
+<p>The <code>Application</code> component is the interface between your Redux-based model, and your React-based view. It is responsible for choosing a Container component to render, and then passing it the current <code>state</code> object and <code>dispatch</code> function. This may sound complicated, but its implementation is typically a simple <code>switch</code> statement; using stateless function components, it would look something like this:</p>
+<pre><code>function Application(props) {
+  const location = props.state.navigation.location
+
+  switch (location.name) {
+    case 'documentEdit':        
+      return &lt;DocumentContainer {...props} id={location.options.id} /&gt;
+    case 'documentList':
+      return &lt;DocumentListContainer {...props} id={location.options.id} /&gt;
+
+    default:
+      return &lt;div&gt;Not Found&lt;/div&gt;
+  }
+}
+Application.propTypes = {
+  state: React.PropTypes.object.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
+}
+</code></pre>
+<p>The containers here are different to the containers you&#8217;ll find in a lot of other Flux apps; instead of being directly subscribed to your Redux store, they&#8217;re just normal components with a name which contains the word <code>Container</code>.</p>
+<p>That said, the <code>Container</code> suffix <em>does</em> have an implied meaning &#8212; it indicates that they take <code>state</code> and <code>dispatch</code> properties, and don&#8217;t do anything except pass the correct state and action creators through to &#8220;dumb&#8221; child components. To understand why this distinction exists, read Redux creator Dan Abramov&#8217;s <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0">excellent explanation</a>.</p>
+<div class="hint">
+<strong>Switch statements &#8211; Ugly or Elegant?</strong></p>
+<p>Some people don&#8217;t like long <code>switch</code> statements. And after using Coffeescript for a number of years, I can see why &#8212; JavaScript&#8217;s syntax really leaves a lot to be desired. But if you imagine the curly braces and repetitive <code>return</code> statements disappearing for a moment, the long <code>switch</code> statement is really a quite simple &#8212; and in my opinion elegant &#8212; way of selecting views.
+</div>
+<h2><a id="user-navigation" href="#user-navigation">Navigating with Links</a></h2>
+<p>Links for your app can be as simple as <code>&lt;a&gt;</code> tags with a <code>href</code> starting with <code>#</code>. For example:</p>
+<pre><code>&lt;a href="#/unicorn/pacomo/edit"&gt;Edit contact&lt;/a&gt;
+</code></pre>
+<p>While this will get the job done, you may prefer to create a <code>&lt;Link&gt;</code> component which allows you to specify named routes &#8211; reducing the coupling between URLs and routes. If you&#8217;re using stateless function components and the <a href="https://github.com/sebmarkbage/ecmascript-rest-spread">ES7 Object rest properties</a> proposal, your module will look something like this:</p>
+<pre><code>import React from 'react'
+import ROUTES from '../routes'
+
+const Link = ({name, options, children, ...props}) =&gt;
+  &lt;a {...props} href={'#'+ROUTES.generate(name, options)}&gt;{children}&lt;/a&gt;
+
+Link.propTypes = {
+  name: React.PropTypes.object.isRequired,
+  options: React.PropTypes.object.isRequired,
+  children: React.PropTypes.node.isRequired,
+}
+
+export default Link
+</code></pre>
+<p>Your <code>&lt;Link&gt;</code> component can then be used as so:</p>
+<pre><code>&lt;Link name='documentEdit' options={{userID: 'unicorn'}}&gt;Edit Contact&lt;/Link&gt;
+</code></pre>
+<h2><a id="navigating-programatically" href="#navigating-programatically">Navigating programatically</a></h2>
+<p>The <em>fundamentals</em> of programatic navigation are simple; just use <code>window.location.replace</code>. For example:</p>
+<pre><code>window.location.replace(
+  window.location.pathname + window.location.search + '#/unicorn/pacomo/edit'
+);
+</code></pre>
+<p>But while this works, you&#8217;ll come across a major problem when using it in conjunction with other actions: the <code>hashchange</code> event which it produces won&#8217;t be called until the next tick.</p>
+<p>To understand why this presents a problem, consider the case of a <code>save</code> action which clear a form&#8217;s contents and then navigates the user to another route. If our action creator does both of these at once, the flow of events will look something like this:</p>
+<p><img src="/wp-content/uploads/2015/10/redux-routing-flow-1.png" alt="Incorrect flow" /></p>
+<p>This results in a brief flash with outdated data. Instead, we&#8217;d like our flow to <em>not</em> render our view at the end of the first tick.</p>
+<p>The solution contains three steps:</p>
+<ol>
+<li>Add a <code>transitioning</code> boolean to your <code>navigation</code> reducer</li>
+<li>Update your <code>renderer</code> actor to skip rendering when <code>transitioning</code> is true</li>
+<li>Add a <code>navigationStart</code> action to start the process</li>
+</ol>
+<p>Here is my implementation:</p>
+<pre><code>// This action lets you navigate to the routes you defined earlier
+function navigationStart(name, options) {
+  // Use the redux-thunk plugin to allow us to skip dispatching an action
+  // if we're already at the correct URI
+  return function(dispatch) {
+    var currentURI = window.location.hash.substr(1)
+    var newURI = ROUTES.generate(name, options)
+
+    if (currentURI != newURI) {
+      dispatch({ type: 'NAVIGATION/START' });
+
+      window.location.replace(
+        window.location.pathname + window.location.search + '#' + newURI
+      )
+    }
+  }
+}
+
+// The updated navigation reducer
+export default function navigationReducer(state = {
+  transitioning: false,
+  location: null,
+}, action) {
+  switch (action.type) {
+    case 'NAVIGATION/COMPLETE':
+      return {
+        transitioning: false,
+        location: action.location,
+      }
+
+    case 'NAVIGATION/START':
+      return {
+        transitioning: true,
+      }
+
+    default:
+      return state
+  }
+}
+
+// The updated renderer actor
+var APP_NODE = document.getElementById('react-app')
+export default function renderer(state, dispatch) {
+  if (!state.navigation.transitioning) {
+    ReactDOM.render(
+      &lt;Application state={state} dispatch={dispatch} /&gt;,
+      APP_NODE
+    )
+  }
+}
+</code></pre>
+<p>And now dispatching a <code>navigationStart</code> action before any other changes will cause <code>navigation.transitioning</code> to become <code>true</code>, preventing your app from re-rendering until the browser emits the <code>hashchange</code> event in the next tick.</p>
+<h2><a id="redirections" href="#redirections">Redirections</a></h2>
+<p>The primary use for redirection is ushering the user to the correct location after they arrive at the root URL. The actual behaviour required varies wildly between applications, so let&#8217;s just do something stupidly simple: checking the current location with an <code>if</code> statement on each change, and dispatching a <code>navigationStart</code> action if we want to initiate a redirect.</p>
+<p>As mentioned earlier, this is a perfect use case for an actor function. For example:</p>
+<pre><code>function redirector(state, dispatch) {
+  const {name, options} = state.navigation.location || {}
+  const currentURI = window.location.hash.substr(1)
+  const canonicalURI = name &amp;&amp; ROUTES.generate(name, options)
+
+  if (canonicalURI &amp;&amp; canonicalURI !== currentURI) {
+    // If the URL entered includes extra `/` characters, or otherwise
+    // differs from the canonical URL, navigate the user to the
+    // canonical URL (which will result in `complete` being called again)
+    dispatch(navigationStart(name, options))
+  }
+  else if (name == 'root') {
+    // If we've hit the root location, redirect the user to the main page
+    dispatch(navigationStart('documentList'))
+  }
+}
+</code></pre>
+<p>You&#8217;ll have noticed that I&#8217;m doing more here than just redirecting the user away from the <code>root</code> route &#8211; what is this business about <code>canonicalURI</code>?</p>
+<p>One of the features of <a href="https://github.com/unicorn-standard/uniloc">Uniloc</a> is that it can generate a URI for any route it recognises. And seeing that Uniloc knows how to strip <code>/</code> characters from the URIs you feed it, the generated URI may be different from the URI the user navigates to. While this isn&#8217;t a huge problem, it doesn&#8217;t hurt to ensure a one to one mapping between routes and URIs exists.</p>
+<p>And with that, you now know <em>everything</em> there is to know about Simple Routing! Congratulations!</p>
+<h2><a id="what-next" href="#what-next">So what should I do next?</a></h2>
+<p>Assuming you&#8217;re reading this is because you want to <em>understand</em> what is going on underneath the hood, the next thing to do is <em>practice</em>. Start a new project, type everything out by hand (no copying and pasting), and keep at it until you&#8217;ve got yourself a working app with a working router. Once you&#8217;ve built it, you&#8217;ll have no trouble doing it again.</p>
+<p>Of course, sometimes you don&#8217;t have the luxury of practicing, and you just need something which works <em>right now</em>. In this case, your next step is to clone the <a href="https://github.com/unicorn-standard/starter-kit">Unicorn Standard Starter Kit</a> &#8211; it is based on this article, and implements each of the concepts you&#8217;ve learned about.</p>
+<p>But the process of building an application doesn&#8217;t end once you have a router. You&#8217;ll then need to create UI components, fetch data from your backend, style your application and add authentication &#8212; amongst other things. I&#8217;ll be writing guides to each of these in the future, and the only way to ensure you don&#8217;t miss them is to join my Newsletter!</p>
+<p>And to sweeten the deal, in return for your e-mail address you&#8217;ll <em>immediately</em> receive three <em>print-optimised</em> PDF cheatsheets &#8211; for React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), ES6 and JavaScript promises &#8211; <em>completely free</em>!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your opinions, questions, and offers of money.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/push-state-vs-hash-based-routing-with-react-js/">Push-state vs hash-based routing</a></li>
+<li><a href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors">Introduction to Actors</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
+<li><a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0">Smart and Dumb Components</a> by Dan Abramov</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/History">HTML5 History at MDN</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li><a href="https://github.com/unicorn-standard/starter-kit">Unicorn Standard Starter Kit</a> &#8211; a boilerplate based on Simple Routing</li>
+<li><a href="https://github.com/unicorn-standard/uniloc">Uniloc</a></li>
+<li><a href="https://github.com/rackt/history">rackt/history</a></li>
+<li><a href="https://github.com/rackt/react-router">rackt/react-router</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/simple-routing-redux-react/">Simple Routing with Redux and React</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/simple-routing-redux-react/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Join The Dark Side Of The Flux: Responding to Actions with Actors</title>
+		<link>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/</link>
+					<comments>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sun, 25 Oct 2015 11:15:00 +0000</pubDate>
+				<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[React]]></category>
+		<category><![CDATA[Redux]]></category>
+		<guid isPermaLink="false">/?p=747</guid>
+
+					<description><![CDATA[<p>Have you ever wanted to respond to a change in your Redux store&#8217;s state by dispatching another action? Now you know that this is frowned on. You know that if you have enough information to dispatch an action after the reducer does its thing, then it is a mathematical certainty that you can do what... <a class="more-link" href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/">Join The Dark Side Of The Flux: Responding to Actions with Actors</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Have you ever wanted to respond to a change in your Redux store&#8217;s state by dispatching <em>another action?</em></p>
+<p>Now you <em>know</em> that this is frowned on. You know that if you have enough information to dispatch an action <em>after</em> the <a href="http://redux.js.org/docs/basics/Reducers.html">reducer</a> does its thing, then it is a mathematical certainty that you can do what you want <em>without</em> dispatching another action.</p>
+<p>But for some reason, <em>you just don&#8217;t care</em>. Maybe your store is structured in such a way that it is easier to send requests <em>after</em> an action is processed. Maybe you don&#8217;t want your <a href="http://redux.js.org/docs/basics/Actions.html">actions</a> or <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.izaxa7eri">components</a> to be in charge of fetching remote data for each new route. Or maybe you&#8217;re just a <em>dark side</em> kind of person. Whatever the reason, actors will allow you to <em>dispatch with impunity</em>.</p>
+<p><span id="more-747"></span></p>
+<h2>Why you need actors</h2>
+<p>But before we jump into the details, lets review the alternative: <code>connect</code>. Here&#8217;s an example using <a href="https://github.com/rackt/react-redux/blob/master/docs/quick-start.md#quick-start">react-redux</a>:</p>
+<pre><code>class Counter extends React.Component {
+  render() {
+    return (
+      &lt;button onClick={this.props.onIncrement}&gt;
+        {this.props.value}
+      &lt;/button&gt;
+    )
+  }
+}
+
+const CounterContainer = connect(
+  state =&gt; ({ value: state.counter }),
+  dispatch =&gt; ({ onIncrement: () =&gt; dispatch(increment()) })
+)(Counter)
+
+const targetEl = document.getElementById('root')
+
+ReactDOM.render(
+  &lt;Provider store={store}&gt;
+    &lt;CounterContainer /&gt;
+  &lt;/Provider&gt;,
+  targetEl
+)
+</code></pre>
+<p>Instead of subscribing to the store&#8217;s state and rendering the UI <em>explicitly</em>, we&#8217;ve delegated the job of re-rendering to the <code>connect</code> function. The simplicity here is beautiful, but it presents a problem to us dark-siders: <code>connect</code> renders <em>every</em> state that the connected data passes through, <em>even when we don&#8217;t want it to</em>.</p>
+<p>But don&#8217;t we <em>want</em> to render every state? Not if we&#8217;re dispatching actions after actions. For an example, what if we want to fetch out-of-date data after each action is processed?</p>
+<pre><code>store.subscribe(function fetcher() {
+  const state = store.getState()
+  const location = state.navigation.location
+
+  switch (location.name) {
+    case 'documentList':
+      if (outOfDate(state.data.documentIndex)) {
+        store.dispatch(data.document.fetchList())
+      }
+      return
+
+    case 'documentEdit':
+      if (outOfDate(state.data.document[location.id])) {
+        store.dispatch(data.document.fetch(location.id))
+      }
+      return
+    }
+  }
+})
+</code></pre>
+<p>Each time our subscriber receives a new <code>state</code>, an <em>additional</em> <code>fetch</code> action may be dispatched. This will cause your app to render once after an action is processed, and then <em>again</em> if <code>fetch</code> is dispatched. This is bad for performance, but more importantly, it will flash out-of-date data on screen &#8212; which looks <em>terrible</em>.</p>
+<p>And that&#8217;s why we need actors!</p>
+<h2>What are actors?</h2>
+<p>Actors are a sequence of functions which are called each time your store&#8217;s state changes, with one important exception: they <em>aren&#8217;t</em> called in response to actions dispatched from other actors.</p>
+<p>Each actor receives your store&#8217;s <code>dispatch</code> function and <em>current</em> <code>state</code>. The upshot of this is that if an actor dispatches an action, the next actor&#8217;s <code>state</code> will reflect the <em>result</em> of that action.</p>
+<p>If this sounds at all complicated, it won&#8217;t after you see the implementation:</p>
+<pre><code>// An array of actor functions taking a `state` object and `dispatch` function
+var actors = [ ... ]
+
+var acting = false
+store.subscribe(function() {
+  // Ensure that any action dispatched by actors do not result in a new
+  // actor run, allowing actors to dispatch with impunity.
+  if (!acting) {
+    acting = true
+    actors.forEach(function() {
+      actor(store.getState(), store.dispatch)
+    })
+    acting = false
+  }
+})
+</code></pre>
+<p>And now you can dispatch with impunity, safe in the knowledge that your final actor will receive a <code>state</code> object which takes into account any actions dispatched by previous actors.</p>
+<h2>Examples of actors</h2>
+<p>Knowing what actors are is half the battle; the rest is knowing how to use them. With that in mind, I&#8217;ve put together some examples of actors <em>I</em> use.</p>
+<h3><code>redirector(state, dispatch)</code></h3>
+<p>Redirecting is one of those things which probably should be handled before your store even knows about the new URL, i.e. in an action creator. But even so, I find this actor from the <a href="https://github.com/unicorn-standard/starter-kit/blob/master/src/actors/redirector.js">Unicorn Standard Starter Kit</a> easier to grok than any action creator based approach:</p>
+<pre><code>function redirector(state, dispatch) {
+  const {name, options} = state.navigation.location || {}
+  const currentURI = window.location.hash.substr(1)
+  const canonicalURI = name &amp;&amp; ROUTES.generate(name, options)
+
+  if (canonicalURI &amp;&amp; canonicalURI !== currentURI) {
+    // If the URL entered includes extra `/` characters, or otherwise
+    // differs from the canonical URL, navigate the user to the
+    // canonical URL (which will result in `complete` being called again)
+    dispatch(navigation.start(name, options))
+  }
+  else if (name == 'root') {
+    // If we've hit the root location, redirect the user to the main page
+    dispatch(navigation.start('documentList'))
+  }
+}
+</code></pre>
+<h3><code>fetcher(state, dispatch)</code></h3>
+<p>Say you have a route which renders data from your store, but that data needs to be fetched from an API before you can use it. How do you fetch this data?</p>
+<ul>
+<li><strong>Option 1:</strong> Call the API in the action creators which navigate to that route. Just hope that these actions are the only place you need the API.</li>
+<li><strong>Option 2:</strong> Dispatch fetch actions from your route Containers. Just hope that you don&#8217;t want to display any metadata about the fetch process &#8211; or you&#8217;ll get that pesky double-render.</li>
+<li><strong>Option 3</strong>: Make a <code>fetcher</code> Actor.</li>
+</ul>
+<p>To me, it feels like the Dark Side is actually less dark than the alternatives:</p>
+<pre><code>function fetcher(state, dispatch) {
+  const location = state.navigation.location
+
+  switch (location.name) {
+    case 'documentList':
+      if (outOfDate(state.data.documentIndex)) {
+        dispatch(data.document.fetchList())
+      }
+      return
+
+    case 'document':
+      if (outOfDate(state.data.document[location.id])) {
+        dispatch(data.document.fetch(location.id))
+      }
+      return
+    }
+  }
+}
+</code></pre>
+<h3><code>renderer(state, dispatch)</code></h3>
+<p>This is the actor which <em>every</em> application has. It usually sits at the end of your <code>actors</code> sequence, rendering the result of the preceeding actors.</p>
+<p>Your renderer can be implemented with anything: Vanilla JS, jQuery, riot.js, the list goes on. Personally, I use React:</p>
+<pre><code>var APP_NODE = document.getElementById('react-app')
+function renderer(state, dispatch) {
+  ReactDOM.render(
+    &lt;Application state={state} dispatch={dispatch} /&gt;,
+    APP_NODE
+  )
+}
+</code></pre>
+<p>But what is this <code>&lt;Application /&gt;</code> component? Think of it as a nexus; it accepts the entire application state, then uses that state to decide which view to render.</p>
+<h2>Great, but how do I make this work with my router?</h2>
+<p>If you&#8217;re using <a href="https://github.com/rackt/react-router">react-router</a>, then your <code>&lt;Router&gt;</code> component does most of the job of <code>&lt;Application&gt;</code> for you. The problem is that it doesn&#8217;t do the most <em>important</em> part; it doesn&#8217;t pass <code>state</code> or <code>dispatch</code> through to your route handlers.</p>
+<p>One solution is to wrap your <code>&lt;Router&gt;</code> component with an <code>&lt;Application&gt;</code> component which passes <code>state</code> and <code>dispatch</code> to your route handlers via a React <a href="https://facebook.github.io/react/docs/context.html">Context</a>. But if that sounds a little complex, <em>there is a simpler way</em>: doing the routing yourself!</p>
+<pre><code>function Application(props) {
+  const location = props.state.navigation.location
+
+  switch (location.name) {
+    case 'documentEdit':        
+      return &lt;DocumentContainer {...props} id={location.options.id} /&gt;
+    case 'documentList':
+      return &lt;DocumentListContainer {...props} id={location.options.id} /&gt;
+
+    default:
+      return &lt;div&gt;Not Found&lt;/div&gt;
+  }
+}
+</code></pre>
+<p>But how do you go about writing Container components now that you don&#8217;t need <code>connect</code>? How do you resolve routes and store them in <code>state.navigation</code>?</p>
+<p><em>All will be revealed in my free guide to Simple Routing with Redux and React!</em> Join my newsletter now to make sure you don&#8217;t miss out. And in return for your e-mail, you&#8217;ll <em>immediately</em> receive three <em>print-optimised</em> PDF cheatsheets &#8211; on React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), ES6, and JavaScript promises. <em>All for free!</em></p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your opinions, questions, and offers of money.</em> If you have something to say, leave a comment or send me an e-mail at <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
+<li>Learn why you need Containers: <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0">Smart and Dumb Components</a> by Dan Abramov</li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li>See actors in action in Unicorn Standard&#8217;s <a href="http://unicornstandard.com/packages/boilerplate.html">Redux/React Boilerplate</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/">Join The Dark Side Of The Flux: Responding to Actions with Actors</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/feed/</wfw:commentRss>
+			<slash:comments>7</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Can I dispatch multiple actions from Redux action creators?</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/</link>
+					<comments>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Wed, 21 Oct 2015 10:29:00 +0000</pubDate>
+				<category><![CDATA[Flux]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Redux]]></category>
+		<guid isPermaLink="false">/?p=742</guid>
+
+					<description><![CDATA[<p>When using Redux, you may have come across a scenario where you&#8217;d like one action creator to dispatch multiple actions. There are a few reasons you&#8217;d want to do this, but let&#8217;s consider the problem of handling a submit event from a form. In response, you&#8217;ll want to do multiple things. For example: RESET your... <a class="more-link" href="/can-i-dispatch-multiple-actions-from-redux-action-creators/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/can-i-dispatch-multiple-actions-from-redux-action-creators/">Can I dispatch multiple actions from Redux action creators?</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>When using Redux, you may have come across a scenario where you&#8217;d like <em>one</em> action creator to dispatch <em>multiple</em> actions.</p>
+<p>There are a few reasons you&#8217;d want to do this, but let&#8217;s consider the problem of handling a <code>submit</code> event from a form. In response, you&#8217;ll want to do multiple things. For example: <code>RESET</code> your form&#8217;s view model, <code>POST</code> your form&#8217;s data to the server, and also <code>NAVIGATE</code> to another route.</p>
+<p>So should you dispatch <em>separate</em> actions for each of these behaviours, or instead dispatch a <em>single</em> action which is handled by each of the applicable reducers?</p>
+<p><span id="more-742"></span></p>
+<hr />
+<p>Actually, this is a trick question; with the appropriate store middleware, it is possible to do both at once!</p>
+<p>How does this work? Well, no matter <em>what</em> you pass to <code>dispatch</code>, it is still a single action. <em>Even if</em> your action is an <em>array</em> of objects, or a function which can then create <em>more</em> action objects!</p>
+<h2>Dispatching functions which dispatch actions</h2>
+<p><em>But wait a moment.</em> If we were to take the example of an action creator which returns a function for the <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a> middleware, aren&#8217;t we <em>definitely</em> calling <code>dispatch</code> multiple times?</p>
+<pre><code>function submit() {
+  return function(dispatch) {
+    dispatch({
+      type: 'NAVIGATION/NAVIGATE',
+      location: {name: 'documentEdit', {id: data.id}},
+    )
+    dispatch({
+      type: 'DOCUMENT_VIEW/RESET',
+      id: data.id,
+    })
+    dispatch({
+      type: 'DOCUMENT_DATA/POST',
+      data,
+    })
+  }
+}
+</code></pre>
+<p>Indeed we are &#8211; but that doesn&#8217;t change the fact that what you originally dispatched is just a single function. All that is happening here is that redux-thunk then dispatches more actions as it processes your function.</p>
+<h2>Dispatching arrays</h2>
+<p>Things are a little more obvious if you use the <a href="https://github.com/ashaffer/redux-multi">redux-multi</a> middleware to handle arrays of action objects:</p>
+<pre><code>function submit() {
+  return [
+    {
+      type: 'NAVIGATION/NAVIGATE',
+      location: {name: 'documentEdit', {id: data.id}},
+    },
+    {
+      type: 'DOCUMENT_VIEW/RESET',
+      id: data.id,
+    },
+    {
+      type: 'DOCUMENT_DATA/POST',
+      data,
+    },
+  ]
+}
+</code></pre>
+<p>In this case, you&#8217;re clearly only dispatching one array object, even if the action objects it contains are then individually dispatched by the appropriate middleware.</p>
+<h2>Gotchas</h2>
+<p>The one thing to be careful of is that <em>one</em> call to <code>store.dispatch</code> may now result in <em>many</em> calls to your store&#8217;s subscribers:</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/yopami/embed?js,console">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.2"></script></p>
+<p>Sometimes this is what you actually want. But more likely, you only care about the last state from a given <code>dispatch</code>. In that case, batch up your listeners using the <a href="https://github.com/tappleby/redux-batched-subscribe">redux-batched-subscribe</a> store enhancer:</p>
+<pre><code>import { createStore, applyMiddleware } from 'redux'
+import reduxMulti from 'redux-multi'
+import { batchedSubscribe } from 'redux-batched-subscribe'
+
+// Add middleware to allow our action creators to return functions and arrays
+const createStoreWithMiddleware = applyMiddleware(
+  reduxThunk,
+  reduxMulti,
+)(createStore)
+
+// Ensure our listeners are only called once, even when one of the above
+// middleware call the underlying store's `dispatch` multiple times
+const createStoreWithBatching = batchedSubscribe(
+  fn =&gt; fn()
+)(createStoreWithMiddleware)
+
+const reducer = function(state = 0, action) { 
+  return state + 1
+}
+
+// Create a store with our application reducer
+const store = createStoreWithBatching(reducer)
+
+store.subscribe(function() {
+  console.log(store.getState())
+})
+
+store.dispatch([
+  { type: 'FOO' },
+  { type: 'BAR' },
+])
+
+// Output:
+// 3
+</code></pre>
+<h2>So it is OK to dispatch multiple actions from an action creator?</h2>
+<p>Yes! There is absolutely nothing wrong with doing so. Don&#8217;t worry, you&#8217;re fine.</p>
+<p><strong>But what if I want to dispatch actions in <em>listeners</em>?</strong></p>
+<p>Now you&#8217;re getting into <em>let&#8217;s have a good think about this</em> territory. Dispatching actions in <em>listeners</em> can cause fun problems like infinite loops and terrible performance.</p>
+<p>But these problems aside, dispatching actions in listeners can still certainly be <em>useful</em>. For example, you might want to fetch data based on the route you <em>arrive</em> at, not the route that you <em>think</em> you will. So wouldn&#8217;t it be great if there was a safe way to do so?</p>
+<p>And wouldn&#8217;t you believe it, there actually is! My solution is a pattern called <strong>actors</strong>, and there is a guide to it coming <em>really soon</em>. Make sure to join my newsletter, or you might miss out!</p>
+<p>And to sweeten the deal, in return for your e-mail you&#8217;ll immediately receive three <em>print-optimised</em> PDF cheatsheets &#8211; for React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), ES6 and JavaScript promises!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your opinions, questions, and offers of money.</em> If you have something to say, send <a href="https://twitter.com/james_k_nelson">@james_k_nelson</a> a tweet, or send me an e-mail at <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>. Looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li>See multiple dispatch in action in Unicorn Standard&#8217;s <a href="http://unicornstandard.com/packages/boilerplate.html">Redux/React Boilerplate</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/can-i-dispatch-multiple-actions-from-redux-action-creators/">Can I dispatch multiple actions from Redux action creators?</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/can-i-dispatch-multiple-actions-from-redux-action-creators/feed/</wfw:commentRss>
+			<slash:comments>9</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

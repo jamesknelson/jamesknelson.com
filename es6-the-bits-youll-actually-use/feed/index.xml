@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: A Quick Tour Of ES6 (Or, The Bits You&#8217;ll Actually Use)	</title>
+	<atom:link href="/es6-the-bits-youll-actually-use/feed/" rel="self" type="application/rss+xml" />
+	<link>/es6-the-bits-youll-actually-use/</link>
+	<description></description>
+	<lastBuildDate>Sat, 21 May 2016 21:07:49 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Gwyn Evans		</title>
+		<link>/es6-the-bits-youll-actually-use/#comment-20089</link>
+
+		<dc:creator><![CDATA[Gwyn Evans]]></dc:creator>
+		<pubDate>Sat, 21 May 2016 21:07:49 +0000</pubDate>
+		<guid isPermaLink="false">/?p=284#comment-20089</guid>
+
+					<description><![CDATA[Where you write &quot;You can’t emit the brackets&quot;, I think you mean &quot;omit&quot;?]]></description>
+			<content:encoded><![CDATA[<p>Where you write &#8220;You can’t emit the brackets&#8221;, I think you mean &#8220;omit&#8221;?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Marc Cornellà		</title>
+		<link>/es6-the-bits-youll-actually-use/#comment-19364</link>
+
+		<dc:creator><![CDATA[Marc Cornellà]]></dc:creator>
+		<pubDate>Thu, 05 May 2016 12:29:05 +0000</pubDate>
+		<guid isPermaLink="false">/?p=284#comment-19364</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/es6-the-bits-youll-actually-use/#comment-19363&quot;&gt;Marc Cornellà&lt;/a&gt;.
+
+Same on the RaisedButton.jsx: https://github.com/jamesknelson/numbat-ui/blob/6d5e2f8dc347c51f2c268fede0725906babdf9f7/src/components/RaisedButton/RaisedButton.jsx#L53]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/es6-the-bits-youll-actually-use/#comment-19363">Marc Cornellà</a>.</p>
+<p>Same on the RaisedButton.jsx: <a href="https://github.com/jamesknelson/numbat-ui/blob/6d5e2f8dc347c51f2c268fede0725906babdf9f7/src/components/RaisedButton/RaisedButton.jsx#L53" rel="nofollow ugc">https://github.com/jamesknelson/numbat-ui/blob/6d5e2f8dc347c51f2c268fede0725906babdf9f7/src/components/RaisedButton/RaisedButton.jsx#L53</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Marc Cornellà		</title>
+		<link>/es6-the-bits-youll-actually-use/#comment-19363</link>
+
+		<dc:creator><![CDATA[Marc Cornellà]]></dc:creator>
+		<pubDate>Thu, 05 May 2016 12:24:37 +0000</pubDate>
+		<guid isPermaLink="false">/?p=284#comment-19363</guid>
+
+					<description><![CDATA[The snippet in the arrow functions is now found in SelectRipple.jsx#L82:
+
+https://github.com/jamesknelson/numbat-ui/blob/c8c68996c4b2300b7e3a50ff0c69c16bef564b05/src/components/SelectRipple/SelectRipple.jsx#L82
+
+A trick when linking to GitHub code: you can get the permalink to the current master commit by pressing &#039;Y&#039;, which will replace the &#039;master&#039; in the URL to the actual commit hash.
+
+Great post!]]></description>
+			<content:encoded><![CDATA[<p>The snippet in the arrow functions is now found in SelectRipple.jsx#L82:</p>
+<p><a href="https://github.com/jamesknelson/numbat-ui/blob/c8c68996c4b2300b7e3a50ff0c69c16bef564b05/src/components/SelectRipple/SelectRipple.jsx#L82" rel="nofollow ugc">https://github.com/jamesknelson/numbat-ui/blob/c8c68996c4b2300b7e3a50ff0c69c16bef564b05/src/components/SelectRipple/SelectRipple.jsx#L82</a></p>
+<p>A trick when linking to GitHub code: you can get the permalink to the current master commit by pressing &#8216;Y&#8217;, which will replace the &#8216;master&#8217; in the URL to the actual commit hash.</p>
+<p>Great post!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/es6-the-bits-youll-actually-use/#comment-4144</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2015 23:18:57 +0000</pubDate>
+		<guid isPermaLink="false">/?p=284#comment-4144</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/es6-the-bits-youll-actually-use/#comment-4129&quot;&gt;Brook Monroe&lt;/a&gt;.
+
+Thanks!]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/es6-the-bits-youll-actually-use/#comment-4129">Brook Monroe</a>.</p>
+<p>Thanks!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Brook Monroe		</title>
+		<link>/es6-the-bits-youll-actually-use/#comment-4129</link>
+
+		<dc:creator><![CDATA[Brook Monroe]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2015 17:37:57 +0000</pubDate>
+		<guid isPermaLink="false">/?p=284#comment-4129</guid>
+
+					<description><![CDATA[&quot;i.e. strings delimeted by...&quot;
+
+*delimited]]></description>
+			<content:encoded><![CDATA[<p>&#8220;i.e. strings delimeted by&#8230;&#8221;</p>
+<p>*delimited</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Hans Schenker		</title>
+		<link>/es6-the-bits-youll-actually-use/#comment-3224</link>
+
+		<dc:creator><![CDATA[Hans Schenker]]></dc:creator>
+		<pubDate>Thu, 22 Oct 2015 04:44:32 +0000</pubDate>
+		<guid isPermaLink="false">/?p=284#comment-3224</guid>
+
+					<description><![CDATA[Beautiful Design and valuable Content!
+Congratulations!!]]></description>
+			<content:encoded><![CDATA[<p>Beautiful Design and valuable Content!<br />
+Congratulations!!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: jamesknelson		</title>
+		<link>/es6-the-bits-youll-actually-use/#comment-793</link>
+
+		<dc:creator><![CDATA[jamesknelson]]></dc:creator>
+		<pubDate>Tue, 14 Jul 2015 10:54:00 +0000</pubDate>
+		<guid isPermaLink="false">/?p=284#comment-793</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/es6-the-bits-youll-actually-use/#comment-697&quot;&gt;Chad&lt;/a&gt;.
+
+Oops, well caught. Thanks.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/es6-the-bits-youll-actually-use/#comment-697">Chad</a>.</p>
+<p>Oops, well caught. Thanks.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Chad		</title>
+		<link>/es6-the-bits-youll-actually-use/#comment-697</link>
+
+		<dc:creator><![CDATA[Chad]]></dc:creator>
+		<pubDate>Tue, 07 Jul 2015 16:53:46 +0000</pubDate>
+		<guid isPermaLink="false">/?p=284#comment-697</guid>
+
+					<description><![CDATA[Minor comment, your link to &quot;Symbols&quot; actually points to the MDN resource for &quot;Maps&quot;]]></description>
+			<content:encoded><![CDATA[<p>Minor comment, your link to &#8220;Symbols&#8221; actually points to the MDN resource for &#8220;Maps&#8221;</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

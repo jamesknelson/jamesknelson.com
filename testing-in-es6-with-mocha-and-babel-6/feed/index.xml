@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Testing in ES6 with Mocha and Babel 6	</title>
+	<atom:link href="/testing-in-es6-with-mocha-and-babel-6/feed/" rel="self" type="application/rss+xml" />
+	<link>/testing-in-es6-with-mocha-and-babel-6/</link>
+	<description></description>
+	<lastBuildDate>Tue, 18 Oct 2016 01:49:27 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Larry		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-23876</link>
+
+		<dc:creator><![CDATA[Larry]]></dc:creator>
+		<pubDate>Tue, 18 Oct 2016 01:49:27 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-23876</guid>
+
+					<description><![CDATA[Is there any way to tell Babel not to parse certain files: eg: 
+SyntaxError: /Users/larry/Projects/Dynamic-Traveler-2/app/assets/base/interface/move-folder.png: Unexpected character &#039;�&#039; (1:0)
+�PNG
+
+The component I am testing imports images]]></description>
+			<content:encoded><![CDATA[<p>Is there any way to tell Babel not to parse certain files: eg:<br />
+SyntaxError: /Users/larry/Projects/Dynamic-Traveler-2/app/assets/base/interface/move-folder.png: Unexpected character &#8216;�&#8217; (1:0)<br />
+�PNG</p>
+<p>The component I am testing imports images</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Kevin		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-23404</link>
+
+		<dc:creator><![CDATA[Kevin]]></dc:creator>
+		<pubDate>Thu, 22 Sep 2016 18:38:05 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-23404</guid>
+
+					<description><![CDATA[My tests fail because babel changes certain variables to be prefixed with an underscore.
+
+So &#039;myVar&#039; will become &#039;_myVar&#039;.
+
+My problem is that when I transpile my tests with babel, the same rules don&#039;t always apply. 
+
+So in a test that injects a variable called myVar into an angular controller that has been changed to _myVar, everything breaks.
+
+I can&#039;t figure out how to fix this.]]></description>
+			<content:encoded><![CDATA[<p>My tests fail because babel changes certain variables to be prefixed with an underscore.</p>
+<p>So &#8216;myVar&#8217; will become &#8216;_myVar&#8217;.</p>
+<p>My problem is that when I transpile my tests with babel, the same rules don&#8217;t always apply. </p>
+<p>So in a test that injects a variable called myVar into an angular controller that has been changed to _myVar, everything breaks.</p>
+<p>I can&#8217;t figure out how to fix this.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: craig		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-23353</link>
+
+		<dc:creator><![CDATA[craig]]></dc:creator>
+		<pubDate>Tue, 20 Sep 2016 18:16:41 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-23353</guid>
+
+					<description><![CDATA[you have a demo code for this.  I tried this but keep getting error. I made a demo of code on github see if people can help debug. https://github.com/craigcosmo/react-redux-test]]></description>
+			<content:encoded><![CDATA[<p>you have a demo code for this.  I tried this but keep getting error. I made a demo of code on github see if people can help debug. <a href="https://github.com/craigcosmo/react-redux-test" rel="nofollow ugc">https://github.com/craigcosmo/react-redux-test</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: cmdcolin		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-22420</link>
+
+		<dc:creator><![CDATA[cmdcolin]]></dc:creator>
+		<pubDate>Tue, 02 Aug 2016 19:44:34 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-22420</guid>
+
+					<description><![CDATA[Thanks much for the article
+
+I was also seeing errors during mocha tests saying &quot;Unexpected token export&quot;, which were pointing to when external modules that contained es6 code. I fixed this error by adding this to the top of my mocha test script
+
+require(&quot;babel-register&quot;)({
+  ignore: false
+});
+
+Source: See note about node_modules being ignored by babel-register here https://babeljs.io/docs/usage/require/
+
+Not sure how ideal this setup is but it worked for me!]]></description>
+			<content:encoded><![CDATA[<p>Thanks much for the article</p>
+<p>I was also seeing errors during mocha tests saying &#8220;Unexpected token export&#8221;, which were pointing to when external modules that contained es6 code. I fixed this error by adding this to the top of my mocha test script</p>
+<p>require(&#8220;babel-register&#8221;)({<br />
+  ignore: false<br />
+});</p>
+<p>Source: See note about node_modules being ignored by babel-register here <a href="https://babeljs.io/docs/usage/require/" rel="nofollow ugc">https://babeljs.io/docs/usage/require/</a></p>
+<p>Not sure how ideal this setup is but it worked for me!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Frank		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-22414</link>
+
+		<dc:creator><![CDATA[Frank]]></dc:creator>
+		<pubDate>Tue, 02 Aug 2016 11:47:46 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-22414</guid>
+
+					<description><![CDATA[From what I gather, babel recommends using babel-runtime for libraries rather than babel-polypill. I understand the argument that tests are not going to be shared with the consumers though is there a way to leverage babel-runtime with Mocha instead of needing the polyfills in the tests ?]]></description>
+			<content:encoded><![CDATA[<p>From what I gather, babel recommends using babel-runtime for libraries rather than babel-polypill. I understand the argument that tests are not going to be shared with the consumers though is there a way to leverage babel-runtime with Mocha instead of needing the polyfills in the tests ?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Chris		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-6522</link>
+
+		<dc:creator><![CDATA[Chris]]></dc:creator>
+		<pubDate>Wed, 30 Dec 2015 14:48:46 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-6522</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/testing-in-es6-with-mocha-and-babel-6/#comment-5604&quot;&gt;Albert Yu&lt;/a&gt;.
+
+yes you can. Just add the watch option: 
+$ mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive --watch&quot;]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/testing-in-es6-with-mocha-and-babel-6/#comment-5604">Albert Yu</a>.</p>
+<p>yes you can. Just add the watch option:<br />
+$ mocha &#8211;compilers js:babel-core/register &#8211;require ./test/test_helper.js &#8211;recursive &#8211;watch&#8221;</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Albert Yu		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-5605</link>
+
+		<dc:creator><![CDATA[Albert Yu]]></dc:creator>
+		<pubDate>Wed, 16 Dec 2015 07:22:35 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-5605</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/testing-in-es6-with-mocha-and-babel-6/#comment-4535&quot;&gt;Jithin&lt;/a&gt;.
+
+Yes, `mocha --require babel-register` will works as well.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/testing-in-es6-with-mocha-and-babel-6/#comment-4535">Jithin</a>.</p>
+<p>Yes, `mocha &#8211;require babel-register` will works as well.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Albert Yu		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-5604</link>
+
+		<dc:creator><![CDATA[Albert Yu]]></dc:creator>
+		<pubDate>Wed, 16 Dec 2015 07:21:52 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-5604</guid>
+
+					<description><![CDATA[Can you make `mocha --watch` works with babel?]]></description>
+			<content:encoded><![CDATA[<p>Can you make `mocha &#8211;watch` works with babel?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jithin		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-4535</link>
+
+		<dc:creator><![CDATA[Jithin]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2015 18:12:13 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-4535</guid>
+
+					<description><![CDATA[With babel 5.x. I was able to use require hook via mocha --require option.
+I used to have a js file where I do require(&#039;babel-core/register&#039;, options).
+Is that approach changed with babel 6.x ? I was relying on babel option &quot;resolveModuleSource&quot; to make by tests play nice with System.js plugins I was using.]]></description>
+			<content:encoded><![CDATA[<p>With babel 5.x. I was able to use require hook via mocha &#8211;require option.<br />
+I used to have a js file where I do require(&#8216;babel-core/register&#8217;, options).<br />
+Is that approach changed with babel 6.x ? I was relying on babel option &#8220;resolveModuleSource&#8221; to make by tests play nice with System.js plugins I was using.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Crogo		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-4126</link>
+
+		<dc:creator><![CDATA[Crogo]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2015 16:05:39 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-4126</guid>
+
+					<description><![CDATA[According to babel-core&#039;s source, babel-register will be the new standard for the require hook :
+
+ `npm install babel-register --save-dev`
+`mocha --compilers js:babel-register`
+
+Works fine for me !]]></description>
+			<content:encoded><![CDATA[<p>According to babel-core&#8217;s source, babel-register will be the new standard for the require hook :</p>
+<p> `npm install babel-register &#8211;save-dev`<br />
+`mocha &#8211;compilers js:babel-register`</p>
+<p>Works fine for me !</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

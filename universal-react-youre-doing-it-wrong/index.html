@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>Universal React: You&#039;re doing it wrong</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content=""> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Given that React runs on both the server side *and* the client side, it seems that making a Universal app is a no-brainer. But why?">
+<link rel="canonical" href="/universal-react-youre-doing-it-wrong/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Universal React: You&#039;re doing it wrong">
+<meta property="og:description" content="Given that React runs on both the server side *and* the client side, it seems that making a Universal app is a no-brainer. But why?">
+<meta property="og:url" content="httpjamesknelson.com/universal-react-youre-doing-it-wrong/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="Javascript">
+<meta property="article:published_time" content="2016-03-19T08:29:33+00:00">
+<meta property="article:modified_time" content="2016-03-21T11:38:41+00:00">
+<meta property="og:updated_time" content="2016-03-21T11:38:41+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Given that React runs on both the server side *and* the client side, it seems that making a Universal app is a no-brainer. But why?">
+<meta name="twitter:title" content="Universal React: You&#039;re doing it wrong">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Universal React: You&#8217;re doing it wrong Comments Feed" href="/universal-react-youre-doing-it-wrong/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/975">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=975">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Funiversal-react-youre-doing-it-wrong%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Funiversal-react-youre-doing-it-wrong%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-975 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-975" class="clearfix post-975 post type-post status-publish format-standard hentry category-javascript category-react">
+								<header class="entry-header">
+																		<h1 class="entry-title">Universal React: You&#8217;re doing it wrong</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/javascript/" rel="category tag">Javascript</a>, <a href="/category/react/" rel="category tag">React</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/universal-react-youre-doing-it-wrong/" title="8:29 am" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">March 19, 2016</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p>So you&#8217;ve got the React basics down, and you&#8217;ve decided to put together an app. Given that React runs on both the server side <em>and</em> the client side, it seems that making a Universal (or Isomorphic) app is a no-brainer. Or it did until you&#8217;d spend hours trying to figure out how to set up Node.JS and Express, and make it distinguish between requests for JSON and HTML. And that&#8217;s if you&#8217;re lucky enough to not already have a server written in Rails or Java &#8211; at which point you&#8217;re probably considering rewriting your entire backend. <em>But wasn&#8217;t Universal supposed to be a no-brainer?</em></p>
+<p>While rendering server-side certainly has its benefits, they are by no means&#8230; universal. So the question is: should <em>your</em> app be Universal?</p>
+<p><span id="more-975"></span></p>
+<p>And the answer is: <strong>probably not</strong>. Universal apps introduce a huge amount of complexity. They require you to spend more of your time on maintenance, and less on features. And this isn&#8217;t to mention the limitation of requiring your app to be served by Node.js.</p>
+<p>Of course, there are cases where this complexity may be justified. In particular:</p>
+<ol>
+<li>
+<p>If your app&#8217;s content needs to be indexed by Google, it is valuable to be able to control the HTML which Google sees. Rendering server-side allows you to do this.</p>
+<p><em>Edit 19th March: Google Developer Advocate <a href="https://twitter.com/Paul_Kinlan">Paul Kinlan</a> wrote to say that <a href="https://twitter.com/Paul_Kinlan/status/711146446452424704">this is no longer the case</a> &#8211; Google now crawls JavaScript-rendered content just fine.  Even one less reason to write Universal apps.</em></p>
+<p><em>Edit 21st March: <a href="https://twitter.com/cpojer">Christoph Pojer</a> from Instagram <a href="https://twitter.com/cpojer/status/711729444323332096">tweeted</a> that at they&#8217;re still finding it useful for SEO.</em></p>
+</li>
+<li>
+<p>If you&#8217;re at the point where <em>every millisecond</em> of page load causes a measurable decrease in revenue, server-side rendering can make things appear on your user&#8217;s screens faster.</p>
+</li>
+<li>
+<p>If you have important users whose device is too under-powered to support JavaScript, Universal may be your only option.</p>
+</li>
+</ol>
+<p>In short, Universal apps make sense when they solve a real problem. They&#8217;re not the goal in and of themselves.</p>
+<h2>Common objection #1: But Facebook is Universal</h2>
+<p>Yes, and you&#8217;re (probably) not Facebook. What makes sense for them doesn&#8217;t necessarily make sense for you. Do <em>you</em> have millions of users and thousands of engineers?</p>
+<p><em>Edit 21st March: Dan Abramov <a href="https://twitter.com/dan_abramov/status/711708653871624192">tweeted</a> that Facebook does not actually use Node-based server rendering. And while Instagram <a href="https://twitter.com/cpojer/status/711729444323332096">uses server-side rendering for SEO</a>, they find it <a href="https://twitter.com/cpojer/status/711729444323332096">does not</a> have a measurable impact on User experience.</em></p>
+<h2>Common objection #2: But my React starter kit is already Universal</h2>
+<p>Great, so you can save a few hours while setting things up. But you&#8217;ll also lose a few hours figuring out what all the extra code actually <em>does</em>. And that&#8217;s before you lose weeks on maintaining a completely superfluous Node.js app.</p>
+<h2>Common objection #3: But Universal apps are <em>better</em>
+</h2>
+<p>Sure, I&#8217;ll let you have this one. Universal apps load faster, support more devices, and provide a better user experience. But this all comes with an opportunity cost.</p>
+<p>What other features could you have added with the time you spent on your universal app? What other performance tweaks could you have made? <em>How much earlier could you have actually shipped?</em></p>
+<p>I know it is a little cliche, but the best apps are the ones which <em>actually exist</em>. So if you&#8217;re thinking of creating a Universal app, do yourself a favour and make sure you actually have a bloody good reason. Otherwise, treat yourself to a beer or something. Given all the time you&#8217;re saving yourself, you deserve it.</p>
+<p>And once you&#8217;ve done that,  join my mailing list to make sure you hear about other beer-worthy time saving tips. You&#8217;ll also receive three <em>bonus</em> print-optimised PDF cheatsheets &#8211; on React <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">(see preview)</a>, ES6 and JavaScript promises. Hell, that is worth a beer in itself!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<p><em>Have something to say? I love hearing your questions and offers! Leave a comment or send me an e-mail at <a href="/universal-react-youre-doing-it-wrong/&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>. I&#8217;m looking forward to hearing from you!</em></p>
+<h2>Other things you don&#8217;t have to do:</h2>
+<ul>
+<li><a href="/why-you-shouldnt-style-with-javascript/">Why You Shouldn’t Style React Components With JavaScript</a></li>
+<li><a href="/push-state-vs-hash-based-routing-with-react-js/">Why You Don&#8217;t Have To Use Push State</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React &#8211; without JSX, Flux, ES6, Webpack</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li><a href="https://github.com/unicorn-standard/starter-kit">Start a <em>non-Universal</em> React project with Unicorn Standard Starter Kit</a></li>
+</ul>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/react-babel-cheatsheet/" rel="prev"><span class="meta-nav">&#8592;</span> React with Babel Cheatsheet</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/learned-stop-worrying-love-jsx/" rel="next">How I learned to stop worrying and love the JSX <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					19 Comments <span class="on">&#8594;</span> <span>Universal React: You&#8217;re doing it wrong</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-16104">
+						<article id="comment-16104" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://simevidas.com/" rel="external nofollow ugc" class="url">Šime Vidas</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16104"><time datetime="2016-03-19T16:02:46+00:00">March 19, 2016 at 4:02 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I’m not a React developer, so I’m not informed, but if it’s really that complex and time-consuming to set up server-rendering in React, then that’s something that needs to be fixed asap. As you say, it makes apps “load faster, support more devices, and provide a better user experience”, so you must see that it’s not a “nice to have” feature, but something that should be a standard for web apps. I’d go as far as to say, that it’s a critical quality of web apps.</p>
+<p>I get that you want to give good practical advice, but if the advice is that it’s probably not a good idea to invest time in serve-rendering, than that’s a severe limitation of React “ecosystem”, imo, and we as web developers have the responsibility to point that out, at any given opportunity.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16104" data-commentid="16104" data-postid="975" data-belowelement="comment-16104" data-respondelement="respond" data-replyto="Reply to Šime Vidas" aria-label="Reply to Šime Vidas">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-16131">
+						<article id="comment-16131" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/02e628bb7aeca670e89ab2c87617b086?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/02e628bb7aeca670e89ab2c87617b086?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Pavol Fulop </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16131"><time datetime="2016-03-19T18:09:02+00:00">March 19, 2016 at 6:09 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I started using react not even a month ago,  and I would say yes it is back then, now I&#8217;d just say not that much. </p>
+<p>The main problem is, there is no definitive way how to do it, so you either grab boilerplate as author said or try yourself and try to figure out the best way. </p>
+<p>I took the simplest boilerplate and tried to understand it.  It took couple hours and then it took even more trying to put something I need into it. </p>
+<p>I would say first universal is hard and really time consuming.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16131" data-commentid="16131" data-postid="975" data-belowelement="comment-16131" data-respondelement="respond" data-replyto="Reply to Pavol Fulop" aria-label="Reply to Pavol Fulop">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even depth-2" id="li-comment-16526">
+						<article id="comment-16526" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/86e9c8776b5b9449217ec53d09834b97?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/86e9c8776b5b9449217ec53d09834b97?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Erick Maynard </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16526"><time datetime="2016-03-21T19:08:54+00:00">March 21, 2016 at 7:08 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>The performance increases you gain 99% of the time aren&#8217;t even worth it.  And when using it in situations where you would actually utilize the performance increases, even the front end code can get so complicated that it can be difficult to remember where everything goes, especially the data. Having to pass your data from the top component all the way down, sometimes through a half dozen to a dozen children, get exceedingly tedious and confusing.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16526" data-commentid="16526" data-postid="975" data-belowelement="comment-16526" data-respondelement="respond" data-replyto="Reply to Erick Maynard" aria-label="Reply to Erick Maynard">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt depth-2" id="li-comment-23310">
+						<article id="comment-23310" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/b61015f2b07ed0be4478713bed9348ef?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b61015f2b07ed0be4478713bed9348ef?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://rill.site/" rel="external nofollow ugc" class="url">Dylan Piercey</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-23310"><time datetime="2016-09-18T01:48:58+00:00">September 18, 2016 at 1:48 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I think the configuration required to make isomorphic javascript work is ridiculous so I made a framework that abstracts most difference between client and server side code so you can just write JavaScript.</p>
+<p>If any one is interested in a modern isomorphic routing solution that is similar to express and alleviates much of the headache I recommend you checkout <a href="https://rill.site/" rel="nofollow ugc">https://rill.site</a>.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23310" data-commentid="23310" data-postid="975" data-belowelement="comment-23310" data-respondelement="respond" data-replyto="Reply to Dylan Piercey" aria-label="Reply to Dylan Piercey">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-16151">
+						<article id="comment-16151" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/b3d0d27c01d183d7770c060f5e29e9ad?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b3d0d27c01d183d7770c060f5e29e9ad?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://tracker1.info/" rel="external nofollow ugc" class="url">MichaeL J. Ryan</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16151"><time datetime="2016-03-19T20:07:17+00:00">March 19, 2016 at 8:07 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>You make a couple of assumptions&#8230;  First of which is that universal react code is any harder, or significantly more difficult to learn than any new framework for server-side development.  It isn&#8217;t.</p>
+<p>The second is that node is significantly more difficult to run in production than, Java, in your example.</p>
+<p>I feel that you&#8217;re wrong on both counts&#8230; I&#8217;m not saying your conclusion is wrong&#8230; most of the time, &#8220;universal apps&#8221; when you&#8217;re looking for an SPA experience isn&#8217;t worth it, or needed&#8230; but your assumptions are very wrong.</p>
+<p>Also, even though google does JS rendering as part of it&#8217;s search, it tends to lag significantly behind it&#8217;s non-js rendering (usually days), if your leading content is time sensitive, you still want server rendering (universal or not).</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16151" data-commentid="16151" data-postid="975" data-belowelement="comment-16151" data-respondelement="respond" data-replyto="Reply to MichaeL J. Ryan" aria-label="Reply to MichaeL J. Ryan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-16176">
+						<article id="comment-16176" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://simevidas.com/" rel="external nofollow ugc" class="url">Šime Vidas</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16176"><time datetime="2016-03-19T23:16:07+00:00">March 19, 2016 at 11:16 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hey Michael, could you give an example of when the content is not time sensitive? I’m having a hard time understanding that kind of thinking.</p>
+<p>I think, it has been established that users increasingly close apps which take a long(er) time to load; hence, Google’s Chrome team is promoting a rule of “1 second to first render”. This goal is hard to reach on mobile without server-rendering, even on a good connection. </p>
+<p>With that being said, I don’t see how server-rendering can left be out of the picture, or only included conditionally, for “time sensitive” content.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16176" data-commentid="16176" data-postid="975" data-belowelement="comment-16176" data-respondelement="respond" data-replyto="Reply to Šime Vidas" aria-label="Reply to Šime Vidas">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor even depth-3" id="li-comment-16199">
+						<article id="comment-16199" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/universal-react-youre-doing-it-wrong/#comment-16199"><time datetime="2016-03-20T01:09:09+00:00">March 20, 2016 at 1:09 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Here are a few examples of content which is not time sensitive:</p>
+<ul>
+<li>Intranet apps</li>
+<li>SaaS apps hidden behind login screens</li>
+<li>Apps which are not generally arrived at via search</li>
+</ul>
+<p>Or in general, apps are probably less time sensitive than pages. And a lot of React code is for apps.</p>
+<p>If you&#8217;re making something which *is* exposed to the public via search, I don&#8217;t think Universal is really such a bad idea. That&#8217;s why I mentioned the exception of where page load time causes a measurable decrease in revenue. The key here is <em>measurable</em>. While the benefit is probably pretty obvious on public-facing content, I&#8217;m not so sure it is on the apps a lot of people are building.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16199" data-commentid="16199" data-postid="975" data-belowelement="comment-16199" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-16425">
+						<article id="comment-16425" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/48f19bef56a823f30827e7d879af3a42?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/48f19bef56a823f30827e7d879af3a42?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.amoderndev.com/" rel="external nofollow ugc" class="url">Ali</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16425"><time datetime="2016-03-21T03:40:00+00:00">March 21, 2016 at 3:40 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This was great &#8211; especially for people like me that might be overwhelmed by feeling the need to learn everything at once instead of letting the pain points present themselves organically.  Still find your articles some of the most educational out there.  Good job.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16425" data-commentid="16425" data-postid="975" data-belowelement="comment-16425" data-respondelement="respond" data-replyto="Reply to Ali" aria-label="Reply to Ali">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-16488">
+						<article id="comment-16488" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/8cbff99728666d7b4977363c411cd0bc?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/8cbff99728666d7b4977363c411cd0bc?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">luca </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16488"><time datetime="2016-03-21T12:09:41+00:00">March 21, 2016 at 12:09 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks for the article. Although you need to keep in mind that once you have your boilerplate set up, creating an universal application is really easy and takes literally minutes to set up.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16488" data-commentid="16488" data-postid="975" data-belowelement="comment-16488" data-respondelement="respond" data-replyto="Reply to luca" aria-label="Reply to luca">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-16534">
+						<article id="comment-16534" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/936cd500da722cece18c16453bd338d2?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/936cd500da722cece18c16453bd338d2?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://github.com/este/este" rel="external nofollow ugc" class="url">Daniel Steigerwald</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16534"><time datetime="2016-03-21T21:08:12+00:00">March 21, 2016 at 9:08 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>You are describing isomorphic (client and server) apps, not universal (plus desktop or native mobile). Yeah it&#8217;s not easy to set it, but once you have universal stack, it&#8217;s pure love. Check my Este, code shared between all platforms easily, no magic. As for Google indexing, parsing static HTML will be always faster than running virtual browser to parse JS generated HTML, so Google will index it much faster. Btw, check este gulp to-html task. Server side rendering is even convenient for static serverless sites / app because all that DX (hot reloading, configuration, etc.)</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16534" data-commentid="16534" data-postid="975" data-belowelement="comment-16534" data-respondelement="respond" data-replyto="Reply to Daniel Steigerwald" aria-label="Reply to Daniel Steigerwald">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-2" id="li-comment-20467">
+						<article id="comment-20467" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/e4343e9411f02ba88b273b68bdbfc308?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/e4343e9411f02ba88b273b68bdbfc308?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://androidideas.org/" rel="external nofollow ugc" class="url">Ken Fehling</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-20467"><time datetime="2016-05-31T01:27:12+00:00">May 31, 2016 at 1:27 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Este is beautiful! Thank you for making this.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-20467" data-commentid="20467" data-postid="975" data-belowelement="comment-20467" data-respondelement="respond" data-replyto="Reply to Ken Fehling" aria-label="Reply to Ken Fehling">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-16586">
+						<article id="comment-16586" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/6f12b2d2b3221d1e8705520e7e7aec30?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/6f12b2d2b3221d1e8705520e7e7aec30?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.jackcallister.com/" rel="external nofollow ugc" class="url">Jack Callister</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16586"><time datetime="2016-03-22T10:27:10+00:00">March 22, 2016 at 10:27 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>It&#8217;s nice to see some opposing ideas being floated about. After all React&#8217;s mantra is rethinking best practices. It seems easy to get caught up in the idea that your application should be a fully JavaScript rendered SPA without considering the user requirements and technical overhead. </p>
+<p>I&#8217;ve fallen into this trap and regretted it as working with server side templates is often a lot easier, reliable and faster &#8211; especially for non-interactive components. With that lesson I now find myself working with smaller &#8220;speckles&#8221; of interaction across the page and push JavaScript components to the edge rather than make them the focus of the application. Often that doesn&#8217;t require server side rendering but if it does it&#8217;s usually simple to set up (with Node) if not passing down a data payload and rendering client side is quite sufficient.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16586" data-commentid="16586" data-postid="975" data-belowelement="comment-16586" data-respondelement="respond" data-replyto="Reply to Jack Callister" aria-label="Reply to Jack Callister">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-16597">
+						<article id="comment-16597" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c3d3c2a46ce19898e06a7c8fa1a2297c?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c3d3c2a46ce19898e06a7c8fa1a2297c?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">abac </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16597"><time datetime="2016-03-22T13:16:08+00:00">March 22, 2016 at 1:16 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This means you would serve the same file regardless of route (a .html file with basic html and a body with a div where the app should render)? IF so there&#8217;s more issues, like if you want to set different sharing attributes for different urls, and different title/descriptions in your head.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16597" data-commentid="16597" data-postid="975" data-belowelement="comment-16597" data-respondelement="respond" data-replyto="Reply to abac" aria-label="Reply to abac">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-16777">
+						<article id="comment-16777" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/1d2d939c88abd55ab24736f272bbe323?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/1d2d939c88abd55ab24736f272bbe323?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://entire.life/" rel="external nofollow ugc" class="url">Chad Ostrowski</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16777"><time datetime="2016-03-24T20:26:44+00:00">March 24, 2016 at 8:26 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I agree with a much of this. Thanks for writing it. An objection you didn&#8217;t mention: JS-rendered apps can&#8217;t have customized metadata &amp; &#8220;og:image&#8221; tags &amp; such on each page. If a product wants to promote sharing of their content, and wants it to show up well when links are pasted into Twitter, Facebook, Slack, whatever—these are a must. This was actually THE reason I invested a month in turning <a href="https://entire.life/" rel="nofollow ugc">https://entire.life</a> into a Universally Rendered app. Those meta tags are an important part of viral marketing!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16777" data-commentid="16777" data-postid="975" data-belowelement="comment-16777" data-respondelement="respond" data-replyto="Reply to Chad Ostrowski" aria-label="Reply to Chad Ostrowski">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-2" id="li-comment-16778">
+						<article id="comment-16778" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/1d2d939c88abd55ab24736f272bbe323?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/1d2d939c88abd55ab24736f272bbe323?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://entire.life/" rel="external nofollow ugc" class="url">Chad Ostrowski</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16778"><time datetime="2016-03-24T20:28:22+00:00">March 24, 2016 at 8:28 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>(Ok, it wasn&#8217;t the only reason. Also, all the reasons mentioned in this article: “load faster, support more devices, and provide a better user experience”)</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16778" data-commentid="16778" data-postid="975" data-belowelement="comment-16778" data-respondelement="respond" data-replyto="Reply to Chad Ostrowski" aria-label="Reply to Chad Ostrowski">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-16783">
+						<article id="comment-16783" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/cae64c852c7b4705e5f5d68280092a77?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/cae64c852c7b4705e5f5d68280092a77?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://github.com/pluma" rel="external nofollow ugc" class="url">Alan</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-16783"><time datetime="2016-03-24T21:15:29+00:00">March 24, 2016 at 9:15 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>You misunderstand the benefits of server-side rendering, but I don&#8217;t blame you: most people do.</p>
+<p>Because client-side frameworks have trained us to accept server-side rendering as an impossibility or at best a crutch, this isn&#8217;t surprising. But before the rise of client-side frameworks (i.e. before &#8220;Web 2.0&#8221;, when interactive JS was often just called &#8220;AJAX&#8221; or even &#8220;DHTML&#8221;) it was unthinkable to serve a bootstrapper/placeholder page and then have the actual code kick in and render the page.</p>
+<p>It&#8217;s true that server-side rendering isn&#8217;t strictly necessary to build a React app. It&#8217;s also true that there are scenarios where server-side rendering provides no tangible benefit at all (e.g. an intranet application exclusively used by desktop users with a stable and fast connection).</p>
+<p>However unlike previous attempts for Angular or Ember, React server-side rendering is not just about &#8220;pre-rendering&#8221; or avoiding placeholder pages. It&#8217;s not simply about SEO. It&#8217;s not about users who intentionally disable JavaScript or who use archaic browsers that don&#8217;t fully support the baseline level of JavaScript your app requires.</p>
+<p>You need to think of server-side React separately from client-side React. React server-side rendering is a perfectly valid substitute for traditional server-side templates. Instead of generating and updating a DOM tree like React for the browser does, React for the server generates HTML markup. The only difference between ReactDOM vs ReactDOM/Server and ReactDOM vs ReactNative is that ReactDOM/Server is almost completely a strict subset of ReactDOM, just with a different output.</p>
+<p>You&#8217;re not &#8220;rendering your client app on the server&#8221;, you&#8217;re building an app that works both on the server and in the client. That&#8217;s why it&#8217;s called &#8220;isomorphic&#8221; or &#8220;universal&#8221;: it&#8217;s an app that uses a single code base (with possible branching points or multiple entry points) to run either in a browser environment (rendering into the DOM) or a server environment (generating HTML).</p>
+<p>This means you can have a hybrid between a traditional server-side application and a client-side application. You can have all the flexibility and responsiveness of a client-side application without giving up on the reliability and universal performance of a server-side application.</p>
+<p>If you don&#8217;t live in the Bay Area microcosm and if you ever need to use apps on the go, flaky Internet connections are a reality. They are the weak spot of client-side apps &#8212; even &#8220;offline first&#8221; apps only work if your connection is stable enough to fully load them once: great if you can prepare but lousy if you&#8217;re starting with an empty cache. Server-side apps work fine in these situations (aside from universal problems like large images/videos/fonts), they have worked fine and they will continue to work fine.</p>
+<p>Of course the key phrase here is &#8220;hybrid&#8221;: you can make apps that both provide the optimal server-side and the optimal client-side experience and these have always been the holy grail since the idea of AJAX was born, but for most apps there is a point of diminishing returns. Thankfully with React server-side rendering per se is so easy to achieve that this isn&#8217;t a concern. But interactivity wise it might not be strictly necessary to replicate every single possible client-side interaction on the server.</p>
+<p>Just use a universal router that allows server-side prefetching. Or even one that doesn&#8217;t. Server-side React isn&#8217;t an all-or-nothing decision. Just don&#8217;t pretend your app is immune to the problems of client-side applications because you&#8217;re developing for the optimal conditions.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16783" data-commentid="16783" data-postid="975" data-belowelement="comment-16783" data-respondelement="respond" data-replyto="Reply to Alan" aria-label="Reply to Alan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-2" id="li-comment-22538">
+						<article id="comment-22538" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/338b374f5504af8dfdc860e6f09c8e8a?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/338b374f5504af8dfdc860e6f09c8e8a?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://github.com/windsome/windpress.git" rel="external nofollow ugc" class="url">windsome.feng</a> </cite><a href="/universal-react-youre-doing-it-wrong/#comment-22538"><time datetime="2016-08-06T14:36:45+00:00">August 6, 2016 at 2:36 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I totally agree with you. it&#8217;s very difficult for me to make a hybrid app which contains &#8220;react+react-router+redux+sass+css-module+webpack+express&#8221;. </p>
+<p>I start a test project <a href="https://github.com/windsome/windpress.git" rel="nofollow ugc">https://github.com/windsome/windpress.git</a><br>
+but there are some problems, can you help me?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22538" data-commentid="22538" data-postid="975" data-belowelement="comment-22538" data-respondelement="respond" data-replyto="Reply to windsome.feng" aria-label="Reply to windsome.feng">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-22925">
+						<article id="comment-22925" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/0f67712430db537ea366abf8f53d7e0c?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/0f67712430db537ea366abf8f53d7e0c?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Michael </cite><a href="/universal-react-youre-doing-it-wrong/#comment-22925"><time datetime="2016-08-27T01:31:41+00:00">August 27, 2016 at 1:31 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Although I generally agree with you that universal doesn&#8217;t make sense for many use cases; why do you hate on node so much?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22925" data-commentid="22925" data-postid="975" data-belowelement="comment-22925" data-respondelement="respond" data-replyto="Reply to Michael" aria-label="Reply to Michael">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-23243">
+						<article id="comment-23243" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/ae3b992edcd225080999db7959041c3a?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/ae3b992edcd225080999db7959041c3a?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">eugene kim </cite><a href="/universal-react-youre-doing-it-wrong/#comment-23243"><time datetime="2016-09-13T12:28:45+00:00">September 13, 2016 at 12:28 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I&#8217;m confused.  </p>
+<p>If server rendering helps page loading, I don&#8217;t see why Facebook doesn&#8217;t do it.  </p>
+<p>Are you implying that facebook server is merely an api server where client will fetch data from and combine the data with static assets such as HTML, js, css?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23243" data-commentid="23243" data-postid="975" data-belowelement="comment-23243" data-respondelement="respond" data-replyto="Reply to eugene kim" aria-label="Reply to eugene kim">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/universal-react-youre-doing-it-wrong/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="975" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="196005bf4a"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="115"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

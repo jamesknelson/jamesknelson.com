@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Should I use React.createClass, ES6 Classes or stateless functional components?	</title>
+	<atom:link href="/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/feed/" rel="self" type="application/rss+xml" />
+	<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/</link>
+	<description></description>
+	<lastBuildDate>Mon, 04 Jul 2016 10:18:09 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: James Gardner		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-21739</link>
+
+		<dc:creator><![CDATA[James Gardner]]></dc:creator>
+		<pubDate>Mon, 04 Jul 2016 10:18:09 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-21739</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-7761&quot;&gt;Roman&lt;/a&gt;.
+
++1 - I think the justification for using ES6 Classes here needs a bit more explanation.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-7761">Roman</a>.</p>
+<p>+1 &#8211; I think the justification for using ES6 Classes here needs a bit more explanation.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Han		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-19661</link>
+
+		<dc:creator><![CDATA[Han]]></dc:creator>
+		<pubDate>Wed, 11 May 2016 17:02:02 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-19661</guid>
+
+					<description><![CDATA[Thanks for the Post]]></description>
+			<content:encoded><![CDATA[<p>Thanks for the Post</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Sunny		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-14855</link>
+
+		<dc:creator><![CDATA[Sunny]]></dc:creator>
+		<pubDate>Fri, 11 Mar 2016 19:19:39 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-14855</guid>
+
+					<description><![CDATA[Great post!]]></description>
+			<content:encoded><![CDATA[<p>Great post!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: John Anderson		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-13599</link>
+
+		<dc:creator><![CDATA[John Anderson]]></dc:creator>
+		<pubDate>Mon, 29 Feb 2016 13:26:54 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-13599</guid>
+
+					<description><![CDATA[Doh! The code has moved the relevant lines out of the comment your &quot;enlightening comment&quot; links to: https://github.com/facebook/react/blob/master/src/renderers/shared/reconciler/ReactCompositeComponent.js#L49-L74
+
+Maybe pick a commit hash and link to that?]]></description>
+			<content:encoded><![CDATA[<p>Doh! The code has moved the relevant lines out of the comment your &#8220;enlightening comment&#8221; links to: <a href="https://github.com/facebook/react/blob/master/src/renderers/shared/reconciler/ReactCompositeComponent.js#L49-L74" rel="nofollow ugc">https://github.com/facebook/react/blob/master/src/renderers/shared/reconciler/ReactCompositeComponent.js#L49-L74</a></p>
+<p>Maybe pick a commit hash and link to that?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Josh H		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-10200</link>
+
+		<dc:creator><![CDATA[Josh H]]></dc:creator>
+		<pubDate>Fri, 29 Jan 2016 03:14:14 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-10200</guid>
+
+					<description><![CDATA[Thanks for the knowledge drop. Always appreciated.]]></description>
+			<content:encoded><![CDATA[<p>Thanks for the knowledge drop. Always appreciated.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Andrea		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-8072</link>
+
+		<dc:creator><![CDATA[Andrea]]></dc:creator>
+		<pubDate>Sat, 09 Jan 2016 16:41:54 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-8072</guid>
+
+					<description><![CDATA[Hey James, thanks for your great article! Helped a lot seeing through the mess. As a beginner in the react world and in the modern web area I could say (I remember like 7 years ago, choosing your tools was easier as we didn&#039;t have that many options), I am having a hard time making choices which is impacting my mood haha
+Thanks again!]]></description>
+			<content:encoded><![CDATA[<p>Hey James, thanks for your great article! Helped a lot seeing through the mess. As a beginner in the react world and in the modern web area I could say (I remember like 7 years ago, choosing your tools was easier as we didn&#8217;t have that many options), I am having a hard time making choices which is impacting my mood haha<br />
+Thanks again!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jonas		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-7781</link>
+
+		<dc:creator><![CDATA[Jonas]]></dc:creator>
+		<pubDate>Thu, 07 Jan 2016 22:55:02 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-7781</guid>
+
+					<description><![CDATA[You could still use stateless functional components if all you want to do with &quot;this&quot; is to get a handle to the DOM node.
+
+const AddTodo = ({
+  onAddClick
+}) =&#062; {
+  let input;
+
+  return (
+    
+       {
+        input = node;
+      }} /&#062;
+       {
+        onAddClick(input.value);
+        input.value = &#039;&#039;;
+      }}&#062;
+        Add Todo
+      
+    
+  );
+};
+
+Example from Dan Abramovs video https://egghead.io/lessons/javascript-redux-extracting-presentational-components-addtodo-footer-filterlink]]></description>
+			<content:encoded><![CDATA[<p>You could still use stateless functional components if all you want to do with &#8220;this&#8221; is to get a handle to the DOM node.</p>
+<p>const AddTodo = ({<br />
+  onAddClick<br />
+}) =&gt; {<br />
+  let input;</p>
+<p>  return (</p>
+<p>       {<br />
+        input = node;<br />
+      }} /&gt;<br />
+       {<br />
+        onAddClick(input.value);<br />
+        input.value = &#8221;;<br />
+      }}&gt;<br />
+        Add Todo</p>
+<p>  );<br />
+};</p>
+<p>Example from Dan Abramovs video <a href="https://egghead.io/lessons/javascript-redux-extracting-presentational-components-addtodo-footer-filterlink" rel="nofollow ugc">https://egghead.io/lessons/javascript-redux-extracting-presentational-components-addtodo-footer-filterlink</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Roman		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-7761</link>
+
+		<dc:creator><![CDATA[Roman]]></dc:creator>
+		<pubDate>Thu, 07 Jan 2016 19:20:18 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-7761</guid>
+
+					<description><![CDATA[I don&#039;t see a reason why one should use ES2015 class components over React.createClass. Both are well suited to use with HOCs, that&#039;s the beauty of HOCs, not of classes.
+
+I&#039;m not against class components, but I don&#039;t see here a real reason which explains why I must use classes instead of React.createClass. I personally prefer the latter, because it&#039;s just a function call and I don&#039;t want to bring new entities into the code if there&#039;s no real benefit of using them.]]></description>
+			<content:encoded><![CDATA[<p>I don&#8217;t see a reason why one should use ES2015 class components over React.createClass. Both are well suited to use with HOCs, that&#8217;s the beauty of HOCs, not of classes.</p>
+<p>I&#8217;m not against class components, but I don&#8217;t see here a real reason which explains why I must use classes instead of React.createClass. I personally prefer the latter, because it&#8217;s just a function call and I don&#8217;t want to bring new entities into the code if there&#8217;s no real benefit of using them.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Tom		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-7755</link>
+
+		<dc:creator><![CDATA[Tom]]></dc:creator>
+		<pubDate>Thu, 07 Jan 2016 18:17:30 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-7755</guid>
+
+					<description><![CDATA[&quot;if you need anything defined on `this` other than `props`, you’ll need a component class.&quot;
+
+`context` is also supplied to a stateless functional component in the 2nd argument.]]></description>
+			<content:encoded><![CDATA[<p>&#8220;if you need anything defined on `this` other than `props`, you’ll need a component class.&#8221;</p>
+<p>`context` is also supplied to a stateless functional component in the 2nd argument.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Francis Kim		</title>
+		<link>/should-i-use-react-createclass-es6-classes-or-stateless-functional-components/#comment-6507</link>
+
+		<dc:creator><![CDATA[Francis Kim]]></dc:creator>
+		<pubDate>Wed, 30 Dec 2015 12:47:22 +0000</pubDate>
+		<guid isPermaLink="false">/?p=954#comment-6507</guid>
+
+					<description><![CDATA[Great read - thanks.]]></description>
+			<content:encoded><![CDATA[<p>Great read &#8211; thanks.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

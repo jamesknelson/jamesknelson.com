@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Six essential JavaScript libraries	</title>
+	<atom:link href="/six-essential-javascript-libraries/feed/" rel="self" type="application/rss+xml" />
+	<link>/six-essential-javascript-libraries/</link>
+	<description></description>
+	<lastBuildDate>Sat, 04 Jun 2016 04:57:38 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Jonathan Fishbein		</title>
+		<link>/six-essential-javascript-libraries/#comment-20667</link>
+
+		<dc:creator><![CDATA[Jonathan Fishbein]]></dc:creator>
+		<pubDate>Sat, 04 Jun 2016 04:57:38 +0000</pubDate>
+		<guid isPermaLink="false">/?p=225#comment-20667</guid>
+
+					<description><![CDATA[I was tinkering with fetch today.  The CORS support seems different than axios/jquery/xhr.  I was Not able to fetch data from another domain when used in a chrome extension. Anyone have experience with this?]]></description>
+			<content:encoded><![CDATA[<p>I was tinkering with fetch today.  The CORS support seems different than axios/jquery/xhr.  I was Not able to fetch data from another domain when used in a chrome extension. Anyone have experience with this?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: evandrix		</title>
+		<link>/six-essential-javascript-libraries/#comment-20656</link>
+
+		<dc:creator><![CDATA[evandrix]]></dc:creator>
+		<pubDate>Fri, 03 Jun 2016 17:05:04 +0000</pubDate>
+		<guid isPermaLink="false">/?p=225#comment-20656</guid>
+
+					<description><![CDATA[There&#039;s also `sugar` @ http://sugarjs.com/ that&#039;s note-worthy!]]></description>
+			<content:encoded><![CDATA[<p>There&#8217;s also `sugar` @ <a href="http://sugarjs.com/" rel="nofollow ugc">http://sugarjs.com/</a> that&#8217;s note-worthy!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: evandrix		</title>
+		<link>/six-essential-javascript-libraries/#comment-20646</link>
+
+		<dc:creator><![CDATA[evandrix]]></dc:creator>
+		<pubDate>Fri, 03 Jun 2016 12:53:58 +0000</pubDate>
+		<guid isPermaLink="false">/?p=225#comment-20646</guid>
+
+					<description><![CDATA[Have you tried using Kefir with Redux instead of React?]]></description>
+			<content:encoded><![CDATA[<p>Have you tried using Kefir with Redux instead of React?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Nikos		</title>
+		<link>/six-essential-javascript-libraries/#comment-19367</link>
+
+		<dc:creator><![CDATA[Nikos]]></dc:creator>
+		<pubDate>Thu, 05 May 2016 14:44:22 +0000</pubDate>
+		<guid isPermaLink="false">/?p=225#comment-19367</guid>
+
+					<description><![CDATA[Why not just use fetch instead of axios?]]></description>
+			<content:encoded><![CDATA[<p>Why not just use fetch instead of axios?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Šime Vidas		</title>
+		<link>/six-essential-javascript-libraries/#comment-395</link>
+
+		<dc:creator><![CDATA[Šime Vidas]]></dc:creator>
+		<pubDate>Thu, 11 Jun 2015 04:55:14 +0000</pubDate>
+		<guid isPermaLink="false">/?p=225#comment-395</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/six-essential-javascript-libraries/#comment-389&quot;&gt;Jack&lt;/a&gt;.
+
+The Fetch API polyfill seems like the optimal solution: https://github.com/github/fetch (since it’s the standard API meant to replace XHR)]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/six-essential-javascript-libraries/#comment-389">Jack</a>.</p>
+<p>The Fetch API polyfill seems like the optimal solution: <a href="https://github.com/github/fetch" rel="nofollow ugc">https://github.com/github/fetch</a> (since it’s the standard API meant to replace XHR)</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: jamesknelson		</title>
+		<link>/six-essential-javascript-libraries/#comment-392</link>
+
+		<dc:creator><![CDATA[jamesknelson]]></dc:creator>
+		<pubDate>Thu, 11 Jun 2015 00:03:54 +0000</pubDate>
+		<guid isPermaLink="false">/?p=225#comment-392</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/six-essential-javascript-libraries/#comment-389&quot;&gt;Jack&lt;/a&gt;.
+
+I didn&#039;t actually know about it when I wrote the post, but it sounds like a great. I&#039;m planning on trying it out myself in my next project.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/six-essential-javascript-libraries/#comment-389">Jack</a>.</p>
+<p>I didn&#8217;t actually know about it when I wrote the post, but it sounds like a great. I&#8217;m planning on trying it out myself in my next project.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jack		</title>
+		<link>/six-essential-javascript-libraries/#comment-389</link>
+
+		<dc:creator><![CDATA[Jack]]></dc:creator>
+		<pubDate>Wed, 10 Jun 2015 17:34:53 +0000</pubDate>
+		<guid isPermaLink="false">/?p=225#comment-389</guid>
+
+					<description><![CDATA[Do you have any thoughts on using a &lt;a href=&#039;https://github.com/matthew-andrews/isomorphic-fetch&#039; rel=&quot;nofollow&quot;&gt;node compatible fetch library&lt;/a&gt; instead of axios?]]></description>
+			<content:encoded><![CDATA[<p>Do you have any thoughts on using a <a href='https://github.com/matthew-andrews/isomorphic-fetch' rel="nofollow">node compatible fetch library</a> instead of axios?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Lucas Medina		</title>
+		<link>/six-essential-javascript-libraries/#comment-388</link>
+
+		<dc:creator><![CDATA[Lucas Medina]]></dc:creator>
+		<pubDate>Wed, 10 Jun 2015 16:08:46 +0000</pubDate>
+		<guid isPermaLink="false">/?p=225#comment-388</guid>
+
+					<description><![CDATA[Those are some amazing libraries. 
+I didn&#039;t know about Axios, it seems pretty neat to use it instead of those monster-sized libraries, like jQuery or Angular, at least when you don&#039;t actually need that much.
+
+I knew about Moment.js, but since I&#039;m kind of fresh in web development, I&#039;ve never had the chance to use it. I&#039;ll keep those in mind :)
+
+Thanks a lot!
+Nice posting!]]></description>
+			<content:encoded><![CDATA[<p>Those are some amazing libraries.<br />
+I didn&#8217;t know about Axios, it seems pretty neat to use it instead of those monster-sized libraries, like jQuery or Angular, at least when you don&#8217;t actually need that much.</p>
+<p>I knew about Moment.js, but since I&#8217;m kind of fresh in web development, I&#8217;ve never had the chance to use it. I&#8217;ll keep those in mind 🙂</p>
+<p>Thanks a lot!<br />
+Nice posting!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jon Snow		</title>
+		<link>/six-essential-javascript-libraries/#comment-308</link>
+
+		<dc:creator><![CDATA[Jon Snow]]></dc:creator>
+		<pubDate>Sat, 06 Jun 2015 16:46:56 +0000</pubDate>
+		<guid isPermaLink="false">/?p=225#comment-308</guid>
+
+					<description><![CDATA[Have you looked at Reactive Extensions (https://github.com/Reactive-Extensions/RxJS)? If you liked Kefir, I think you might like RxJs too.]]></description>
+			<content:encoded><![CDATA[<p>Have you looked at Reactive Extensions (<a href="https://github.com/Reactive-Extensions/RxJS" rel="nofollow ugc">https://github.com/Reactive-Extensions/RxJS</a>)? If you liked Kefir, I think you might like RxJs too.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

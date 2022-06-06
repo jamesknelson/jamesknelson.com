@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>Learn React By Itself -- no JSX, no Flux, no ES6, no Webpack.</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content="Learn *React* from the ground up, without worrying about JSX, Flux, ES6, Webpack, etc."> 
+      <meta name="keywords" content="React"> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Learn React from the ground up, without worrying about JSX, Flux, ES6, Webpack, etc.">
+<link rel="canonical" href="/learn-raw-react-no-jsx-flux-es6-webpack/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn React by itself -- no JSX, no Flux, no ES6, no Webpack.">
+<meta property="og:description" content="Learn React from the ground up, without worrying about JSX, Flux, ES6, Webpack, etc.">
+<meta property="og:url" content="httpjamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="Javascript">
+<meta property="article:published_time" content="2015-09-14T11:01:01+00:00">
+<meta property="article:modified_time" content="2018-08-26T13:53:03+00:00">
+<meta property="og:updated_time" content="2018-08-26T13:53:03+00:00">
+<meta property="og:image" content="httpjamesknelson.com/wp-content/uploads/2015/09/banner.png?1">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Learn React from the ground up, without worrying about JSX, Flux, ES6, Webpack, etc.">
+<meta name="twitter:title" content="Learn React by itself -- no JSX, no Flux, no ES6, no Webpack.">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:image" content="httpjamesknelson.com/wp-content/uploads/2015/09/banner.png?1">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Learn Raw React &#8212; no JSX, no Flux, no ES6, no Webpack&#8230; Comments Feed" href="/learn-raw-react-no-jsx-flux-es6-webpack/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/356">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=356">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Flearn-raw-react-no-jsx-flux-es6-webpack%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Flearn-raw-react-no-jsx-flux-es6-webpack%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-356 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-356" class="clearfix post-356 post type-post status-publish format-standard hentry category-javascript category-react">
+								<header class="entry-header">
+																		<h1 class="entry-title">Learn Raw React &#8212; no JSX, no Flux, no ES6, no Webpack&#8230;</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/javascript/" rel="category tag">Javascript</a>, <a href="/category/react/" rel="category tag">React</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/learn-raw-react-no-jsx-flux-es6-webpack/" title="11:01 am" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">September 14, 2015</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p><em>Disclaimer: I love JSX, Flux, <a href="/es6-the-bits-youll-actually-use/">ES6</a> and <a href="/build-es6-and-less-with-autorefresh-in-only-26-lines-of-configuration/">Webpack</a>. I&#8217;ll discuss these tools more in another series.</em></p>
+<hr>
+<p><strong>Update August 2018:</strong> <em>A newer, more complete introduction to React&#8217;s fundamentals is available at my course <strong>&#8220;React (without the buzzwords)&#8221;</strong>. It uses the latest version of React, and covers many topics that &#8220;Learn Raw React&#8221; is missing, including component state, asynchronous data storage, JSX, structure best practices, and more.</em></p>
+<p><em><strong>&#8220;React (without the buzzwords)&#8221;</strong> is composed of 30 lessons, with 55 live examples and exercises. It lets you save your progress through lessons, and automatically saves your exercise answers so you can pick up where you left off.</em></p>
+<p><em><a href="https://frontarm.com/courses/learn-raw-react/" style="color: #8233ff;">React (without the buzzwords)</a> is exclusive to <a href="https://frontarm.com/pricing/individual/" style="color: #8233ff;">Frontend Armory Pro</a> members. But you can try these 8 free lessons just by clicking one of the links &#8211; no signup required:</em></p>
+<ul>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/basics/one-file-react-app/" style="color: #8233ff;">Create a React app with a single file »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/basics/elements-are-objects/" style="color: #8233ff;">Elements are just objects »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/basics/props-and-styling/" style="color: #8233ff;">Props &amp; styling »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/components/custom-types/" style="color: #8233ff;">Custom types »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/how-it-works/animated-fractal-tree-exercise/" style="color: #8233ff;">Animate a fractal tree »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/how-it-works/what-about-jsx/" style="color: #8233ff;">What about JSX? »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/state-and-events/state-and-this/" style="color: #8233ff;">State and <code>this</code> »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/choose-your-adventure/surprise-free-forms/" style="color: #8233ff;">Surprise-free forms »</a></p>
+</li>
+</ul>
+<p><em>Of course, the original &#8220;Learn Raw React&#8221; guide is still useful today! Here it is:</em></p>
+<hr>
+<p>So you&#8217;ve heard all the fuss about React.js &#8211; apparently it is the best thing since <code>XMLHttpRequest</code>. But you&#8217;ve spent a couple hours investigating, only to find so many buzzwords that it just feels <em>overwhelming</em>. JSX and flux and ES6 and webpack and react-router and <em>all I want is somebody to just tell me how to use <strong>React</strong> already</em>!</p>
+<p>Luckily for you, that&#8217;s exactly what this series will do! Don&#8217;t believe me? That&#8217;s OK &#8211; you will after you&#8217;ve built your first React app in about <em>2 minutes time</em>. Without downloading anything. Just by following this exercise:</p>
+<p><span id="more-356"></span></p>
+<h2>Exercise 1 &#8211; Write a single-file React.js app</h2>
+<p>Have you worked with JavaScript, CSS and HTML before? Great! That means you can do this exercise!</p>
+<p>The result of this exercise is a single HTML file, which contains your first React app. There are three steps, starting with:</p>
+<h3>Step 1</h3>
+<p>Copy this HTML into a new file and save it somewhere:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;title&gt;I'm in a React app!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="react-app"&gt;&lt;/div&gt;
+
+    &lt;script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react.js"&gt;&lt;/script&gt;
+    &lt;script src="https://cdn.jsdelivr.net/react/0.14.0-rc1/react-dom.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>This HTML file does two important things &#8211; it creates the <code>div</code> where your rendered content will live (with id <code>react-app</code>), and it loads the two library files where React lives.</p>
+<p>With that done, let&#8217;s move on to:</p>
+<h3>Step 2</h3>
+<p>Type this script into a new <code>&lt;script&gt;</code> tag at the end of your HTML file.</p>
+<div class="hint">
+Why type it out instead of copy and paste? Well, typing forces you to process each of the individual commands, drilling them into your head in the process &#8211; while copying and pasting just gives you a short feeling of cleverness and a shot of dopamine. And if you just want dopamine, quit reading and play flappy bird or something.
+</div>
+<pre><code>var rootElement =
+  React.createElement('div', {}, 
+    React.createElement('h1', {}, "Contacts"),
+    React.createElement('ul', {},
+      React.createElement('li', {},
+        React.createElement('h2', {}, "James Nelson"),
+        React.createElement('a', {href: 'mailto:james@jamesknelson.com'}, 'james@jamesknelson.com')
+      ),
+      React.createElement('li', {},
+        React.createElement('h2', {}, "Joe Citizen"),
+        React.createElement('a', {href: 'mailto:joe@example.com'}, 'joe@example.com')
+      )
+    )
+  )
+
+ReactDOM.render(rootElement, document.getElementById('react-app'))
+</code></pre>
+<p>Phew, that was a bit of work, wasn&#8217;t it? But, hopefully all the repetition will have given you an idea of what that <a href="https://facebook.github.io/react/docs/top-level-api.html#react.createelement"><code>createElement</code></a> method does. If not, maybe step three will help.</p>
+<h3>Step 3</h3>
+<p>Open your HTML file in a web browser, and check that the output looks like this:</p>
+<p><iframe width="100%" height="300" src="//jsfiddle.net/61ohft4r/embedded/result,js,html/" frameborder="0"></iframe></p>
+<p>Got it? In that case, congratulations! You&#8217;ve made your first React.js app, without even installing <code>npm</code>. And to celebrate, let&#8217;s have a look at how it works.</p>
+<h2>Introducing React</h2>
+<p>At it&#8217;s most basic, React is a tool for rendering HTML with JavaScript. <code>ReactDOM.render</code> takes a <code>ReactElement</code> object describing what to render, adding the result to the given <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">DOM</a> node. But how do you create <code>ReactElement</code> objects? That&#8217;s where <code>React.createElement</code> comes in.</p>
+<p><code>React.createElement</code> takes three parameters, and returns a <code>ReactElement</code>. From the <a href="https://facebook.github.io/react/docs/top-level-api.html#react.createelement">React documentation</a>:</p>
+<p><code>createElement(string/ReactClass type, [object props], [children ...]) -&gt; ReactElement</code></p>
+<p>The <code>type</code> argument lets us specify what type of HTML element to use; it also lets us specify <em>custom</em> elements (which we&#8217;ll learn about later). The <code>props</code> argument is a way of specifying which attributes are defined on the HTML element, as you may have guessed from the <code>mailto</code> link in the exercise. Finally, the <code>children</code> arguments are strings or <code>ReactElement</code> objects (or arrays of the same) which will be used for the returned element&#8217;s content. By choosing to omit or specify <code>children</code>, you can return a single <code>ReactElement</code> or an entire tree.</p>
+<p>Since <code>createElement</code> is just plain JavaScript, you can mix in loops, <code>if</code> statements, and anything else JavaScript allows. You can also easily substitute in data stored in JSON. For example, if you had a list of contacts but didn&#8217;t want to render the ones without e-mail addresses, you could do something like this:</p>
+<pre><code>var contacts = [
+  {key: 1, name: "James Nelson", email: "james@jamesknelson.com"},
+  {key: 2, name: "Bob"}
+]
+
+var listElements = contacts
+  .filter(function(contact) { return contact.email; })
+  .map(function(contact) {
+    return React.createElement('li', {key: contact.key},
+      React.createElement('h2', {}, contact.name),
+      React.createElement('a', {href: 'mailto:'+contact.email}, contact.email)
+    )
+  })
+
+var rootElement =
+  React.createElement('div', {}, 
+    React.createElement('h1', {}, "Contacts"),
+
+    // If your `children` is an array, you'll need to give each one a unique `key`
+    // prop. I'll explain why a little later.
+    React.createElement('ul', {}, listElements)
+  )
+
+ReactDOM.render(rootElement, document.getElementById('react-app'))
+</code></pre>
+<p>Neat. So React can be used as a very verbose JavaScript-based templating system! But&#8230; surely that wouldn&#8217;t explain the cult-like following it has received. What gives?</p>
+<h2>Components</h2>
+<p>Did you notice the little <code>ReactClass</code> in the type signature of <code>React.createElement</code>? I skipped over it because we hadn&#8217;t used it yet, but can you guess what it does?</p>
+<hr>
+<p>The answer is &#8230; <em>drum roll please</em>: <code>React.createElement</code> isn&#8217;t limited to standard HTML. It also lets you create your very own components!</p>
+<p>How? With <code>React.createClass</code>:</p>
+<pre><code>var ContactItem = React.createClass({
+  propTypes: {
+    name: React.PropTypes.string.isRequired,
+  },
+
+  render: function() {
+    return (
+      React.createElement('li', {className: 'Contact'},
+        React.createElement('h2', {className: 'Contact-name'}, this.props.name)
+      )
+    )
+  },
+});
+</code></pre>
+<p>This little snippet defines a new component called <code>ContactItem</code>. Like HTML elements, a <code>ContactItem</code> accepts a list of attributes (called <code>props</code>). Unlike HTML elements, you can define whatever <code>props</code> you need!</p>
+<p>You&#8217;d use the above component like so:</p>
+<pre><code>var element = React.createElement(ContactItem, {name: "James K Nelson"})
+</code></pre>
+<p>And just as you may expect, <code>element</code> would now contain the value returned by your component&#8217;s <code>render</code> function.</p>
+<div class="hint">
+If you pass a <code>children</code> argument to <code>createElement</code>, it&#8217;s value will be available under <code>this.props.children</code>
+</div>
+<p>Let&#8217;s test your understanding with another exercise:</p>
+<h2>Exercise 2 &#8211; Refactor your contact list</h2>
+<p>Refactor your solution to the first exercise using what you&#8217;ve learned. In particular:</p>
+<ul>
+<li>Create a <code>ContactItem</code> class which accepts three properties: <code>name</code>, <code>email</code> and <code>description</code>
+</li>
+<li>Filter out contacts with no e-mail address</li>
+<li>Store your data in an array instead of passing it directly to <code>createElement</code>
+</li>
+</ul>
+<p>Use the following data:</p>
+<div>
+</div>
+<pre><code>var contacts = [
+    {key: 1, name: "James K Nelson", email: "james@jamesknelson.com", description: "Front-end Unicorn"},
+    {key: 2, name: "Jim", email: "jim@example.com"},
+    {key: 3, name: "Joe"},
+]
+</code></pre>
+<p>When you&#8217;re done, check your work against this fiddle:</p>
+<p><iframe loading="lazy" width="100%" height="300" src="//jsfiddle.net/6L0da2sw/1/embedded/result,js,html/" frameborder="0"></iframe></p>
+<h2><code>propTypes</code></h2>
+<p>You may have noticed that my solution to Exercise Two uses two different values for the <code>propTypes</code> object &#8211; one with <code>isRequired</code>, and one without. This suffix can be applied to any of React&#8217;s available <a href="https://facebook.github.io/react/docs/reusable-components.html#prop-validation">prop types</a> to indicate that the specific prop <em>must</em> be passed to <code>React.createElement</code>.</p>
+<p>But wait a minute, you say. What does the <code>propTypes</code> object <em>actually do?</em></p>
+<p>The secret is that in most cases, <code>propTypes</code> doesn&#8217;t actually do <em>anything</em>. In fact, we could completely remove it, and our app would still function identically. So why is it there?</p>
+<p><code>propTypes</code> is a debugging mechanism; it lets React check in real time that the <code>props</code> argument passed to<code>createElement</code> actually makes sense. If it doesn&#8217;t, React will log a warning to the console:</p>
+<p><img src="/console-warning.png" alt="React console warning"></p>
+<p>I&#8217;ve included <code>propTypes</code> in this guide because <em>it&#8217;ll save you a lot of pain in the long run</em> &#8211; even if it isn&#8217;t strictly necessary. And you can make it even <em>less</em> painful by printing out the cheatsheet PDF you&#8217;ll get when you sign up for my newsletter &#8211; but I digress! Now that we know how to display some data, let&#8217;s learn how to update it.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=18"></script>
+<link rel="stylesheet" href="/learn-raw-react-no-jsx-flux-es6-webpack/ck_form.html">
+<div class="ck_form single_line">
+
+  <div class="ck_form_fields">
+  
+    <h3>Get the PDF cheatsheet!</h3>
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4416/subscribe" data-remote="true">
+      <input type="hidden" name="id" value="4416" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+        <div>
+          <label class="ck_label" for="ck_firstNameField" style="display:none">First Name</label>
+        
+          <input type="text" name="first_name" placeholder="First name" class="ck_first_name" id="ck_firstNameField" required>
+        </div>
+        <div class="field">
+          <label class="ck_label" for="ck_emailField" style="display:none">Email Address</label>
+        
+          <input type="email" name="email" placeholder="Email address" class="ck_email_address" id="ck_emailField" required>
+        </div>
+
+        <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+          Subscribe to my Newsletter
+        </button>
+    </form>
+  </div>
+ </div>
+ <style type="text/css">.ck_form.single_line {
+  /* divider image */
+  background: #f9f9f9;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border: solid 1px #d1d1d1;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  clear: both;
+  margin: 20px auto;
+  text-align: center;
+  width: 85%;
+  border-radius: 6px;
+}
+
+
+.ck_form.single_line h3, #content .ck_form.single_line h3 { 
+  text-align: center; 
+  margin: 0px 0px 10px; 
+  font-size: 24px;
+}
+
+.ck_form.single_line p {
+  padding: 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+.ck_form.single_line .ck_form_fields {
+  width: 100%;
+  float: left;
+  padding: 24px 0;
+}
+/* Form fields */
+
+.ck_errorArea {
+  display: none; /* temporary */
+}
+
+#ck_success_msg {
+  margin: 0 30px;
+  padding: 0 10px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_form.single_line input[type="text"], .ck_form.single_line input[type="email"] {
+  font-size: 18px;
+  padding: 10px 8px;
+  width: 68%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; /* border radius */
+  background-color: #fff; /* layer fill content */
+  height: auto;
+  margin: 5px 0;
+  height: 42px;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+} 
+
+.ck_form.single_line .ck_checkbox {
+  display: none;
+}
+
+.ck_form.single_line .ck_subscribe_button {
+    color: #fff;
+    margin: 0px;
+    padding:  11px 22px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+    margin: 10px 0 0;
+    height: 42px;
+    width: auto;
+  }
+  
+  
+.ck_form.single_line .ck_guarantee {
+  color: #626262;
+  font-size: 15px;
+  text-align: center;
+  padding: 15px 0px 0px;
+  display: block;
+  clear: both;
+}</style>
+<h2>Displaying new data</h2>
+<p>So far, our app has only had to take a static set of data, and render it to the DOM <em>once</em>. But what happens when our data changes?</p>
+<p>Despite what you may expect from a tool called <strong>React</strong>, <em>nothing</em> changes. Unlike the automatically-updating views in so many other JavaScript frameworks, React waits for us to manually order a re-render. So how do we do it?</p>
+<pre><code>// Render our app to the DOM element with id `react-app`
+var rootElement = React.createElement(ApplicationComponent, initialData)
+ReactDOM.render(rootElement, document.getElementById('react-app'))
+
+// Actually, there is no re-render. Just render.
+var nextRootElement = React.createElement(ApplicationComponent, updatedData)
+ReactDOM.render(nextRootElement, document.getElementById('react-app'))
+</code></pre>
+<p>But where our first <code>render</code> call creates an entire new tree of HTML elements under <code>#react-app</code>, our second call <em>only changes the parts which have actually changed</em>. This is where React gets it&#8217;s reputation for performance. In fact, if we were to do this:</p>
+<pre><code>var rootElement = React.createElement(ApplicationComponent, data)
+ReactDOM.render(rootElement, document.getElementById('react-app'))
+ReactDOM.render(rootElement, document.getElementById('react-app'))
+</code></pre>
+<p>The second call to render would do <em>absolutely nothing</em>. Nothing &#8211; that is &#8211; unless you are rendering an <em>array</em> of elements without assigning a unique <code>key</code> prop to each. To understand why this is, you&#8217;ll need to know a little about how <code>render</code> works under the hood.</p>
+<h2>How <code>ReactDOM.render</code> works</h2>
+<p>The first call to <code>ReactDOM.render</code> is simple &#8211; it walks through the passed in <code>ReactElement</code> and creates a corresponding HTML tree under <code>#react-app</code>. But as I mentioned above, the second and subsequent calls don&#8217;t modify previously rendered HTML elements unless the corresponding <code>ReactElement</code> objects have changed. Why?</p>
+<p>In order to decide <em>what</em> to change, React compares the new <code>ReactElement</code> tree with the previous one. It uses a number of <a href="https://facebook.github.io/react/docs/reconciliation.html">rules</a> to decide what to do:</p>
+<ul>
+<li>
+<code>ReactElement</code>s with differing types are trashed and re-rendered</li>
+<li>
+<code>ReactElement</code>s with differing props or children are re-rendered in place</li>
+<li>Identical <code>ReactElement</code>s which have been re-ordered within an array are moved to reflect the new order</li>
+</ul>
+<p>There&#8217;s one catch &#8211; when React encounters an array of <code>ReactElement</code>s with identical <code>type</code> and <code>props</code>, despite <em>looking</em> identical from the outside it cannot know that they are <em>really</em> identical. This is because elements can have internal state &#8211; for example, whether the element currently has user focus. This becomes a problem when React goes to re-render those elements, as it cannot tell one from another &#8211; and thus doesn&#8217;t know if their order within the array has changed.</p>
+<p>This is where the <code>key</code> property from the earlier examples comes in. It lets React distinguish between elements, and keep the DOM aligned with our <code>ReactElement</code> tree.</p>
+<p>But enough theory, let&#8217;s talk about something practical.</p>
+<h2>Forms</h2>
+<p>You now know enough to add a form to your app! That is, as long as you don&#8217;t mind that users won&#8217;t be able to interact with it yet. But why this limitation?</p>
+<p>In React, input elements aren&#8217;t actually all that special. They take a <code>value</code> prop, and they&#8217;ll display what that <code>value</code> is. And since <em>a component can&#8217;t directly change the props which are passed in from the outside world</em> &#8211; user input won&#8217;t cause any change in the displayed value.</p>
+<p>Take a moment to let that sink in. If you type into a form input with a <code>value</code> attribute, <em>nothing changes</em>. This isn&#8217;t to say the value <em>can&#8217;t</em> change &#8211; if you listen to the <code>input</code> events and update the value accordingly, you can change it however you&#8217;d like. More about this later, though.</p>
+<p>In addition to <code>value</code>, input elements take the props you&#8217;d expect them to. With a few minor <a href="https://facebook.github.io/react/docs/tags-and-attributes.html">exceptions</a>, the attributes you can pass to a HTML <code>&lt;input&gt;</code> are also available as <code>props</code>. There are two exceptions worth keeping in mind:</p>
+<ul>
+<li>React <code>textarea</code> elements take their content as a <code>value</code> prop, not as <code>children</code>
+</li>
+<li>The HTML <code>for</code> attribute is bound to the <code>htmlFor</code> prop (as <code>for</code> is a reserved word in JavaScript)</li>
+</ul>
+<p>These exceptions are listed on the React cheatsheet you&#8217;ll receive after signing up for my newsletter.</p>
+<h2>Exercise 3: Add a read-only form</h2>
+<p>Let&#8217;s create a new <code>ContactForm</code> component class, with the following <code>propTypes</code>:</p>
+<pre><code>propTypes: {
+  contact: React.PropTypes.object.isRequired
+},
+</code></pre>
+<p>It should render a <code>&lt;form&gt;</code> element containing <code>&lt;input&gt;</code> elements for <code>name</code> and <code>email</code>, a <code>&lt;textarea&gt;</code> for <code>description</code>, and a <code>&lt;button type="submit"&gt;</code>. For simplicity, use placeholders instead of labels. And remember &#8211; the React <code>textarea</code> component accepts it&#8217;s <code>value</code> under <code>props</code>, not <code>children</code>.</p>
+<p>Once you&#8217;ve built your <code>ContactForm</code> class, add it beneath your contact list with a blank contact passed in for the <code>contact</code> prop. I&#8217;ll wait here until you&#8217;re done.</p>
+<hr>
+<p>Done? Great! Now check how your implementation compares to mine &#8211; take note of any differences, but don&#8217;t get too hung up on matching my implementation line-for-line. The important thing is that you write something which works.</p>
+<p><iframe loading="lazy" width="100%" height="300" src="//jsfiddle.net/adhrfmLy/embedded/result,js,html/" frameborder="0"></iframe></p>
+<h2>Making your app beautiful</h2>
+<p>You haven&#8217;t even finished this article, and you&#8217;re <em>already on your way to killing salesforce</em>. But nobody is going to buy your product if it looks shit. So let&#8217;s add some <em>style</em>.</p>
+<p>How should we go about this? Well, since this app is tiny, we <em>could</em> just style it using HTML selectors:</p>
+<pre><code>ul {
+  background: #ff0000;
+}
+</code></pre>
+<p>But this will stop working if our app ever gains another list &#8211; so let&#8217;s avoid headaches later and assign classes to our elements. To avoid conflicts, we&#8217;ll namespace them with their parent component&#8217;s class name.</p>
+<p>For our <code>ContactItem</code> component, this will look something like this:</p>
+<pre><code>render: function() {
+  return (
+    React.createElement('li', {className: 'ContactItem'},
+      React.createElement('h2', {className: 'ContactItem-name'}, this.props.name),
+      React.createElement('a', {className: 'ContactItem-email', href: 'mailto:'+this.props.email}, this.props.email),
+      React.createElement('div', {className: 'ContactItem-description'}, this.props.description)
+    )
+  )
+},
+</code></pre>
+<div class="hint">
+Note that like the DOM, React uses the <code>className</code> property to assign CSS classes (as <code>class</code> is a reserved word in JavaScript). 
+</div>
+<p>But how do we pick class names for our <code>createElement</code> calls which aren&#8217;t part of a component <code>render</code> function?</p>
+<p>You&#8217;ll generally find that React projects organise <em>everything</em> into classes, with a single <code>React.createElement</code> call rendering a top-level element which is directly passed to <code>ReactDOM.render</code>. For this app, let&#8217;s use a top-level <code>ContactView</code> with this signature:</p>
+<pre><code>propTypes: {
+  contacts: React.PropTypes.array.isRequired,
+  newContact: React.PropTypes.object.isRequired,
+},
+</code></pre>
+<h2>Exercise 4 (optional):</h2>
+<p>If you&#8217;d like to style your new app, create the <code>ContactView</code> class as defined above, add <code>className</code> props where relevant, and add a stylesheet to your HTML file.</p>
+<p>Need ideas? Here is a fiddle I prepared earlier:</p>
+<p><iframe loading="lazy" width="100%" height="300" src="//jsfiddle.net/adhrfmLy/1/embedded/result,js,css,html/" frameborder="0"></iframe></p>
+<h2>Nobody likes a read-only app</h2>
+<p>You now know enough to make <em>pretty</em> apps, but how do you learn to make <em>interactive</em> ones?</p>
+<p>This article is only the first in a series on <em>Raw React</em>. I aim to release a new article every week, and won&#8217;t be stopping until you can use them to make a <em>real app</em> with React. That means an app which:</p>
+<ul>
+<li>Handles form events</li>
+<li>Handles navigation/routing</li>
+<li>Communicates with your API</li>
+<li>Manages user authentication</li>
+</ul>
+<p><em>Update: <a href="/learn-raw-react-ridiculously-simple-forms/">Part 2: Ridiculously Simple Forms</a> has been released.</em></p>
+<p>In return for your e-mail address, I&#8217;ll send you the complete series via e-mail <em>as it is released</em>. And as a bonus you&#8217;ll immediately receive 3 <em>print-optimised</em> PDF cheatsheets &#8211; on <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">React</a>, <a href="/wp-content/uploads/2015/09/es6-cheatsheet-thumbnail.png">ES6</a> and <a href="/wp-content/uploads/2015/09/promises-cheatsheet-thumbnail.png">JavaScript promises</a>.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<p><em>I love hearing from readers. Send <a href="https://twitter.com/james_k_nelson">@james_k_nelson</a> a tweet, or send me an e-mail at <a href="/learn-raw-react-no-jsx-flux-es6-webpack/&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>. Thanks for reading!</em></p>
+<h2>Read more</h2>
+<ul>
+<li><a href="/learn-raw-react-ridiculously-simple-forms/">Learn Raw React Part 2: Ridiculously Simple Forms</a></li>
+<li><a href="/routing-with-raw-react/">Learn Raw React Part 3: Routing</a></li>
+<li><a href="/react-js-by-example-interacting-with-the-dom/">Interacting with the DOM in React</a></li>
+</ul>
+<h2>Related links</h2>
+<ul>
+<li><a href="https://frontarm.com/courses/learn-raw-react/">React (without the buzzwords) course</a></li>
+<li><a href="https://github.com/jamesknelson/raw-react-part-1">Full source at GitHub</a></li>
+<li><a href="https://facebook.github.io/react/docs/top-level-api.html">React Top-Level API Documentation</a></li>
+</ul>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/structuring-react-applications-higher-order-components/" rel="prev"><span class="meta-nav">&#8592;</span> Structuring React Applications: Higher-Order Components</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/react-js-by-example-interacting-with-the-dom/" rel="next">React.js By Example: Interacting with the DOM <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					29 Comments <span class="on">&#8594;</span> <span>Learn Raw React &#8212; no JSX, no Flux, no ES6, no Webpack&#8230;</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-2625">
+						<article id="comment-2625" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/4469af934576c69747bf59ba5ce5bb36?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4469af934576c69747bf59ba5ce5bb36?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://roomandboard.com/" rel="external nofollow ugc" class="url">Matt Ruby</a> </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-2625"><time datetime="2015-09-25T17:35:12+00:00">September 25, 2015 at 5:35 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>James, thank you for putting this terrific series!  We&#8217;ve been building React applications with no frills (ES6, JSX&#8230;) for some time now.  It&#8217;s been working really well for us.  Yours is the first article I&#8217;ve read that really cuts away everything but React.  </p>
+<p>Thanks again!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2625" data-commentid="2625" data-postid="356" data-belowelement="comment-2625" data-respondelement="respond" data-replyto="Reply to Matt Ruby" aria-label="Reply to Matt Ruby">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-2642">
+						<article id="comment-2642" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/fc0bf9568a426ef665bd3f422a574d9f?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/fc0bf9568a426ef665bd3f422a574d9f?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://designbymobi.us/" rel="external nofollow ugc" class="url">akamaozu</a> </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-2642"><time datetime="2015-09-26T06:39:51+00:00">September 26, 2015 at 6:39 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Finally!</p>
+<p>Someone wrote a guide to using React without the rest of the toys in the ecosystem. </p>
+<p>Keep &#8217;em coming 🙂</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2642" data-commentid="2642" data-postid="356" data-belowelement="comment-2642" data-respondelement="respond" data-replyto="Reply to akamaozu" aria-label="Reply to akamaozu">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-2661">
+						<article id="comment-2661" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/4e2578145747a1c0fa5ed8dc9863758b?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4e2578145747a1c0fa5ed8dc9863758b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Michael Ji </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-2661"><time datetime="2015-09-26T23:41:30+00:00">September 26, 2015 at 11:41 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Good article. I follow your exercises, I found I can&#8217;t input words in contact form. I tried the form of your jsfiddle.  I entered words in input filed, no value showed. Can you explain this? thx</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2661" data-commentid="2661" data-postid="356" data-belowelement="comment-2661" data-respondelement="respond" data-replyto="Reply to Michael Ji" aria-label="Reply to Michael Ji">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-2662">
+						<article id="comment-2662" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/4e2578145747a1c0fa5ed8dc9863758b?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4e2578145747a1c0fa5ed8dc9863758b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Michael Ji </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-2662"><time datetime="2015-09-26T23:52:55+00:00">September 26, 2015 at 11:52 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I get the answer in next part. Well done!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2662" data-commentid="2662" data-postid="356" data-belowelement="comment-2662" data-respondelement="respond" data-replyto="Reply to Michael Ji" aria-label="Reply to Michael Ji">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-2671">
+						<article id="comment-2671" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/43ebf9694dfb11722e8eea0e63834f7b?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/43ebf9694dfb11722e8eea0e63834f7b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Steve </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-2671"><time datetime="2015-09-27T20:44:03+00:00">September 27, 2015 at 8:44 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This is not showing me anything new. I can do the equivalent with native js  &#8211; document.createfragment, which i have no need to do because it would make more sense to cache the elements that i need in the dom on first load anyway. Why reinvent wha already serves no good purpose?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2671" data-commentid="2671" data-postid="356" data-belowelement="comment-2671" data-respondelement="respond" data-replyto="Reply to Steve" aria-label="Reply to Steve">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-2675">
+						<article id="comment-2675" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-2675"><time datetime="2015-09-28T01:29:57+00:00">September 28, 2015 at 1:29 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>You&#8217;re right &#8211; this *can* all be done with plain ol&#8217; vanilla JS. Where React really starts to excel is when your app is split into components, which can be swapped out as required, re-used across projects, etc.</p>
+<p>This is just the first article in the series &#8211; and it is mostly aimed at people who&#8217;ve already done some research and have decided they want to learn to React. That said, I hope that if you continue to read <a href="/learn-raw-react-ridiculously-simple-forms/" rel="nofollow">part 2</a> (and subsequent parts when released), the elegance of React will become a little clearer.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2675" data-commentid="2675" data-postid="356" data-belowelement="comment-2675" data-respondelement="respond" data-replyto="Reply to jamesknelson" aria-label="Reply to jamesknelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-2697">
+						<article id="comment-2697" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/daf2523c85d96340b23d98c6b9941696?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/daf2523c85d96340b23d98c6b9941696?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Suman Mishra </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-2697"><time datetime="2015-09-29T01:59:27+00:00">September 29, 2015 at 1:59 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thank you very much for writing this article. I was looking for similar tutorial where i can quickly learn about React..</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2697" data-commentid="2697" data-postid="356" data-belowelement="comment-2697" data-respondelement="respond" data-replyto="Reply to Suman Mishra" aria-label="Reply to Suman Mishra">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-4249">
+						<article id="comment-4249" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/9d8c9f8121f25257678f8f66165f4a4b?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/9d8c9f8121f25257678f8f66165f4a4b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://kree-eyt.com/" rel="external nofollow ugc" class="url">Damian Phillips-King</a> </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-4249"><time datetime="2015-11-15T16:44:44+00:00">November 15, 2015 at 4:44 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Amazing article thank you!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4249" data-commentid="4249" data-postid="356" data-belowelement="comment-4249" data-respondelement="respond" data-replyto="Reply to Damian Phillips-King" aria-label="Reply to Damian Phillips-King">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-4373">
+						<article id="comment-4373" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/631c61d0de4ecbb174ae8a25c5af479c?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/631c61d0de4ecbb174ae8a25c5af479c?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Isaac </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-4373"><time datetime="2015-11-16T21:28:22+00:00">November 16, 2015 at 9:28 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>There&#8217;s a typo in the code snippet you use to introduce React.createClass (var ContactItem&#8230;). There should be no comma after &#8216;&#8230;this.propsname)&#8217; &#8211; I get a syntax error in Chrome if there is.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4373" data-commentid="4373" data-postid="356" data-belowelement="comment-4373" data-respondelement="respond" data-replyto="Reply to Isaac" aria-label="Reply to Isaac">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-4400">
+						<article id="comment-4400" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-4400"><time datetime="2015-11-17T14:26:07+00:00">November 17, 2015 at 2:26 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks, fixed it.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4400" data-commentid="4400" data-postid="356" data-belowelement="comment-4400" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-4615">
+						<article id="comment-4615" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/4c2a88299fe761376dff7bcd31b46eb2?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4c2a88299fe761376dff7bcd31b46eb2?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">ben </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-4615"><time datetime="2015-11-23T19:48:59+00:00">November 23, 2015 at 7:48 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This is SOOOO helpful! Thanks!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4615" data-commentid="4615" data-postid="356" data-belowelement="comment-4615" data-respondelement="respond" data-replyto="Reply to ben" aria-label="Reply to ben">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-4675">
+						<article id="comment-4675" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/39ee1dd6131fb7aa83dfde13c69e80e7?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/39ee1dd6131fb7aa83dfde13c69e80e7?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Greg </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-4675"><time datetime="2015-11-25T11:02:44+00:00">November 25, 2015 at 11:02 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>If I undestand correctly you use react<br>
+and then add to it JSX, next Flux, no ES6, next Webpack.<br>
+JSX – observables? flux? es6 (typescript as well?), webpack – is webpack the best?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4675" data-commentid="4675" data-postid="356" data-belowelement="comment-4675" data-respondelement="respond" data-replyto="Reply to Greg" aria-label="Reply to Greg">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-5068">
+						<article id="comment-5068" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c96c6bcd92aaa989d62cb208e89c10c6?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c96c6bcd92aaa989d62cb208e89c10c6?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Little Brainz </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-5068"><time datetime="2015-12-04T13:44:05+00:00">December 4, 2015 at 1:44 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>James&#8230; A brilliant article. I have long been a fan of Raw (sans JSX) React. I find it to be both more expressive and less disruptive with tooling. However, you could make your example code much more readable by starting it with “var h = React.createElement”, thus giving you a poor man’s HyperScript.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-5068" data-commentid="5068" data-postid="356" data-belowelement="comment-5068" data-respondelement="respond" data-replyto="Reply to Little Brainz" aria-label="Reply to Little Brainz">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-5176">
+						<article id="comment-5176" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c96c6bcd92aaa989d62cb208e89c10c6?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c96c6bcd92aaa989d62cb208e89c10c6?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Little Brainz </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-5176"><time datetime="2015-12-06T16:22:04+00:00">December 6, 2015 at 4:22 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Or, if you prefer really pretty “mark-up”, consider starting your code with “var div = React.DOM.div” (repeat for each required tag), which would then allow a much simplified “div({className: &#8216;foo&#8217;}, &#8216;Foo!&#8217;)” in the render code. Note that using ES6 destructuring “const {div, h1, p} = React.DOM” at the top of the module makes this even more attractive.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-5176" data-commentid="5176" data-postid="356" data-belowelement="comment-5176" data-respondelement="respond" data-replyto="Reply to Little Brainz" aria-label="Reply to Little Brainz">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-3" id="li-comment-13621">
+						<article id="comment-13621" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/8e5418080bb853662e395d9ef70b3d5f?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/8e5418080bb853662e395d9ef70b3d5f?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Greg </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-13621"><time datetime="2016-03-01T07:56:14+00:00">March 1, 2016 at 7:56 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I think you need to consider the audience for this post. It&#8217;s for people learning to write the basics of React, not to learn to write React better. As someone who&#8217;s new to React I prefer that he sticks to the basics as to not complicate it more than it needs to be. </p>
+<p>That said, your comment is great and once I get the hang of React I will try applying it to keep things clean.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-13621" data-commentid="13621" data-postid="356" data-belowelement="comment-13621" data-respondelement="respond" data-replyto="Reply to Greg" aria-label="Reply to Greg">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-10578">
+						<article id="comment-10578" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/cd96c0fd7e8173b2cc63165ff5ccc918?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/cd96c0fd7e8173b2cc63165ff5ccc918?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://arturoromero.info/" rel="external nofollow ugc" class="url">Arturo Romero</a> </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-10578"><time datetime="2016-01-31T20:09:11+00:00">January 31, 2016 at 8:09 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Great article, thank you for the information.  </p>
+<p>I found that learning React without any of the extra tools (JSX, ES6, Webpack) to be most optimal when starting.</p>
+<p>Also a tip, if you don&#8217;t want to keep writing React.createElement(), you could simply create a shorter variable for the function call.<br>
+var el = React.createElement;</p>
+<p>Below is an example:<br>
+&#8220;use strict&#8221;;</p>
+<p>var el = React.createElement;</p>
+<p>var ui =<br>
+      el(&#8216;div&#8217;, {},<br>
+        el(&#8216;h1&#8217;, {}, &#8220;Contacts&#8221;),<br>
+        el(&#8216;ul&#8217;, {},<br>
+          el(&#8216;li&#8217;, {},<br>
+            el(&#8216;h2&#8217;, {}, &#8220;James Nelson&#8221;),<br>
+            el(&#8216;a&#8217;, {href: &#8216;mailto:james@jamesknelson.com&#8217;}, &#8216;james@jamesknelson.com&#8217;)<br>
+          ),<br>
+          el(&#8216;li&#8217;, {},<br>
+            el(&#8216;h2&#8217;, {}, &#8220;Joe Citizen&#8221;),<br>
+            el(&#8216;a&#8217;, {href: &#8216;mailto:joe@example.com&#8217;}, &#8216;joe@example.com&#8217;)<br>
+          )<br>
+        )<br>
+      )</p>
+<p>    ReactDOM.render(ui, document.getElementById(&#8216;react-app&#8217;))</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-10578" data-commentid="10578" data-postid="356" data-belowelement="comment-10578" data-respondelement="respond" data-replyto="Reply to Arturo Romero" aria-label="Reply to Arturo Romero">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-13652">
+						<article id="comment-13652" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/473afdd34c940cccda19ddaa397594cb?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/473afdd34c940cccda19ddaa397594cb?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Poe </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-13652"><time datetime="2016-03-03T01:27:10+00:00">March 3, 2016 at 1:27 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Love it. Thanks for making it less painful than it has to be. Another similar language to React worth looking at is Marko Widgets (runs on Marko, made by eBay) with Node.js.</p>
+<p>If JSX makes JavaScript more like HTML, Marko makes HTML more like JavaScript, and it&#8217;s waay easier to comprehend—even though they are quite similar. Cheers.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-13652" data-commentid="13652" data-postid="356" data-belowelement="comment-13652" data-respondelement="respond" data-replyto="Reply to Poe" aria-label="Reply to Poe">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-13843">
+						<article id="comment-13843" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/3df94badbf2d218cf40a5629802cfb36?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/3df94badbf2d218cf40a5629802cfb36?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Filipe Waschburger </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-13843"><time datetime="2016-03-04T11:12:27+00:00">March 4, 2016 at 11:12 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thank you, thank you, thank you!!!!<br>
+My savior 😉</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-13843" data-commentid="13843" data-postid="356" data-belowelement="comment-13843" data-respondelement="respond" data-replyto="Reply to Filipe Waschburger" aria-label="Reply to Filipe Waschburger">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-16971">
+						<article id="comment-16971" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/8aa4662e73787a307831f4682792c8bf?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/8aa4662e73787a307831f4682792c8bf?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Kenneth Ken L. Tan </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-16971"><time datetime="2016-03-26T15:22:30+00:00">March 26, 2016 at 3:22 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Someone who wants to help people create amazing things. You&#8217;re a true hero. Thanks a lot for this tutorial. 🙂</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16971" data-commentid="16971" data-postid="356" data-belowelement="comment-16971" data-respondelement="respond" data-replyto="Reply to Kenneth Ken L. Tan" aria-label="Reply to Kenneth Ken L. Tan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-19234">
+						<article id="comment-19234" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/f76e62c3032d4d08a9e0d317bac59c50?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/f76e62c3032d4d08a9e0d317bac59c50?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Ed </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-19234"><time datetime="2016-05-03T19:25:07+00:00">May 3, 2016 at 7:25 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hi James,</p>
+<p>Followed this tutorial and found it to be amazing in starting to learn React. It really is the missing piece.</p>
+<p>I followed all the exercises and everything worked when I did it myself (no copy &amp; paste I promise). I do however have aa question: Why is the blank contact object required on the ContactForm instance? My own code works just like yours without it, so maybe I&#8217;m missing the point?</p>
+<p>I really appreciate your help 🙂</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-19234" data-commentid="19234" data-postid="356" data-belowelement="comment-19234" data-respondelement="respond" data-replyto="Reply to Ed" aria-label="Reply to Ed">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-21341">
+						<article id="comment-21341" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/8de4f3119e27fff06267d550603d4772?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/8de4f3119e27fff06267d550603d4772?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Reggie </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-21341"><time datetime="2016-06-19T23:55:49+00:00">June 19, 2016 at 11:55 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>&#8220;React waits for us to manually order a re-render. &#8221;</p>
+<p>// Render our app to the DOM element with id `react-app`<br>
+var rootElement = React.createElement(ApplicationComponent, initialData)<br>
+ReactDOM.render(rootElement, document.getElementById(&#8216;react-app&#8217;))</p>
+<p>// Actually, there is no re-render. Just render.<br>
+var nextRootElement = React.createElement(ApplicationComponent, updatedData)<br>
+ReactDOM.render(nextRootElement, document.getElementById(&#8216;react-app&#8217;))</p>
+<p>My question is about the above. In other places I have seen ReactDOM.render() just called once and the rest is automatically handled. Do we have to manually call this function?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-21341" data-commentid="21341" data-postid="356" data-belowelement="comment-21341" data-respondelement="respond" data-replyto="Reply to Reggie" aria-label="Reply to Reggie">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-23117">
+						<article id="comment-23117" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/ff43dcd137c386e829a5de5e5a79f521?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/ff43dcd137c386e829a5de5e5a79f521?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Greg </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23117"><time datetime="2016-09-06T06:45:06+00:00">September 6, 2016 at 6:45 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Updating a component&#8217;s state (using the setState method) also triggers a re-render. This discussion is interesting:  <a href="http://stackoverflow.com/questions/30626030/can-you-force-a-react-component-to-rerender-without-calling-setstate" rel="nofollow ugc">http://stackoverflow.com/questions/30626030/can-you-force-a-react-component-to-rerender-without-calling-setstate</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23117" data-commentid="23117" data-postid="356" data-belowelement="comment-23117" data-respondelement="respond" data-replyto="Reply to Greg" aria-label="Reply to Greg">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-22521">
+						<article id="comment-22521" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/449968e14f5a0b3d53a90cf19fa2818f?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/449968e14f5a0b3d53a90cf19fa2818f?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">John A. </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-22521"><time datetime="2016-08-05T19:24:52+00:00">August 5, 2016 at 7:24 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Love this tutorial but&#8230; should likely be updated to note that the sample code uses an old version of React from the CDN. It still works but I was initially thrown off when I saw things in my generated output (like data-reactid attributes) that were removed a few months ago. Best place to get latest CDNs seems to be <a href="https://facebook.github.io/react/downloads.html" rel="nofollow ugc">https://facebook.github.io/react/downloads.html</a></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22521" data-commentid="22521" data-postid="356" data-belowelement="comment-22521" data-respondelement="respond" data-replyto="Reply to John A." aria-label="Reply to John A.">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-23063">
+						<article id="comment-23063" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/e9dd42564e2f4af2f3b64093b0e88993?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/e9dd42564e2f4af2f3b64093b0e88993?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Vishz </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23063"><time datetime="2016-09-04T05:28:24+00:00">September 4, 2016 at 5:28 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Dude,</p>
+<p>I wish I had seen your blog much earlier.</p>
+<p>Thanks a TON buddy,</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23063" data-commentid="23063" data-postid="356" data-belowelement="comment-23063" data-respondelement="respond" data-replyto="Reply to Vishz" aria-label="Reply to Vishz">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-23091">
+						<article id="comment-23091" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/ff43dcd137c386e829a5de5e5a79f521?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/ff43dcd137c386e829a5de5e5a79f521?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Greg </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23091"><time datetime="2016-09-05T03:19:16+00:00">September 5, 2016 at 3:19 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>A bit off topic, but just out of curiosity, I tried to use the React Development Tools (Chrome extension) with the tutorial page, but the &#8220;React&#8221; tab doesn&#8217;t show up. If I switch to the Facebook site, it does appear. Any ideas why this is? I have tried updating the tutorial to load the latest React code, but that doesn&#8217;t work either.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23091" data-commentid="23091" data-postid="356" data-belowelement="comment-23091" data-respondelement="respond" data-replyto="Reply to Greg" aria-label="Reply to Greg">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-23093">
+						<article id="comment-23093" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/ff43dcd137c386e829a5de5e5a79f521?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/ff43dcd137c386e829a5de5e5a79f521?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Greg </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23093"><time datetime="2016-09-05T03:29:41+00:00">September 5, 2016 at 3:29 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Ah &#8211; I had to enable local file access for the extension &#8211; working now. 🙂</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23093" data-commentid="23093" data-postid="356" data-belowelement="comment-23093" data-respondelement="respond" data-replyto="Reply to Greg" aria-label="Reply to Greg">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-23494">
+						<article id="comment-23494" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/5934784334a183a9c655c8ef058b3312?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/5934784334a183a9c655c8ef058b3312?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://youthsm.wordpress.com/" rel="external nofollow ugc" class="url">Gaurav Kumar</a> </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23494"><time datetime="2016-09-27T11:02:34+00:00">September 27, 2016 at 11:02 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I am following your blogs and trying to create a component but stuck with a small problem I am unable to render the ajax response. Can you please guide me what I am doing wrong in that. Here is the code <a href="http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002" rel="nofollow ugc">http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002</a>. I am not getting any error in console.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23494" data-commentid="23494" data-postid="356" data-belowelement="comment-23494" data-respondelement="respond" data-replyto="Reply to Gaurav Kumar" aria-label="Reply to Gaurav Kumar">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-23517">
+						<article id="comment-23517" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/64cc5d58b3a72655f74d63b54e84e0ec?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/64cc5d58b3a72655f74d63b54e84e0ec?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Gustaf Elbander </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23517"><time datetime="2016-09-28T13:50:36+00:00">September 28, 2016 at 1:50 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thanks a lot for this great article! Super easy to follow to get a basic idea how it works!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23517" data-commentid="23517" data-postid="356" data-belowelement="comment-23517" data-respondelement="respond" data-replyto="Reply to Gustaf Elbander" aria-label="Reply to Gustaf Elbander">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-23888">
+						<article id="comment-23888" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/85e13dc308398cf8f737f27936064c46?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/85e13dc308398cf8f737f27936064c46?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Cody Childers </cite><a href="/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23888"><time datetime="2016-10-18T21:18:02+00:00">October 18, 2016 at 9:18 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thank you for actually writing a great tutorial and having the pride to check it before it works. People like you are becoming rarer and rarer. Thanks</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23888" data-commentid="23888" data-postid="356" data-belowelement="comment-23888" data-respondelement="respond" data-replyto="Reply to Cody Childers" aria-label="Reply to Cody Childers">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/learn-raw-react-no-jsx-flux-es6-webpack/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="356" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="4c3e172fb2"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="183"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

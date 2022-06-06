@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>Building a Router with Raw React</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content=""> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Routing doesn&#039;t have to be so complicated! Get started in 2 minutes, then learn the ins and outs of routing with Raw React. Practice with 7 exercises.">
+<link rel="canonical" href="/routing-with-raw-react/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building a Router with Raw React">
+<meta property="og:description" content="Routing doesn&#039;t have to be so complicated! Get started in 2 minutes, then learn the ins and outs of routing with Raw React. Practice with 7 exercises.">
+<meta property="og:url" content="httpjamesknelson.com/routing-with-raw-react/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="Javascript">
+<meta property="article:published_time" content="2015-10-05T14:44:50+00:00">
+<meta property="article:modified_time" content="2015-10-09T02:09:57+00:00">
+<meta property="og:updated_time" content="2015-10-09T02:09:57+00:00">
+<meta property="og:image" content="httpjamesknelson.com/wp-content/uploads/2015/10/banner.png">
+<meta property="og:image:width" content="940">
+<meta property="og:image:height" content="470">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Routing doesn&#039;t have to be so complicated! Get started in 2 minutes, then learn the ins and outs of routing with Raw React. Practice with 7 exercises.">
+<meta name="twitter:title" content="Building a Router with Raw React">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:image" content="httpjamesknelson.com/wp-content/uploads/2015/10/banner.png">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Building a Router with Raw React Comments Feed" href="/routing-with-raw-react/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/504">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=504">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Frouting-with-raw-react%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Frouting-with-raw-react%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-504 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-504" class="clearfix post-504 post type-post status-publish format-standard hentry category-javascript category-react">
+								<header class="entry-header">
+																		<h1 class="entry-title">Building a Router with Raw React</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/javascript/" rel="category tag">Javascript</a>, <a href="/category/react/" rel="category tag">React</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/routing-with-raw-react/" title="2:44 pm" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">October 5, 2015</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p>So you&#8217;ve decided to build a Single Page App with React, and everything seems to be going dandy. You&#8217;ve got yourself some wireframes, a HTML file and a few components, and then you decide to add some routes. Easy, right?</p>
+<p>Well, thats what you <em>thought</em> until you started reading the internet. But now you&#8217;re worrying about isomorphism and the HTML 5 history API and even <em>how to pass props to your view components again</em>. And if you thought learning all <em>this</em> was painful, imagine <strong>rewriting your application when the routing library&#8217;s API breaks in a few weeks.</strong></p>
+<p>Routing doesn&#8217;t have to be complicated, so why stress yourself out with libraries when a hand-rolled router can take less than 20 lines? Especially seeing that if you&#8217;d have just kept following this guide, you would have had something working in <em>only two minutes</em>&#8230;</p>
+<p><span id="more-504"></span></p>
+<h2><a id="hash-based-routing" href="#hash-based-routing">Hash-based routing in two minutes</a></h2>
+<p><strong>Routing</strong> means <em>doing something in response to a change in the browser&#8217;s current URL</em>. There are two ways you can accomplish this:</p>
+<ol>
+<li>
+<strong>pushState routing</strong>, using the HTML5 History API</li>
+<li>
+<strong>hash-based routing</strong>, using the portion of the page&#8217;s URL starting with <code>#</code>, i.e. the <strong>hash</strong>.</li>
+</ol>
+<p>Hash-based routing is by far the simpler of the two alternatives, and with the exception of a few <a href="/push-state-vs-hash-based-routing-with-react-js/">specific cases</a>, it&#8217;ll usually do the job. So let&#8217;s go with this.</p>
+<p>Implementing hash-based routing with React is simple; just choose what to render based on the string stored in <code>window.location.hash</code>. We&#8217;ll do this once on page load, and again each time the browser emits the <code>hashchange</code> event:</p>
+<pre><code>// Handle the initial route
+navigated()
+
+// Handle browser navigation events
+window.addEventListener('hashchange', navigated, false);
+</code></pre>
+<p>Given the above two lines, all we need to do to finish our router is implement the <code>navigated</code> function. And since you won&#8217;t learn anything without putting it into practice, let&#8217;s do this as an exercise.</p>
+<h3>Exercise 1: Create a hash-based router</h3>
+<p>The specification for <code>navigated</code> is simple; it calls <code>ReactDOM.render</code>, with the passed in component depending on the value of <code>window.location.hash</code>.</p>
+<p><strong>Your task is to implement the <code>navigated</code> function, handling the following hashes:</strong></p>
+<ul>
+<li>For <code>#/</code>, use a component containing the text <code>I'm amazing! I've made a Raw React Router!</code>
+</li>
+<li>Otherwise, use a component containing the text <code>Not Found</code>
+</li>
+</ul>
+<p>If you need a HTML file to test your script with, use the file from <a href="/learn-raw-react-no-jsx-flux-es6-webpack/">part 1</a>&#8216;s Exercise 1.</p>
+<p>Once you have tested your work by entering in various URLs, compare your solution to mine by touching or hovering your mouse over this box:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+
+<pre><code>function navigated() {
+  // Choose which component to render based on browser URL
+  var component = window.location.hash == "#/"
+    ? React.createElement('div', {}, "Index Page")
+    : React.createElement('div', {}, "Not Found")
+
+  // Render the new component to the page's #react-app element
+  ReactDOM.render(
+    component,
+    document.getElementById('react-app')
+  );
+}
+</code></pre>
+<p>
+</p>
+</div>
+<p>Congratulations, you now know how to build a working router! Given enough time, you could use what you&#8217;ve learned to build a full-featured routing system.</p>
+<p>Of course, while this incredibly basic router <em>works</em>, trying to integrate it with our contact list app from parts <a href="/learn-raw-react-no-jsx-flux-es6-webpack/">one</a> and <a href="/learn-raw-react-ridiculously-simple-forms/">two</a> is not going to scale. So let&#8217;s learn how to apply these fundamentals to a real app.</p>
+<p><em>This is part three of my series on Raw React. If you&#8217;re new to React.js, start from <a href="/learn-raw-react-no-jsx-flux-es6-webpack/">part one</a>. Otherwise, you can get your bearings at part two&#8217;s <a href="https://github.com/jamesknelson/raw-react-part-2">GitHub repository</a></em>.</p>
+<h2><a id="managing-location" href="#managing-location">Managing the current location</a></h2>
+<p>In the example above, we&#8217;ve directly referenced <code>window.location.hash</code> when choosing what to render:</p>
+<pre><code>var component = window.location.hash == "#/"
+    ? React.createElement('div', {}, "Index Page")
+    : React.createElement('div', {}, "Not Found")
+</code></pre>
+<p>As we learned in part one, React apps don&#8217;t re-render themselves. Because of this, when <code>window.location.hash</code> changes value, we need to manually call <code>ReactDOM.render</code> to update the DOM. We had no trouble doing this in the first exercise, but how would we go about applying this to our contact list application?</p>
+<h3>Review: The Story So Far</h3>
+<p>In our contact list application from parts one and two, <code>ReactDOM.render</code> is never called manually. Instead, it is called from within our  <code>setState</code> function. <em>But what does the <code>setState</code> function have to do with rendering?</em></p>
+<p>The <code>setState</code> function &#8211; as you may expect &#8211; is used to update the current application state. This state is stored in a global <code>state</code> variable &#8211; but crucially &#8211; we make sure to <em>never</em> update this variable directly. And <em>because</em> all updates to <code>state</code> happen through the <code>setState</code> function, we also know that the only time the app must be re-rendered is within each call to <code>setState</code>. That is &#8211; <em>as long as the application&#8217;s state is completely stored in <code>state</code>.</em></p>
+<p>One more thing. As <code>setState</code> is a global, we <em>could</em> call it from anywhere. But  we&#8217;ve decided to only call <code>setState</code> from functions which directly handle user input. We call these functions <strong>actions</strong>, and place them all in a single location within the source code, passing them via <code>props</code> to where they are required.</p>
+<h3>Location as state</h3>
+<p>But now that we&#8217;ve remembered how our app fits together, it seems we have a problem: our simple hash-based router requires that we call <code>ReactDOM.render</code> manually, but our app requires that <code>ReactDOM.render</code> is called from within <code>setState</code>.</p>
+<p>Can you think of a way to reconcile this? Have a think about it, then check your intuition by touching or hovering your mouse over this box:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+Instead of directly accessing <code>window.location.hash</code> each time we render, we can instead store it <em>inside</em> our <code>state</code> object by calling <code>setState</code> within the hash change handler. In other words, we can turn our <code>navigated</code> function into an <em>action</em>.
+</div>
+<h3>Exercise 2: Adding routing to your contact list</h3>
+<p>Lets continue from where we left off in part 2, and give our contact list app some routes! To start, we&#8217;ll keep it simple by providing only two routes:</p>
+<ul>
+<li>
+<code>#/contacts</code>, which displays the existing contact list</li>
+<li>a default route, which displays a &#8220;Not Found&#8221; message and a link to <code>#/contacts</code>
+</li>
+</ul>
+<p><strong>Your task is to implement the following changes:</strong></p>
+<ul>
+<li>Add a <code>navigated</code> function which stores the current hash in <code>state.location</code>
+</li>
+<li>Call <code>navigated</code> on page load, and on subsequent hash change events</li>
+<li>Modify <code>setState</code> to render the correct content for the current value of <code>state.location</code>
+</li>
+</ul>
+<p>Once you&#8217;ve got it working (or gotten stuck), compare your answer with mine:</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/higiguh/embed?js,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.0"></script></p>
+<div class="hint">
+Are the JSBin examples getting a little hard to follow? A <a href="https://github.com/jamesknelson/raw-react-part-3">GitHub repository</a> with the source split over multiple files is available with this guide&#8217;s final solution.
+</div>
+<hr>
+<p>Of course, a single page app shouldn&#8217;t <em>literally</em> be a single page. So let&#8217;s add an edit form!</p>
+<h2><a id="extracting-route-parameters" href="#extracting-route-parameters">Extracting route parameters</a></h2>
+<p>We&#8217;d like to be able to specify the contact we want to edit by adding its <code>id</code> to the hash, following this pattern:</p>
+<pre><code>#/contacts/&lt;id&gt;/
+</code></pre>
+<p>The <code>&lt;id&gt;</code> part of the above hash is called a <strong>route parameter</strong>. Note how the parameter is delineated by <code>/</code> characters; you might be familiar with this if you&#8217;re used a server side tool like Express or Ruby on Rails.</p>
+<p>Actually, it isn&#8217;t just route parameters that we delineate with <code>/</code> &#8211; our route names are <em>also</em> sandwiched between slashes. Given this is the case, lets make our job easier by storing an <em>array of parts</em> in <code>state.location</code>, as opposed to the hash itself:</p>
+<pre><code>['contacts', '&lt;id&gt;']
+</code></pre>
+<p>Did you notice how I <em>didn&#8217;t</em> write <code>['#', 'contacts', '&lt;id&gt;']</code> or <code>['', 'contacts', '&lt;id&gt;', '']</code>? While these are perfectly valid ways of storing your current route, the information we care about is all located between the first and final <code>/</code> characters. So let&#8217;s cut the crusts off:</p>
+<pre><code>// Removes the `#`, and any leading/final `/` characters
+window.location.hash.replace(/^#\/?|\/$/g, '').split('/');
+</code></pre>
+<p><em>But James</em>, you ask &#8211; won&#8217;t routing based on URLs get me into trouble  in the long term? If my URL structure changes, refactoring it will be a nightmare! Actually, you&#8217;re spot on.</p>
+<h3>URL parsing tools</h3>
+<p>While this article is about the <em>fundamentals</em> of routing with React, for any <em>real</em> project you&#8217;ll probably want to use a tool to name your routes and route parameters, and to lookup/generate URIs using these names.</p>
+<p>The tool I use for this purpose is called <a href="http://unicornstandard.com/packages/uniloc.html">uniloc</a>, and is part of Unicorn Standard &#8211; my collection of tools for JavaScript-based Single Page Applications. And on the odd chance you&#8217;d like to learn how to build a <em>real</em> react app, you can get a version of the contact list project <em>extended to use uniloc</em> just by signing up to hear about my latest articles and tools! But I digress.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=18"></script>
+<link rel="stylesheet" href="/routing-with-raw-react/ck_form.html">
+<div class="ck_form single_line">
+
+  <div class="ck_form_fields">
+  
+    <h3>Get the uniloc/Raw React example project</h3>
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4373/subscribe" data-remote="true">
+      <input type="hidden" name="id" value="4373" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+        <div>
+          <label class="ck_label" for="ck_firstNameField" style="display:none">First Name</label>
+        
+          <input type="text" name="first_name" placeholder="First name" class="ck_first_name" id="ck_firstNameField" required>
+        </div>
+        <div class="field">
+          <label class="ck_label" for="ck_emailField" style="display:none">Email Address</label>
+        
+          <input type="email" name="email" placeholder="Email address" class="ck_email_address" id="ck_emailField" required>
+        </div>
+
+        <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+          Subscribe to my Newsletter
+        </button>
+    </form>
+  </div>
+ </div>
+ <style type="text/css">.ck_form.single_line {
+  /* divider image */
+  background: #f9f9f9;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border: solid 1px #d1d1d1;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  clear: both;
+  margin: 20px auto;
+  text-align: center;
+  width: 85%;
+  border-radius: 6px;
+}
+
+
+.ck_form.single_line h3, #content .ck_form.single_line h3 { 
+  text-align: center; 
+  margin: 0px 0px 10px; 
+  font-size: 24px;
+}
+
+.ck_form.single_line p {
+  padding: 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+.ck_form.single_line .ck_form_fields {
+  width: 100%;
+  float: left;
+  padding: 24px 0;
+}
+/* Form fields */
+
+.ck_errorArea {
+  display: none; /* temporary */
+}
+
+#ck_success_msg {
+  margin: 0 30px;
+  padding: 0 10px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_form.single_line input[type="text"], .ck_form.single_line input[type="email"] {
+  font-size: 18px;
+  padding: 10px 8px;
+  width: 68%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; /* border radius */
+  background-color: #fff; /* layer fill content */
+  height: auto;
+  margin: 5px 0;
+  height: 42px;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+} 
+
+.ck_form.single_line .ck_checkbox {
+  display: none;
+}
+
+.ck_form.single_line .ck_subscribe_button {
+    color: #fff;
+    margin: 0px;
+    padding:  11px 22px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+    margin: 10px 0 0;
+    height: 42px;
+    width: auto;
+  }
+  
+  
+.ck_form.single_line .ck_guarantee {
+  color: #626262;
+  font-size: 15px;
+  text-align: center;
+  padding: 15px 0px 0px;
+  display: block;
+  clear: both;
+}</style>
+<h3>Exercise 3: Selecting component props by hash</h3>
+<p>Now that you know how to extract the route parameters, lets actually set up a (read-only) contact form. Heres the view component we&#8217;ll use:</p>
+<pre><code>var ContactView = React.createClass({
+  propTypes: {
+    contacts: React.PropTypes.array.isRequired,
+    id: React.PropTypes.string.isRequired,
+  },
+
+  render: function() {
+    var key = this.props.id;
+    var contactForm = this.props.contacts.filter(function(contact) { return contact.key == key })[0];
+
+    return (
+      !contactForm
+        ? React.createElement('h1', {}, "Not Found")
+        : React.createElement('div', {className: 'ContactView'},
+            React.createElement('h1', {className: 'ContactView-title'}, "Edit Contact"),
+            React.createElement(ContactForm, {
+              value: contactForm,
+              onChange: function(){},
+              onSubmit: function(){},
+            })
+          )
+    )
+  },
+});
+</code></pre>
+<div class="hint">
+Take special note of this view component&#8217;s <code>props</code>: while the contact objects from part two specify a <code>key</code> value and no <code>id</code>, this view&#8217;s <code>props</code> specify an <code>id</code> but no <code>key</code>. This is because <code>key</code> is a special prop which is consumed by React. See the <a href="https://facebook.github.io/react/docs/multiple-components.html#dynamic-children">React documentation</a> for more details.
+</div>
+<p><strong>Your task is to display the <code>ContactView</code> under the <code>/contacts/&lt;id&gt;/</code> route, and add links to this view to the contact list.</strong></p>
+<p>Once you&#8217;ve got this working, compare your answer with mine:</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/giveqi/embed?js,output">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.0"></script></p>
+<hr>
+<p>Your app is finally starting to take shape! You can add contacts, navigate between pages, and you can even use the browser forward/backward buttons (don&#8217;t laugh, a lot of web apps fall to pieces when the user touches them).</p>
+<p>But while it&#8217;s great that you&#8217;ve managed to get this far, having a giant switch statement smack bang in the middle of <code>setState</code> obviously isn&#8217;t going to scale. So let&#8217;s fix this with an <code>Application</code> component.</p>
+<h2><a id="the-application-component" href="#the-application-component">The Application component</a></h2>
+<p>The <code>Application</code> component is the component we&#8217;ll pass to <code>ReactDOM.render</code>. It takes the <code>state</code> global as its <code>props</code>, and returns the rest of the application:</p>
+<pre><code>ReactDOM.render(
+  React.createElement(Application, state),
+  document.getElementById('react-app')
+);
+</code></pre>
+<p>This seems pretty simple, but it&#8217;s actually a <em>really big deal</em>. Why?</p>
+<p>One of React&#8217;s biggest strengths is that the stateless components typically used with it encourage you to design apps which are easy to reason about. By specifying your entire user interface&#8217;s state with a single <code>state</code> object, you cleanly separate your app into two parts:</p>
+<ul>
+<li>A <strong>model</strong>, which <em>manages</em> your application state</li>
+<li>A <strong>view</strong>, which defines how to <em>render</em> that state</li>
+</ul>
+<p>Your <code>Application</code> component is the interface between model and view. Because of this, a well written <code>Application</code> component will <em>at a glance</em> show you <em>how your entire app fits together</em>.</p>
+<h3>Actions, Callbacks &amp; <code>Application</code>
+</h3>
+<p>As part of wiring your application together, your <code>Application</code> component is also responsible for passing the correct actions to the views which it renders:</p>
+<pre><code>React.createElement(ContactsView, Object.assign({}, this.props, {
+  onChangeContact: updateNewContact,
+  onSubmitContact: submitNewContact,
+}));
+</code></pre>
+<div class="hint">
+New to <code>Object.assign</code>? Read about it at <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Mozilla Developer Network</a>.
+</div>
+<p>But as our app currently stands, all actions are global functions. So why not just use these action functions directly from the view components?</p>
+<p>When asking this question, it helps to remember the reason we&#8217;re using React in the first place &#8211; we want to be able to compose our application from reusable components. Using global actions within view components ties them to the specific application, while at the same time hiding the component&#8217;s dependencies from anyone trying to grok the app through its <code>Application</code> component.</p>
+<h3>Exercise 4: Implement your <code>Application</code> component</h3>
+<p>Implementing your <code>Application</code> component is simple: all you need to do is shift the functionality which is currently inside your <code>setState</code> function to a new <code>Application</code> component.</p>
+<p>Also, since we&#8217;ll eventually want to handle user input in our edit form, let&#8217;s take this exercise as an opportunity to add empty <code>updateContactForm</code> and <code>submitContactForm</code> actions. These actions should be passed from <code>Application</code> into the <code>ContactView</code> component, which will in turn pass them to <code>ContactForm</code>.</p>
+<p><strong>Your task is to implement the <code>Application</code> component, with empty <code>updateContactForm</code> and <code>submitContactForm</code> handlers.</strong></p>
+<p>When you&#8217;ve finished, compare your implementation with mine. It should be nearly identical:</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/lafidoz/embed?js,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.0"></script></p>
+<hr>
+<p>And with that simple change, your application&#8217;s guts are now all clean and tidy! But your users won&#8217;t care if the &#8220;Save&#8221; button doesn&#8217;t work. So let&#8217;s fix it.</p>
+<h2><a id="navigating-programatically" href="#navigating-programatically">Navigating programatically</a></h2>
+<p>Action functions like the one called by &#8220;Save&#8221; often need to send the user to a different page. But while <code>&lt;a href="#/..."&gt;</code> tags provide a simple way to let users navigate, they won&#8217;t help us when we want to change the location <em>programatically</em>. So what are we to do?</p>
+<p>Our first thought might be to simply change our &#8220;Save&#8221; button to an <code>&lt;a&gt;</code> tag styled like a button. But this will not allow us to call an action function; the user will be able to navigate, but <em>won&#8217;t</em> be able to save the form&#8217;s contents. So instead, let&#8217;s mimic the functionality of <code>&lt;a&gt;</code> from <em>within</em> our action by using the <code>window.location.replace</code> function:</p>
+<pre><code>// Navigate to `#/contacts`
+window.location.replace(
+  window.location.pathname + window.location.search + '#/contacts'
+);
+</code></pre>
+<h3>Exercise 5: Navigate within an action</h3>
+<p>When the user clicks on the &#8220;Save&#8221; button before the form input has changed, the user will still expect to be taken back to the contacts list.</p>
+<p><strong>Your task is to implement the <code>submitContactForm</code> action such that it sends the user to the contact list.</strong></p>
+<p>When you&#8217;ve finished, compare your implementation with mine by touching or hovering over this box. It should be nearly identical:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+
+<pre><code>function submitContactForm() {
+  window.location.replace(
+    window.location.pathname + window.location.search + '#/contacts'
+  );
+}
+</code></pre>
+<p>
+</p>
+</div>
+<hr>
+<p>Wonderful, the user will no longer be confused when they press the save button and nothing happens! But, given the app immediately displays &#8220;Not Found&#8221; when it is loaded, there&#8217;s a good chance they&#8217;ll never even <em>see</em> the save button. Let&#8217;s do something about that.</p>
+<h2><a id="redirecting" href="#redirecting">Redirecting</a></h2>
+<p>Redirecting is just a fancy way of saying &#8220;sending the user to location A when they request location B&#8221;. And now that we know how to navigate programatically, implementing redirection is simple: just update <code>window.location</code> as we&#8217;re handling navigation events:</p>
+<pre><code>function navigated() {
+  var normalizedHash = window.location.hash.replace(/^#\/?|\/$/g, '');
+
+  if (normalizedHash == 'some-route') {
+    window.location.replace(
+      window.location.pathname + window.location.search + '#/another-route'
+    );
+  }
+  else {
+    setState({
+      location: normalizedHash.split('/')
+    });
+  }
+}
+</code></pre>
+<p>The only trick here is to make sure you don&#8217;t update <code>setState</code> until you&#8217;ve reached the final destination. This is because updating <code>window.location</code> will cause <code>navigated</code> to be called once the browser has updated its URL. If you update <code>setState</code> on each step you take, you&#8217;ll end up rendering each intermediate route. This will cause performance issues; more importantly though, it will look <em>terrible</em>.</p>
+<h3>Why redirects are necessary</h3>
+<p>Within a single page app (or the web in general), you generally want to ensure that what is visible in the address bar:</p>
+<p><img src="/wp-content/uploads/2015/10/address-bar.png" alt="Address bar"></p>
+<p>Corresponds to what is actually visible within the page:</p>
+<p><img src="/wp-content/uploads/2015/10/page.png" alt="Page content"></p>
+<p><em>James</em>, you say &#8211; I already know that. I&#8217;ve just read through an entire article on routing for crying out loud &#8211; and besides &#8211; <em>this still doesn&#8217;t explain why redirects are necessary</em>. But the reason I brought it up is that sometimes you have a URL which corresponds to <em>more than one page</em>.</p>
+<p>The textbook example of this is the root location, i.e. <code>#/</code>. Do you know why the content underneath <code>#/</code> may vary? Have a quick think about it, then check your answer by touching or hovering your mouse over this box:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+<br>
+The root location is the first location a user will see when they open an app. However, what a user wants to see initially will depend on what they&#8217;ve seen before.
+<p>Is the user a logged-in customer? They&#8217;ll probably want to see their contacts. Are they someone completely new? We&#8217;ll want to show them the registration form.<br>
+
+</p>
+</div>
+<p>In order to ensure that the app&#8217;s URL and content match, you&#8217;ll need to redirect the user from the root location to the hash which matches their desired view.</p>
+<h3>Exercise 6: Handle the root location</h3>
+<p>Now that you know <em>why</em> you need a root redirect and <em>how</em> to implement it, why not give it a shot?</p>
+<p>And while you&#8217;re at it, since the app now navigates programatically in multiple places, refactor your code by replacing your existing call to <code>window.location.replace</code> with a new <code>startNavigating(newLocation)</code> action.</p>
+<p><strong>Your task is to implement a redirect from the root location to <code>#/contacts</code>, using your new <code>startNavigating</code> function.</strong></p>
+<p>Once you&#8217;ve finished, compare your implementation with mine by touching or hovering over this box. It should be nearly identical:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+
+<pre><code>function submitContactForm() {
+  startNavigating('/contacts');
+}
+
+function navigated() {
+  // Strip leading and trailing '/'
+  normalizedHash = window.location.hash.replace(/^#/?|/$/g, '');
+
+  if (normalizedHash === '') {
+    // Redirect for default route
+    startNavigating('/contacts');
+  }
+  else {
+    // Otherwise update our application state
+    setState({location: normalizedHash.split('/')});
+  }
+}
+
+function startNavigating(hash) {
+  window.location.replace(
+    window.location.pathname + window.location.search + '#' + hash
+  );
+}
+</code></pre>
+<p>
+</p>
+</div>
+<hr>
+<p>Great work! At this point, there is only one thing left: making the edit form <em>work</em>. And, given you&#8217;ve completed <a href="/learn-raw-react-ridiculously-simple-forms/">part 2</a>, you should already be capable of completing this yourself! But before you do, there is one more thing you should know about:</p>
+<h2><a id="transitioning-between-locations" href="#transitioning-between-locations">Transitioning between locations</a></h2>
+<p>If we were to draw a timeline of the transition between two routes, it would look something like this:</p>
+<p><img src="/wp-content/uploads/2015/10/flow-1.png" alt="Flow with one render"></p>
+<p>When the current location changes primarily <em>because the user wants to see something else</em>, this makes total sense. The user&#8217;s intent is <em>to navigate</em>, so the only property under <code>state</code> which needs to change is <code>location</code>.</p>
+<p>But what happens when navigation happens for some other reason, like submitting changes to a contact? Let&#8217;s have a look! Assuming we implement our <code>submitContactForm</code> action with something like the following:</p>
+<pre><code>startNavigating('#/contacts');
+setState({contacts: updateContacts});
+</code></pre>
+<p>Our flow will look like this:</p>
+<p><img src="/wp-content/uploads/2015/10/flow-2.png" alt="Flow with two renders"></p>
+<p>There is a problem here. Do you see it? Once you think you do, check your understanding by touching or hovering your mouse over this box:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+<br>
+<code>ReactDOM.render</code> first renders the new view component without the updated contacts, <em>then</em> re-renders it with the updated data. This slows things down, but more importantly will also result in old data briefly flashing on screen.<br>
+
+</div>
+<p>To eliminate this problem, we can add a new <code>transitioning</code> property to our <code>state</code> object. When navigation starts, <code>state.transitioning</code> will be set to <code>true</code>, and when complete, it will change back to <code>false</code>. By ensuring <code>setState</code> only renders when <code>state.transitioning</code> is <code>false</code>, we eliminate the double render.</p>
+<div class="hint">
+If we were to handle <code>state.transitioning</code> in our <code>Application</code> component&#8217;s <code>render</code> method instead, it would also be possible to apply CSS transitions between views. 
+</div>
+<h2>Exercise 7: Complete implementation of the edit form</h2>
+<p>With the contact list app being almost complete, there is only one thing left to do:</p>
+<p><strong>Your task is to make the edit form work.</strong></p>
+<p>This will involve:</p>
+<ul>
+<li>Adding a new object to <code>state</code> which stores the current values of the various contact&#8217;s edit forms</li>
+<li>Updating your <code>ContactView</code> component to show the edited data</li>
+<li>Completing the <code>updateContactForm</code> and <code>submitContactForm</code> actions</li>
+</ul>
+<p>Be careful to make sure that the entered data is not saved until the user actually presses &#8220;Save&#8221;. Also, ensure that validation is performed correctly and any errors are displayed properly.</p>
+<p>Finally, don&#8217;t forget to implement <code>state.transitioning</code>! While it may not <em>feel</em> necessary with an app of this size, ensuring that <code>ReactDOM.render</code> is not called multiple times will become increasingly important as your app starts to grow.</p>
+<p>Once you&#8217;re happy with your implementation, compare it to this guide&#8217;s <a href="https://github.com/jamesknelson/raw-react-part-3">GitHub repository</a>. Make sure your features match the specification, but don&#8217;t get too hung up on differences in implementation.</p>
+<hr>
+<p>And there you have it, you now know the fundamentals of routing with React!  Pat yourself on the back for a job well done!</p>
+<h2><a id="your-next-steps" href="#your-next-steps">Your next steps</a></h2>
+<p>Now that you know <em>how</em> to build a router, the next step is to go out and <em>do</em> it, right?</p>
+<p>Hold on a minute. The next step <em>actually</em> depends on what you&#8217;re building. Are you creating a tiny app with only three or four routes? In that case, its time to get started! But what if you&#8217;re building something a little bigger?</p>
+<p>In order to avoid 1000-line <code>Application</code> components it will become increasingly important to focus on <em>how your routes are defined</em> as your app starts to scale. And while nothing is stopping you from implementing this yourself, <em>not everything is best solved with Raw React</em>.</p>
+<h3>Don&#8217;t reinvent the wheel</h3>
+<p>The last thing I want anyone to take away from this guide is that tools are bad. Tools are <em>incredibly</em> important. <em>But</em> &#8212; if all you have is a hammer, everything looks like a nail. Without the knowledge of how a router works, all you really have is <a href="https://github.com/rackt/react-router">react-router</a> et al.</p>
+<p>Now don&#8217;t get me wrong &#8211; react-router is a great tool for a number of use cases. But now that you know how routing works, you should be able to pick the best tool for <em>your use case</em>. And on the odd chance that you decide this is a Raw React, hash-based router, you&#8217;ll probably want a tool to help map URLs to routes. And as it happens, I made uniloc just for this purpose. And to give you a head start, I&#8217;ve put together a small example project for my subscribers which marries uniloc with your contact list app.</p>
+<p>In return for your e-mail address, I&#8217;ll send you the next episodes in the series <em>as they&#8217;re released</em>. As a bonus you&#8217;ll also immediately receive the uniloc-enhanced project source, and 3 <em>print-optimised</em> PDF cheatsheets &#8211; on <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">React</a>, <a href="/wp-content/uploads/2015/09/es6-cheatsheet-thumbnail.png">ES6</a> and <a href="/wp-content/uploads/2015/09/promises-cheatsheet-thumbnail.png">JavaScript promises</a>.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<p>One more thing &#8211; <em>I love hearing from readers.</em> If you have something to say, send <a href="https://twitter.com/james_k_nelson">@james_k_nelson</a> a tweet, or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. <em>Thanks for reading!</em></p>
+<hr>
+<p><img src="/wp-content/uploads/2015/10/overview2.png" alt="Raw React Routing"></p>
+<hr>
+<h2>Read More</h2>
+<ul>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React Part 1</a></li>
+<li><a href="/learn-raw-react-ridiculously-simple-forms/">Learn Raw React Part 2: Ridiculously Simple Forms</a></li>
+<li><a href="/push-state-vs-hash-based-routing-with-react-js/">Push-state vs hash-based routing</a></li>
+<li><a href="/react-js-by-example-interacting-with-the-dom/">Interacting with the DOM in React</a></li>
+</ul>
+<h2>Related Links</h2>
+<ul>
+<li><a href="https://github.com/jamesknelson/raw-react-part-3">Full source at Github</a></li>
+<li><a href="https://facebook.github.io/react/docs/multiple-components.html#dynamic-children">React Documentation: The <code>key</code> prop</a></li>
+</ul>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/push-state-vs-hash-based-routing-with-react-js/" rel="prev"><span class="meta-nav">&#8592;</span> React and pushState: You&#8217;re doing it wrong</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/which-flux-implementation-should-i-use-with-react/" rel="next">Which Flux Implementation Should I Use With React? <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					3 Comments <span class="on">&#8594;</span> <span>Building a Router with Raw React</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-3290">
+						<article id="comment-3290" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/8e373583f2c4be3efd5fe84a6f86aa47?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/8e373583f2c4be3efd5fe84a6f86aa47?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">azi </cite><a href="/routing-with-raw-react/#comment-3290"><time datetime="2015-10-25T02:50:49+00:00">October 25, 2015 at 2:50 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>contribute:<br>
+<code></code></p>
+<p>// with #/product/id<br>
+var normalizedHash = window.location<br>
+  .hash.slice(2);<br>
+  // reproduce product/id<br>
+window.location<br>
+  .hash.slice(1);<br>
+  // /product/id</p>
+<p><br>
+the state:<br>
+<code></code></p>
+<p> window.location<br>
+  .hash.slice(1).split('/')<br>
+// out: ["","product","id"]<br>
+window.location<br>
+  .hash.slice(1).split('/').splice(1,2);<br>
+// out: ["product",'id']</p>
+<p></p>
+<p>the next issue: approach routing more &#8220;expressive&#8221;,<br>
+and use RegEXP `*, + ? /:`?</p>
+<p>`/product/:id`<br>
+`/product/category/:id*`<br>
+`/product/:number(\\d+)`<br>
+`/product/?search`</p>
+<p>test case:<br>
+<code><br>
+  '/product/:id'.match(/^\/product\/([^\/]+?)\/?$/i)<br>
+  // out: path:'product',   catch:':id'<br>
+</code></p>
+<p>trying1:<br>
+route:  &#8216;/product/:120&#8217;<br>
+path: /product/id<br>
+<code><br>
+  RegEXP: /^\/product\/([^\\/]+?)(?:\/(?=$))?$/i<br>
+  Keys: 120,<br>
+  path:id=120<br>
+</code></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3290" data-commentid="3290" data-postid="504" data-belowelement="comment-3290" data-respondelement="respond" data-replyto="Reply to azi" aria-label="Reply to azi">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment odd alt depth-2" id="li-comment-3291">
+						<article id="comment-3291" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/8e373583f2c4be3efd5fe84a6f86aa47?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/8e373583f2c4be3efd5fe84a6f86aa47?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">azi </cite><a href="/routing-with-raw-react/#comment-3291"><time datetime="2015-10-25T02:55:51+00:00">October 25, 2015 at 2:55 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>by the way.. nice post thanks., james.. : )</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-3291" data-commentid="3291" data-postid="504" data-belowelement="comment-3291" data-respondelement="respond" data-replyto="Reply to azi" aria-label="Reply to azi">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-14846">
+						<article id="comment-14846" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/905d24088d27a026570bd2049bf939e4?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/905d24088d27a026570bd2049bf939e4?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://codementor.io/mrodrigues" rel="external nofollow ugc" class="url">Marcos Rodrigues</a> </cite><a href="/routing-with-raw-react/#comment-14846"><time datetime="2016-03-11T14:43:25+00:00">March 11, 2016 at 2:43 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I&#8217;ve found the final implementation for submitContactForm extremely complex. One of the things I like the most in React applications is the explicitness and easiness to reason about the data flow, avoiding exactly the kind of complex algorithms that make you stop and run in your mind each step to be able to grasp what that local state is doing there. I&#8217;ll try to work on a simplification and create a PR! 🙂</p>
+<p>Also, is it a good idea to access the state directly from the actions &#8212; and even worse, update it, like in <a href="https://github.com/jamesknelson/raw-react-part-3/blob/master/src/actions/contact.js#L35" rel="nofollow ugc">https://github.com/jamesknelson/raw-react-part-3/blob/master/src/actions/contact.js#L35</a> &#8211;?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-14846" data-commentid="14846" data-postid="504" data-belowelement="comment-14846" data-respondelement="respond" data-replyto="Reply to Marcos Rodrigues" aria-label="Reply to Marcos Rodrigues">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/routing-with-raw-react/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="504" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="0be8b55521"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="214"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

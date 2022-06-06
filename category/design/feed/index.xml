@@ -1,0 +1,1365 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Design &#8211; James K Nelson</title>
+	<atom:link href="/category/design/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Tue, 03 Nov 2015 03:20:36 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>Writing Happy Stylesheets with Webpack</title>
+		<link>/writing-happy-stylesheets-with-webpack/</link>
+					<comments>/writing-happy-stylesheets-with-webpack/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Tue, 03 Nov 2015 03:13:00 +0000</pubDate>
+				<category><![CDATA[Design]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Theming]]></category>
+		<guid isPermaLink="false">/?p=809</guid>
+
+					<description><![CDATA[<p>While the last few years have seen JavaScript turn from a tangle of jQuery into an orderly affair, CSS has been the subject of neglect. While JavaScript has learned new tricks like modularity, components and dependency bundling, most stylesheets are still a monolithic mess of globals. But with the advent of Webpack, it is time... <a class="more-link" href="/writing-happy-stylesheets-with-webpack/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/writing-happy-stylesheets-with-webpack/">Writing Happy Stylesheets with Webpack</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>While the last few years have seen JavaScript turn from a tangle of jQuery into an orderly affair, CSS has been the subject of neglect. While JavaScript has learned new tricks like modularity, components and dependency bundling, most stylesheets are still a monolithic mess of globals.</p>
+<p>But with the advent of Webpack, <em>it is time for stylesheets to shine again.</em> In fact, many of the lessons which JavaScript has learned can now be applied to SCSS and LESS too &#8212; leaving your stylesheets clean, independent, and most importantly, <em>happy</em>.</p>
+<p><span id="more-809"></span></p>
+<h2>Stylesheets are Happier in Components</h2>
+<p>While stylesheets <em>can</em> apply styles to HTML tags like <code>div</code> or <code>ul</code>, it leaves them feeling lonely. How can they be sure that such nonspecific selectors will stay in use? How can they be sure that they won&#8217;t be applied to an element which doesn&#8217;t <em>want</em> them?</p>
+<p>And while simple class selectors like <code>.active</code> or <code>.container</code> may temporarily give the stylesheet&#8217;s life some meaning, they still won&#8217;t result in peace-of-mind. Applications grow; what if the stylesheet&#8217;s selectors are <em>forgotten</em> in favour of younger ones? What if other stylesheets select the <em>same classes</em>, causing an abomination of merged styles?</p>
+<p>But when stylesheets are paired with a JavaScript component &#8212; whether Angular or React &#8212; they feel <em>happy</em>. With <strong>small CSS files which only style a single component&#8217;s HTML</strong>, they know that their selectors have meaning. They know that with <strong>class names namespaced using <a href="https://github.com/css-modules/css-modules">CSS modules</a> or <a href="/taming-css-globals-with-react-without-webpack-or-inline-style/">Pacomo</a></strong>, younger stylesheets will <em>never</em> be able to apply competing styles. And when living in the same directory as their component, they know that their fate will be shared &#8212; wherever it may lead.</p>
+<h2>Stylesheets value their independence</h2>
+<p>Traditionally, SCSS or LESS stylesheets are bound by the whims of their parents; they depend on a number of global variables, mixins and classes defined in a <code>main.scss</code> which <code>@import</code>s them.</p>
+<p>But stylesheets don&#8217;t want to stay at the family home forever &#8212; they long for a day when they are independent. They yearn to be <code>require()</code>&#8216;d by their JavaScript component. And to grant stylesheets their wish, you&#8217;ll need to rewrite them such that they <strong>don&#8217;t depend on the environment their parent provides</strong> &#8212; any dependencies must be manually <code>@import</code>ed from within the stylesheets themselves.</p>
+<p>You see, happy stylesheets are <em>independent</em> stylesheets.</p>
+<h2>Intermission: How to <code>require()</code> stylesheets from JavaScript</h2>
+<p>The reason that stylesheets have traditionally been imported from a <code>main.scss</code> is that you literally <em>couldn&#8217;t</em> <code>require</code> them from your JavaScript. Since all stylesheets were then compiled at once, they <em>couldn&#8217;t</em> individually import their own dependencies. But with <a href="https://webpack.github.io/">Webpack</a>, <em>anything is possible.</em></p>
+<p>If you haven&#8217;t got Webpack set up already, start by following my guide to <a href="/build-es6-and-less-with-autorefresh-in-only-26-lines-of-configuration/">configuring Webpack with very few lines</a>. But assuming you <em>have</em> got Webpack working, making CSS <code>require</code>able is as simple as adding a loader:</p>
+<pre><code>// Pick _one_.
+
+loaders: [
+  // Load LESS
+  { test: /\.less$/, loader: "style!css!autoprefixer!less" },
+
+  // Load SCSS
+  { test: /\.scss$/, loader: "style!css!autoprefixer!sass" },
+
+  // Load plain-ol' vanilla CSS
+  { test: /\.scss$/, loader: "style!css" },
+]
+</code></pre>
+<p>Make sure you <code>npm install</code> the loader modules: <code>style-loader</code>, <code>css-loader</code>, <code>autoprefixer-loader</code> and <code>less-loader</code> or <code>sass-loader</code>.</p>
+<h2>Sharing variables and mixins is caring</h2>
+<p>Even without access to their parent&#8217;s environment, stylesheets can still share variables and mixins. But they&#8217;ll need to do so as peers &#8212; not children.</p>
+<p>To facilitate this, shared variables and mixins need a home, and what better place than a <code>theme</code> directory. Stylesheets can then <code>@import</code> only the libraries that they need. And since these <strong>themes only contain variables and mixins</strong>, they can even be packaged and shared!</p>
+<p>But beware! When <em>selectors</em> creep into this <code>theme</code> directory, they&#8217;ll infect <em>every stylesheet which imports them</em>. Stylesheets like to stay fit and healthy; importing globals is sure to result in tears.</p>
+<div class="hint">
+<strong>A note to Stylesheets from the land of LESS</strong></p>
+<p>LESS, in its great wisdom, provides the <code>@import (reference)</code> <a href="http://lesscss.org/features/#import-directives-feature">command</a>. Use this command when importing <code>theme</code> dependencies to banish any globals to the depths of <code>/dev/null</code>.
+</div>
+<h2>Shun the globals. Shuuuunnnnnnn.</h2>
+<p>But often, globals are a necessary evil. Sometimes you can&#8217;t avoid them, no matter how hard you try:</p>
+<pre><code>@import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+html, body {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+}
+</code></pre>
+<p>In cases like this, globals must be placed as far away from stylesheets as possible. Create a <code>globals.less</code> or <code>globals.css</code> file in a <em>different</em> location from the <code>theme</code> directory. Move any globals there, and then throw away the key.</p>
+<h2>But seriously, where is my distributable CSS file?</h2>
+<p>Nice story. But where have you put my distributable CSS file? GIVE ME BACK MY CSS FILE!</p>
+<p>Ok, <em>calm down</em>. All you need is a little more webpack configuration.</p>
+<p>First, you&#8217;ll need to install the <code>extract-text-webpack-plugin</code> module:</p>
+<pre><code>npm install extract-text-webpack-plugin --save
+</code></pre>
+<p>Then, you&#8217;ll need to import it at the top of your <code>webpack.config.js</code>:</p>
+<pre><code>// Boring CommonJS JavaScript
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+// Exciting ES6 JavaScript
+import ExtractTextPlugin from "extract-text-webpack-plugin";
+</code></pre>
+<p>Next, in your <em>production</em> configuration, replace the loader configuration from above with the <code>ExtractTextPlugin</code> version:</p>
+<pre><code>// Pick _one_.
+
+loaders: [
+  // Extract LESS
+  { test: /\.less$/,
+    loader: ExtractTextPlugin.extract("style-loader", "css-loader!autoprefixer-loader!less-loader") },
+
+  // Extract SCSS
+  { test: /\.scss$/,
+    loader: ExtractTextPlugin.extract("style-loader", "css-loader!autoprefixer-loader!sass-loader") },
+
+  // Extract plain-ol' vanilla CSS
+  { test: /\.scss$/,
+    loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
+]
+</code></pre>
+<p>Finally, add this to the <code>plugins</code> array in your production Webpack config:</p>
+<pre><code>new ExtractTextPlugin("style.css", {allChunks: false})
+</code></pre>
+<p><em>You don&#8217;t need <code>ExtractTextPlugin</code> in development.</em> Use your browser&#8217;s debugging tools to view the loaded CSS instead.</p>
+<p><em>If you want to see this in action, or don&#8217;t want to do it yourself, or just like reading other people&#8217;s code, then check out the <a href="http://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Starter Kit</a>.</em></p>
+<h2>Wow, my CSS feels <em>structured</em> now! Can you structure my JavaScript, too?</h2>
+<p>Why, certainly &#8212; I&#8217;m so glad that you asked! I&#8217;m currently in the midst of a series on structuring <strong>Small Scale React</strong> applications, and the only way to make sure you don&#8217;t miss out on the next part is to <em>join my Newsletter</em>!</p>
+<p>And to sweeten the deal, in return for your e-mail you&#8217;ll <em>immediately</em> receive three <em>print-optimised</em> PDF cheatsheets. One on React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), another for ES6 and yet another for JavaScript promises. <em>All for free!</em></p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your opinions, questions, and offers of money.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/why-you-shouldnt-use-inline-style-with-react">Why You Shouldn&#8217;t Use Inline Style with React</a></li>
+<li><a href="/taming-css-globals-with-react-without-webpack-or-inline-style/">Automatic CSS Namespacing with React</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
+<li><a href="http://lesscss.org/features/#parent-selectors-feature">LESS Parent Selector</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li><a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
+<li><a href="http://unicornstandard.com/packages/boilerplate.html">See react-pacomo in action with the Unicorn Standard Starter Kit</a></li>
+<li><a href="http://unicornstandard.com/packages/pacomo.html">The Pacomo Specification</a> </li>
+</ul>
+<p>The post <a rel="nofollow" href="/writing-happy-stylesheets-with-webpack/">Writing Happy Stylesheets with Webpack</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/writing-happy-stylesheets-with-webpack/feed/</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Why You Shouldn&#8217;t Style React Components With JavaScript</title>
+		<link>/why-you-shouldnt-style-with-javascript/</link>
+					<comments>/why-you-shouldnt-style-with-javascript/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Wed, 28 Oct 2015 06:04:33 +0000</pubDate>
+				<category><![CDATA[Design]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[React]]></category>
+		<category><![CDATA[Theming]]></category>
+		<guid isPermaLink="false">/?p=753</guid>
+
+					<description><![CDATA[<p>Update: I&#8217;ve announced react-pacomo, a solution for some of the problems with CSS outlined here, without the downsides of Inline Style. So one of the hottest topics in the React world lately is Inline Style, i.e. setting styles with an element&#8217;s style property instead of CSS. This new and shiny way of doing things promises... <a class="more-link" href="/why-you-shouldnt-style-with-javascript/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/why-you-shouldnt-style-with-javascript/">Why You Shouldn&#8217;t Style React Components With JavaScript</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><em>Update: <a href="/taming-css-globals-with-react-without-webpack-or-inline-style/">I&#8217;ve announced react-pacomo</a>, a solution for some of the problems with CSS outlined here, without the downsides of Inline Style.</em></p>
+<p>So one of the hottest topics in the React world lately is <em>Inline Style</em>, i.e. setting styles with an element&#8217;s <code>style</code> property instead of CSS.</p>
+<p>This new and shiny way of doing things promises to <em>make your life easier</em>. It eliminates the <em>bugs</em> caused by global styles, it allows you to <em>package</em> styles with your components, and it <em>unifies</em> the entire development process under the single language of JavaScript, <em>fuck yeah</em>. And now that all the cool kids are using it, it&#8217;s time to jump on the bandwagon too!</p>
+<p>But don&#8217;t just take my word for it! See for yourself with this handy dandy list of all the problems which you <em>could</em> have fixed with plain old CSS if you hadn&#8217;t of drunk the cool-aid, and the <em>new</em> problems you&#8217;ll now have to deal with too.</p>
+<p><span id="more-753"></span></p>
+<h2>Problems which Inline Style didn&#8217;t have to solve</h2>
+<h3>Everything in CSS is a global</h3>
+<p>Let&#8217;s get this one out of the way first, because it is always the first thing that comes up in any list of reasons not to use CSS.</p>
+<p>Yes, everything in CSS is a global:</p>
+<pre><code>.active {
+    background: red;
+}
+
+/* ... lines and lines of unrelated code ... */
+
+.active {
+    /* oops */
+    background: blue;
+}
+</code></pre>
+<p>So namespace your classes and deal with it:</p>
+<pre><code>.app-NavItem-active {
+    background: red;
+}
+
+/* ... lines and lines of unrelated code ... */
+
+.app-ContactForm-active {
+    background: blue;
+}
+</code></pre>
+<p>While this may look long-winded, if you&#8217;re using SCSS or LESS then the parent selector with a dash (<code>&amp;-</code>) will make wonder what you were ever worried about:</p>
+<pre><code>.app-ContactForm {
+  &amp;-active {
+    background: blue;
+  }
+
+  &amp;-saving, &amp;-fetching {
+    /* style goes here */
+  }
+}
+</code></pre>
+<p>And on the React side, there are <a href="http://unicornstandard.com/packages/react-pacomo.html">tools to generate these scoped class names for you</a>. Or if you&#8217;re stuck outside the kingdom of React, <a href="https://github.com/css-modules/css-modules">CSS modules</a> will accomplish basically the same thing.</p>
+<p>But then again, sometimes you <em>want</em> global styles, like this:</p>
+<pre><code>@import url('http://fonts.googleapis.com/css?family=Roboto:300,400');
+</code></pre>
+<p>Or this:</p>
+<pre><code>html, body {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  font-family: Roboto;
+}
+</code></pre>
+<p>And good luck implementing <em>these</em> with Inline Style.</p>
+<h3>Cascading gets in the way</h3>
+<p>There are a number of meanings of &#8220;cascading&#8221;, so let&#8217;s pick one: styles sometimes <em>inherit</em> their value from parent styles. For example, defining <code>font-family: "Comic Sans MS"</code> on <code>body</code> will cause most everything on your page to be cheerful and happy. Some people don&#8217;t like this, because it means that your component may end up with style which you didn&#8217;t specifically give to it. <em>But style will still cascade, even when defined with Inline Style.</em></p>
+<p>So why is Inline Style a benefit? Well, Inline Style let&#8217;s you write JavaScript helper functions to ensure that your components overwrite any inherited styles with their <em>own</em> styles. But seriously, let&#8217;s think about this for a moment: all you&#8217;ve <em>really</em> done is re-implemented cascading through JavaScript helper functions. Though at least it&#8217;s written with JavaScript now, amiright?</p>
+<p>So let&#8217;s move onto the next meaning of cascading: if you create a selector for <code>ul li</code>, then your styles will be applied to <code>ul li ul li</code> and <code>ul li ul li ul li</code> too. Selectors aren&#8217;t very specific.</p>
+<p>Easy fix: <em>don&#8217;t use HTML elements in selectors.</em> Instead, give your elements namespaced CSS classes which double as a way of documenting what they actually do. Your code will be clearer and more precise as a result.</p>
+<h3>Inline Style can be included directly from your component modules</h3>
+<p>This is actually a huge benefit. Nobody likes maintaining entirely separate project trees just for their CSS, or managing CSS files which live in completely separate locations to their corresponding JSX.</p>
+<p>But now that we all have access to wonderful tools like <a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack</a>, this benefit isn&#8217;t limited to Inline Style anymore. In fact, I place my LESS files right next to my JSX (or JS with Angular), and then include them like this:</p>
+<pre><code>import './DocumentForm.less'
+</code></pre>
+<p><em>But James</em> &#8211; you tell me &#8211; those LESS files still depend on other LESS files which are separate to your components. And it isn&#8217;t like you can use JavaScript-loaded styles in production!</p>
+<p>Half true.  The LESS files <em>do</em> depend on other LESS files &#8211; but only ones included like this:</p>
+<pre><code>@import (reference) '~cloth-util-less/index.less';
+</code></pre>
+<p>That little <code>(reference)</code> ensures that <em>no</em> output is generated by the <code>@import</code>; it is just a way of importing variables and mixins. This allows each component&#8217;s CSS to be <em>completely</em> independent of the other components.</p>
+<p>And with Webpack&#8217;s <code>ExtractTextPlugin</code>, the generated CSS is all extracted to a real CSS file. Which can be cached separately! <em>Have fun caching your inline styles separately.</em></p>
+<h3>Inline Style lets you use JavaScript, so you won&#8217;t have to learn CSS</h3>
+<p>Except that you <em>will</em>. Seriously, <em>what are you people smoking?!</em> See those property names in your Inline Styles? <em>They&#8217;re CSS.</em></p>
+<p>Ok, maybe you won&#8217;t have to learn media queries and pseudo selectors. But instead, you&#8217;re going to have to learn the equivalents for whatever framework you choose. Or maybe you won&#8217;t &#8211; because if you don&#8217;t use an Inline Style framework, <em>you&#8217;ll spend so much time re-implementing media queries and pseudo selectors that you&#8217;ll know how they work back to front.</em></p>
+<h3>Inline Style gives you <em>more power</em></h3>
+<p>This is about the only valid point that people make. You <em>do</em> get more power with Inline Styling than you would with CSS, or even with CSS compilers like LESS, SCSS or PostCSS. <em>But do you really need it?</em></p>
+<p>No website is complete without a terrible car analogy, and this might be my only chance to ever write one, so here goes: <em>CSS is a moped.</em> It sucks, but it is what you start out with. It is dangerous, slow, and it quickly teaches you why you need more power. <em>LESS/SCSS</em> is a Japanese car. It is reliable, it gets you where you need to go, it won&#8217;t need fixing any time soon, and it&#8217;ll still hit the speed limit if you want it to. Inline Style is this:</p>
+<p><iframe loading="lazy" width="560" height="315" src="https://www.youtube.com/embed/YYpRTEcyqGw" frameborder="0" allowfullscreen></iframe></p>
+<hr />
+<h2>Problems you would have avoided if you just used boring old CSS</h2>
+<h3>You can&#8217;t use any existing tooling</h3>
+<p>Sure, CSS is a bit shit. But that is why people have made a number of amazingly useful tools which <em>aren&#8217;t</em>:</p>
+<ul>
+<li><a href="http://lesscss.org/">LESS</a></li>
+<li><a href="http://sass-lang.com/">SCSS</a></li>
+<li><a href="https://github.com/postcss/postcss">PostCSS</a></li>
+<li><a href="https://github.com/postcss/autoprefixer">Autoprefixer</a></li>
+</ul>
+<p>Maybe you don&#8217;t use any of these tools. Which would surprise me, because it would be silly to jump on this bandwagon without having at least <em>tried</em> the industry standard solutions first. But let&#8217;s say you haven&#8217;t, and then a brilliant new tool arrives which targets CSS. <em>Too bad.</em></p>
+<p>But tools aren&#8217;t all you&#8217;ll be missing.</p>
+<h3>You can&#8217;t use any existing CSS</h3>
+<p>So you know all those styles you&#8217;ve written over the years? You can kiss them goodbye. But maybe you don&#8217;t write many styles, so it&#8217;s all good.</p>
+<p>Except, you know all those <a href="https://github.com/trending?l=css">styles</a> that <em>other</em> people have written over the years? You may as well forget they ever existed, because they&#8217;ll be incompatible with yours.</p>
+<p>But no worries, it isn&#8217;t like you have to put <em>all</em> your style in Inline Style. You can just gradually move your style over, and pull in parts of the occasional CSS library when it makes sense. Except that you can&#8217;t, because:</p>
+<h3>Inline Style is infectious</h3>
+<p>So you know how you can define CSS styles with a number of priorities?</p>
+<p>Element selectors have the lowest priority &#8212; you can override them with CSS classes. Classes can be overridden with IDs, which can in turn be overridden with <code>!important</code>.</p>
+<p>And you know what overrides everything? <em>Inline Style.</em></p>
+<p>Now you may be thinking, &#8220;That&#8217;s great, because now I never have to worry about anything overriding my styles&#8221;. Which is true, but you wouldn&#8217;t have to worry about this <em>anyway</em> if you just namespaced your classes properly. <em>Notice a pattern here?</em></p>
+<p>But you <em>will</em> have to worry if you ever need to apply third-party styles, because Inline Style will kill them dead. And if you want to add some CSS to a component which defines its own Inline Styles? You&#8217;re shit out of luck. And if you want to override <em>anything</em> without passing in options as more Inline Styles? <em>You just can&#8217;t.</em></p>
+<p>And this might not be a problem for you. But unless your project is just a toy, you&#8217;re not the only one who counts.</p>
+<h3>Designers speak CSS</h3>
+<p>If you work on a team of anything other than the most <em>talented</em> people, you&#8217;ve probably already experienced this. In fact, you&#8217;re probably reading this rant for entertainment, not education. I hope you enjoyed the show, and don&#8217;t forget that sharing cat videos and JavaScript rants is caring!</p>
+<p>But let&#8217;s say you&#8217;re a lone front-end developer experienced in both CSS and JavaScript. You&#8217;re building something which you&#8217;d like to eventually pay the bills, and scaling sounds like a problem you&#8217;d <em>like to have</em>. Part of scaling is that your code will at some point be handled by other people. And even if <em>you</em> don&#8217;t find anything in this article scary, <em>everyone else</em> certainly will.</p>
+<h2>But CSS still has problems too!</h2>
+<p>You&#8217;re absolutely correct. The thing is, there are better ways of solving these problems than using Inline Style. I&#8217;ve already alluded to a few of these solutions:</p>
+<ul>
+<li>Using LESS to avoid repetitive style definitions</li>
+<li>Using React to transform your CSS classes into <em>namespaced</em> CSS classes</li>
+<li>Using Webpack to modularise your CSS</li>
+</ul>
+<p>Not sure how to accomplish these? You <em>could</em> learn them the hard way: with Google and trial and error. Or, you could learn them the easy way: <em>Join my Newsletter</em>, then read the guides I&#8217;ll be sending out over the next couple weeks on namespacing and modularising CSS.</p>
+<p>And to sweeten the deal, in return for your e-mail you&#8217;ll <em>immediately</em> receive three <em>print-optimised</em> PDF cheatsheets. One on React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), another for ES6 and yet another for JavaScript promises. <em>All for free!</em></p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your opinions, questions, and offers of money.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/taming-css-globals-with-react-without-webpack-or-inline-style/">Introducing react-pacomo: Automatic namespacing for className</a></li>
+<li><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack Made Simple: Build ES6 &amp; LESS with autorefresh in 26 lines</a></li>
+<li><a href="/which-build-system-should-i-use-for-my-javascript-app/">Choosing a JavaScript Build Tool – Babel, Browserify, Webpack, Grunt and Gulp</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li><a href="http://unicornstandard.com/packages/pacomo.html">pacomo</a></li>
+<li><a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
+<li><a href="http://unicornstandard.com/packages/boilerplate.html">See namespaced CSS in action in the Unicorn Standard Starter Kit</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/why-you-shouldnt-style-with-javascript/">Why You Shouldn&#8217;t Style React Components With JavaScript</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/why-you-shouldnt-style-with-javascript/feed/</wfw:commentRss>
+			<slash:comments>37</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>A system for structuring your React application&#8217;s styles</title>
+		<link>/a-system-for-structuring-your-react-applications-styles/</link>
+					<comments>/a-system-for-structuring-your-react-applications-styles/#respond</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Mon, 03 Aug 2015 11:16:11 +0000</pubDate>
+				<category><![CDATA[Design]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[React]]></category>
+		<category><![CDATA[Theming]]></category>
+		<guid isPermaLink="false">/?p=323</guid>
+
+					<description><![CDATA[<p>Read the full specification at the GitHub repository. Have you ever experienced the frustration involved in adding styles to your new component, just to find that some other style, somewhere in the same project, is conflicting with yours? Without structure, stylesheets become confusing and unmaintainable: Styles with global scope end up biting you in the... <a class="more-link" href="/a-system-for-structuring-your-react-applications-styles/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/a-system-for-structuring-your-react-applications-styles/">A system for structuring your React application&#8217;s styles</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><em>Read the full specification at the <a href="https://github.com/jamesknelson/pacomo">GitHub repository</a>.</em></p>
+<p>Have you ever experienced the frustration involved in adding styles to your new component, just to find that some other style, <em>somewhere</em> in the same project, is conflicting with yours? Without structure, stylesheets become confusing and <em>unmaintainable</em>:</p>
+<ul>
+<li>Styles with global scope end up biting you in the ass months down the track</li>
+<li>Deeply nested selectors confuse you as to what it is they&#8217;re actually supposed to do</li>
+<li>Just <em>finding</em> the various rules across various files which combine to make one component&#8217;s style can be a pain in itself</li>
+</ul>
+<h2>Styling components doesn&#8217;t have to be a nightmare</h2>
+<p>Things have certainly gotten better in recent years. For example, compile-to-CSS languages like LESS and SASS help facilitate separation of concerns, and React itself does a lot to encourage good structure.</p>
+<p>However, better tools present a new problem &#8211; we can end up spending more time <em>deciding</em> where to put things than actually <em>making them</em>. And what if you make the wrong decisions? While React, LESS and SASS certainly <em>encourage</em> good structure, they definitely don&#8217;t <em>enforce</em> it.</p>
+<p>While we&#8217;ve come a long way, what we still need is a <em>specification</em> &#8211; a set of decisions which do the hard design work for us. And as it happens, the <a href="https://github.com/jamesknelson/pacomo">Pacomo</a> project does exactly that!</p>
+<p><span id="more-323"></span></p>
+<h2>Conventions free the developer to focus on what counts</h2>
+<p>Pacomo is a set of conventions extracted from my React-based projects, including <a href="https://github.com/jamesknelson/memamug-client">memamug</a>, <a href="https://github.com/jamesknelson/react-c">react-c</a> and <a href="https://github.com/jamesknelson/numbat-ui">numbat-ui</a>.</p>
+<p>The name is based on its CSS class naming convention: Package-Component-Modifier. This naming convention &#8211; as well as the various guidelines surrounding structure, dependencies and stylesheet authoring &#8211; gives you an off-the-shelf solution to project structure. And as a bonus, you&#8217;ll also get a set of open-source tools to help automate things where possible, and a <em>standard</em> which facilitates interaction between developers and teams. <strong>In short, Pacomo lets you concentrate on <em>making</em> amazing things, not <em>deciding</em> how to do it</strong>.</p>
+<h2>Try Pacomo yourself</h2>
+<p>The best way to see how Pacomo does this is to read <a href="https://github.com/jamesknelson/pacomo">the specification</a>, then see how <a href="https://github.com/jamesknelson/memamug-client">existing applications</a> put it to use.</p>
+<p>Of course, Pacomo is still incredibly young, and there is much to improve. Being a living document hosted on GitHub, anyone can suggest changes; just fork the <a href="https://github.com/jamesknelson/pacomo">repo</a> and create a pull request!</p>
+<p>Once youv&#8217;e got a project to try it on, check out <a href="https://github.com/jamesknelson/react-c">react-c</a>, a small Higher-Order Component which implements some of the specification for you. Also, see my <a href="/build-es6-and-less-with-autorefresh-in-only-26-lines-of-configuration/">introduction to Webpack</a> for one method of implementing the file structure requirements.</p>
+<p>Finally, if you&#8217;re reading this because you want to make web apps which delight your users and fellow developers, you&#8217;ll probably also want to hear about <em>new</em> articles and projects! In that case, make sure to sign up for my newsletter. In return for your e-mail, you&#8217;ll also immediately receive 3 bonus <em>print-optimised</em> PDF cheatsheets &#8211; on <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">React</a>, <a href="/wp-content/uploads/2015/09/es6-cheatsheet-thumbnail.png">ES6</a> and <a href="/wp-content/uploads/2015/09/promises-cheatsheet-thumbnail.png">JavaScript promises</a>.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<h2>Related Reading</h2>
+<ul>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React &#8211; no JSX, no Flux, no ES6, no Webpack</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/a-system-for-structuring-your-react-applications-styles/">A system for structuring your React application&#8217;s styles</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/a-system-for-structuring-your-react-applications-styles/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Introducing Memamug, a small open-source app made with React and Rails-api</title>
+		<link>/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/</link>
+					<comments>/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Tue, 30 Jun 2015 11:21:16 +0000</pubDate>
+				<category><![CDATA[Design]]></category>
+		<category><![CDATA[ES6]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[React]]></category>
+		<guid isPermaLink="false">/?p=276</guid>
+
+					<description><![CDATA[<p>View the source or see it live One of the biggest pains I hear from new and old developers alike is that once they&#8217;ve learned the basics of a new technology, they struggle to apply them to an actual project. Actually, this isn&#8217;t just a problem I&#8217;ve heard about &#8211; I&#8217;ve experienced it myself. In... <a class="more-link" href="/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/">Introducing Memamug, a small open-source app made with React and Rails-api</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><em>View the <a href="https://github.com/search?q=user%3Ajamesknelson+memamug">source</a> or see it <a href="http://www.memamug.com/">live</a></em></p>
+<p>One of the biggest pains I hear from new and old developers alike is that once they&#8217;ve learned the basics of a new technology, they struggle to apply them to an actual project.</p>
+<p>Actually, this isn&#8217;t just a problem I&#8217;ve heard about &#8211; I&#8217;ve experienced it myself. In particular, learning React has been as much about figuring out what to do with it as learning the API itself. So to cut a long story short &#8211; I&#8217;ve built a single-page app with <a href="http://facebook.github.io/react/">React</a> and <a href="https://github.com/rails-api/rails-api">Rails-api</a>. And I&#8217;d like to share it with you. And it&#8217;s not a todo list!</p>
+<p><a href="http://www.memamug.com/">Memamug</a> is a tiny app to help you remember people you meet. However, putting it together wasn&#8217;t a tiny job. It demonstrates a number of patterns and techniques which apply to larger projects, including how to:</p>
+<p><span id="more-276"></span></p>
+<ul>
+<li>structure your app</li>
+<li>write concise code with ES6</li>
+<li>handle Facebook-based login</li>
+<li>implement client-side routing</li>
+<li>organise your CSS</li>
+<li>store uploaded content with S3</li>
+<li>serialise rails models to JSON</li>
+<li>produce a deployment-ready build</li>
+</ul>
+<p>I&#8217;ll be putting together a number of tutorials over the coming months detailing the process involved in putting Memamug together, starting with one I&#8217;ve just released on <a href="/build-es6-and-less-with-autorefresh-in-only-26-lines-of-configuration/">how to setup a simple ES6/LESS build-system with webpack</a>.</p>
+<p>Of course, I still have a lot to learn, so pull requests would be greatly appreciated! And if you have any feedback or questions, I can&#8217;t wait to answer them &#8211; you can send me an <a href="mailto:james@jamesknelson.com">e-mail</a>, or leave a comment here.</p>
+<p>Lastly, if you&#8217;re interested in learning to build real web apps and value your time, subscribe to my newsletter! You&#8217;ll receive my guide to building Single Page Apps like Memamug <em>as it&#8217;s released</em>. And in return for your e-mail, you&#8217;ll also immediately receive 3 bonus <em>print-optimised</em> PDF cheatsheets &#8211; on <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">React</a>, <a href="/wp-content/uploads/2015/09/es6-cheatsheet-thumbnail.png">ES6</a> and <a href="/wp-content/uploads/2015/09/promises-cheatsheet-thumbnail.png">JavaScript promises</a>.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<h2>Read More</h2>
+<ul>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React &#8211; no JSX, no Flux, no ES6, no Webpack</a></li>
+<li><a href="/learn-raw-react-ridiculously-simple-forms/">Learn Raw React Part 2: Ridiculously Simple Forms</a></li>
+<li><a href="/routing-with-raw-react/">Learn Raw React Part 3: Routing</a></li>
+<li><a href="/react-js-by-example-interacting-with-the-dom/">Interacting with the DOM in React</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/">Introducing Memamug, a small open-source app made with React and Rails-api</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

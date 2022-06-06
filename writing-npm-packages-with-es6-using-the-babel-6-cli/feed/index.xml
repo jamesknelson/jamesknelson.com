@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Writing NPM packages with ES6 using the Babel 6 CLI	</title>
+	<atom:link href="/writing-npm-packages-with-es6-using-the-babel-6-cli/feed/" rel="self" type="application/rss+xml" />
+	<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/</link>
+	<description></description>
+	<lastBuildDate>Thu, 04 Aug 2016 08:24:07 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Justin Yip		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-22459</link>
+
+		<dc:creator><![CDATA[Justin Yip]]></dc:creator>
+		<pubDate>Thu, 04 Aug 2016 08:24:07 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-22459</guid>
+
+					<description><![CDATA[&quot;prepublish&quot;: &quot;npm run compile&quot;
+
+this automatic script is good. but in some case, npm will not publish the lib/ dir randomly.
+
+if somebody ran into this issue, just remove this script and compile manual before publish.
+
+ref: https://github.com/npm/npm/issues/5082]]></description>
+			<content:encoded><![CDATA[<p>&#8220;prepublish&#8221;: &#8220;npm run compile&#8221;</p>
+<p>this automatic script is good. but in some case, npm will not publish the lib/ dir randomly.</p>
+<p>if somebody ran into this issue, just remove this script and compile manual before publish.</p>
+<p>ref: <a href="https://github.com/npm/npm/issues/5082" rel="nofollow ugc">https://github.com/npm/npm/issues/5082</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: George Secrieru		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-19283</link>
+
+		<dc:creator><![CDATA[George Secrieru]]></dc:creator>
+		<pubDate>Wed, 04 May 2016 12:08:42 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-19283</guid>
+
+					<description><![CDATA[Thanks for the tip! Found your blog after serving npm with ES2015 source in a first attempt to publish a package :)
+
+Regards,
+George]]></description>
+			<content:encoded><![CDATA[<p>Thanks for the tip! Found your blog after serving npm with ES2015 source in a first attempt to publish a package 🙂</p>
+<p>Regards,<br />
+George</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Ajedi32		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-5620</link>
+
+		<dc:creator><![CDATA[Ajedi32]]></dc:creator>
+		<pubDate>Wed, 16 Dec 2015 16:01:50 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-5620</guid>
+
+					<description><![CDATA[&#062; However, my recommendation is to keep the options to your command-line tools on the command line.
+
+I would argue instead that you should keep your config options for your project in a config file.
+
+Just because you *can* pass something as a command line argument doesn&#039;t mean that&#039;s the right way to do it.]]></description>
+			<content:encoded><![CDATA[<p>&gt; However, my recommendation is to keep the options to your command-line tools on the command line.</p>
+<p>I would argue instead that you should keep your config options for your project in a config file.</p>
+<p>Just because you *can* pass something as a command line argument doesn&#8217;t mean that&#8217;s the right way to do it.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jesper Ek		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4768</link>
+
+		<dc:creator><![CDATA[Jesper Ek]]></dc:creator>
+		<pubDate>Fri, 27 Nov 2015 11:24:22 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-4768</guid>
+
+					<description><![CDATA[Thanks for the awesome guide! I really liked how you cleared up the usage of polyfill/runtime.
+
+However, I&#039;m a bit troubled how to run our applications in production. The official documentation states that you should not use babel-node in production: &quot;You should not be using babel-node in production. It is unnecessarily heavy, with high memory usage due to the cache being stored in memory. You will also always experience a startup performance penalty as the entire app needs to be compiled on the fly.&quot;
+
+But the docs doesn&#039;t say anything about the require-hook / babel-register. My understanding is that they are quite similar in function, they both compile on the fly and cache files and they both include the polyfill. So, if you want to run your application in production properly, is the only way to transpile ahead of time? I wouldn&#039;t mind seeing a guide on this topic ;-)]]></description>
+			<content:encoded><![CDATA[<p>Thanks for the awesome guide! I really liked how you cleared up the usage of polyfill/runtime.</p>
+<p>However, I&#8217;m a bit troubled how to run our applications in production. The official documentation states that you should not use babel-node in production: &#8220;You should not be using babel-node in production. It is unnecessarily heavy, with high memory usage due to the cache being stored in memory. You will also always experience a startup performance penalty as the entire app needs to be compiled on the fly.&#8221;</p>
+<p>But the docs doesn&#8217;t say anything about the require-hook / babel-register. My understanding is that they are quite similar in function, they both compile on the fly and cache files and they both include the polyfill. So, if you want to run your application in production properly, is the only way to transpile ahead of time? I wouldn&#8217;t mind seeing a guide on this topic 😉</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4508</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2015 02:35:39 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-4508</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4474&quot;&gt;Kent C. Dodds&lt;/a&gt;.
+
+Thanks for the heads-up, Kent. I&#039;ll keep a watch on that issue.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4474">Kent C. Dodds</a>.</p>
+<p>Thanks for the heads-up, Kent. I&#8217;ll keep a watch on that issue.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Vladimir Starkov		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4504</link>
+
+		<dc:creator><![CDATA[Vladimir Starkov]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2015 00:38:29 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-4504</guid>
+
+					<description><![CDATA[I made yeoman `babel` generator to simplify process of getting babel up and running in your project https://github.com/iamstarkov/generator-babel
+Please, take a look if you are interested or file an issue if you will find any bug]]></description>
+			<content:encoded><![CDATA[<p>I made yeoman `babel` generator to simplify process of getting babel up and running in your project <a href="https://github.com/iamstarkov/generator-babel" rel="nofollow ugc">https://github.com/iamstarkov/generator-babel</a><br />
+Please, take a look if you are interested or file an issue if you will find any bug</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Kent C. Dodds		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4474</link>
+
+		<dc:creator><![CDATA[Kent C. Dodds]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2015 18:30:19 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-4474</guid>
+
+					<description><![CDATA[Thanks for the blogpost. But beware of prepublish!!! https://github.com/npm/npm/issues/10074]]></description>
+			<content:encoded><![CDATA[<p>Thanks for the blogpost. But beware of prepublish!!! <a href="https://github.com/npm/npm/issues/10074" rel="nofollow ugc">https://github.com/npm/npm/issues/10074</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: dmitry		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4414</link>
+
+		<dc:creator><![CDATA[dmitry]]></dc:creator>
+		<pubDate>Wed, 18 Nov 2015 07:21:06 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-4414</guid>
+
+					<description><![CDATA[Can you help me with compile decorators? I wrote the following commands:
+$ npm install -g babel-cli
+$ npm install babel-preset-es2015 babel-preset-stage-0 --save-dev
+$ npm install core-decorators --save
+
+Сreate file with name src/main.js:
+https://github.com/jayphelps/core-decorators.js#readonly
+
+The last command:
+$ babel --presets es2015,stage-0 -d lib/ src/
+
+Result in console:
+src\main.js -&#062; lib\main.js
+
+result in file:
+&#039;use strict&#039;;
+
+var _coreDecorators = require(&#039;core-decorators&#039;);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&quot;Cannot call a class as a function&quot;); } }
+
+var Meal = function Meal() {
+  _classCallCheck(this, Meal);
+};
+
+var dinner = new Meal();
+dinner.entree = &#039;salmon&#039;;]]></description>
+			<content:encoded><![CDATA[<p>Can you help me with compile decorators? I wrote the following commands:<br />
+$ npm install -g babel-cli<br />
+$ npm install babel-preset-es2015 babel-preset-stage-0 &#8211;save-dev<br />
+$ npm install core-decorators &#8211;save</p>
+<p>Сreate file with name src/main.js:<br />
+<a href="https://github.com/jayphelps/core-decorators.js#readonly" rel="nofollow ugc">https://github.com/jayphelps/core-decorators.js#readonly</a></p>
+<p>The last command:<br />
+$ babel &#8211;presets es2015,stage-0 -d lib/ src/</p>
+<p>Result in console:<br />
+src\main.js -&gt; lib\main.js</p>
+<p>result in file:<br />
+&#8216;use strict&#8217;;</p>
+<p>var _coreDecorators = require(&#8216;core-decorators&#8217;);</p>
+<p>function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(&#8220;Cannot call a class as a function&#8221;); } }</p>
+<p>var Meal = function Meal() {<br />
+  _classCallCheck(this, Meal);<br />
+};</p>
+<p>var dinner = new Meal();<br />
+dinner.entree = &#8216;salmon&#8217;;</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4109</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2015 09:50:13 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-4109</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4104&quot;&gt;Ivan Yan&lt;/a&gt;.
+
+Thanks for picking that up! I&#039;ve made an update.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4104">Ivan Yan</a>.</p>
+<p>Thanks for picking that up! I&#8217;ve made an update.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Ivan Yan		</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comment-4104</link>
+
+		<dc:creator><![CDATA[Ivan Yan]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2015 08:10:28 +0000</pubDate>
+		<guid isPermaLink="false">/?p=877#comment-4104</guid>
+
+					<description><![CDATA[`&quot;prepublish&quot;: &quot;npm run compile&quot;,` has a extra comma]]></description>
+			<content:encoded><![CDATA[<p>`&#8221;prepublish&#8221;: &#8220;npm run compile&#8221;,` has a extra comma</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

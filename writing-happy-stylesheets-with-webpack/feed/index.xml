@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Writing Happy Stylesheets with Webpack	</title>
+	<atom:link href="/writing-happy-stylesheets-with-webpack/feed/" rel="self" type="application/rss+xml" />
+	<link>/writing-happy-stylesheets-with-webpack/</link>
+	<description></description>
+	<lastBuildDate>Fri, 05 Aug 2016 17:35:09 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Monkey Monk		</title>
+		<link>/writing-happy-stylesheets-with-webpack/#comment-22517</link>
+
+		<dc:creator><![CDATA[Monkey Monk]]></dc:creator>
+		<pubDate>Fri, 05 Aug 2016 17:35:09 +0000</pubDate>
+		<guid isPermaLink="false">/?p=809#comment-22517</guid>
+
+					<description><![CDATA[And what if I want to get all that Sass code and make a file that will be imported in the whole Sass &quot;thing&quot; ? :-)
+
+Thank you for the article BTW ! ;-)]]></description>
+			<content:encoded><![CDATA[<p>And what if I want to get all that Sass code and make a file that will be imported in the whole Sass &#8220;thing&#8221; ? 🙂</p>
+<p>Thank you for the article BTW ! 😉</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Wilfred HUghes		</title>
+		<link>/writing-happy-stylesheets-with-webpack/#comment-22386</link>
+
+		<dc:creator><![CDATA[Wilfred HUghes]]></dc:creator>
+		<pubDate>Fri, 29 Jul 2016 20:04:44 +0000</pubDate>
+		<guid isPermaLink="false">/?p=809#comment-22386</guid>
+
+					<description><![CDATA[// Load plain-ol&#039; vanilla CSS
+  { test: /\.scss$/, loader: &quot;style!css&quot; },
+
+I think your regexp is wrong here.]]></description>
+			<content:encoded><![CDATA[<p>// Load plain-ol&#8217; vanilla CSS<br />
+  { test: /\.scss$/, loader: &#8220;style!css&#8221; },</p>
+<p>I think your regexp is wrong here.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Andrew		</title>
+		<link>/writing-happy-stylesheets-with-webpack/#comment-21791</link>
+
+		<dc:creator><![CDATA[Andrew]]></dc:creator>
+		<pubDate>Tue, 05 Jul 2016 16:00:41 +0000</pubDate>
+		<guid isPermaLink="false">/?p=809#comment-21791</guid>
+
+					<description><![CDATA[I think autoprefixer-loader is now deprecated. Should maybe update to postcss-loader.
+
+Great article otherwise.]]></description>
+			<content:encoded><![CDATA[<p>I think autoprefixer-loader is now deprecated. Should maybe update to postcss-loader.</p>
+<p>Great article otherwise.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Amanda		</title>
+		<link>/writing-happy-stylesheets-with-webpack/#comment-18953</link>
+
+		<dc:creator><![CDATA[Amanda]]></dc:creator>
+		<pubDate>Wed, 27 Apr 2016 19:25:05 +0000</pubDate>
+		<guid isPermaLink="false">/?p=809#comment-18953</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/writing-happy-stylesheets-with-webpack/#comment-17302&quot;&gt;Daniel&lt;/a&gt;.
+
+I get the same problem. Very frustrating.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/writing-happy-stylesheets-with-webpack/#comment-17302">Daniel</a>.</p>
+<p>I get the same problem. Very frustrating.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Daniel		</title>
+		<link>/writing-happy-stylesheets-with-webpack/#comment-17302</link>
+
+		<dc:creator><![CDATA[Daniel]]></dc:creator>
+		<pubDate>Fri, 01 Apr 2016 13:52:03 +0000</pubDate>
+		<guid isPermaLink="false">/?p=809#comment-17302</guid>
+
+					<description><![CDATA[James,
+
+Thanks for the article.
+
+One problem I am have is trying to use the ES6 import statement vs require.  No problems when using require.  I am using webpack and have babel setup with presets but I keep getting  Unexpected token import.  Thanks, and if it is easier I can provide my config file or vice versa]]></description>
+			<content:encoded><![CDATA[<p>James,</p>
+<p>Thanks for the article.</p>
+<p>One problem I am have is trying to use the ES6 import statement vs require.  No problems when using require.  I am using webpack and have babel setup with presets but I keep getting  Unexpected token import.  Thanks, and if it is easier I can provide my config file or vice versa</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

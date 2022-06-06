@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: React with Babel Cheatsheet	</title>
+	<atom:link href="/react-babel-cheatsheet/feed/" rel="self" type="application/rss+xml" />
+	<link>/react-babel-cheatsheet/</link>
+	<description></description>
+	<lastBuildDate>Sat, 19 Mar 2016 04:10:43 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/react-babel-cheatsheet/#comment-15989</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sat, 19 Mar 2016 04:10:43 +0000</pubDate>
+		<guid isPermaLink="false">/?p=966#comment-15989</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/react-babel-cheatsheet/#comment-11360&quot;&gt;Snow&lt;/a&gt;.
+
+Cheers, updated it.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/react-babel-cheatsheet/#comment-11360">Snow</a>.</p>
+<p>Cheers, updated it.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Snow		</title>
+		<link>/react-babel-cheatsheet/#comment-11360</link>
+
+		<dc:creator><![CDATA[Snow]]></dc:creator>
+		<pubDate>Sun, 07 Feb 2016 03:25:48 +0000</pubDate>
+		<guid isPermaLink="false">/?p=966#comment-11360</guid>
+
+					<description><![CDATA[Sorry, the &quot; React on ES6+&quot; link is 404 now. :)]]></description>
+			<content:encoded><![CDATA[<p>Sorry, the &#8221; React on ES6+&#8221; link is 404 now. 🙂</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Anton Volt		</title>
+		<link>/react-babel-cheatsheet/#comment-9277</link>
+
+		<dc:creator><![CDATA[Anton Volt]]></dc:creator>
+		<pubDate>Mon, 18 Jan 2016 17:56:45 +0000</pubDate>
+		<guid isPermaLink="false">/?p=966#comment-9277</guid>
+
+					<description><![CDATA[Isn&#039;t it generally considered terrible practice to set state with props? Maybe change that one example as not to introduce bad practices to all the new people trying react]]></description>
+			<content:encoded><![CDATA[<p>Isn&#8217;t it generally considered terrible practice to set state with props? Maybe change that one example as not to introduce bad practices to all the new people trying react</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

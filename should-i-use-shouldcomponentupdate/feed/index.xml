@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Should I use shouldComponentUpdate?	</title>
+	<atom:link href="/should-i-use-shouldcomponentupdate/feed/" rel="self" type="application/rss+xml" />
+	<link>/should-i-use-shouldcomponentupdate/</link>
+	<description></description>
+	<lastBuildDate>Sat, 28 May 2016 16:33:56 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Mark Erikson		</title>
+		<link>/should-i-use-shouldcomponentupdate/#comment-20368</link>
+
+		<dc:creator><![CDATA[Mark Erikson]]></dc:creator>
+		<pubDate>Sat, 28 May 2016 16:33:56 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1013#comment-20368</guid>
+
+					<description><![CDATA[Just wanted to say how much I appreciate your articles.  They are consistently well-written, clear, relevant, and informative.
+
+I&#039;m at the point where I&#039;m not learning anything new from them myself, but they serve as great tutorials for anyone still in the earlier stages of learning the React ecosystem.
+
+I keep a list of high-quality React and Redux articles over at https://github.com/markerikson/react-redux-links.  I&#039;ve got a couple of your articles in that list already, and this one is absolutely going in the &quot;Performance&quot; section.
+
+Thanks!]]></description>
+			<content:encoded><![CDATA[<p>Just wanted to say how much I appreciate your articles.  They are consistently well-written, clear, relevant, and informative.</p>
+<p>I&#8217;m at the point where I&#8217;m not learning anything new from them myself, but they serve as great tutorials for anyone still in the earlier stages of learning the React ecosystem.</p>
+<p>I keep a list of high-quality React and Redux articles over at <a href="https://github.com/markerikson/react-redux-links" rel="nofollow ugc">https://github.com/markerikson/react-redux-links</a>.  I&#8217;ve got a couple of your articles in that list already, and this one is absolutely going in the &#8220;Performance&#8221; section.</p>
+<p>Thanks!</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

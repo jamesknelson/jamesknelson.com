@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Which Flux Implementation Should I Use With React?	</title>
+	<atom:link href="/which-flux-implementation-should-i-use-with-react/feed/" rel="self" type="application/rss+xml" />
+	<link>/which-flux-implementation-should-i-use-with-react/</link>
+	<description></description>
+	<lastBuildDate>Tue, 31 Jan 2017 08:35:10 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: pma		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-21761</link>
+
+		<dc:creator><![CDATA[pma]]></dc:creator>
+		<pubDate>Mon, 04 Jul 2016 19:03:50 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-21761</guid>
+
+					<description><![CDATA[On the Reflux part, yo put &quot;Redux replaces waitFor with two...&quot; it has to be &quot;Reflux&quot; right?]]></description>
+			<content:encoded><![CDATA[<p>On the Reflux part, yo put &#8220;Redux replaces waitFor with two&#8230;&#8221; it has to be &#8220;Reflux&#8221; right?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Basavaraj		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-17580</link>
+
+		<dc:creator><![CDATA[Basavaraj]]></dc:creator>
+		<pubDate>Thu, 07 Apr 2016 06:41:55 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-17580</guid>
+
+					<description><![CDATA[thanks for your efforts, really well written 
+
+Keep this article updated over time, as sure shortcomings of Redux will be filled by some one or by itself, want to compare about that too]]></description>
+			<content:encoded><![CDATA[<p>thanks for your efforts, really well written </p>
+<p>Keep this article updated over time, as sure shortcomings of Redux will be filled by some one or by itself, want to compare about that too</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Callan Bryant		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-13640</link>
+
+		<dc:creator><![CDATA[Callan Bryant]]></dc:creator>
+		<pubDate>Wed, 02 Mar 2016 06:27:27 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-13640</guid>
+
+					<description><![CDATA[Thanks for the article. Choosing a flux implementation is a nightmare]]></description>
+			<content:encoded><![CDATA[<p>Thanks for the article. Choosing a flux implementation is a nightmare</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Kiril		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-6793</link>
+
+		<dc:creator><![CDATA[Kiril]]></dc:creator>
+		<pubDate>Fri, 01 Jan 2016 15:44:17 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-6793</guid>
+
+					<description><![CDATA[Just getting into React. Saw some interesting presentations about Relay. How does that fit into the Flux implementation question?]]></description>
+			<content:encoded><![CDATA[<p>Just getting into React. Saw some interesting presentations about Relay. How does that fit into the Flux implementation question?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Seth Livingston		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-5369</link>
+
+		<dc:creator><![CDATA[Seth Livingston]]></dc:creator>
+		<pubDate>Thu, 10 Dec 2015 23:49:50 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-5369</guid>
+
+					<description><![CDATA[This is a terrific write-up. Thank you.]]></description>
+			<content:encoded><![CDATA[<p>This is a terrific write-up. Thank you.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Andrej		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-4568</link>
+
+		<dc:creator><![CDATA[Andrej]]></dc:creator>
+		<pubDate>Sat, 21 Nov 2015 21:07:04 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-4568</guid>
+
+					<description><![CDATA[Thanks for great article James, but what is your opinion of https://optimizely.github.io/nuclear-js/ ?]]></description>
+			<content:encoded><![CDATA[<p>Thanks for great article James, but what is your opinion of <a href="https://optimizely.github.io/nuclear-js/" rel="nofollow ugc">https://optimizely.github.io/nuclear-js/</a> ?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Francis Kim		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-3018</link>
+
+		<dc:creator><![CDATA[Francis Kim]]></dc:creator>
+		<pubDate>Wed, 14 Oct 2015 10:50:55 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-3018</guid>
+
+					<description><![CDATA[No one&#039;s explained this better to me than you did so - thank you! :)]]></description>
+			<content:encoded><![CDATA[<p>No one&#8217;s explained this better to me than you did so &#8211; thank you! 🙂</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-3013</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Tue, 13 Oct 2015 23:21:50 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-3013</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/which-flux-implementation-should-i-use-with-react/#comment-3005&quot;&gt;Jonas Windey&lt;/a&gt;.
+
+I probably could have put it a little clearer, but if you keep reading about two more sentences I say that Redux is in fact the implementation you should use - it just might not actually be &lt;em&gt;Flux&lt;/em&gt;.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/which-flux-implementation-should-i-use-with-react/#comment-3005">Jonas Windey</a>.</p>
+<p>I probably could have put it a little clearer, but if you keep reading about two more sentences I say that Redux is in fact the implementation you should use &#8211; it just might not actually be <em>Flux</em>.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jonas Windey		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-3005</link>
+
+		<dc:creator><![CDATA[Jonas Windey]]></dc:creator>
+		<pubDate>Tue, 13 Oct 2015 17:51:41 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-3005</guid>
+
+					<description><![CDATA[Why do you start by saying &quot;use Redux&quot; and conclude by saying Alt is the winner?
+
+For me, Redux is clearly the winner.]]></description>
+			<content:encoded><![CDATA[<p>Why do you start by saying &#8220;use Redux&#8221; and conclude by saying Alt is the winner?</p>
+<p>For me, Redux is clearly the winner.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Javi Marquez		</title>
+		<link>/which-flux-implementation-should-i-use-with-react/#comment-3004</link>
+
+		<dc:creator><![CDATA[Javi Marquez]]></dc:creator>
+		<pubDate>Tue, 13 Oct 2015 17:41:07 +0000</pubDate>
+		<guid isPermaLink="false">/?p=640#comment-3004</guid>
+
+					<description><![CDATA[You need also to consider the flux without flux approach using freezer.js
+
+https://medium.com/@arqex/react-the-simple-way-cabdf1f42f12
+
+Probably the simplest approach]]></description>
+			<content:encoded><![CDATA[<p>You need also to consider the flux without flux approach using freezer.js</p>
+<p><a href="https://medium.com/@arqex/react-the-simple-way-cabdf1f42f12" rel="nofollow ugc">https://medium.com/@arqex/react-the-simple-way-cabdf1f42f12</a></p>
+<p>Probably the simplest approach</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

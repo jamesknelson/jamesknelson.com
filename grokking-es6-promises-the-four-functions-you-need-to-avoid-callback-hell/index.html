@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>Introduction to ES6 Promises - 4 functions to avoid callback hell</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content=""> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Promises are a great way to clean up your code, reduce dependencies on external libraries, and prepare yourself for `async` and `await` in ES7.">
+<link rel="canonical" href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to ES6 Promises - 4 functions to avoid callback hell">
+<meta property="og:description" content="Promises are a great way to clean up your code, reduce dependencies on external libraries, and prepare yourself for `async` and `await` in ES7.">
+<meta property="og:url" content="httpjamesknelson.com/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="ES6">
+<meta property="article:published_time" content="2015-05-31T15:29:54+00:00">
+<meta property="article:modified_time" content="2018-10-23T06:15:34+00:00">
+<meta property="og:updated_time" content="2018-10-23T06:15:34+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Promises are a great way to clean up your code, reduce dependencies on external libraries, and prepare yourself for `async` and `await` in ES7.">
+<meta name="twitter:title" content="Introduction to ES6 Promises - 4 functions to avoid callback hell">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Introduction to ES6 Promises &#8211; The Four Functions You Need To Avoid Callback Hell Comments Feed" href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/210">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=210">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fgrokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fgrokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-210 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-210" class="clearfix post-210 post type-post status-publish format-standard hentry category-es6 category-javascript">
+								<header class="entry-header">
+																		<h1 class="entry-title">Introduction to ES6 Promises &#8211; The Four Functions You Need To Avoid Callback Hell</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/es6/" rel="category tag">ES6</a>, <a href="/category/javascript/" rel="category tag">Javascript</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/" title="3:29 pm" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">May 31, 2015</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p><em><strong>Update October 2018</strong>: If you need to brush up on promises and async/await, I highly recommend you look instead at my <a href="https://frontarm.com/courses/async-javascript/">Mastering Asynchronous JavaScript</a> course on Frontend Armory. The course contains 47 live examples and exercises, and also comes with this spiffy <strong><a href="https://frontarm.com/toolbox/promises-async-await-cheatsheet/">Promises and async/await cheatsheet</a></strong></em>.</p>
+<p><em>Of course, my original promises guide is still useful today! Here it is:</em></p>
+<p>Apart from being new and shiny, Promises are a great way to clean up your code, reduce dependencies on external libraries, and prepare yourself for <code>async</code> and <code>await</code> in ES7. Developers who use them swear by them, and developers who don&#8217;t just don&#8217;t know what they&#8217;re missing.</p>
+<p>That said, promises can take a lot of work to understand. They feel completely different to the callbacks which we often use to accomplish the same thing, and there are a few surprises in their design which often cause beginners hours of debugging pain.</p>
+<h2>So why should I learn promises, again?</h2>
+<p>If the fact that promises are awesome doesn&#8217;t convince you, maybe the alternative to promises will.</p>
+<p>Up until promises arrived, developers in JavaScript land had been using callbacks. In fact, whether you realise it or not, you&#8217;ve probably used them too! <code>setTimeout</code>, <code>XMLHttpRequest</code>, and basically all browser-based asynchronous functions are callback based.</p>
+<p>To demonstrate the problem with callbacks, let&#8217;s do some animation, just without the HTML and CSS.</p>
+<p>Say we want want to do the following:</p>
+<p><span id="more-210"></span></p>
+<ol>
+<li>run some code</li>
+<li>wait one second</li>
+<li>run some more code</li>
+<li>wait another second</li>
+<li>then run some more code again</li>
+</ol>
+<p>This is a pattern you&#8217;d often use with CSS3 animations. Let&#8217;s implement using trusty friend <code>setTimeout</code>. Our code will look something like this:</p>
+<pre><code>runAnimation(0);
+setTimeout(function() {
+    runAnimation(1);    
+    setTimeout(function() {
+        runAnimation(2);
+    }, 1000);
+}, 1000);
+</code></pre>
+<p>Looks awful, right? But imagine for a moment you had 10 steps instead of 3 &#8211; you&#8217;d have so much whitespace you could build a pyramid. It gets so bad, in fact, that people have come up with a name for it &#8211; <em>callback hell</em>. And these callback pyramids appear <em>everywhere</em> &#8211; in handling HTTP requests, database manipulation, animation, inter-process communication, and all manner of other places. There is one exception, though:</p>
+<p>They don&#8217;t appear in code which uses promises.</p>
+<h2>But what <em>are</em> promises?</h2>
+<p>Perhaps the easiest way to grok promises is to work with what you already know and contrast them with callbacks. There are four major differences:</p>
+<h3>1&#46; Callbacks are functions, promises are objects</h3>
+<p><strong>Callbacks</strong> are just blocks of code which can be run <em>in response</em> to events such as as timers going off or messages being received from the server. Any function can be a callback, and every callback is a function.</p>
+<p><strong>Promises</strong> are objects which store information about <em>whether or not</em> those events have happened yet, and if they have, <em>what their outcome is</em>.</p>
+<h3>2&#46; Callbacks are passed as arguments, promises are returned</h3>
+<p><strong>Callbacks</strong> are defined independently of the functions they are called from &#8211; they are passed in as arguments. These functions then store the callback, and call it when the event actually happens.</p>
+<p><strong>Promises</strong> are created <em>inside</em> of asynchronous functions (those which might not return a response until later), and then returned. When an event happens, the asynchronous function will update the promise to notify the outside world.</p>
+<h3>3&#46; Callbacks handle success and failure, promises don&#8217;t handle anything</h3>
+<p><strong>Callbacks</strong> are generally called with information on whether an operation succeeded or failed, and must be able to handle both scenarios.</p>
+<p><strong>Promises</strong> don&#8217;t handle anything by default, but success and failure handlers are attached later.</p>
+<h3>4&#46; Callbacks can represent multiple events, promises represent at most one</h3>
+<p><strong>Callbacks</strong> can be called multiple times by the functions they are passed to.</p>
+<p><strong>Promises</strong> can only represent one event &#8211; they are either successful once, or failed once.</p>
+<p>With this in mind, let&#8217;s jump into the details.</p>
+<h2>The four functions you need to know</h2>
+<h3>1&#46; new Promise(fn)</h3>
+<p>ES6 Promises are instances of the <code>Promise</code> built-in, and are created by calling <code>new Promise</code> with a single function as an argument. For example:</p>
+<pre><code>// Creates a Promise instance which doesn't do anything.
+// Don't worry, I'll explain this in more detail in a moment.
+promise = new Promise(function() {});
+</code></pre>
+<p>Running <code>new Promise</code> will immediately call the function passed in as an argument. This function&#8217;s purpose is to inform the Promise object when the event which the promise represents has <strong>resolved</strong> (i.e. successfully completed), or been <strong>rejected</strong> (i.e. failed).</p>
+<p>In order to do so, the function you pass to the constructor can take two arguments, which are themselves callable functions &#8211; <code>resolve</code> and <code>reject</code>. Calling <code>resolve(value)</code> will mark the promise as resolved and cause any success handlers will be run. Call <code>reject(error)</code>, will cause any failure handler to be run. You should not call both. <code>resolve</code> and <code>reject</code> both take an argument which represents the event&#8217;s details.</p>
+<p>Let&#8217;s apply this to our animation example above. The above example uses the <code>setTimeout</code> function, which takes a callback &#8211; but we want to return a promise instead. <code>new Promise</code> lets us do this:</p>
+<pre><code>// Return a promise which resolves after the specified interval
+function delay(interval) {
+    return new Promise(function(resolve) {
+        setTimeout(resolve, interval);
+    });
+}
+
+var oneSecondDelay = delay(1000);
+</code></pre>
+<p>Great, we&#8217;ve now got a promise which resolves after a second has passed. I know you&#8217;re probably itching to learn how to actually <em>do</em> something after a second has passed &#8211; we&#8217;ll get to that in a moment in the second function you need to know, <code>promise.then</code>.</p>
+<hr>
+<p>The function we passed to <code>new Promise</code> in the above example takes a <code>resolve</code> argument, but we&#8217;ve omitted <code>reject</code>. This is because setTimeout never fails, and thus there is no scenario where we&#8217;d need to call reject.</p>
+<p>But say we&#8217;re specifically interested in setting timeouts for animation, and if the animation is going to fail due to lack of browser support, we want to know immediately instead of after the timeout. If an <code>isAnimationSupported(step)</code> function is available, we could implement this with <code>reject</code>:</p>
+<pre><code>function animationTimeout(step, interval) {
+    new Promise(function(resolve, reject) {
+        if (isAnimationSupported(step)) {
+            setTimeout(resolve, interval);
+        } else {
+            reject('animation not supported');
+        }
+    });
+}
+
+var firstKeyframe = animationTimeout(1, 1000);
+</code></pre>
+<p>Finally, it is important to note that if an exception is thrown within the passed-in function, the promise will automatically be marked as rejected, with the exception object being stored as the rejected value, just as if it had been passed as the argument to <code>reject</code>.</p>
+<p>One way to think of this is that the contents of each function you pass to <code>new Promise</code> are wrapped in a try/catch statement, like this:</p>
+<pre><code>var promise = new Promise(function(resolve, reject) {
+    try {
+        // your code
+    }
+    catch (e) {
+        reject(e)
+    }
+});
+</code></pre>
+<p>So. Now you understand how to create a promise. But once we have one, how do we handle success/failure? We use it&#8217;s <code>then</code> method.</p>
+<h3>2&#46; promise.then(onResolve, onReject)</h3>
+<p><code>promise.then(onResolve, onReject)</code> allows us to assign handlers to a promise&#8217;s events. Depending on which arguments you supply, you can handle success, failure, or both:</p>
+<pre><code>// Success handler only
+promise.then(function(details) {
+    // handle success
+});
+
+// Failure handler only
+promise.then(null, function(error) {
+    // handle failure
+});
+
+// Success &amp; failure handlers
+promise.then(
+    function(details) { /* handle success */ },
+    function(error) { /* handle failure */ }
+);
+</code></pre>
+<p><strong>Tip: Don&#8217;t try and handle errors from the <code>onResolve</code> handler in the <code>onError</code> handler of the same <code>then</code>, it doesn&#8217;t work.</strong></p>
+<pre><code>// This will cause tears and consternation
+promise.then(
+    function() {
+        throw new Error('tears');
+    },
+    function(error) {
+        // Never gets called
+        console.log(error)
+    }
+);
+</code></pre>
+<hr>
+<p>If this is all <code>promise.then</code> did, it wouldn&#8217;t really have any any advantage over callbacks. Luckily, it does more: handlers passed to <code>promise.then</code> don&#8217;t just handle the result of the previous promise &#8211; whatever they return is turned into a <em>new</em> promise.</p>
+<h4>
+<code>promise.then</code> always returns a promise</h4>
+<p>Naturally, this works with numbers, strings and any old value:</p>
+<pre><code>delay(1000)
+    .then(function() {
+        return 5;
+    })
+    .then(function(value) {
+        console.log(value); // 5
+    });
+</code></pre>
+<p>But more importantly, it also works with other promises &#8211; returning a promise from a <code>then</code> handler passes that promise through to the return value of <code>then</code>. This allows you to chain promises:</p>
+<pre><code>delay(1000)
+    .then(function() {
+        console.log('1 second elapsed');
+        return delay(1000);
+    })
+    .then(function() {
+        console.log('2 seconds elapsed');
+    });
+</code></pre>
+<p>And as you can see, chained promises no longer cause callback pyramids. No matter how many levels of callback hell you&#8217;d be in for, the equivalent promises code is <em>flat</em>.</p>
+<p>Can you use what you&#8217;ve learned so far to flatten the animation example from before, using the above <code>delay</code> function? I&#8217;ve written it out again for your convenience &#8211; <em>once you&#8217;ve had a shot</em> you can check your work by touching or hovering over the blank box below.</p>
+<pre><code>runAnimation(0);
+setTimeout(function() {
+    runAnimation(1);    
+    setTimeout(function() {
+        runAnimation(2);
+    }, 1000);
+}, 1000);
+</code></pre>
+<div class="spoiler">
+<div class="spoiler-mask">
+  </div>
+<pre class="prettyprint">
+<code>
+runAnimation(0);
+delay(1000)
+    .then(function() {
+        runAnimation(1); 
+        return delay(1000);
+    })
+    .then(function() {
+        runAnimation(2);
+    });
+</code>
+</pre>
+</div>
+<p><a href="http://jsbin.com/xiviha/4/edit?js,console">Edit &amp; run this code</a></p>
+<p>Which one do you find easier to understand? The promise version, or the callback version? Let me know in the comments!</p>
+<p>While everything so far has been relatively straightforward, there are a couple of things which trip people up. For example:</p>
+<h4>Rejection handlers in <code>promise.then</code> return resolved promises, not rejected ones.</h4>
+<p>The fact that <em>rejection handlers</em> return a <em>resolved promise</em> by default caused me a lot of pain when I was first learning &#8211; don&#8217;t let it happen to you. Here is an example of what to watch out for:</p>
+<pre><code>new Promise(function(resolve, reject) {
+    reject(' :( ');
+})
+    .then(null, function() {
+        // Handle the rejected promise
+        return 'some description of :(';
+    })
+    .then(
+        function(data) { console.log('resolved: '+data); },
+        function(error) { console.error('rejected: '+error); }
+    );
+</code></pre>
+<p>What does this print to the screen? Once you&#8217;re certain, check your answer by touching or hovering over the empty box below:</p>
+<div class="spoiler">
+<div class="spoiler-mask">
+  </div>
+<p>
+    resolved: some description of 🙁
+  </p>
+</div>
+<p><a href="http://jsbin.com/gaduza/1/edit?js,console">Edit &amp; run the above code</a></p>
+<p>The take-away here is that if you want to process your errors, make sure you don&#8217;t just return the processed value: reject the processed value. So, instead of:</p>
+<pre><code>return 'some description of :('
+</code></pre>
+<p>Use this magic incarnation to return a failed promise with a given value instead of a successful one:</p>
+<pre><code>// I'll explain this a little later
+return Promise.reject({anything: 'anything'});
+</code></pre>
+<p>Alternatively, if you can throw an error, you can utilise the fact that</p>
+<h4>
+<code>promise.then</code> turns exceptions into rejected promises</h4>
+<p>This means that you can cause a handler (either success or failure) to return a rejected promise by doing this:</p>
+<pre><code>throw new Error('some description of :(')
+</code></pre>
+<p>Keep in mind that just like the function passed to <code>new Promise</code>, <em>any</em> exception thrown within the handlers passed to <code>promise.then</code> will be turned into a rejected promise &#8211; as opposed to landing in your console like you might expect. Because of this, it is important to make sure that you finish each <code>then</code> chain with a rejection-only handler &#8211; if you leave this out, you&#8217;ll invariably spend hours pulling your hair out over missing error messages (see <a href="/are-es6-promises-swallowing-your-errors/">Are JavaScript Promises swallowing your errors?</a> for another solution).</p>
+<p>Here is a contrived example to demonstrate this point:</p>
+<pre><code>delay(1000)
+    .then(function() {
+        throw new Error("oh no.");
+    })
+    .then(null, function(error) {
+        console.error(error);
+    });
+</code></pre>
+<p>This is so important, in fact, that there is a shortcut. It happens to be function number three:</p>
+<h3>3&#46; promise.catch(onReject)</h3>
+<p>This one is simple. <code>promise.catch(handler)</code> is equivalent to <code>promise.then(null, handler)</code>.</p>
+<p>No seriously, thats all there is to it.</p>
+<p>One pattern you&#8217;re generally going to want to follow is to put a <code>catch</code> at the end of each of your <code>then</code> chains. Let&#8217;s go back to the animation example to demonstrate.</p>
+<p>Say we&#8217;ve got a 3-step animation, with a 1 second gap between each step. Each step could throw an exception &#8211; say, due to lack of browser support &#8211; so we&#8217;ll follow each <code>then</code> with a <code>catch</code> containing a backup function which causes the same changes without animation.</p>
+<p>Can you write this using <code>delay</code> from above, assuming that each animation step can be called with <code>runAnimation(number)</code>, and each backup step can be called with <code>runBackup(number)</code>? Treat each step separately, in case the browser can run some of the animations, but not all of them. Give it a shot, and <em>if you get stuck</em>, touch or hover over the blank box below for an answer.</p>
+<div class="spoiler">
+<div class="spoiler-mask">
+  </div>
+<pre class="prettyprint">
+<code>
+try {
+    runAnimation(0);
+}
+catch (e) {
+    runBackup(0);
+}
+
+delay(1000)
+    .then(function() {
+        runAnimation(1);
+        return delay(1000);
+    })
+    .catch(function() {
+        runBackup(1);
+    })
+    .then(function() {
+        runAnimation(2);
+    })
+    .catch(function() {
+        runBackup(2);
+    });
+</code>
+</pre>
+</div>
+<p>How does your answer compare with mine? If you&#8217;re unsure about why I&#8217;ve done it the way I have, leave a comment!</p>
+<p>One interesting thing in the above example is the similarity between the try/catch block and the promise blocks. Some people like to think about promises as a kind of delayed try/catch block &#8211; I don&#8217;t, but I guess it can&#8217;t hurt.</p>
+<p>Aaand, that wraps up <em>the three functions you need to know to use promises</em>. But to use them well, you need to know four.</p>
+<h3>4&#46; Promise.all([promise1, promise2, &#8230;])</h3>
+<p><code>Promise.all</code> is amazing. What it accomplishes is so painful using callbacks that I chickened out from even writing a callback-based example, yet the abstraction it provides is so simple.</p>
+<p>What does it do? It returns a promise which resolves when <em>all</em> of it&#8217;s argument promises have resolved, or is rejected when <em>any</em> of it&#8217;s argument promises are rejected. <strong>The returned promise resolves to an array containing the results of every promise, or fails with the error with which the first promise was rejected.</strong></p>
+<p>What is it useful for? Well, say we wanted to animate two things in parallel, followed by a third in series.</p>
+<pre>parallel animation 1  \
+                                      + - subsequent animation         
+parallel animation 2  /
+</pre>
+<p>You <em>could</em> rip your hair out doing this with callbacks. You <em>could</em> find, download and include a 3rd-party library which makes it a little easier.</p>
+<p>Or, you could just use <code>Promise.all</code>.</p>
+<p>Let&#8217;s say that we have three functions which start an animation and return promises which resolve when the animation is done &#8211; <code>parallelAnimation1()</code>, <code>parallelAnimation2()</code> and <code>finalAnimation()</code>. The above flow can be implemented as follows:</p>
+<pre><code>Promise.all([
+    parallelAnimation1(),
+    parallelAnimation2()
+]).then(function() {
+    finalAnimation();
+});
+</code></pre>
+<p>Simple, right?</p>
+<p>Other usages for <code>Promise.all</code> include downloading multiple HTTP requests concurrently, running multiple processes concurrently, or making multiple database requests concurrently. What do these all have in common? <strong><code>Promise.all</code> makes concurrency easy.</strong></p>
+<p><a id="exercise"></a></p>
+<h2>Test your knowledge</h2>
+<p>Now that you know the four functions which you need to know, let&#8217;s stretch your brain muscles with an exercise.</p>
+<p>Your task is to:</p>
+<ol>
+<li>Download two files from a server</li>
+<li>Extract some data from each of them</li>
+<li>Use this to decide on a third file to download</li>
+<li>Display the data from the third file to the user with <code>alert()</code>, or in case of an error, display an <code>alert()</code> with the received error message instead</li>
+</ol>
+<p>While the functions to download the first two files return promises, the function which accesses the third file unfortunately only accepts a callback.</p>
+<p>Here are the functions available:</p>
+<ul>
+<li>
+<code>initialRequestA()</code> returns a promise to an A object</li>
+<li>
+<code>initialRequestB()</code> returns a promise to an B object</li>
+<li>
+<code>getOptionsFromInitialData(a, b)</code> returns the <code>options</code> argument required for <code>finalRequest</code>
+</li>
+<li>
+<code>finalRequest(options, callback)</code> retrieves the third file from the server, calling <code>callback(error, data)</code> when done. <code>data</code> is <code>undefined</code> in case of an error, and <code>error</code> is <code>undefined</code> in case of success <em>(note: this is a common pattern in node.js)</em>
+</li>
+</ul>
+<p>You can test your work with <a href="http://jsbin.com/hotile/15/edit?js,console">this jsbin</a>, where I&#8217;ve set up the above functions for you.</p>
+<p><em>Once you&#8217;ve written your own answer</em>, check it with mine by touching or hovering over the box below.</p>
+<div class="spoiler">
+<div class="spoiler-mask">
+  </div>
+<pre class="prettyprint">
+<code>
+function finalRequestPromise(options) {
+    return new Promise(function(resolve, reject) {
+        finalRequest(options, function(error, data) {
+            if (error) {
+                reject(error);
+            }
+            else {
+                resolve(data);
+            }
+        });
+    });
+}
+
+Promise
+    .all([initialRequestA(), initialRequestB()])
+    .then(function(results) {
+        var options = getOptionsFromInitialData(results[0], results[1]);
+        return finalRequestPromise(options);
+    })
+    .then(
+        function(file) { alert(file); },
+        function(error) { alert('ERROR: '+error); } 
+    );
+</code>
+</pre>
+</div>
+<h2>BONUS: The two incredibly useful functions that you can now learn with minimal effort</h2>
+<p>Now that you know the four functions which you <em>need</em> to know, there are two functions which are incredibly <em>useful</em> to know, and basically come for free on top of the above.</p>
+<h3>Promise.resolve(value)</h3>
+<p><code>Promise.resolve(value)</code> returns a promise which resolves to it&#8217;s argument. It is equivalent to this:</p>
+<pre><code>new Promise(function(resolve) {
+    resolve();
+}).then(function() {
+    return value;
+});
+</code></pre>
+<p>It is useful when you need a promise and don&#8217;t have one, or aren&#8217;t sure if you do &#8211; for example when you&#8217;re building an array of promises to pass to Promise.all, or when you&#8217;re not sure if the argument to a function is a promise or a value.</p>
+<h3>Promise.reject(value)</h3>
+<p><code>Promise.reject(value)</code> returns a promise which fails with the passed in value. It is equivalent to this:</p>
+<pre><code>new Promise(function(resolve, reject) {
+    reject(value);
+});
+</code></pre>
+<p>This is incredibly useful when you want to process error objects in a <code>catch</code> handler, but don&#8217;t want to return a <em>successful</em> promise afterwards.</p>
+<p><a id="cheatsheet"></a></p>
+<h2>Cheat sheet</h2>
+<p>Phew, that was a lot of information. The key to remembering it all is to use it, but searching through this article for just the bit you want each time you forget something sure sounds like a lot of work.</p>
+<p>Thats why I&#8217;ve created this spiffy cheat sheet (see <a href="/wp-content/uploads/2015/09/promises-cheatsheet-thumbnail.png">preview</a>). It is perfect for printing out and hanging next to your monitor or on your toilet door, or taping thousands of copies to every wall in your house.</p>
+<p>The print-optimised PDF is available <em>exclusively</em> to my newsletter subscribers &#8211; sign up now and it&#8217;ll be immediately e-mailed to you for your reading pleasure, along with two other cheatsheets on <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">React</a> and <a href="/wp-content/uploads/2015/09/es6-cheatsheet-thumbnail.png">ES6</a>.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<h2>Useful links</h2>
+<p>Learn more about ES6 at my guide to <a href="/es6-the-bits-youll-actually-use/">The Bits You’ll Actually Use</a>.</p>
+<p>Want to read more about promises instead? You may find these helpful:</p>
+<ul>
+<li><a href="https://frontarm.com/courses/async-javascript/">Mastering Asynchronous JavaScript</a></li>
+<li><a href="https://frontarm.com/courses/async-javascript/promises/why-async/">Why Async: JavaScript and the real world</a></li>
+<li><a href="https://frontarm.com/courses/async-javascript/async-await/await-operator/">The <code>await</code> operator</a></li>
+<li><a href="/are-es6-promises-swallowing-your-errors/">Are JavaScript Promises swallowing your errors?</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code> at Mozilla Developer Network</a></li>
+<li><a href="https://github.com/petkaantonov/bluebird">The Bluebird promise library</a></li>
+</ul>
+<p>Thanks so much for reading &#8211; and if you there is anything that you don&#8217;t find crystal clear, but sure to leave a comment!</p>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/demystifying-javascript-the-many-faces-of-this/" rel="prev"><span class="meta-nav">&#8592;</span> The three faces of JavaScript`this`</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/six-essential-javascript-libraries/" rel="next">Six essential JavaScript libraries <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					22 Comments <span class="on">&#8594;</span> <span>Introduction to ES6 Promises &#8211; The Four Functions You Need To Avoid Callback Hell</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-252">
+						<article id="comment-252" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">pik </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-252"><time datetime="2015-06-01T19:59:24+00:00">June 1, 2015 at 7:59 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>why don&#8217;t you include a promise based version of the initial animation  code ? just to compare. thanks.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-252" data-commentid="252" data-postid="210" data-belowelement="comment-252" data-respondelement="respond" data-replyto="Reply to pik" aria-label="Reply to pik">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-255">
+						<article id="comment-255" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-255"><time datetime="2015-06-02T12:06:04+00:00">June 2, 2015 at 12:06 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hi PIK &#8211; you&#8217;re in luck, because I did include it! You can find it in the first yellow hidden box.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-255" data-commentid="255" data-postid="210" data-belowelement="comment-255" data-respondelement="respond" data-replyto="Reply to jamesknelson" aria-label="Reply to jamesknelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-3" id="li-comment-263">
+						<article id="comment-263" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">pik </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-263"><time datetime="2015-06-03T02:38:11+00:00">June 3, 2015 at 2:38 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>😉 haha I was too fast&#8230;thanks</p>
+<p>I saw the yellow first time but didn&#8217;t go over..I was just going through snippets scrolling&#8230;</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-263" data-commentid="263" data-postid="210" data-belowelement="comment-263" data-respondelement="respond" data-replyto="Reply to pik" aria-label="Reply to pik">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-276">
+						<article id="comment-276" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/63519114020a2d8f2018c17a552e13b8?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/63519114020a2d8f2018c17a552e13b8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.jscriptworld.com/" rel="external nofollow ugc" class="url">Chetan Wadhwa</a> </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-276"><time datetime="2015-06-03T21:04:45+00:00">June 3, 2015 at 9:04 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Nice Article</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-276" data-commentid="276" data-postid="210" data-belowelement="comment-276" data-respondelement="respond" data-replyto="Reply to Chetan Wadhwa" aria-label="Reply to Chetan Wadhwa">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-285">
+						<article id="comment-285" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/5990e725aa966b4675ade1020d0226ef?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/5990e725aa966b4675ade1020d0226ef?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">JW </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-285"><time datetime="2015-06-05T10:08:41+00:00">June 5, 2015 at 10:08 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Great article for promise beginners.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-285" data-commentid="285" data-postid="210" data-belowelement="comment-285" data-respondelement="respond" data-replyto="Reply to JW" aria-label="Reply to JW">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-289">
+						<article id="comment-289" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/e141e6cccd5f9cf8fe25507cfb81f254?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/e141e6cccd5f9cf8fe25507cfb81f254?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">kspice </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-289"><time datetime="2015-06-05T18:51:36+00:00">June 5, 2015 at 6:51 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Perhaps not 100% aiming for identical results (conceding the exercise is contrived for the sake of practice), but this is pretty concise also:<br>
+<code><br>
+Promise.<br>
+  all( [initialRequestA(), initialRequestB()] ).<br>
+  then(function(result){<br>
+    return [getOptionsFromInitialData.apply(null, result), console.log];<br>
+  }).<br>
+  then(function(result){<br>
+    finalRequest.apply(null, result);<br>
+  });<br>
+</code></p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-289" data-commentid="289" data-postid="210" data-belowelement="comment-289" data-respondelement="respond" data-replyto="Reply to kspice" aria-label="Reply to kspice">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-298">
+						<article id="comment-298" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/42f3e2b96cf08e3c8346597ade12506e?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/42f3e2b96cf08e3c8346597ade12506e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Eric </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-298"><time datetime="2015-06-06T13:21:10+00:00">June 6, 2015 at 1:21 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Great article! </p>
+<p>Just FYI&#8230; the link &#8220;Are JavaScript Promises swallowing your errors?&#8221; brings you to a login page.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-298" data-commentid="298" data-postid="210" data-belowelement="comment-298" data-respondelement="respond" data-replyto="Reply to Eric" aria-label="Reply to Eric">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-299">
+						<article id="comment-299" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-299"><time datetime="2015-06-06T13:41:32+00:00">June 6, 2015 at 1:41 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>That&#8217;s embarrassing. Thanks for the tip-off!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-299" data-commentid="299" data-postid="210" data-belowelement="comment-299" data-respondelement="respond" data-replyto="Reply to jamesknelson" aria-label="Reply to jamesknelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-307">
+						<article id="comment-307" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/05f6bda380f1de974ee04b846869adaf?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/05f6bda380f1de974ee04b846869adaf?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://backspaces.net/" rel="external nofollow ugc" class="url">Owen Densmore</a> </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-307"><time datetime="2015-06-06T16:41:11+00:00">June 6, 2015 at 4:41 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>How do I avoid then-able hell?</p>
+<p>I.e. I&#8217;d like to use your basic &#8220;xhrLoad(url, callback)&#8221; with promises but not have to have a then-chain.  Just have the &#8220;fancyXhrLoad(url)&#8221; return the fetched data, WHILE yielding in place &#8217;til done!</p>
+<p>I&#8217;ve heard generators can do that.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-307" data-commentid="307" data-postid="210" data-belowelement="comment-307" data-respondelement="respond" data-replyto="Reply to Owen Densmore" aria-label="Reply to Owen Densmore">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-320">
+						<article id="comment-320" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-320"><time datetime="2015-06-07T00:25:43+00:00">June 7, 2015 at 12:25 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>They can! Look into <a href="https://github.com/tj/co" rel="nofollow">co</a>, or alternatively ES7&#8217;s async/await using <a href="https://babeljs.io/" rel="nofollow">Babel</a>.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-320" data-commentid="320" data-postid="210" data-belowelement="comment-320" data-respondelement="respond" data-replyto="Reply to jamesknelson" aria-label="Reply to jamesknelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment even depth-3" id="li-comment-754">
+						<article id="comment-754" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/405efe275ceff3492be8b0985531fa19?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/405efe275ceff3492be8b0985531fa19?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Kevin L. </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-754"><time datetime="2015-07-11T19:20:12+00:00">July 11, 2015 at 7:20 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Aren&#8217;t Observables an option as well if you&#8217;re recommending ES7-level stuff? </p>
+<p>Things like critical data that  can  be retried or aborted  would be a better fit. </p>
+<p>Being lazily done rather than being hot, Observables can be advantageous for certain async operations than Promises as well.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-754" data-commentid="754" data-postid="210" data-belowelement="comment-754" data-respondelement="respond" data-replyto="Reply to Kevin L." aria-label="Reply to Kevin L.">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-4" id="li-comment-794">
+						<article id="comment-794" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-794"><time datetime="2015-07-14T10:55:12+00:00">July 14, 2015 at 10:55 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I&#8217;m not sure I&#8217;m ready to start relying on anything which requires Object.observe just yet &#8211; while it is slated for inclusion in ES7, shimming it doesn&#8217;t sound like much fun. Maybe in a few years?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-794" data-commentid="794" data-postid="210" data-belowelement="comment-794" data-respondelement="respond" data-replyto="Reply to jamesknelson" aria-label="Reply to jamesknelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-377">
+						<article id="comment-377" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/bbba4cea31d006c626613a38b31a6d7c?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/bbba4cea31d006c626613a38b31a6d7c?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Dan </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-377"><time datetime="2015-06-09T18:32:19+00:00">June 9, 2015 at 6:32 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This is incredible!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-377" data-commentid="377" data-postid="210" data-belowelement="comment-377" data-respondelement="respond" data-replyto="Reply to Dan" aria-label="Reply to Dan">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-390">
+						<article id="comment-390" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/813092033de7af2e9161a5569625ebdf?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/813092033de7af2e9161a5569625ebdf?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">titouandk </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-390"><time datetime="2015-06-10T18:26:44+00:00">June 10, 2015 at 6:26 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Super article ! PS a pleasure to read on a tablet, this website design is nice and clear !</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-390" data-commentid="390" data-postid="210" data-belowelement="comment-390" data-respondelement="respond" data-replyto="Reply to titouandk" aria-label="Reply to titouandk">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-15663">
+						<article id="comment-15663" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/4142062863592fa8087190bf10375b46?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4142062863592fa8087190bf10375b46?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://maggiesavovska.com/" rel="external nofollow ugc" class="url">Maggie Jones</a> </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-15663"><time datetime="2016-03-17T13:56:53+00:00">March 17, 2016 at 1:56 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Hi! Just wanted to give a shout out. Great article. Very well written.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-15663" data-commentid="15663" data-postid="210" data-belowelement="comment-15663" data-respondelement="respond" data-replyto="Reply to Maggie Jones" aria-label="Reply to Maggie Jones">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-16559">
+						<article id="comment-16559" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/171f44964531a48fb3fec46a901a3957?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/171f44964531a48fb3fec46a901a3957?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Mark </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-16559"><time datetime="2016-03-22T03:45:59+00:00">March 22, 2016 at 3:45 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>THANK YOU! After looking at a dozen articles this one finally explains the whole thing well.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-16559" data-commentid="16559" data-postid="210" data-belowelement="comment-16559" data-respondelement="respond" data-replyto="Reply to Mark" aria-label="Reply to Mark">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-18219">
+						<article id="comment-18219" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/dc27005b322f172596b5aed547834e34?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/dc27005b322f172596b5aed547834e34?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Daniel </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-18219"><time datetime="2016-04-13T21:33:31+00:00">April 13, 2016 at 9:33 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I have a question:</p>
+<p>In the 3-step animation exercise, if the first animation fails, it seems to be that there won&#8217;t be a delay between runBackup(1) and runAnimation(2). Am I missing something?</p>
+<p>Thanks for a great article.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-18219" data-commentid="18219" data-postid="210" data-belowelement="comment-18219" data-respondelement="respond" data-replyto="Reply to Daniel" aria-label="Reply to Daniel">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-20109">
+						<article id="comment-20109" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/b3a378287436352e881152a1c936ee63?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b3a378287436352e881152a1c936ee63?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Oleg </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-20109"><time datetime="2016-05-22T14:08:57+00:00">May 22, 2016 at 2:08 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>But every Haskell programmer know that Promise is just yet another &#8230;. 😉</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-20109" data-commentid="20109" data-postid="210" data-belowelement="comment-20109" data-respondelement="respond" data-replyto="Reply to Oleg" aria-label="Reply to Oleg">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-20666">
+						<article id="comment-20666" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c0415fa9a08d2c4483e9c8244d1bfee9?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c0415fa9a08d2c4483e9c8244d1bfee9?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">An Vad </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-20666"><time datetime="2016-06-04T00:43:28+00:00">June 4, 2016 at 12:43 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>In the section &#8220;3. promise.catch(onReject)&#8221; we need to call return `delay(1000);` right after calling `runBackup(1);` else there won&#8217;t be any delay between `runBackup(1);` and next animation.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-20666" data-commentid="20666" data-postid="210" data-belowelement="comment-20666" data-respondelement="respond" data-replyto="Reply to An Vad" aria-label="Reply to An Vad">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-21727">
+						<article id="comment-21727" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/982478cb0ce3e73937ad1689accf84bb?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/982478cb0ce3e73937ad1689accf84bb?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">TienTran </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-21727"><time datetime="2016-07-04T03:23:23+00:00">July 4, 2016 at 3:23 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>In differences between callback and promise, I don&#8217;t understand about statement:<br>
+4. Callbacks can represent multiple events, promises represent at most one</p>
+<p>Can you help me explain more detail, thanks! 🙂</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-21727" data-commentid="21727" data-postid="210" data-belowelement="comment-21727" data-respondelement="respond" data-replyto="Reply to TienTran" aria-label="Reply to TienTran">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-even depth-1" id="li-comment-22893">
+						<article id="comment-22893" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/a6d55a1f8cf6c87e1227e8586dab82b8?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/a6d55a1f8cf6c87e1227e8586dab82b8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Nate </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-22893"><time datetime="2016-08-24T02:57:26+00:00">August 24, 2016 at 2:57 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thank you, this was really helpful!</p>
+<p>In this code snippet where you talk about using animationTimeout for rejection (&#8220;if an isAnimationSupported(step) function is available, we could implement this with reject:&#8230;&#8221;), you create a new promise, but you don&#8217;t return it. Don&#8217;t you have to return that promise?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22893" data-commentid="22893" data-postid="210" data-belowelement="comment-22893" data-respondelement="respond" data-replyto="Reply to Nate" aria-label="Reply to Nate">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-22894">
+						<article id="comment-22894" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/94b75b82dfcd3bf44c6deaf32be077dc?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/94b75b82dfcd3bf44c6deaf32be077dc?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">david </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-22894"><time datetime="2016-08-24T05:45:11+00:00">August 24, 2016 at 5:45 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Great article. very clear explanation.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22894" data-commentid="22894" data-postid="210" data-belowelement="comment-22894" data-respondelement="respond" data-replyto="Reply to david" aria-label="Reply to david">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="210" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6fcd9ac865"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="12"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

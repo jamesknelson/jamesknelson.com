@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: The Six Things You Need To Know About Babel 6	</title>
+	<atom:link href="/the-six-things-you-need-to-know-about-babel-6/feed/" rel="self" type="application/rss+xml" />
+	<link>/the-six-things-you-need-to-know-about-babel-6/</link>
+	<description></description>
+	<lastBuildDate>Tue, 01 Mar 2016 19:06:52 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: César		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-13634</link>
+
+		<dc:creator><![CDATA[César]]></dc:creator>
+		<pubDate>Tue, 01 Mar 2016 19:06:52 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-13634</guid>
+
+					<description><![CDATA[I&#039;m trying to render my website on oldies IE with babel-preset-es2015-loose. I&#039;ve installed it using npm and added to the babel presets of package.json.
+For some reason I&#039;m still unable to watch the site. Althoug it&#039;s perfect on Chrome, Firefox and IE Edge.
+Any idea?]]></description>
+			<content:encoded><![CDATA[<p>I&#8217;m trying to render my website on oldies IE with babel-preset-es2015-loose. I&#8217;ve installed it using npm and added to the babel presets of package.json.<br />
+For some reason I&#8217;m still unable to watch the site. Althoug it&#8217;s perfect on Chrome, Firefox and IE Edge.<br />
+Any idea?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Andy Pai		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-13546</link>
+
+		<dc:creator><![CDATA[Andy Pai]]></dc:creator>
+		<pubDate>Fri, 26 Feb 2016 11:54:57 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-13546</guid>
+
+					<description><![CDATA[Good man James! Thanks for writing this! Really helped me out.]]></description>
+			<content:encoded><![CDATA[<p>Good man James! Thanks for writing this! Really helped me out.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Josh H		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-9241</link>
+
+		<dc:creator><![CDATA[Josh H]]></dc:creator>
+		<pubDate>Mon, 18 Jan 2016 12:15:26 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-9241</guid>
+
+					<description><![CDATA[It&#039;s worth mentioning Stage 0 is not required to access decorators or async/await  as suggested in this article. But Stage 1, however, is.]]></description>
+			<content:encoded><![CDATA[<p>It&#8217;s worth mentioning Stage 0 is not required to access decorators or async/await  as suggested in this article. But Stage 1, however, is.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Norman		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-6150</link>
+
+		<dc:creator><![CDATA[Norman]]></dc:creator>
+		<pubDate>Sun, 27 Dec 2015 07:31:27 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-6150</guid>
+
+					<description><![CDATA[Wow! thank you JAMES K NELSON! very helpful notes, i have felling like a dumb looking in babeljs.io why i can&#039;t make it works. Happy new year dude and good job!]]></description>
+			<content:encoded><![CDATA[<p>Wow! thank you JAMES K NELSON! very helpful notes, i have felling like a dumb looking in babeljs.io why i can&#8217;t make it works. Happy new year dude and good job!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: thun		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-5166</link>
+
+		<dc:creator><![CDATA[thun]]></dc:creator>
+		<pubDate>Sun, 06 Dec 2015 08:00:06 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-5166</guid>
+
+					<description><![CDATA[I&#039;m not sure about #6. You should be using either babel-polyfill or babel-runtime. They are mutually exclusive—unless of course you know what you are doing. But they are essentially the same thing. These are just helpers. babel-polyfill achieves the same goal by mutating globals whereas babel-runtime does so modularly. Unless you are developing a library, I&#039;d recommend you use the polyfill. On another note, exter-helpers plugin is there to reduce helper method duplication in babel-polyfill—NOT babel-transform. Babel transform reduces helper method duplication internally. So a plugin is not needed.]]></description>
+			<content:encoded><![CDATA[<p>I&#8217;m not sure about #6. You should be using either babel-polyfill or babel-runtime. They are mutually exclusive—unless of course you know what you are doing. But they are essentially the same thing. These are just helpers. babel-polyfill achieves the same goal by mutating globals whereas babel-runtime does so modularly. Unless you are developing a library, I&#8217;d recommend you use the polyfill. On another note, exter-helpers plugin is there to reduce helper method duplication in babel-polyfill—NOT babel-transform. Babel transform reduces helper method duplication internally. So a plugin is not needed.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: maxi		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-5050</link>
+
+		<dc:creator><![CDATA[maxi]]></dc:creator>
+		<pubDate>Fri, 04 Dec 2015 09:20:40 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-5050</guid>
+
+					<description><![CDATA[just trying to use babel to transform ES6 files, then it echo my the same thing. Until I read this article then I realize that all other tutorials are deprecated.]]></description>
+			<content:encoded><![CDATA[<p>just trying to use babel to transform ES6 files, then it echo my the same thing. Until I read this article then I realize that all other tutorials are deprecated.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Owen Densmore		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-4413</link>
+
+		<dc:creator><![CDATA[Owen Densmore]]></dc:creator>
+		<pubDate>Wed, 18 Nov 2015 04:05:44 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-4413</guid>
+
+					<description><![CDATA[Why is webpack preferred over jspm/systemjs?]]></description>
+			<content:encoded><![CDATA[<p>Why is webpack preferred over jspm/systemjs?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Francisc		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-4088</link>
+
+		<dc:creator><![CDATA[Francisc]]></dc:creator>
+		<pubDate>Thu, 12 Nov 2015 21:57:10 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-4088</guid>
+
+					<description><![CDATA[&quot;Old JavaScript&quot; is not boring.]]></description>
+			<content:encoded><![CDATA[<p>&#8220;Old JavaScript&#8221; is not boring.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-3985</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Tue, 10 Nov 2015 22:51:10 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-3985</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/the-six-things-you-need-to-know-about-babel-6/#comment-3974&quot;&gt;m_gol&lt;/a&gt;.
+
+Good point. I&#039;ll update the guide to mention uninstalling instead of deleting. Thanks!]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/the-six-things-you-need-to-know-about-babel-6/#comment-3974">m_gol</a>.</p>
+<p>Good point. I&#8217;ll update the guide to mention uninstalling instead of deleting. Thanks!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: m_gol		</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/#comment-3975</link>
+
+		<dc:creator><![CDATA[m_gol]]></dc:creator>
+		<pubDate>Tue, 10 Nov 2015 18:09:40 +0000</pubDate>
+		<guid isPermaLink="false">/?p=873#comment-3975</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/the-six-things-you-need-to-know-about-babel-6/#comment-3974&quot;&gt;m_gol&lt;/a&gt;.
+
+Otherwise a good article, BTW. :)]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/the-six-things-you-need-to-know-about-babel-6/#comment-3974">m_gol</a>.</p>
+<p>Otherwise a good article, BTW. 🙂</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

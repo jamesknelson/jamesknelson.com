@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments for James K Nelson	</title>
+	<atom:link href="/comments/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Sun, 26 Aug 2018 13:53:03 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		Comment on Why You Shouldn&#8217;t Style React Components With JavaScript by uscareme		</title>
+		<link>/why-you-shouldnt-style-with-javascript/#comment-35391</link>
+
+		<dc:creator><![CDATA[uscareme]]></dc:creator>
+		<pubDate>Fri, 14 Apr 2017 00:12:05 +0000</pubDate>
+		<guid isPermaLink="false">/?p=753#comment-35391</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/why-you-shouldnt-style-with-javascript/#comment-22501&quot;&gt;Kirill Korolyov&lt;/a&gt;.
+
+But it&#039;s very common for developers to mistakenly use cascading to mean inheritance, so the author is ensuring that readers are using the same definition he intends. As is appropriate to do on any foreseeable point of confusion. Hope you enjoyed that dopamine surge, though.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/why-you-shouldnt-style-with-javascript/#comment-22501">Kirill Korolyov</a>.</p>
+<p>But it&#8217;s very common for developers to mistakenly use cascading to mean inheritance, so the author is ensuring that readers are using the same definition he intends. As is appropriate to do on any foreseeable point of confusion. Hope you enjoyed that dopamine surge, though.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Comment on The 5 Types Of React Application State by Mirko Stocker		</title>
+		<link>/5-types-react-application-state/#comment-24072</link>
+
+		<dc:creator><![CDATA[Mirko Stocker]]></dc:creator>
+		<pubDate>Tue, 25 Oct 2016 14:04:30 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1081#comment-24072</guid>
+
+					<description><![CDATA[Nice article! Just one question, on the communication state, you recommend a &quot;reducer which manages an array of Request objects&quot;. Could you elaborate on what you store in this Request object?]]></description>
+			<content:encoded><![CDATA[<p>Nice article! Just one question, on the communication state, you recommend a &#8220;reducer which manages an array of Request objects&#8221;. Could you elaborate on what you store in this Request object?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Comment on Learn Raw React &#8212; no JSX, no Flux, no ES6, no Webpack&#8230; by Cody Childers		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23888</link>
+
+		<dc:creator><![CDATA[Cody Childers]]></dc:creator>
+		<pubDate>Tue, 18 Oct 2016 21:18:02 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23888</guid>
+
+					<description><![CDATA[Thank you for actually writing a great tutorial and having the pride to check it before it works. People like you are becoming rarer and rarer. Thanks]]></description>
+			<content:encoded><![CDATA[<p>Thank you for actually writing a great tutorial and having the pride to check it before it works. People like you are becoming rarer and rarer. Thanks</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Comment on Testing in ES6 with Mocha and Babel 6 by Larry		</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/#comment-23876</link>
+
+		<dc:creator><![CDATA[Larry]]></dc:creator>
+		<pubDate>Tue, 18 Oct 2016 01:49:27 +0000</pubDate>
+		<guid isPermaLink="false">/?p=922#comment-23876</guid>
+
+					<description><![CDATA[Is there any way to tell Babel not to parse certain files: eg: 
+SyntaxError: /Users/larry/Projects/Dynamic-Traveler-2/app/assets/base/interface/move-folder.png: Unexpected character &#039;�&#039; (1:0)
+�PNG
+
+The component I am testing imports images]]></description>
+			<content:encoded><![CDATA[<p>Is there any way to tell Babel not to parse certain files: eg:<br />
+SyntaxError: /Users/larry/Projects/Dynamic-Traveler-2/app/assets/base/interface/move-folder.png: Unexpected character &#8216;�&#8217; (1:0)<br />
+�PNG</p>
+<p>The component I am testing imports images</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Comment on Using ES6 and ES7 in the Browser, with Babel 6 and Webpack by Kamal Kumawat		</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/#comment-23813</link>
+
+		<dc:creator><![CDATA[Kamal Kumawat]]></dc:creator>
+		<pubDate>Wed, 12 Oct 2016 12:37:08 +0000</pubDate>
+		<guid isPermaLink="false">/?p=905#comment-23813</guid>
+
+					<description><![CDATA[How to add css file loader?]]></description>
+			<content:encoded><![CDATA[<p>How to add css file loader?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Comment on React and pushState: You&#8217;re doing it wrong by tayfun		</title>
+		<link>/push-state-vs-hash-based-routing-with-react-js/#comment-23707</link>
+
+		<dc:creator><![CDATA[tayfun]]></dc:creator>
+		<pubDate>Thu, 06 Oct 2016 23:48:36 +0000</pubDate>
+		<guid isPermaLink="false">/?p=517#comment-23707</guid>
+
+					<description><![CDATA[Thanks for this, it is much easier and simpler than react-router or any other routing library.]]></description>
+			<content:encoded><![CDATA[<p>Thanks for this, it is much easier and simpler than react-router or any other routing library.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Comment on Are JavaScript Promises swallowing your errors? by Jason Sebring		</title>
+		<link>/are-es6-promises-swallowing-your-errors/#comment-23558</link>
+
+		<dc:creator><![CDATA[Jason Sebring]]></dc:creator>
+		<pubDate>Fri, 30 Sep 2016 03:56:27 +0000</pubDate>
+		<guid isPermaLink="false">/?p=164#comment-23558</guid>
+
+					<description><![CDATA[You are the fucking man!
+
+.catch(err =&#062; console.error(err.stack));
+
+saved my ass. JESUS why didn&#039;t I know this!!!!!!]]></description>
+			<content:encoded><![CDATA[<p>You are the fucking man!</p>
+<p>.catch(err =&gt; console.error(err.stack));</p>
+<p>saved my ass. JESUS why didn&#8217;t I know this!!!!!!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Comment on Learn Raw React &#8212; no JSX, no Flux, no ES6, no Webpack&#8230; by Gustaf Elbander		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23517</link>
+
+		<dc:creator><![CDATA[Gustaf Elbander]]></dc:creator>
+		<pubDate>Wed, 28 Sep 2016 13:50:36 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23517</guid>
+
+					<description><![CDATA[Thanks a lot for this great article! Super easy to follow to get a basic idea how it works!]]></description>
+			<content:encoded><![CDATA[<p>Thanks a lot for this great article! Super easy to follow to get a basic idea how it works!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Comment on Rendering React components to the document body by Ariel Ferro		</title>
+		<link>/rendering-react-components-to-the-document-body/#comment-23499</link>
+
+		<dc:creator><![CDATA[Ariel Ferro]]></dc:creator>
+		<pubDate>Tue, 27 Sep 2016 14:26:04 +0000</pubDate>
+		<guid isPermaLink="false">/?p=16#comment-23499</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/rendering-react-components-to-the-document-body/#comment-17425&quot;&gt;John&lt;/a&gt;.
+
+sometimes that could be not an option]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/rendering-react-components-to-the-document-body/#comment-17425">John</a>.</p>
+<p>sometimes that could be not an option</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		Comment on Learn Raw React &#8212; no JSX, no Flux, no ES6, no Webpack&#8230; by Gaurav Kumar		</title>
+		<link>/learn-raw-react-no-jsx-flux-es6-webpack/#comment-23494</link>
+
+		<dc:creator><![CDATA[Gaurav Kumar]]></dc:creator>
+		<pubDate>Tue, 27 Sep 2016 11:02:34 +0000</pubDate>
+		<guid isPermaLink="false">/?p=356#comment-23494</guid>
+
+					<description><![CDATA[I am following your blogs and trying to create a component but stuck with a small problem I am unable to render the ajax response. Can you please guide me what I am doing wrong in that. Here is the code http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002. I am not getting any error in console.]]></description>
+			<content:encoded><![CDATA[<p>I am following your blogs and trying to create a component but stuck with a small problem I am unable to render the ajax response. Can you please guide me what I am doing wrong in that. Here is the code <a href="http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002" rel="nofollow ugc">http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002</a>. I am not getting any error in console.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

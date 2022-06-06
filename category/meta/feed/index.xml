@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Meta &#8211; James K Nelson</title>
+	<atom:link href="/category/meta/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Sun, 15 Nov 2015 08:34:51 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</title>
+		<link>/using-es6-in-the-browser-with-babel-6-and-webpack/</link>
+					<comments>/using-es6-in-the-browser-with-babel-6-and-webpack/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Tue, 10 Nov 2015 03:06:52 +0000</pubDate>
+				<category><![CDATA[ES6]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[Meta]]></category>
+		<category><![CDATA[React]]></category>
+		<guid isPermaLink="false">/?p=905</guid>
+
+					<description><![CDATA[<p>This guide is part of The Complete Guide to ES6 with Babel 6 series. If you&#8217;re having trouble upgrading to Babel 6, start with Six Things You Need To Know About Babel 6. The Babel CLI is great for compiling ES6 to ES5 on a file-by-file basis. However, when Babel encounters an import statement, it... <a class="more-link" href="/using-es6-in-the-browser-with-babel-6-and-webpack/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/using-es6-in-the-browser-with-babel-6-and-webpack/">Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><em>This guide is part of <a href="/the-complete-guide-to-es6-with-babel-6">The Complete Guide to ES6 with Babel 6</a> series. If you&#8217;re having trouble upgrading to Babel 6, start with <a href="/the-six-things-you-need-to-know-about-babel-6">Six Things You Need To Know About Babel 6</a>.</em></p>
+<p>The <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Babel CLI</a> is great for compiling ES6 to ES5 on a file-by-file basis. However, when Babel encounters an <code>import</code> statement, it outputs a <code>require</code> call &#8211; which won&#8217;t get you very far in the browser.</p>
+<p>To make our Babel output browser friendly, we&#8217;ll need to <em>bundle</em> it. My favourite tool for this is Webpack, and as it happens, Webpack has great Babel support through <code>babel-loader</code>&#8230;</p>
+<p><span id="more-905"></span></p>
+<h2>Installing packages</h2>
+<p>Before we start &#8212; if you&#8217;re currently using Babel 5, first remove its packages from your project&#8217;s <code>package.json</code> file and then <code>npm uninstall</code> them &#8212; <code>babel</code>, <code>babel-core</code>, <code>babel-loader</code>, etc.</p>
+<h3>Build-time packages</h3>
+<p>Once you&#8217;re ready, start by installing the <code>babel-core</code> and <code>babel-loader</code> packages:</p>
+<pre><code>npm install babel-core babel-loader --save-dev
+</code></pre>
+<p>Next, you&#8217;ll need to install any <a href="https://babeljs.io/docs/plugins/">presets and plugins</a> you need. Start with <code>babel-preset-es2015</code> &#8211; Babel&#8217;s collection of ES6 transforms. If you&#8217;re using <a href="https://facebook.github.io/jsx/">JSX</a>, you&#8217;ll also want <code>babel-preset-react</code>. And if you want to play with fire, you can add <code>babel-preset-stage-0</code> for access to ES7 decorators, <code>async</code>/<code>await</code>, etc.</p>
+<pre><code># For ES6/ES2015 support
+npm install babel-preset-es2015 --save-dev
+
+# If you want to use JSX
+npm install babel-preset-react --save-dev
+
+# If you want to use experimental ES7 features
+npm install babel-preset-stage-0 --save-dev
+</code></pre>
+<h3>Runtime support</h3>
+<p>Babel can&#8217;t support all of ES6 with compilation alone &#8212; it also requires some runtime support. In particular, the new ES6 built-ins like Set, Map and Promise must be polyfilled, and Babel&#8217;s generator implementation also uses a number of runtime helpers. Given your app doesn&#8217;t have to share a JavaScript environment with other apps, you&#8217;ll be ok to use <code>babel-polyfill</code> to handle this:</p>
+<pre><code>npm install babel-polyfill --save
+</code></pre>
+<p>Babel also bakes a number of smaller helpers directly into your compiled code. This is OK for single files, but when bundling with Webpack, repeated code will result in a heavier file size. It is possible to replace these helpers with calls to the <code>babel-runtime</code> package by adding the <code>transform-runtime</code> plugin:</p>
+<pre><code>npm install babel-runtime --save
+npm install babel-plugin-transform-runtime --save-dev
+</code></pre>
+<h2>Configuring babel-loader</h2>
+<p><em>This guide assumes you know the basics of Webpack. To get up to scratch, read <a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack Made Simple: Building ES6 &amp; LESS with autorefresh</a>.</em></p>
+<p>With Webpack, running your JavaScript and JSX through Babel is a simple as adding a <code>loaders</code> entry for <code>babel-loader</code> to your <code>webpack.config.js</code>:</p>
+<pre><code>module: {
+  loaders: [
+    {
+      loader: "babel-loader",
+
+      // Skip any files outside of your project's `src` directory
+      include: [
+        path.resolve(__dirname, "src"),
+      ],
+
+      // Only run `.js` and `.jsx` files through Babel
+      test: /\.jsx?$/,
+
+      // Options to configure babel with
+      query: {
+        plugins: ['transform-runtime'],
+        presets: ['es2015', 'stage-0', 'react'],
+      }
+    },
+  ]
+}
+</code></pre>
+<p>In the above configuration, I&#8217;ve told Webpack to only apply Babel to files in my <code>src</code> directory. This speeds up the build by making sure that Babel isn&#8217;t applied to your entire <code>node_modules</code> directory &#8211; after all, <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">NPM modules <em>should</em> be published as ES5</a>. You could achieve the same effect with <code>exclude</code>:</p>
+<pre><code>exclude: [
+  path.resolve(__dirname, "node_modules"),
+],
+</code></pre>
+<p>The <code>query</code> object contains the options passed to Babel. I&#8217;ve assumed that you&#8217;ve installed <em>every</em> package from the previous section. If you don&#8217;t want to extract Babel&#8217;s runtime helpers or don&#8217;t want React or experimental ES7 support, just leave out the appropriate string from <code>query</code>.</p>
+<div class="hint">
+<strong>Hint: <code>.babelrc</code></strong></p>
+<p>Note that you <em>could</em> omit the <code>presets</code> option passed to Webpack&#8217;s <code>query</code>, and instead add a <code>.babelrc</code> file:</p>
+<pre><code>{
+  "presets": ["es2015", "react"]
+}
+</code></pre>
+<p>However, my recommendation is to keep the options to your build process in the build process configuration. It isn&#8217;t unheard of to want different configuration for tests, task runners, etc.
+</div>
+<div class="hint">
+<strong>Hint: Babel 5</strong></p>
+<p>In Babel 5, the above <code>query</code> object would have been equivalent to the following:</p>
+<pre><code>query: {
+  stage: 0,
+  externalHelpers: true,
+},
+</code></pre>
+<p>The difference is that with Babel 5, you didn&#8217;t need to install packages for each of these options.<br />
+
+</div>
+<h2>Entry point scripts</h2>
+<p>As discussed above, Babel requires some helper code to be run before your application. To achieve this, add the polyfill to the <code>entry</code> section of your <code>webpack.config.js</code>:</p>
+<pre><code>entry: [
+  // Set up an ES6-ish environment
+  'babel-polyfill',
+
+  // Add your application's scripts below
+  './src/main',
+],
+</code></pre>
+<div class="hint">
+<strong>Hint: Babel 5</strong></p>
+<p>In Babel 5, you needed two entry point scripts. Both were available in the <code>babel-core</code> package:</p>
+<pre><code>'babel-core/external-helpers',
+'babel-core/polyfill',
+</code></pre>
+<p>
+</div>
+<h2>Examples</h2>
+<p>For a simple example of a Webpack-bundled app configured with Babel 6, see <a href="https://github.com/jamesknelson/webpack-black-triangle">webpack-black-triangle</a>.</p>
+<p>For a more full-featured example of a React-based app bundled with Webpack, see the <a href="https://github.com/unicorn-standard/starter-kit">Unicorn Standard Starter Kit</a>.</p>
+<h2>More ways to Babel</h2>
+<p>Now that you&#8217;ve got your app building with ES6, why not test it with ES6 too? And write your libraries with it. And write your tasks with it&#8230;</p>
+<ul>
+<li><a href="/testing-in-es6-with-mocha-and-babel-6/"><strong>Testing with Mocha</strong> and Babel&#8217;s <code>register</code> script</a></li>
+<li><a href="writing-npm-packages-with-es6-using-the-babel-6-cli"><strong>Transforming NPM Packages</strong> with the Babel 6 CLI</a></li>
+<li><a href="/teaching-gulp-es6-with-babel-6/"><strong>Running tasks</strong> with <code>gulpfile.babel.js</code></a></li>
+</ul>
+<h2>Keeping up to date</h2>
+<p>So you&#8217;ve made Babel 6 work. But the JavaScript world moves fast &#8212; how long will it <em>stay</em> working?</p>
+<p>If trying to keep up feel overwhelming, I&#8217;d love to help! Just subscribe to my free Newsletter to receive news and guides on the most important tools for <strong>people making small apps with React</strong>. And in return for your e-mail, you&#8217;ll <em>immediately receive</em> three bonus <em>print-optimised</em> PDF cheatsheets &#8211; on React <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">(see preview)</a>, ES6 and JavaScript promises. All for free!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Writing NPM packages with ES6 using the Babel 6 CLI</a></li>
+<li><a href="/the-six-things-you-need-to-know-about-babel-6">The Six Things You Need To Know About Babel 6</a></li>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 &#8211; The Bits You’ll Actually Use</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/using-es6-in-the-browser-with-babel-6-and-webpack/">Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/using-es6-in-the-browser-with-babel-6-and-webpack/feed/</wfw:commentRss>
+			<slash:comments>26</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>The Road To 100 Signups</title>
+		<link>/the-road-to-one-hundred-signups/</link>
+					<comments>/the-road-to-one-hundred-signups/#respond</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sun, 19 Jul 2015 07:33:43 +0000</pubDate>
+				<category><![CDATA[Meta]]></category>
+		<guid isPermaLink="false">/?p=312</guid>
+
+					<description><![CDATA[<p>This year, I had a fuck this moment. I decided that I want to be able to do something interesting with my life. And with the help of 30&#215;500, I actually started working towards it. To me, &#8220;doing something interesting with my life&#8221; means making things people love. In my position, the most immediate way... <a class="more-link" href="/the-road-to-one-hundred-signups/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/the-road-to-one-hundred-signups/">The Road To 100 Signups</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>This year, I had a <a href="https://unicornfree.com/2014/your-fuck-this-moment-changes-everything"><em>fuck this moment</em></a>. I decided that I want to be able to do something interesting with my life. And with the help of <a href="http://courses.30x500.com/">30&#215;500</a>, I actually started working towards it.</p>
+<p>To me, &#8220;doing something interesting with my life&#8221; means making things people love. In my position, the most immediate way I can achieve this is by writing about the Web &#8211; it is the thing I&#8217;ve spent the most hours of my life doing, and I care possibly a <em>little too much</em> about making it better.</p>
+<p>But enough being serious &#8211; the real reason I&#8217;m writing this is that 100 signups is the best excuse I&#8217;ll get to look back at what went well, what didn&#8217;t, and how to improve things. And to show you lots of pretty graphs!</p>
+<p>And since it&#8217;s <em>that</em> kind of article, I&#8217;m going to put the meat before the veggies and start with:</p>
+<p><span id="more-312"></span></p>
+<h2>What surprised me</h2>
+<p>The biggest surprise for me by far was that:</p>
+<h3>The amount of effort an article takes doesn&#8217;t correlate with the value people get from it</h3>
+<p>In more concrete terms, the length of my articles seem to be uncorrelated with the amount of organic traffic I get:</p>
+<p><img src="/the-road-to-100-signups/organic-traffic-landing-page-jul-6-jul-19.png" alt="Organic traffic landing page, July 6 - July 19, 2015" /></p>
+<p><em>Organic traffic landing page, July 6 &#8211; July 19, 2015</em></p>
+<p>Furthermore, the correlation between length and the number of social network shares still doesn&#8217;t seem that high:</p>
+<p><img src="/the-road-to-100-signups/social-traffic-landing-page-1-may-29-july.png" alt="Social traffic landing page, May 1 - July 19, 2015" /></p>
+<p><em>Social traffic landing page, May 1 &#8211; July 19, 2015</em></p>
+<p>For me, this puts some data to <a href="https://twitter.com/amyhoy">@amyhoy</a>&#8216;s constant nagging to write <em>crispy</em> articles, as opposed to <em>meaty</em>. People don&#8217;t care if you know everything there is to know about a topic &#8211; they care that you can help them solve the problem they are having <em>right now</em>. Or, if I may, people would rather eat crispy bacon than raw pig.</p>
+<h3>Conversion rate varies wildly based on traffic source</h3>
+<p>Another thing that surprised me is that my newsletter&#8217;s conversation rate has varied greatly over time. You can see this in the fact that this month has received by far the most signups, even though it hasn&#8217;t received <em>that</em> many visits, and even though we&#8217;re still only two-thirds through:</p>
+<p><img src="/the-road-to-100-signups/sessions-may-july.png" alt="Total sessions, May 1 - July 19, 2015" /></p>
+<p><em>Total sessions, May 1 &#8211; July 19, 2015</em></p>
+<p><img src="/the-road-to-100-signups/list-growth-march-july.png" alt="Newsletter signups, March 1 - July 19, 2015" /></p>
+<p><em>Newsletter signups, March 1 &#8211; July 19, 2015</em></p>
+<p>A lot of the variability here can be explained by the traffic&#8217;s source. In particular, some research and commiseration with other bloggers seems to show that Reddit/Hacker News mostly consists of people with a highly developed &#8220;anti-commercial&#8221; filter. While this doesn&#8217;t make me any less happy about the readership they provide, it does leave me puzzling over how to get them to help me pay the bills (which obviously is a pre-requisite to writing).</p>
+<h3>The 1000-pound gorillas out there are actually kinda friendly</h3>
+<p>Surprisingly, Reddit/Hacker News weren&#8217;t my biggest sources of traffic &#8211; other industry-specific publications were. In particular, <a href="http://javascriptweekly.com/">JavaScript Weekly</a> and <a href="https://fivejs.codeschool.com/">FiveJS</a> provided some big boosts in readership and newsletter signups.</p>
+<p><img src="/the-road-to-100-signups/acquisition-may-july.png" alt="Acquisition, May 1 - July 19, 2015" /></p>
+<p><em>Acquisition, May 1 &#8211; July 19, 2015</em></p>
+<p>While it is obviously not a good idea to rely too much on help from others, I am <em>incredibly</em> thankful for the leg-up these heavyweights provided. The traffic certainly helped, but even more than this the fact that people who know what they&#8217;re doing found enough use in my work to feature it helped hugely with the motivation to keep going.</p>
+<h2>What else went well</h2>
+<p>As well as receiving a lot of undeserved help, there were a bunch of things which went well for me. Here are four that stood out:</p>
+<ul>
+<li>Being really fed up with working on things I don&#8217;t want to work on provided a <em>lot</em> of motivation</li>
+<li>Working only four days a week provided the time to put that motivation to use, and also provided a number of useful things to write about</li>
+<li>Belonging to a slack community with other people doing similar things provided a sense of competition, which helps if you&#8217;re competitive like me!</li>
+<li>30&#215;500 provided a number of answers to questions which I had</li>
+</ul>
+<p>30&#215;500 also provided the questions which would lead to those answers, but that doesn&#8217;t help if you&#8217;re too stubborn to use them.</p>
+<h2>How I messed up</h2>
+<p>My biggest mistake was not listening to <a href="https://twitter.com/amyhoy">@amyhoy</a>&#8216;s advice, and instead:</p>
+<h3>Writing meaty articles instead of crispy ones</h3>
+<p>Let me preface this by saying that meaty articles are not necessarily a bad thing. Covering all there is to know on a topic does earn you a little bit of trust &#8211; and after all &#8211; the currency of the the blogging world <em>is</em> trust. However, with this said, there are better ways to to build trust. In particular, <em>actually solving people&#8217;s problems</em>.</p>
+<p>The thing is, when people have the problem of needing to learn everything about a subject, they read a book on it. However, when people have a single problem which they want to solve, they&#8217;ll ask Google for a solution. Google then crunches some numbers, analyzes the alignment of the planets, and tells the perplexed developer to visit my blog. Or in the case I don&#8217;t have any articles which closely match what they&#8217;re searching for, it tells them to go somewhere else.</p>
+<p>To put some numbers to this, here is the data on the number of referrals my top 10 articles have received from search engines over the past 2 weeks, compared to the number of page views each article has received in total over the past 3 months. I&#8217;ve highlighted the &#8220;authoritative&#8221; articles:</p>
+<p><img src="/the-road-to-100-signups/organic-vs-all-traffic-july-6-19.png" alt="Organic vs all traffic, July 6 - 19, 2015" /></p>
+<p>But James, you ask, why do you say it was a mistake to write crispy articles when your meaty ones have been so much more successful? Great question!</p>
+<p>At this point, most of my traffic is from social networks. However, over time the split between social and organic traffic moves sharply in the other direction. To demonstrate, here is the split between sources over the last two weeks for my first publicized article (released about 2 months ago):</p>
+<p><img src="/the-road-to-100-signups/source-breakdown.png" alt="Source breakdown for &quot;Are ES6 promises swallowing your errors?&quot;, July 6 - 19, 2015" /></p>
+<p><em>Source breakdown for <a href="/are-es6-promises-swallowing-your-errors/">Are ES6 promises swallowing your errors?</a>, July 6 &#8211; 19, 2015</em></p>
+<p>To give an even more extreme example of this, <a href="/rendering-react-components-to-the-document-body/">rendering react components to the document body</a> was my first article. I never publicized it <em>at all</em>, so all of the traffic is effectively search traffic. But it is already getting more search traffic than a number of articles which a month back were <em>much</em> more popular.</p>
+<p><em>Note: I obviously still have a lot of learning to do, seeing how long this article is. <a href="http://jisho.org/search/%E9%A0%91%E5%BC%B5%E3%82%8B">頑張ります！</a></em></p>
+<h3>Too much focus on networks of people who wouldn&#8217;t give you their e-mail address to save their life</h3>
+<p>Or to be a little less dramatic, too much focus on Reddit and Hacker News. The huge increase in conversion rate I noticed when I was featured on FiveJS really drove this one home for me &#8211; I went from something like one newsletter signup per 200-300 views to one for every 20.</p>
+<p>Now it should be said that my goal isn&#8217;t collecting e-mail addresses &#8211; it is helping people create amazing things. However, my hunch is that signups are a better metric for whether I&#8217;m accomplishing this than page views &#8211; people who want to stay in the loop are probably more excited about what they&#8217;re learning than people who just close the tab.</p>
+<p>Finding <em>good</em> traffic sources won&#8217;t be an easy job, but it feels like I&#8217;d be doing myself a disservice by avoiding it. And a disservice to all the people out there who want to read what I&#8217;m writing but don&#8217;t waste their time refreshing news aggregators all day.</p>
+<h3>Working too much</h3>
+<p>While I&#8217;ve been able to get away with only working four days a week, it would really be better if I could keep this down to three. There are two reasons for this:</p>
+<p>The obvious one is that researching what users want and writing about it takes time. More time naturally means more and better articles. This probably doesn&#8217;t surprise anyone. What <em>did</em> surprise me, however, was the amount of things I learnt while working on my own projects, like <a href="/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/">Memamug</a>.</p>
+<p>The problem is that no matter how well you know your readers, you won&#8217;t help anybody if you can&#8217;t actually answer their questions. Just like a professional musician still needs to practice, an amateur technical blogger still needs to code. Not understanding this led me to working a lot longer hours than I should have, and quality probably suffered as a result. The takeaway is that I need to schedule time for both writing <em>and</em> practicing.</p>
+<h2>How I can improve going forward</h2>
+<p>So with all said and done, here are my goals for the time between now and 500 subscribers:</p>
+<ol>
+<li>Write <em>more often</em>, but write <em>less</em></li>
+<li>Aim to make most articles address a single issue, and address it <em>well</em></li>
+<li>Find and contribute to networks of people who <em>want to learn what I know</em></li>
+<li><em>Take more breaks</em></li>
+</ol>
+<p>Finally, while this article has been pretty meta, a post about the road to 100 signups wouldn&#8217;t be complete without a call to action: If <em>you</em> want to make Single Page Apps which people love, you&#8217;ll receive a huge head start by signing up to my mailing list. And in return for your e-mail, you&#8217;ll also immediately receive 3 bonus <em>print-optimised</em> PDF cheatsheets &#8211; on <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">React</a>, <a href="/wp-content/uploads/2015/09/es6-cheatsheet-thumbnail.png">ES6</a> and <a href="/wp-content/uploads/2015/09/promises-cheatsheet-thumbnail.png">JavaScript promises</a>.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>The post <a rel="nofollow" href="/the-road-to-one-hundred-signups/">The Road To 100 Signups</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/the-road-to-one-hundred-signups/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

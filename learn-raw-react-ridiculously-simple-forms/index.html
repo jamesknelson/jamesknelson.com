@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+	
+	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+			    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+	<title>Learn React.js: Ridiculously Simple Forms</title>
+    
+    <!--[if lte IE 9]>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+    <![endif]-->
+	
+		
+	<meta name="robots" content="max-image-preview:large">
+      <meta name="description" content=""> 
+      <meta name="keywords" content=""> 
+
+<!-- This site is optimized with the Yoast SEO plugin v7.9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Learn to build a React-based forms from the ground up, without worrying about JSX, Flux, ES6, Webpack, or form libraries -- then practice with 4 exercises.">
+<link rel="canonical" href="/learn-raw-react-ridiculously-simple-forms/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn React.js: Ridiculously Simple Forms">
+<meta property="og:description" content="Learn to build a React-based forms from the ground up, without worrying about JSX, Flux, ES6, Webpack, or form libraries -- then practice with 4 exercises.">
+<meta property="og:url" content="httpjamesknelson.com/learn-raw-react-ridiculously-simple-forms/">
+<meta property="og:site_name" content="James K Nelson">
+<meta property="article:section" content="Javascript">
+<meta property="article:published_time" content="2015-09-20T10:11:23+00:00">
+<meta property="article:modified_time" content="2018-08-26T13:53:17+00:00">
+<meta property="og:updated_time" content="2018-08-26T13:53:17+00:00">
+<meta property="og:image" content="httpjamesknelson.com/wp-content/uploads/2015/09/banner-3.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Learn to build a React-based forms from the ground up, without worrying about JSX, Flux, ES6, Webpack, or form libraries -- then practice with 4 exercises.">
+<meta name="twitter:title" content="Learn React.js: Ridiculously Simple Forms">
+<meta name="twitter:site" content="@james_k_nelson">
+<meta name="twitter:image" content="httpjamesknelson.com/wp-content/uploads/2015/09/banner-3.jpg">
+<meta name="twitter:creator" content="@james_k_nelson">
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Learn Raw React: Ridiculously Simple Forms Comments Feed" href="/learn-raw-react-ridiculously-simple-forms/feed/">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
+<style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
+<link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-css" href="/wp-content/themes/read/css/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-code-prettify-css" href="/wp-content/themes/read/js/google-code-prettify/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="uniform-css" href="/wp-content/themes/read/css/uniform.default.css" type="text/css" media="all">
+<link rel="stylesheet" id="flexslider-css" href="/wp-content/themes/read/css/flexslider.css" type="text/css" media="all">
+<link rel="stylesheet" id="gamma-gallery-css" href="/wp-content/themes/read/css/gamma-gallery.css" type="text/css" media="all">
+<link rel="stylesheet" id="main-css" href="/wp-content/themes/read/css/main.css" type="text/css" media="all">
+<link rel="stylesheet" id="fancybox-css" href="/wp-content/themes/read/css/jquery.fancybox-1.3.4.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-fix-css" href="/wp-content/themes/read/css/wp-fix.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-markdown-prettify-css" href="/wp-content/plugins/wp-markdown/css/prettify.css?ver=1.6.1" type="text/css" media="all">
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/428">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.3">
+<link rel="shortlink" href="/?p=428">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Flearn-raw-react-ridiculously-simple-forms%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Flearn-raw-react-ridiculously-simple-forms%2F&#038;format=xml">
+
+<link rel="stylesheet" type="text/css" href="/wp-content/themes/read/style.css">
+
+		
+
+
+
+
+<style type="text/css">a { color: #b30e2f; }</style>
+		<style type="text/css">h1.site-title a {
+  border-bottom: none !important;  
+}
+
+.main-navigation {
+  border: none !important;
+display: none;
+}
+
+.spoiler {
+position: relative;
+}
+
+.spoiler .spoiler-mask {
+background-color: #fafae0;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 50;
+}
+
+.spoiler:hover .spoiler-mask {
+display: none;
+}
+
+.site-header {
+  padding-bottom: 1em;
+}
+
+h2 a, h3 a {
+color: #444;
+}
+
+.entry-meta a, .nav-single a, .comment-meta a, .comment-reply-link, .navigation a, .post-pagination a, .related-posts a, .archives a, .tabs .tab-titles li a {
+  color: #b30e2f;
+}
+
+.mailing-list {
+  background-color: #E2F1FF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+.mailing-list form {
+  text-align: center;
+  margin: 15px 0;
+}
+.mailing-list input {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  margin: 5px 0;
+}
+.mailing-list input[type=submit] {
+  margin: 15px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+}
+
+.ssba > div {
+  margin-top: 80px;
+  text-align: center !important;
+}
+
+
+
+code {
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+margin: 0;
+}
+
+pre.prettyprint {
+	background: none;
+	box-shadow: none;
+	border: none;
+	background-color: #f8f8f8;
+}
+
+pre.prettyprint > code {
+        display: block;
+}
+
+h1.site-title {
+  font-size: 4em;
+}
+
+.hint {
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  border-radius: 4px; 
+  padding: 15px;
+  margin-top: 20px;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: inherit;
+}
+
+.inline-mailing-list {
+  width: 280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+}
+.inline-mailing-list h4 {
+  border-left: none;
+  padding-left: 0;
+  font-size: 18px;
+  margin: 0;
+}
+.inline-mailing-list form {
+  text-align: center;
+  margin: 5px 0;
+}
+.inline-mailing-list input {
+  font-size: 14px;
+  line-height: 18px;
+  padding: 4px 8px;
+  margin: 5px 0;
+  border-radius: 3px !important;
+  width: 100% !important;
+}
+.inline-mailing-list button[type=submit] {
+  margin: 5px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background-color: #b30e2f;
+  width: 100%;
+}
+
+blockquote {
+  margin: 1em 0 0 0;
+  padding: 1em 3em 1em 3em;
+}</style>
+
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="post-template-default single single-post postid-428 single-format-standard">
+
+    <div id="page" class="hfeed site"> 
+        <header class="site-header wrapper" role="banner">
+			<div class="row">
+			    <hgroup>
+					<h1 class="site-title">
+															<a href="/" rel="home">James K Nelson</a>
+													</h1>
+					<!-- end .site-title -->
+					
+					<h2 class="site-description">
+											</h2>
+					<!-- end .site-description -->
+			    </hgroup>
+				
+								
+			    <nav id="site-navigation" class="main-navigation" role="navigation">
+					<ul class="menu-default"><li class="page_item page-item-368"><a href="/thank-you-for-subscribing/">Thank you for subscribing!</a></li></ul>
+			    </nav>
+			    <!-- end #site-navigation -->
+			</div>
+			<!-- end .row -->
+        </header>
+        <!-- end .site-header -->
+		
+				
+        <section id="main" class="middle wrapper">
+			<div class="row row-fluid blog-with-sidebar">
+<div id="primary" class="site-content span7">
+	<div id="content" role="main">
+		<div class="blog-single">
+										<article id="post-428" class="clearfix post-428 post type-post status-publish format-standard hentry category-javascript category-react">
+								<header class="entry-header">
+																		<h1 class="entry-title">Learn Raw React: Ridiculously Simple Forms</h1>
+								</header>
+								<!-- end .entry-header -->
+								
+								<div class="entry-meta">
+									<span class="post-category">
+										posted in <a href="/category/javascript/" rel="category tag">Javascript</a>, <a href="/category/react/" rel="category tag">React</a>									</span>
+									<!-- end .post-category -->
+									
+									<span class="post-date">
+										on <a href="/learn-raw-react-ridiculously-simple-forms/" title="10:11 am" rel="bookmark"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">September 20, 2015</time></a>
+									</span>
+									<!-- end .post-date -->
+									
+									<span class="by-author"> by										<span class="author vcard">
+											<a class="url fn n" href="/author/jamesknelson/" title="View all posts by James K Nelson" rel="author">James K Nelson</a>
+										</span>
+										<!-- end .author -->
+									</span>
+									<!-- end .by-author -->
+									
+																		
+																	</div>
+								<!-- end .entry-meta -->
+								
+																
+								<div class="entry-content clearfix">
+									<p><strong>Update August 2018:</strong> <em>A newer, more complete introduction to React&#8217;s fundamentals is available at my course <strong>&#8220;React (without the buzzwords)&#8221;</strong>. It uses the latest version of React, and covers many topics that &#8220;Learn Raw React&#8221; is missing, including component state, asynchronous data storage, JSX, structure best practices, and more.</em></p>
+<p><em><strong>&#8220;React (without the buzzwords)&#8221;</strong> is composed of 30 lessons, with 55 live examples and exercises. It lets you save your progress through lessons, and automatically saves your exercise answers so you can pick up where you left off.</em></p>
+<p><em><a href="https://frontarm.com/courses/learn-raw-react/" style="color: #8233ff;">React (without the buzzwords)</a> is exclusive to <a href="https://frontarm.com/pricing/individual/" style="color: #8233ff;">Frontend Armory Pro</a> members. But you can try these 8 free lessons just by clicking one of the links &#8211; no signup required:</em></p>
+<ul>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/basics/one-file-react-app/" style="color: #8233ff;">Create a React app with a single file »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/basics/elements-are-objects/" style="color: #8233ff;">Elements are just objects »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/basics/props-and-styling/" style="color: #8233ff;">Props &amp; styling »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/components/custom-types/" style="color: #8233ff;">Custom types »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/how-it-works/animated-fractal-tree-exercise/" style="color: #8233ff;">Animate a fractal tree »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/how-it-works/what-about-jsx/" style="color: #8233ff;">What about JSX? »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/state-and-events/state-and-this/" style="color: #8233ff;">State and <code>this</code> »</a></p>
+</li>
+<li>
+<p><a href="https://frontarm.com/courses/learn-raw-react/choose-your-adventure/surprise-free-forms/" style="color: #8233ff;">Surprise-free forms »</a></p>
+</li>
+</ul>
+<p><em>Of course, the original &#8220;Learn Raw React&#8221; guide is still useful today! Here it is:</em></p>
+<hr>
+<p>So &#8211; you&#8217;ve got the hang of React, and you&#8217;ve even built a little app. But after making your app <em>look nice</em>, you remember that you also need to make it <em>work</em>. And that&#8217;s when you start searching for form libraries.</p>
+<p>First you look for tools to structure data and event flow. Then you shift focus to libraries which reduce repetition in form components. And while you&#8217;re at it, tools which validate user input would certainly help. Tools like react-forms and formsy-react and flux and redux and RxJS and as one redditor <a href="https://www.reddit.com/r/reactjs/comments/383e99/good_patterns_for_forms/cs09gcn">put it</a>:</p>
+<blockquote>
+<p>I&#8217;ve been evaluating a few frameworks out there. It&#8217;s been the bane of my existence for the past <em>two weeks.</em></p>
+</blockquote>
+<p><strong>Wasn&#8217;t the whole idea that tools would <em>save you time</em>?</strong></p>
+<p>Why spend <em>two weeks</em> investigating when you could have implemented the most important part in <em>three minutes?</em> Its not even like you&#8217;d have to think that hard; all you have to do is follow this exercise:</p>
+<p><span id="more-428"></span></p>
+<h2>Exercise 1 &#8211; Collecting user input</h2>
+<p><em>This is part two of my series on Raw React. If you&#8217;re new to React, start from <a href="/learn-raw-react-no-jsx-flux-es6-webpack/">part one</a>. Otherwise, get the starter code from part one&#8217;s <a href="https://github.com/jamesknelson/raw-react-part-1">GitHub repository</a></em>.</p>
+<p>Before we move on to the exercise, let&#8217;s answer a quick revision question: If an element&#8217;s <code>props</code> can take <code>string</code> and <code>array</code> values, can they also take a <code>function</code>? Touch or hover your mouse over this box for the answer:</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+Yes! Functions passed to <code>props</code> are called <strong>callback functions</strong>.
+</div>
+<p>Gathering keystrokes from an <code>&lt;input&gt;</code> element is accomplished by passing a callback function to its <code>onChange</code> prop, like so:</p>
+<pre><code>React.createElement("input", {
+    // The callback passed to `onChange` will be called when `value` should change
+    onChange: function(syntheticEvent) {
+        // Log new `value` to JavaScript console
+        console.log(syntheticEvent.target.value)
+    }
+})
+</code></pre>
+<p>But this exercise is titled <em>collecting user input</em>, not <em>callback functions</em> &#8211; so let&#8217;s collect the various changes from our <code>&lt;input&gt;</code> elements. And what better component to manage changes to a <code>contact</code> object than part one&#8217;s <code>ContactForm</code>:</p>
+<pre><code>var ContactForm = React.createClass({
+  propTypes: {
+    value: React.PropTypes.object.isRequired
+  },
+
+  render: function() {
+    return (
+      React.createElement('form', {className: 'ContactForm'},
+        React.createElement('input', {
+          type: 'text',
+          placeholder: 'Name (required)',
+          value: this.props.value.name,
+        }),
+        React.createElement('input', {
+          type: 'email',
+          placeholder: 'Email',
+          value: this.props.value.email,
+        }),
+        React.createElement('textarea', {
+          placeholder: 'Description',
+          value: this.props.value.description,
+        }),
+        React.createElement('button', {type: 'submit'}, "Add Contact")
+      )
+    )
+  },
+});
+</code></pre>
+<p>Just as an <code>&lt;input&gt;</code> element displays its current <code>value</code> and emits changes via its <code>onChange</code> callback, we&#8217;d like our <code>ContactForm</code> to display a <code>value</code> (which it already does), and <em>emit new <code>contact</code> objects via an <code>onChange</code> callback</em>.</p>
+<p>So, after modifying <code>ContactForm.propTypes</code> appropriately:</p>
+<pre><code>propTypes: {
+    value: React.PropTypes.object.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+}
+</code></pre>
+<p>And adding a <code>console.log</code> to our <code>ContactView</code> class to test our work:</p>
+<pre><code>React.createElement(ContactForm, {
+    value: this.props.newContact,
+    onChange: function(contact) { console.log(contact) },
+})
+</code></pre>
+<p><strong>Your task is to add a working <code>onChange</code> prop to the <code>ContactForm</code> class.</strong></p>
+<p>This will involve adding <code>onChange</code> callbacks to the <code>&lt;input&gt;</code> and <code>&lt;textarea&gt;</code> elements. These callbacks call <code>ContactForm</code>&#8216;s own <code>onChange</code> callback, emitting a copy of the existing <code>value</code> with changes applied to the appropriate values. Your form element&#8217;s new <code>value</code> is available through the passed in <a href="https://facebook.github.io/react/docs/events.html">SyntheticEvent</a> <code>target</code> (see above example).</p>
+<p>Once everything is working as expected, each keystroke in the contact form should emit a console message. You can see this in action with the below JSBin solution.</p>
+<div class="hint">
+<strong>Hint:</strong> Don&#8217;t forget that <code>this</code> is has a different meaning within a nested <code>function</code>!
+</div>
+<p></p>
+<div class="hint">
+<strong>Hint:</strong> While not strictly necessary, ES6&#8217;s <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a> will make your life so much easier here that I&#8217;d be a terrible person if I didn&#8217;t mention it. Use the MDN <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill">polyfill</a> to enable it.
+<p>Here is how you&#8217;d use <code>Object.assign</code> in this exercise:</p>
+<pre><code>// Return a new `contact` with an updated `name` property
+var updated = Object.assign({}, this.props.value, {name: e.target.value})
+</code></pre>
+</div>
+
+<p><a class="jsbin-embed" href="http://jsbin.com/pebujejace/embed?console,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.3"></script></p>
+<p>Congratulations &#8211; you&#8217;ve now completed the most <em>important</em> part of your form! Of course when you&#8217;re building forms on your own, you&#8217;re not going to get the correct <code>propTypes</code> handed to you on a platter; you&#8217;re either going to need to comb through the React documentation to find what works, or take a quick look at my React.js Cheatsheet. But I digress. Let&#8217;s move on and quickly implement the <em>fun</em> part of your form.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=18"></script>
+<link rel="stylesheet" href="/learn-raw-react-ridiculously-simple-forms/ck_form.html">
+<div class="ck_form single_line">
+
+  <div class="ck_form_fields">
+  
+    <h3>Get the PDF cheatsheet!</h3>
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4416/subscribe" data-remote="true">
+      <input type="hidden" name="id" value="4416" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+        <div>
+          <label class="ck_label" for="ck_firstNameField" style="display:none">First Name</label>
+        
+          <input type="text" name="first_name" placeholder="First name" class="ck_first_name" id="ck_firstNameField" required>
+        </div>
+        <div class="field">
+          <label class="ck_label" for="ck_emailField" style="display:none">Email Address</label>
+        
+          <input type="email" name="email" placeholder="Email address" class="ck_email_address" id="ck_emailField" required>
+        </div>
+
+        <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+          Subscribe to my Newsletter
+        </button>
+    </form>
+  </div>
+ </div>
+ <style type="text/css">.ck_form.single_line {
+  /* divider image */
+  background: #f9f9f9;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border: solid 1px #d1d1d1;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  clear: both;
+  margin: 20px auto;
+  text-align: center;
+  width: 85%;
+  border-radius: 6px;
+}
+
+
+.ck_form.single_line h3, #content .ck_form.single_line h3 { 
+  text-align: center; 
+  margin: 0px 0px 10px; 
+  font-size: 24px;
+}
+
+.ck_form.single_line p {
+  padding: 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+.ck_form.single_line .ck_form_fields {
+  width: 100%;
+  float: left;
+  padding: 24px 0;
+}
+/* Form fields */
+
+.ck_errorArea {
+  display: none; /* temporary */
+}
+
+#ck_success_msg {
+  margin: 0 30px;
+  padding: 0 10px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_form.single_line input[type="text"], .ck_form.single_line input[type="email"] {
+  font-size: 18px;
+  padding: 10px 8px;
+  width: 68%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; /* border radius */
+  background-color: #fff; /* layer fill content */
+  height: auto;
+  margin: 5px 0;
+  height: 42px;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+} 
+
+.ck_form.single_line .ck_checkbox {
+  display: none;
+}
+
+.ck_form.single_line .ck_subscribe_button {
+    color: #fff;
+    margin: 0px;
+    padding:  11px 22px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+    margin: 10px 0 0;
+    height: 42px;
+    width: auto;
+  }
+  
+  
+.ck_form.single_line .ck_guarantee {
+  color: #626262;
+  font-size: 15px;
+  text-align: center;
+  padding: 15px 0px 0px;
+  display: block;
+  clear: both;
+}</style>
+<h2>Exercise 2 &#8211; Displaying changes</h2>
+<p>Can you remember how we went about displaying new data in <a href="#">part one</a>? All you need to do is create a new <code>ReactElement</code> with the updated data, and pass it to <code>ReactDOM.render</code>:</p>
+<pre><code>var rootElement = React.createElement(ContactView, newData)
+ReactDOM.render(rootElement, document.getElementById('react-app'))
+</code></pre>
+<p>The only problem being that the new data is currently only available to the <code>ContactView</code> component:</p>
+<pre><code>var ContactView = React.createClass({
+  // ...
+
+  render: function() {
+    return React.createElement('div', {className: 'ContactView'},
+      // ...
+      React.createElement(ContactForm, {
+        value: this.props.newContact,
+        onChange: function(contact) {
+            /*
+             * Our new `contact` is only available here
+             */
+        },
+    })
+  },
+});
+
+/*
+  * But we want to use our new `contact` here!
+  */
+ReactDOM.render(
+  React.createElement(ContactView, {
+    contacts: contacts,
+    newContact: newContact
+  }),
+  document.getElementById('react-app')
+)
+</code></pre>
+<p>How would you access the new <code>contact</code> from the application&#8217;s entry point? Using callbacks, of course!</p>
+<p><strong>Your task is to add an <code>onContactChange</code> prop to the <code>ContactView</code> component, and use this to display the latest changes.</strong></p>
+<p>Once complete, you should have a working form:</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/veyima/embed?js,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.3"></script></p>
+<p>And now you know everything you need to know to build Ridiculously Simple Forms with React! So let&#8217;s talk about:</p>
+<h2>Why?</h2>
+<p>The first time I saw a form component with <code>value</code> and <code>onChange</code> props, I thought to myself: <em>this is fucking stupid!</em> Why should my form have a <code>value</code> prop when the <code>&lt;input&gt;</code> elements underneath it have <code>value</code> props too? Isn&#8217;t that code duplication? Isn&#8217;t that failing to separate concerns? It felt anything but elegant, but here I am telling you to build forms that way &#8212; <em>why?</em></p>
+<p>React&#8217;s killer feature is that it helps us make user interfaces which are <em>easy to reason about</em>. But React can&#8217;t do this by itself; we need to help it out by making sure that a component&#8217;s <code>props</code> tell us everything about it. This means that our form&#8217;s displayed data must all be available under its <code>value</code>, and that changes must be emitted through callbacks &#8212; <em>not</em> hidden inside the form component&#8217;s state.</p>
+<p>And the thing is &#8212; we wouldn&#8217;t be managing that state if we didn&#8217;t need to use it. Even if we were to find a way to move data from the <code>&lt;input&gt;</code> components to where it is needed <em>without</em> passing it through <code>ContactForm</code>&#8216;s <code>value</code> and <code>onChange</code> props, there would still need to be <em>some</em> way of making that transfer happen.</p>
+<p>In larger projects, all this wiring <em>can</em> make it a little harder to grok the bigger picture. In these cases, tools like Flux will help add structure to manage your complexity. <em>But,</em> if you&#8217;re just starting a new project, you don&#8217;t <em>have</em> any complexity to manage! So while our Ridiculously Simple Forms may not be particularly <em>elegant</em>, they are certainly incredibly <em>simple</em>:</p>
+<p><img src="/wp-content/uploads/2015/09/banner.jpg" alt="Elegant vs Simple"></p>
+<div class="hint">
+I <em>probably</em> should mention that React is a broad church. In addition to the <strong>controlled components</strong> you&#8217;ve been using, React also supports something called <a href="https://facebook.github.io/react/docs/forms.html#uncontrolled-components">uncontrolled components</a> (i.e. those without a solid <code>value</code> prop). Nobody uses them though, or at least nobody <em>should</em>.
+</div>
+<p>So now that we&#8217;ve decided we&#8217;re going to structure forms this way, lets spend a little time making them easier to work with. Starting with:</p>
+<h2>Instance methods and auto-binding</h2>
+<p>Did your solution to Exercise One use anonymous functions for <code>onChange</code> callbacks, like mine?</p>
+<pre><code>var oldContact = this.props.value;
+var onChange = this.props.onChange;
+
+// ...
+
+React.createElement('input', {
+  type: 'text',
+  placeholder: 'Name (required)',
+  value: this.props.value.name,
+  onChange: function(e) {
+    onChange(Object.assign({}, oldContact, {name: e.target.value}));
+  },
+}),
+</code></pre>
+<p>Ignoring the fact that JavaScript creates these anonymous functions anew <em>every single time <code>render</code> is called</em> (which is sloooooow), defining handlers like this is a pain in the arse because we need a workaround to access <code>this</code>. And given the number of event handlers our forms need, this isn&#8217;t just a <em>small</em> pain.</p>
+<p>To avoid this, define your handlers as component instance methods by passing them to <code>React.createClass</code>. React auto-binds instance methods, ensuring that <code>this</code> always refers to your component instance. Even when used as callbacks:</p>
+<pre><code>var ContactForm = React.createClass({
+  propTypes: {
+    // ...
+  },
+
+  onNameInput: function(e) {
+    this.props.onChange(Object.assign({}, this.props.value, {name: e.target.value}))
+  },
+
+  render: function() {
+    return React.createElement('form', {className: 'ContactForm'},
+      React.createElement('input', {
+        // ...
+        onInput: this.onNameInput,
+      })
+      // ...
+    )
+  }
+});
+</code></pre>
+<div class="hint">
+If you find yourself drowning in callback methods, you could automate their creation with a <a href="/structuring-react-applications-higher-order-components/">Higher-Order Component</a>. But only if you really are drowning in them.
+</div>
+<h2>Structuring application state</h2>
+<p>As it stands, our app only contains <em>two</em> top level variables &#8211; <code>contacts</code> and <code>newContact</code> &#8211; so you&#8217;d think we&#8217;d be a way from having to worry about structure. But apps don&#8217;t stay small forever, and this begs the question of <em>where do you draw the line?</em> Five variables? 50?</p>
+<p>For Ridiculously Simple Forms, and indeed Ridiculously Simple Apps, the best place to draw the line is actually <em>one</em> state variable. Managing all your state from one place means you&#8217;ll never forget to do your housekeeping, and also eliminates that most annoying problem of <em>deciding where to put things</em>.</p>
+<p>But how do you turn two state variables into one? Exactly the same way that React does &#8211; with a state object and a setter function:</p>
+<pre><code>/*
+ * State
+ */
+
+// The app's complete current state
+var state = {};
+
+// Make the given changes to the state and perform any required housekeeping
+function setState(changes) {
+  Object.assign(state, changes);
+
+  ReactDOM.render(
+    React.createElement(ContactView, Object.assign({}, state, {
+      onNewContactChange: function(contact) {
+        setState({newContact: contact});
+      },
+    })),
+    document.getElementById('react-app')
+  );
+}
+
+// Set initial data
+setState({
+  contacts: [
+    {key: 1, name: "James K Nelson", email: "james@jamesknelson.com", description: "Front-end Unicorn"},
+    {key: 2, name: "Jim", email: "jim@example.com"},
+  ],
+  newContact: {name: "", email: "", description: ""},
+});
+</code></pre>
+<p>And since we&#8217;re deciding where to put things, let&#8217;s finish the job properly and also decide where to put code which <em>modifies</em> state. Since we&#8217;re aiming for simple, let&#8217;s just creates one <code>function</code> for each of the <strong>actions</strong> we can perform. Like this:</p>
+<pre><code>/*
+ * Actions
+ */
+
+function updateNewContact(contact) {
+  setState({ newContact: contact });
+}
+</code></pre>
+<p>Switch out the anonymous function assigned to <code>onNewContactChange</code> for our new <code>updateNewContact</code>, and we&#8217;re good to go!</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/fomege/embed?js,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.34.3"></script></p>
+<p>So now that you can add actions and state in your sleep, let&#8217;s try:</p>
+<h2>Exercise 3 &#8211; Saving contacts</h2>
+<p>The only thing left before your form is fully functional is the ability to add new contacts to the list.</p>
+<p>To do this, you&#8217;ll need an action which expands the <code>contacts</code> array and resets <code>newContact</code> &#8211; let&#8217;s call this action <code>submitNewContact</code>. You&#8217;ll also want to make sure this action ignores contacts with an empty <code>name</code> or <code>email</code>. Once you&#8217;ve got your action though, you&#8217;ll need a way to <em>call</em> it.</p>
+<p>We <em>could</em> do this by passing <code>submitNewContact</code> through to your submit button&#8217;s <code>onClick</code> prop, which is called every time the user clicks the button (surprise!). But, since we care about the user experience, we don&#8217;t want them to be surprised when they hit <em>enter</em> after entering their contact &#8212; and nothing happens. So instead, let&#8217;s call our action when the <code>submit</code> event is fired on the HTML <code>&lt;form&gt;</code>.</p>
+<p><strong>Your task is to implement the <code>submitNewContact</code> action.</strong></p>
+<p>Check the <a href="https://facebook.github.io/react/docs/events.html">React documentation</a> if you need help finding appropriate callback props. Once you&#8217;ve got it working, see how your solution compares with mine. Don&#8217;t get too hung up on any differences, though &#8211; the important thing is that it works!</p>
+<div class="hint">
+Is your browser reloading the page each time you press <em>Add Contact</em>? Make sure to call <code>e.preventDefault()</code> on your <code>submit</code> event, otherwise your browser will do what it normally does and submit the form!
+</div>
+<p><a class="jsbin-embed" href="http://jsbin.com/sizove/embed?js,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.0"></script></p>
+<h2>Don&#8217;t make users think</h2>
+<p>Congratulations &#8211; you&#8217;ve now completed a functional app! However, you&#8217;re not going to kill salesforce by just getting the <em>functionality</em> right. People won&#8217;t buy your product unless they <em>understand</em> it.</p>
+<p>From your customer&#8217;s point of view, there is still a serious issue with this app: when the user clicks the &#8220;Add Contact&#8221; button without entering anything, <em>nothing happens</em>. People expect something to happen when they click a button, so let&#8217;s prevent any confusion by making sure something <em>does</em>.</p>
+<h2>Ridiculously Simple Validation</h2>
+<p>If you&#8217;ve completed exercise three (which you <em>should</em> have, seeing you&#8217;re reading this), you&#8217;ve already implemented basic validation! Our task is to actually display the result to the user.</p>
+<p>Doing so will require passing our validation result from <em>where it is computed</em> to <em>where it is rendered</em>. Happily, we don&#8217;t need any callbacks this time; we can implement this by adding an <code>errors</code> object to the <code>newContact</code> object inside our submit action:</p>
+<pre><code>var contact = Object.assign({}, state.newContact, {key: state.contacts.length + 1, errors: {}});
+</code></pre>
+<p>Store any messages on the appropriate properties under <code>contact.errors</code>:</p>
+<pre><code>// Test that `contact.email` looks like a real e-mail address using a RegExp
+if (!/.+@.+\..+/.test(contact.email)) {
+  contact.errors.email = ["Please enter your new contact's email"]
+}
+</code></pre>
+<p>And to distinguish between new contacts and those which have failed validation, let&#8217;s keep <code>errors</code> as <code>null</code> on our contact template:</p>
+<pre><code>var CONTACT_TEMPLATE = {name: "", email: "", description: "", errors: null}
+</code></pre>
+<p>If you&#8217;ve used Ruby on Rails, this pattern probably feels fairly familiar &#8211; the only difference is that it doesn&#8217;t use a special Errors class, making it <em>even simpler</em>. But now that we&#8217;ve stored our error messages in the application state, how do we display them?</p>
+<h2>Exercise 4 &#8211; Displaying validation errors</h2>
+<p>To keep things simple, let&#8217;s ignore the messages themselves.</p>
+<p><strong>Your task is to display a red border on the <code>&lt;input&gt;</code> elements which have an error.</strong></p>
+<p>Do so by adding <code>className</code> props to the appropriate <code>&lt;input&gt;</code> elements. Once you&#8217;ve got it working, compare your solution with mine.</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/bijuqu/embed?js,output">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.0"></script></p>
+<p>And there you have it &#8211; you now know how to build Ridiculously Simple Forms! And all in less time than it would have taken to even <em>start</em> building a list of form libraries. Pat yourself on the back for a job well done!</p>
+<h2>Choose your adventure</h2>
+<p>So where do you go from here? Well, given that you now know how to make ridiculously <em>simple</em> forms, it wouldn&#8217;t hurt to invest some time in learning how to make them <em>usable</em>. To do this, you&#8217;re going to need to understand how to interact with the DOM using React. And <a href="/react-js-by-example-interacting-with-the-dom/">this article will teach you how</a>, using the same codebase that you&#8217;re already familiar with.</p>
+<p>But once you&#8217;ve mastered React DOM interaction, are you just going to spend your weeks tweaking your single form on your single page? Of course you&#8217;re not. And that is why you need to learn about <strong>routing</strong>.</p>
+<p>Luckily, after reading next week&#8217;s article in the <em>Raw React</em> series, you&#8217;ll be able to build an incredibly simple router for your React application <em>in your sleep</em>. And you won&#8217;t stop there &#8211; when complete, your app will be able to:</p>
+<ul>
+<li>Handle navigation/routing</li>
+<li>Communicate with an API</li>
+<li>Authenticate users</li>
+</ul>
+<p><em>Update: <a href="/routing-with-raw-react/">Part 3: Routing with Raw React</a> has been released.</em></p>
+<p>In return for your e-mail address, I&#8217;ll send you the complete series via e-mail <em>as it is released</em>. And as a bonus you&#8217;ll immediately receive 3 <em>print-optimised</em> PDF cheatsheets &#8211; on <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">React</a>, <a href="/wp-content/uploads/2015/09/es6-cheatsheet-thumbnail.png">ES6</a> and <a href="/wp-content/uploads/2015/09/promises-cheatsheet-thumbnail.png">JavaScript promises</a>.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id="ck_success_msg" style="display:none;">
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options">
+      <input type="hidden" name="id" value="4375" id="landing_page_id">
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField">
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required>
+      </div>
+      <label class="ck_checkbox" style="display:none;">
+        <input class="optIn ck_course_opted" name="course_opted" type="checkbox" id="optIn" checked>
+        <span class="ck_opt_in_prompt">I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id="ck_subscribe_button">
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}</style>
+<p>One more thing &#8211; <em>I love hearing from readers.</em> If you have something to say, send <a href="https://twitter.com/james_k_nelson">@james_k_nelson</a> a tweet, or send me an e-mail at <a href="/learn-raw-react-ridiculously-simple-forms/&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>. <em>Thanks for reading!</em></p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/react-js-by-example-interacting-with-the-dom/">Interacting with the DOM in React</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React Part 1</a></li>
+<li><a href="/routing-with-raw-react/">Learn Raw React Part 3: Routing</a></li>
+<li><a href="/structuring-react-applications-higher-order-components/">Introduction to Higher Order Components</a></li>
+</ul>
+<h2>Related Links</h2>
+<ul>
+<li><a href="https://frontarm.com/courses/learn-raw-react/">React (without the buzzwords) course</a></li>
+<li><a href="https://github.com/jamesknelson/raw-react-part-2">Full source at Github</a></li>
+<li><a href="https://facebook.github.io/react/docs/events.html">React event system documentation</a></li>
+</ul>
+									
+																	</div>
+								<!-- end .entry-content -->
+								
+															</article>
+							<!-- end .hentry -->
+							
+							<aside class="about-author">
+	<h3>ABOUT THE AUTHOR</h3>
+	
+	<div class="row-fluid author-bio">
+		<div class="span2 author-img">
+			<a href="/author/jamesknelson/">
+				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+		</div>
+		<!-- end .author-img -->
+		
+		<div class="span10 author-info">
+			<h4 class="author-name">James K Nelson</h4>
+			
+			<p>
+				Hi! I've been writing JavaScript for over half my life, and would like to share what I've learned along the way.			</p>
+		</div>
+		<!-- end .author-info -->
+	</div>
+	<!-- end .author-bio -->
+</aside>
+<!-- end .about-author -->							
+							<nav class="nav-single row-fluid">
+								<div class="nav-previous span6">
+									<h4>PREVIOUS POST</h4>
+<a href="/react-js-by-example-interacting-with-the-dom/" rel="prev"><span class="meta-nav">&#8592;</span> React.js By Example: Interacting with the DOM</a>								</div>
+								<!-- end .nav-previous -->
+								
+								<div class="nav-next span6">
+									<h4>NEXT POST</h4>
+<a href="/push-state-vs-hash-based-routing-with-react-js/" rel="next">React and pushState: You&#8217;re doing it wrong <span class="meta-nav">&#8594;</span></a>								</div>
+								<!-- end .nav-next -->
+							</nav>
+							<!-- end .nav-single -->
+							
+							
+<div id="comments" class="comments-area">
+					<h2 class="comments-title">
+					16 Comments <span class="on">&#8594;</span> <span>Learn Raw React: Ridiculously Simple Forms</span>				</h2>
+				<!-- end .comments-title -->
+				
+				<ol class="commentlist">
+										
+					<li class="comment even thread-even depth-1" id="li-comment-2580">
+						<article id="comment-2580" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/fbebdec00b63f3ec9465296eeef09fb0?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/fbebdec00b63f3ec9465296eeef09fb0?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">bart </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-2580"><time datetime="2015-09-23T08:29:58+00:00">September 23, 2015 at 8:29 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>very useful article, thank you!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2580" data-commentid="2580" data-postid="428" data-belowelement="comment-2580" data-respondelement="respond" data-replyto="Reply to bart" aria-label="Reply to bart">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-2722">
+						<article id="comment-2722" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/66ece1a38264060cdd051f11ac550440?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/66ece1a38264060cdd051f11ac550440?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Zhomart </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-2722"><time datetime="2015-09-30T05:57:45+00:00">September 30, 2015 at 5:57 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Nice article, James.</p>
+<p>Question:  Everytime when adding a contact you copy an array of contacts. Isn&#8217;t it too slow when there are many contacts?</p>
+<p>state.contacts.slice(0).concat(contact)</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2722" data-commentid="2722" data-postid="428" data-belowelement="comment-2722" data-respondelement="respond" data-replyto="Reply to Zhomart" aria-label="Reply to Zhomart">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor even depth-2" id="li-comment-2725">
+						<article id="comment-2725" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-2725"><time datetime="2015-09-30T06:35:59+00:00">September 30, 2015 at 6:35 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Possibly, although you&#8217;d thousands of contacts before this became a problem. It isn&#8217;t something to worry about with an app this size, and ensuring we&#8217;re copying instead of mutating the array is important, as otherwise we&#8217;d be mutating our state.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-2725" data-commentid="2725" data-postid="428" data-belowelement="comment-2725" data-respondelement="respond" data-replyto="Reply to jamesknelson" aria-label="Reply to jamesknelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-4271">
+						<article id="comment-4271" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/9d8c9f8121f25257678f8f66165f4a4b?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/9d8c9f8121f25257678f8f66165f4a4b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://kree-eyt.com/" rel="external nofollow ugc" class="url">Damian Phillips-King</a> </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-4271"><time datetime="2015-11-16T02:02:13+00:00">November 16, 2015 at 2:02 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>On Exercise 2 we skipped right to state before explaining it ? I got a bit lost there.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4271" data-commentid="4271" data-postid="428" data-belowelement="comment-4271" data-respondelement="respond" data-replyto="Reply to Damian Phillips-King" aria-label="Reply to Damian Phillips-King">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-4647">
+						<article id="comment-4647" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/e52fb81ceaced505df9b1be92cfe7eea?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/e52fb81ceaced505df9b1be92cfe7eea?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jon-E-Boy </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-4647"><time datetime="2015-11-25T01:49:42+00:00">November 25, 2015 at 1:49 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Thank you, James!</p>
+<p>This has been a nice introduction to ReactJS. I enjoy your writing, and your explanations are clearly communicated.</p>
+<p>Very nice work. Your efforts are appreciated.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-4647" data-commentid="4647" data-postid="428" data-belowelement="comment-4647" data-respondelement="respond" data-replyto="Reply to Jon-E-Boy" aria-label="Reply to Jon-E-Boy">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-5275">
+						<article id="comment-5275" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/b2877cd7c33c0c7fbef1e65594daeae2?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b2877cd7c33c0c7fbef1e65594daeae2?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Yaron </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-5275"><time datetime="2015-12-08T18:32:22+00:00">December 8, 2015 at 6:32 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Looks great! will give it a try to see how its going</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-5275" data-commentid="5275" data-postid="428" data-belowelement="comment-5275" data-respondelement="respond" data-replyto="Reply to Yaron" aria-label="Reply to Yaron">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-12059">
+						<article id="comment-12059" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/77bd6b3ec1bc7e982474cd554fde3608?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/77bd6b3ec1bc7e982474cd554fde3608?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://philippfromme.com/" rel="external nofollow ugc" class="url">Philipp</a> </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-12059"><time datetime="2016-02-15T09:22:54+00:00">February 15, 2016 at 9:22 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Best introduction to React I&#8217;ve seen yet.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-12059" data-commentid="12059" data-postid="428" data-belowelement="comment-12059" data-respondelement="respond" data-replyto="Reply to Philipp" aria-label="Reply to Philipp">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-19243">
+						<article id="comment-19243" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/353e00ab636073b9e29cd9e1031c2734?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/353e00ab636073b9e29cd9e1031c2734?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">MEP </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-19243"><time datetime="2016-05-03T22:13:12+00:00">May 3, 2016 at 10:13 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>This is great. Thank you. I signed up for the newsletter and followed you on Twitter.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-19243" data-commentid="19243" data-postid="428" data-belowelement="comment-19243" data-respondelement="respond" data-replyto="Reply to MEP" aria-label="Reply to MEP">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-20027">
+						<article id="comment-20027" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/c8b2700d308d77eedc9d3c3944924cca?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c8b2700d308d77eedc9d3c3944924cca?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Joey B </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-20027"><time datetime="2016-05-19T23:06:32+00:00">May 19, 2016 at 11:06 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I like your tutorials, very nicely done!</p>
+<p>I do have a question, though. Why use this&#8230;<br>
+`state.contacts.slice(0).concat(contact)`</p>
+<p>&#8230;and not just this:<br>
+`state.contacts.concat(contact)`</p>
+<p>What advantage does slicing have in this scenario?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-20027" data-commentid="20027" data-postid="428" data-belowelement="comment-20027" data-respondelement="respond" data-replyto="Reply to Joey B" aria-label="Reply to Joey B">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-20648">
+						<article id="comment-20648" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/8d0170e1fd275ac9871e96ab63b6d902?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/8d0170e1fd275ac9871e96ab63b6d902?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Roger Katona </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-20648"><time datetime="2016-06-03T14:30:52+00:00">June 3, 2016 at 2:30 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>James,  Great article!  I am a designer and don&#8217;t develop daily.  I am familiar with React and worked for a start-up that used React as framework.  I gained more understanding of how React works by working through your exercises.  Thanks for taking the time to put this together!</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-20648" data-commentid="20648" data-postid="428" data-belowelement="comment-20648" data-respondelement="respond" data-replyto="Reply to Roger Katona" aria-label="Reply to Roger Katona">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-22646">
+						<article id="comment-22646" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/946e87807c18585f2337882fa74d4c99?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/946e87807c18585f2337882fa74d4c99?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Pratik </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-22646"><time datetime="2016-08-11T03:19:49+00:00">August 11, 2016 at 3:19 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I am unable to see your jsBin codes. Anyone else also facing this issue?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22646" data-commentid="22646" data-postid="428" data-belowelement="comment-22646" data-respondelement="respond" data-replyto="Reply to Pratik" aria-label="Reply to Pratik">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					<ol class="children">
+					
+					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-22649">
+						<article id="comment-22649" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-22649"><time datetime="2016-08-11T05:45:16+00:00">August 11, 2016 at 5:45 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I just checked and am able to view them. Is the problem resolved on your end?</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22649" data-commentid="22649" data-postid="428" data-belowelement="comment-22649" data-respondelement="respond" data-replyto="Reply to James K Nelson" aria-label="Reply to James K Nelson">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even depth-2" id="li-comment-23107">
+						<article id="comment-23107" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/116872a6191cf3f870d63ba11460ad43?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/116872a6191cf3f870d63ba11460ad43?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jon </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-23107"><time datetime="2016-09-05T23:08:02+00:00">September 5, 2016 at 11:08 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I too am unable to view them. The JSBin sections show a loading bin, but it never loads for me. </p>
+<p>My internet is fine as I can go to other websites.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23107" data-commentid="23107" data-postid="428" data-belowelement="comment-23107" data-respondelement="respond" data-replyto="Reply to Jon" aria-label="Reply to Jon">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+</ol>
+<!-- .children -->
+</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-22870">
+						<article id="comment-22870" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://1.gravatar.com/avatar/d82151221c8cfb69159ad45f797e6896?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/d82151221c8cfb69159ad45f797e6896?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Ran Yefet </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-22870"><time datetime="2016-08-20T20:05:52+00:00">August 20, 2016 at 8:05 pm</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>You can add a &#8220;name&#8221; attribute for every input element, and then use a single onChange method that will use e.target.name as &#8220;key&#8221; for input value 🙂</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-22870" data-commentid="22870" data-postid="428" data-belowelement="comment-22870" data-respondelement="respond" data-replyto="Reply to Ran Yefet" aria-label="Reply to Ran Yefet">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-23118">
+						<article id="comment-23118" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://0.gravatar.com/avatar/ff43dcd137c386e829a5de5e5a79f521?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/ff43dcd137c386e829a5de5e5a79f521?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Greg S </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-23118"><time datetime="2016-09-06T09:24:25+00:00">September 6, 2016 at 9:24 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>I was surprised that the console output in exercise 1 was always a single character &#8211; I expected the input field(s) to store each character, and concatenate them to form the input string.  Clearly, the data returned in the (synthetic) element callback is formed by concatenating the current value property, and the entered character, because the tutorial code certainly never does the concatenation, and the fields are correctly concatenated in ex. 2.  I notice that in ex. 1, I can get more than one character to be logged by pasting in a string into the input field &#8211; a paste is obviously considered to be a single input event.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23118" data-commentid="23118" data-postid="428" data-belowelement="comment-23118" data-respondelement="respond" data-replyto="Reply to Greg S" aria-label="Reply to Greg S">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+					
+					<li class="comment odd alt thread-even depth-1" id="li-comment-23184">
+						<article id="comment-23184" class="comment">
+							<header class="comment-meta comment-author vcard">
+								<img alt="" src="http://2.gravatar.com/avatar/23a551a6c84704f52e7ad7f3d9b94661?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/23a551a6c84704f52e7ad7f3d9b94661?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">dmitry </cite><a href="/learn-raw-react-ridiculously-simple-forms/#comment-23184"><time datetime="2016-09-10T03:18:40+00:00">September 10, 2016 at 3:18 am</time></a>							</header>
+							<!-- end .comment-meta -->
+							
+														
+							<section class="comment-content comment">
+								<p>Please help me figure out why textfields hasn&#8217;t placeholders after sucessful form submit? I must click to field, so placeholders are going visible.</p>
+								
+															</section>
+							<!-- end .comment-content -->
+							
+							<div class="reply">
+								<a rel="nofollow" class="comment-reply-link" href="#comment-23184" data-commentid="23184" data-postid="428" data-belowelement="comment-23184" data-respondelement="respond" data-replyto="Reply to dmitry" aria-label="Reply to dmitry">Reply</a> <span>&darr;</span>							</div>
+							<!-- end .reply -->
+						</article>
+						<!-- end #comment-## -->
+					</li>
+<!-- #comment-## -->
+				</ol>
+				<!-- end .commentlist -->
+				
+								
+								
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/learn-raw-react-ridiculously-simple-forms/#respond" style="display:none;">Cancel reply</a></small>
+</h3>
+<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
+<p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
+<p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required" aria-hidden="true">*</span></label> <input id="email" name="email" type="text" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30" maxlength="200"></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="428" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="79a32e53cb"></p>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="218"></p>
+</form>	</div>
+<!-- #respond -->
+	</div>
+<!-- end #comments -->								</div>
+		<!-- end .blog-single -->
+	</div>
+	<!-- end #content -->
+</div>
+<!-- end #primary -->
+
+			<div id="secondary" class="widget-area span5" role="complementary">
+				<aside id="text-2" class="widget widget_text">			<div class="textwidget">
+<img src="/wp-content/uploads/2022/05/G9h_2YNx_400x400.jpg" style="width: 100px; height: 100px; border-radius: 50%;">
+
+<h2>James K Nelson</h2>
+
+<ul>
+<li>
+<strong>Wants to</strong> help people create amazing things.</li>
+<li>
+<strong>Has used</strong> JavaScript for more than half his life.</li>
+<li>
+<strong>Building</strong> <a href="https://frontarm.com/" style="color: #8233ff;">Frontend Armory</a>.</li>
+</ul>
+<br>
+<a href="https://twitter.com/james_k_nelson" class="twitter-follow-button" data-show-count="false">Follow @james_k_nelson</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<br>
+
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/jamesknelson" aria-label="Follow @jamesknelson on GitHub">Follow @jamesknelson</a>
+
+<!-- Place this tag right after the last button or just before your close body tag. -->
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+</div>
+		</aside><aside id="text-3" class="widget widget_text"><h3 class="widget-title">Guides with Cheatsheets</h3>			<div class="textwidget"><ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 - The Bits You’ll Actually Use</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">Introduction to ES6 Promises</a></li>
+</ul></div>
+		</aside>
+		<aside id="recent-posts-2" class="widget widget_recent_entries">
+		<h3 class="widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="/farewell-twitter-at-least-for-now/">Farewell Twitter, at least for now.</a>
+									</li>
+											<li>
+					<a href="/learn-react-fundamentals-sans-buzzwords/">Learn React&#8217;s fundamentals without the buzzwords</a>
+									</li>
+											<li>
+					<a href="/smash-out-react-code-with-skills-you-learned-years-ago/">Smash out React code with skills you learned years ago</a>
+									</li>
+											<li>
+					<a href="/cruv-react-project-structure/">CRUV: Structure React apps in 4 directories and 3 files</a>
+									</li>
+											<li>
+					<a href="/component-based-state-management-react/">Component-based state management for React</a>
+									</li>
+					</ul>
+
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>
+			<ul>
+					<li><a href="/2020/05/">May 2020</a></li>
+	<li><a href="/2018/08/">August 2018</a></li>
+	<li><a href="/2018/04/">April 2018</a></li>
+	<li><a href="/2017/10/">October 2017</a></li>
+	<li><a href="/2017/08/">August 2017</a></li>
+	<li><a href="/2017/06/">June 2017</a></li>
+	<li><a href="/2017/03/">March 2017</a></li>
+	<li><a href="/2017/02/">February 2017</a></li>
+	<li><a href="/2017/01/">January 2017</a></li>
+	<li><a href="/2016/11/">November 2016</a></li>
+	<li><a href="/2016/08/">August 2016</a></li>
+	<li><a href="/2016/07/">July 2016</a></li>
+	<li><a href="/2016/05/">May 2016</a></li>
+	<li><a href="/2016/03/">March 2016</a></li>
+	<li><a href="/2016/01/">January 2016</a></li>
+	<li><a href="/2015/12/">December 2015</a></li>
+	<li><a href="/2015/11/">November 2015</a></li>
+	<li><a href="/2015/10/">October 2015</a></li>
+	<li><a href="/2015/09/">September 2015</a></li>
+	<li><a href="/2015/08/">August 2015</a></li>
+	<li><a href="/2015/07/">July 2015</a></li>
+	<li><a href="/2015/06/">June 2015</a></li>
+	<li><a href="/2015/05/">May 2015</a></li>
+	<li><a href="/2015/03/">March 2015</a></li>
+	<li><a href="/2014/12/">December 2014</a></li>
+			</ul>
+
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+	<div>
+		<label class="screen-reader-text" for="s">Search for:</label>
+		
+		<input type="text" id="s" name="s" required="required" placeholder="Enter keyword..." value="">
+		
+		<input type="submit" id="searchsubmit" value="Search">
+	</div>
+</form></aside>			</div>
+		
+			</div>
+        </section>
+		
+		
+        <footer class="site-footer wrapper" role="contentinfo">
+			<div class="row">
+				<div id="supplementary" class="row-fluid">
+									</div>
+				
+				<div class="site-info">
+					&copy; 2015 James K Nelson				</div>
+			</div>
+        </footer>
+    </div>
+	
+	
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38937367-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script type="text/javascript" src="/wp-includes/js/comment-reply.min.js?ver=5.9.3" id="comment-reply-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/detectmobilebrowser.js" id="detectmobilebrowser-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/modernizr.js" id="modernizr-js"></script>
+<script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fitvids.js" id="fitvids-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/google-code-prettify/prettify.js" id="google-code-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.uniform.min.js" id="uniform-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.flexslider-min.js" id="flexslider-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.isotope.min.js" id="isotope-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.fancybox-1.3.4.pack.js" id="fancybox-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.masonry.min.js" id="masonry-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.history.js" id="history-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/js-url.min.js" id="js-url-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquerypp.custom.js" id="jquerypp-custom-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/gamma.js" id="gamma-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/main.js" id="main-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/jquery.validate.min.js" id="validate-js"></script>
+<script type="text/javascript" src="/wp-content/themes/read/js/send-mail.js" id="send-mail-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/prettify.min.js?ver=1.6.1" id="wp-markdown-prettify-js"></script>
+<script type="text/javascript" src="/wp-content/plugins/wp-markdown/js/markdown.min.js?ver=1.6.1" id="wp-markdown-js"></script>
+<script async="async" type="text/javascript" src="/wp-content/plugins/akismet/_inc/form.js?ver=4.1.5" id="akismet-form-js"></script>
+</body>
+</html>

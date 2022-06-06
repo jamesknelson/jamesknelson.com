@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: State of React #1: A Stateless React App?	</title>
+	<atom:link href="/state-react-1-stateless-react-app/feed/" rel="self" type="application/rss+xml" />
+	<link>/state-react-1-stateless-react-app/</link>
+	<description></description>
+	<lastBuildDate>Fri, 09 Sep 2016 11:37:33 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Lars Jeppesen		</title>
+		<link>/state-react-1-stateless-react-app/#comment-23165</link>
+
+		<dc:creator><![CDATA[Lars Jeppesen]]></dc:creator>
+		<pubDate>Fri, 09 Sep 2016 11:37:33 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-23165</guid>
+
+					<description><![CDATA[How come RxJS, Redux etc are considered part of the &quot;React Ecosystem&quot; for you, when they are totally independent libraries?
+
+For example; I&#039;m using Redux and RxJS in my Angular2 applications, without any problems...]]></description>
+			<content:encoded><![CDATA[<p>How come RxJS, Redux etc are considered part of the &#8220;React Ecosystem&#8221; for you, when they are totally independent libraries?</p>
+<p>For example; I&#8217;m using Redux and RxJS in my Angular2 applications, without any problems&#8230;</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Sebastien Lorber		</title>
+		<link>/state-react-1-stateless-react-app/#comment-23136</link>
+
+		<dc:creator><![CDATA[Sebastien Lorber]]></dc:creator>
+		<pubDate>Wed, 07 Sep 2016 08:55:55 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-23136</guid>
+
+					<description><![CDATA[Hey,
+
+I&#039;ve been using React this way from React 0.5.2 more than 2 years ago.
+
+The result is that it does not perform so well even with very agressive shouldComponentUpdate everywhere (particularly on text inputs on mobile devices), and is very hard to maintain as props have to be passed down to a lot of intermediate components (unlike Redux&#039;s connect())
+
+Also you won&#039;t be able to use ReactRouter easily with this approach as RR does not like the routing code to render everytime, and it&#039;s generally placed at the root of your app so...
+
+For these reasons we are migrating to Redux.
+
+
+For some details of our legacy stack: http://stackoverflow.com/questions/25791034/om-but-in-javascript]]></description>
+			<content:encoded><![CDATA[<p>Hey,</p>
+<p>I&#8217;ve been using React this way from React 0.5.2 more than 2 years ago.</p>
+<p>The result is that it does not perform so well even with very agressive shouldComponentUpdate everywhere (particularly on text inputs on mobile devices), and is very hard to maintain as props have to be passed down to a lot of intermediate components (unlike Redux&#8217;s connect())</p>
+<p>Also you won&#8217;t be able to use ReactRouter easily with this approach as RR does not like the routing code to render everytime, and it&#8217;s generally placed at the root of your app so&#8230;</p>
+<p>For these reasons we are migrating to Redux.</p>
+<p>For some details of our legacy stack: <a href="http://stackoverflow.com/questions/25791034/om-but-in-javascript" rel="nofollow ugc">http://stackoverflow.com/questions/25791034/om-but-in-javascript</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Aggelos Karalias		</title>
+		<link>/state-react-1-stateless-react-app/#comment-23126</link>
+
+		<dc:creator><![CDATA[Aggelos Karalias]]></dc:creator>
+		<pubDate>Tue, 06 Sep 2016 17:32:36 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-23126</guid>
+
+					<description><![CDATA[This is exactly what we&#039;re doing in almost every app.
+
+For a simple proof-of-concept check this gist https://gist.github.com/mehiel/cd8bd5be02349b3c7c2e8cec627854a2.
+
+For a prod ready result we&#039;re trying this on top of react-joi-forms at https://github.com/mehiel/react-joi-forms.]]></description>
+			<content:encoded><![CDATA[<p>This is exactly what we&#8217;re doing in almost every app.</p>
+<p>For a simple proof-of-concept check this gist <a href="https://gist.github.com/mehiel/cd8bd5be02349b3c7c2e8cec627854a2" rel="nofollow ugc">https://gist.github.com/mehiel/cd8bd5be02349b3c7c2e8cec627854a2</a>.</p>
+<p>For a prod ready result we&#8217;re trying this on top of react-joi-forms at <a href="https://github.com/mehiel/react-joi-forms" rel="nofollow ugc">https://github.com/mehiel/react-joi-forms</a>.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/state-react-1-stateless-react-app/#comment-22593</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Mon, 08 Aug 2016 22:04:37 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-22593</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/state-react-1-stateless-react-app/#comment-22537&quot;&gt;Jeff&lt;/a&gt;.
+
+Thanks, fixed :)]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/state-react-1-stateless-react-app/#comment-22537">Jeff</a>.</p>
+<p>Thanks, fixed 🙂</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jonathan		</title>
+		<link>/state-react-1-stateless-react-app/#comment-22576</link>
+
+		<dc:creator><![CDATA[Jonathan]]></dc:creator>
+		<pubDate>Mon, 08 Aug 2016 07:35:36 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-22576</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/state-react-1-stateless-react-app/#comment-22393&quot;&gt;MaxArt&lt;/a&gt;.
+
+It all depends on your use case, in simple examples the advantages are covered in an excessive amount of boilerplate of course. Once you get to more complex one-page apps the advantages definitely take over. Esp. if you need to maybe even save your application state and recover it for a later use. Don&#039;t think about this concept as having 2 data layers but replacing reacts native layer with a 2nd one.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/state-react-1-stateless-react-app/#comment-22393">MaxArt</a>.</p>
+<p>It all depends on your use case, in simple examples the advantages are covered in an excessive amount of boilerplate of course. Once you get to more complex one-page apps the advantages definitely take over. Esp. if you need to maybe even save your application state and recover it for a later use. Don&#8217;t think about this concept as having 2 data layers but replacing reacts native layer with a 2nd one.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jeff		</title>
+		<link>/state-react-1-stateless-react-app/#comment-22537</link>
+
+		<dc:creator><![CDATA[Jeff]]></dc:creator>
+		<pubDate>Sat, 06 Aug 2016 13:31:58 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-22537</guid>
+
+					<description><![CDATA[You mention ContactForm but there is only CommentForm. Seems to be  typo.]]></description>
+			<content:encoded><![CDATA[<p>You mention ContactForm but there is only CommentForm. Seems to be  typo.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Michael J Ryan		</title>
+		<link>/state-react-1-stateless-react-app/#comment-22409</link>
+
+		<dc:creator><![CDATA[Michael J Ryan]]></dc:creator>
+		<pubDate>Mon, 01 Aug 2016 21:09:15 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-22409</guid>
+
+					<description><![CDATA[It&#039;s still state, it&#039;s just abstracted to a higher level, and it&#039;s stored as component properties... This is really close to what Redux does, minus a persistent store for reducers... although you usually have a larger structure than a form or two...
+
+You could use a redux-like store passing the state, and dispatch down as properties instead of a higher level component.  The point is where you draw the line and still how you manage state.
+
+In your example, you&#039;d wind up creating many middle-level actions at the component level for child components in a larger application, and this isn&#039;t necessarily better than using a service bus, or reducer pattern, or even multiple stores.
+
+There are a few other negative side effects of these patterns as well in terms of re-render, but that&#039;s really only an issue with a *lot* in the components/app.  CRUD apps should be okay.]]></description>
+			<content:encoded><![CDATA[<p>It&#8217;s still state, it&#8217;s just abstracted to a higher level, and it&#8217;s stored as component properties&#8230; This is really close to what Redux does, minus a persistent store for reducers&#8230; although you usually have a larger structure than a form or two&#8230;</p>
+<p>You could use a redux-like store passing the state, and dispatch down as properties instead of a higher level component.  The point is where you draw the line and still how you manage state.</p>
+<p>In your example, you&#8217;d wind up creating many middle-level actions at the component level for child components in a larger application, and this isn&#8217;t necessarily better than using a service bus, or reducer pattern, or even multiple stores.</p>
+<p>There are a few other negative side effects of these patterns as well in terms of re-render, but that&#8217;s really only an issue with a *lot* in the components/app.  CRUD apps should be okay.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Stephen Cleary		</title>
+		<link>/state-react-1-stateless-react-app/#comment-22407</link>
+
+		<dc:creator><![CDATA[Stephen Cleary]]></dc:creator>
+		<pubDate>Mon, 01 Aug 2016 17:57:14 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-22407</guid>
+
+					<description><![CDATA[Very interesting!
+
+The biggest problem is that there&#039;s no way for external code to affect state, including asynchronous methods. So, a button to download and display data can&#039;t be modeled with the short-circuit approach.
+
+It&#039;s interesting how close this is to Redux, though: if you pull the state out into a global component and add some functions that can change the state (through a queue, not immediately), then you&#039;re practically at Redux.]]></description>
+			<content:encoded><![CDATA[<p>Very interesting!</p>
+<p>The biggest problem is that there&#8217;s no way for external code to affect state, including asynchronous methods. So, a button to download and display data can&#8217;t be modeled with the short-circuit approach.</p>
+<p>It&#8217;s interesting how close this is to Redux, though: if you pull the state out into a global component and add some functions that can change the state (through a queue, not immediately), then you&#8217;re practically at Redux.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Joseph Shelby		</title>
+		<link>/state-react-1-stateless-react-app/#comment-22402</link>
+
+		<dc:creator><![CDATA[Joseph Shelby]]></dc:creator>
+		<pubDate>Mon, 01 Aug 2016 14:44:22 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-22402</guid>
+
+					<description><![CDATA[My first thought is scale. When you get to large apps, having EVERY single component look through the part of the &#039;value&#039; object to see if anything has changed would be impressively slow. All of the (alleged) speed advantages of the shadow-dom would be lost.
+
+If your app is just a little thing like my work-in-progress playlist editor for Subsonic, that&#039;s probably fine.
+
+If your app is a wysiwyg editor with a lot of dialogs and buttons for every possible text formatting, that is a lot of components constantly looking at the contained DOM or a state-value container, to determine if they need to in an &#039;on&#039; or &#039;off&#039; state.
+
+It is the classic trade-off: execution time, memory. The single-render uses a lot less memory (no individual event handlers), but is costly in execution time. At a certain level, that maxes out and using more memory for state management gives much better performance.
+
+And in mobile, performance is everything.]]></description>
+			<content:encoded><![CDATA[<p>My first thought is scale. When you get to large apps, having EVERY single component look through the part of the &#8216;value&#8217; object to see if anything has changed would be impressively slow. All of the (alleged) speed advantages of the shadow-dom would be lost.</p>
+<p>If your app is just a little thing like my work-in-progress playlist editor for Subsonic, that&#8217;s probably fine.</p>
+<p>If your app is a wysiwyg editor with a lot of dialogs and buttons for every possible text formatting, that is a lot of components constantly looking at the contained DOM or a state-value container, to determine if they need to in an &#8216;on&#8217; or &#8216;off&#8217; state.</p>
+<p>It is the classic trade-off: execution time, memory. The single-render uses a lot less memory (no individual event handlers), but is costly in execution time. At a certain level, that maxes out and using more memory for state management gives much better performance.</p>
+<p>And in mobile, performance is everything.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Christian Alfoni		</title>
+		<link>/state-react-1-stateless-react-app/#comment-22397</link>
+
+		<dc:creator><![CDATA[Christian Alfoni]]></dc:creator>
+		<pubDate>Mon, 01 Aug 2016 09:46:57 +0000</pubDate>
+		<guid isPermaLink="false">/?p=1031#comment-22397</guid>
+
+					<description><![CDATA[Hi James and thanks for pointing out the problem so beautifully, &quot;the one which stands out the most is that they just convert the problem of “managing” state into the problem of “structuring it”&quot; :-)
+
+What I want to challenge with this approach though is scalability. Have you tried this approach with an application that has hundreds of components and hundreds of state values that needs to move into different parts of the app. And what about render performance? If all props comes from the top it means that all depending components which just passes props down to some nested component somewhere also needs to rerender. Or is this more of a theoretical approach?
+
+I think also this approach hits an other pain point which the others solve. Passing props all around creates a very rigid component structure, not allowing you to move components around as they completely depend on a potentially complex &quot;chain of passing props&quot;. Also the fact that you pass props down so many components makes it hard to reason about where the props really come from.
+
+That said it is really great that new patterns are explored, but I think I can theoretically answer your question: &quot;It is not used because it does not scale&quot; ;-)]]></description>
+			<content:encoded><![CDATA[<p>Hi James and thanks for pointing out the problem so beautifully, &#8220;the one which stands out the most is that they just convert the problem of “managing” state into the problem of “structuring it”&#8221; 🙂</p>
+<p>What I want to challenge with this approach though is scalability. Have you tried this approach with an application that has hundreds of components and hundreds of state values that needs to move into different parts of the app. And what about render performance? If all props comes from the top it means that all depending components which just passes props down to some nested component somewhere also needs to rerender. Or is this more of a theoretical approach?</p>
+<p>I think also this approach hits an other pain point which the others solve. Passing props all around creates a very rigid component structure, not allowing you to move components around as they completely depend on a potentially complex &#8220;chain of passing props&#8221;. Also the fact that you pass props down so many components makes it hard to reason about where the props really come from.</p>
+<p>That said it is really great that new patterns are explored, but I think I can theoretically answer your question: &#8220;It is not used because it does not scale&#8221; 😉</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

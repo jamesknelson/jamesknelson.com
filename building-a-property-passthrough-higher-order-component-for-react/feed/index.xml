@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Building a property passthrough Higher-Order Component for React	</title>
+	<atom:link href="/building-a-property-passthrough-higher-order-component-for-react/feed/" rel="self" type="application/rss+xml" />
+	<link>/building-a-property-passthrough-higher-order-component-for-react/</link>
+	<description></description>
+	<lastBuildDate>Tue, 02 Aug 2016 03:24:54 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Harry		</title>
+		<link>/building-a-property-passthrough-higher-order-component-for-react/#comment-22411</link>
+
+		<dc:creator><![CDATA[Harry]]></dc:creator>
+		<pubDate>Tue, 02 Aug 2016 03:24:54 +0000</pubDate>
+		<guid isPermaLink="false">/?p=307#comment-22411</guid>
+
+					<description><![CDATA[Now that PropTypes checkers will be stripped out of React in production (https://facebook.github.io/react/warnings/dont-call-proptypes.html) and people are even very keen on removing PropTypes declarations too. (https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types), is this still safe to use in production?
+
+It appears to me that the mainstream&#039;s opinion is that PropTypes is just for development. For that reason, in long term, it should be replaced with something like typescript or flow. What are your view of PropTypes as a runtime contract?]]></description>
+			<content:encoded><![CDATA[<p>Now that PropTypes checkers will be stripped out of React in production (<a href="https://facebook.github.io/react/warnings/dont-call-proptypes.html" rel="nofollow ugc">https://facebook.github.io/react/warnings/dont-call-proptypes.html</a>) and people are even very keen on removing PropTypes declarations too. (<a href="https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types" rel="nofollow ugc">https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types</a>), is this still safe to use in production?</p>
+<p>It appears to me that the mainstream&#8217;s opinion is that PropTypes is just for development. For that reason, in long term, it should be replaced with something like typescript or flow. What are your view of PropTypes as a runtime contract?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Ali		</title>
+		<link>/building-a-property-passthrough-higher-order-component-for-react/#comment-2219</link>
+
+		<dc:creator><![CDATA[Ali]]></dc:creator>
+		<pubDate>Wed, 09 Sep 2015 21:14:33 +0000</pubDate>
+		<guid isPermaLink="false">/?p=307#comment-2219</guid>
+
+					<description><![CDATA[Great post. Thank you. Best explanation and usage of es7 decorators I have ever seen. You really nailed it down with simple to complex approach.
+
+Thank you again.]]></description>
+			<content:encoded><![CDATA[<p>Great post. Thank you. Best explanation and usage of es7 decorators I have ever seen. You really nailed it down with simple to complex approach.</p>
+<p>Thank you again.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

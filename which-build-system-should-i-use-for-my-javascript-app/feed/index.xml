@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Choosing a JavaScript Build Tool &#8211; Babel, Browserify, Webpack, Grunt and Gulp	</title>
+	<atom:link href="/which-build-system-should-i-use-for-my-javascript-app/feed/" rel="self" type="application/rss+xml" />
+	<link>/which-build-system-should-i-use-for-my-javascript-app/</link>
+	<description></description>
+	<lastBuildDate>Wed, 18 May 2016 10:19:21 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Ferri		</title>
+		<link>/which-build-system-should-i-use-for-my-javascript-app/#comment-19968</link>
+
+		<dc:creator><![CDATA[Ferri]]></dc:creator>
+		<pubDate>Wed, 18 May 2016 10:19:21 +0000</pubDate>
+		<guid isPermaLink="false">/?p=692#comment-19968</guid>
+
+					<description><![CDATA[Thanks James, after reading your article, then now i&#039;m sure to use webpack over browserify .. :)]]></description>
+			<content:encoded><![CDATA[<p>Thanks James, after reading your article, then now i&#8217;m sure to use webpack over browserify .. 🙂</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Seth		</title>
+		<link>/which-build-system-should-i-use-for-my-javascript-app/#comment-11537</link>
+
+		<dc:creator><![CDATA[Seth]]></dc:creator>
+		<pubDate>Mon, 08 Feb 2016 08:42:24 +0000</pubDate>
+		<guid isPermaLink="false">/?p=692#comment-11537</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/which-build-system-should-i-use-for-my-javascript-app/#comment-6153&quot;&gt;James K Nelson&lt;/a&gt;.
+
+Have a look at this:
+
+https://github.com/davezuko/react-redux-starter-kit
+
+No need for gulp and it does hashing.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/which-build-system-should-i-use-for-my-javascript-app/#comment-6153">James K Nelson</a>.</p>
+<p>Have a look at this:</p>
+<p><a href="https://github.com/davezuko/react-redux-starter-kit" rel="nofollow ugc">https://github.com/davezuko/react-redux-starter-kit</a></p>
+<p>No need for gulp and it does hashing.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/which-build-system-should-i-use-for-my-javascript-app/#comment-6153</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sun, 27 Dec 2015 08:45:22 +0000</pubDate>
+		<guid isPermaLink="false">/?p=692#comment-6153</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/which-build-system-should-i-use-for-my-javascript-app/#comment-6143&quot;&gt;Mike&lt;/a&gt;.
+
+It does replace Gulp/Grunt in a lot of places, but there are still few things it doesn&#039;t do too well. For example, adding script filenames which include a cache-busting hash to HTML files. My experience is that webpack-dev-server is enough in development, but you&#039;ll need a little more power for production builds.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/which-build-system-should-i-use-for-my-javascript-app/#comment-6143">Mike</a>.</p>
+<p>It does replace Gulp/Grunt in a lot of places, but there are still few things it doesn&#8217;t do too well. For example, adding script filenames which include a cache-busting hash to HTML files. My experience is that webpack-dev-server is enough in development, but you&#8217;ll need a little more power for production builds.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Mike		</title>
+		<link>/which-build-system-should-i-use-for-my-javascript-app/#comment-6143</link>
+
+		<dc:creator><![CDATA[Mike]]></dc:creator>
+		<pubDate>Sun, 27 Dec 2015 05:29:54 +0000</pubDate>
+		<guid isPermaLink="false">/?p=692#comment-6143</guid>
+
+					<description><![CDATA[Thanks for the article, easy to read and informative.
+
+What do you think of webpack-dev-server? Wouldn&#039;t that be a task runner that replaces Gulp/Grunt?]]></description>
+			<content:encoded><![CDATA[<p>Thanks for the article, easy to read and informative.</p>
+<p>What do you think of webpack-dev-server? Wouldn&#8217;t that be a task runner that replaces Gulp/Grunt?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Rolograaf		</title>
+		<link>/which-build-system-should-i-use-for-my-javascript-app/#comment-3621</link>
+
+		<dc:creator><![CDATA[Rolograaf]]></dc:creator>
+		<pubDate>Sun, 01 Nov 2015 10:27:56 +0000</pubDate>
+		<guid isPermaLink="false">/?p=692#comment-3621</guid>
+
+					<description><![CDATA[https://www.npmjs.com/package/rollup ?]]></description>
+			<content:encoded><![CDATA[<p><a href="https://www.npmjs.com/package/rollup" rel="nofollow ugc">https://www.npmjs.com/package/rollup</a> ?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/which-build-system-should-i-use-for-my-javascript-app/#comment-3197</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Tue, 20 Oct 2015 21:49:57 +0000</pubDate>
+		<guid isPermaLink="false">/?p=692#comment-3197</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/which-build-system-should-i-use-for-my-javascript-app/#comment-3193&quot;&gt;Alexis&lt;/a&gt;.
+
+I&#039;ve never used it, but it seems to have a much smaller community than Gulp and Grunt.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/which-build-system-should-i-use-for-my-javascript-app/#comment-3193">Alexis</a>.</p>
+<p>I&#8217;ve never used it, but it seems to have a much smaller community than Gulp and Grunt.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Alexis		</title>
+		<link>/which-build-system-should-i-use-for-my-javascript-app/#comment-3193</link>
+
+		<dc:creator><![CDATA[Alexis]]></dc:creator>
+		<pubDate>Tue, 20 Oct 2015 17:19:12 +0000</pubDate>
+		<guid isPermaLink="false">/?p=692#comment-3193</guid>
+
+					<description><![CDATA[Brunch doesn&#039;t appear among task runners. What do you think of this tool?]]></description>
+			<content:encoded><![CDATA[<p>Brunch doesn&#8217;t appear among task runners. What do you think of this tool?</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

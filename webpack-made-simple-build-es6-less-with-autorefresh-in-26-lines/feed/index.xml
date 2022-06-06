@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Webpack Made Simple: Building ES6 &#038; LESS with autorefresh	</title>
+	<atom:link href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/feed/" rel="self" type="application/rss+xml" />
+	<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/</link>
+	<description></description>
+	<lastBuildDate>Thu, 18 Aug 2016 19:58:07 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Ted		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-22824</link>
+
+		<dc:creator><![CDATA[Ted]]></dc:creator>
+		<pubDate>Thu, 18 Aug 2016 19:58:07 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-22824</guid>
+
+					<description><![CDATA[&quot;Webpack is the least retarded piece of software I’ve used that’s written in JS.&quot;
+Webpack is the MOST retarded, stupid, and non-intuitive, piece of junk I&#039;ve used. It bogs down creativity, speed, and workflow.
+
+Look around. You see the same &quot;tutorials&quot; written over and over and over by different people. WHY? And when you create your own workflow and try to solve it using webpack, you will eventually realize what a pain in the arse time waster nonsense this is.]]></description>
+			<content:encoded><![CDATA[<p>&#8220;Webpack is the least retarded piece of software I’ve used that’s written in JS.&#8221;<br />
+Webpack is the MOST retarded, stupid, and non-intuitive, piece of junk I&#8217;ve used. It bogs down creativity, speed, and workflow.</p>
+<p>Look around. You see the same &#8220;tutorials&#8221; written over and over and over by different people. WHY? And when you create your own workflow and try to solve it using webpack, you will eventually realize what a pain in the arse time waster nonsense this is.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jeff		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-19874</link>
+
+		<dc:creator><![CDATA[Jeff]]></dc:creator>
+		<pubDate>Mon, 16 May 2016 00:43:07 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-19874</guid>
+
+					<description><![CDATA[I am not so convinced by your statement &quot;long, complicated Gulpfiles and Gruntfiles.&quot;.
+
+first, the complexity does not equals to line of configurations, as long as configuration is simple and easy to use, it doesn&#039;t matter that we need a few more lines.
+
+second, grunt and gulp do not require you to write your javascript modules to follow any commonjs or requirejs standards. which means that you don&#039;t need to declare &quot;require, exports&quot; everywhere, and you can use so many existing open source without putting them into &quot;shim&quot; mode.
+But by using webpack, we have to declare these &quot;require&quot; so that webpack can find out the dependencies.  ( I had done a lot with requirejs a few years ago, and requirejs can also compile the bundle with r.js, as same as webpack)
+
+
+Back to the problems you want to resolve in this article, don&#039;t you agree they are easy when using grunt or gulp?  
+
+Probably, after ES6 becomes standard and everyone starts to write javascript component, and then, webpack will have some advantage there..]]></description>
+			<content:encoded><![CDATA[<p>I am not so convinced by your statement &#8220;long, complicated Gulpfiles and Gruntfiles.&#8221;.</p>
+<p>first, the complexity does not equals to line of configurations, as long as configuration is simple and easy to use, it doesn&#8217;t matter that we need a few more lines.</p>
+<p>second, grunt and gulp do not require you to write your javascript modules to follow any commonjs or requirejs standards. which means that you don&#8217;t need to declare &#8220;require, exports&#8221; everywhere, and you can use so many existing open source without putting them into &#8220;shim&#8221; mode.<br />
+But by using webpack, we have to declare these &#8220;require&#8221; so that webpack can find out the dependencies.  ( I had done a lot with requirejs a few years ago, and requirejs can also compile the bundle with r.js, as same as webpack)</p>
+<p>Back to the problems you want to resolve in this article, don&#8217;t you agree they are easy when using grunt or gulp?  </p>
+<p>Probably, after ES6 becomes standard and everyone starts to write javascript component, and then, webpack will have some advantage there..</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Matt Conway		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-19216</link>
+
+		<dc:creator><![CDATA[Matt Conway]]></dc:creator>
+		<pubDate>Tue, 03 May 2016 15:02:44 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-19216</guid>
+
+					<description><![CDATA[Going through this today, and I had to install &#039;webpack&#039; globally as well to get this to work.]]></description>
+			<content:encoded><![CDATA[<p>Going through this today, and I had to install &#8216;webpack&#8217; globally as well to get this to work.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Bharat Soni		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-17849</link>
+
+		<dc:creator><![CDATA[Bharat Soni]]></dc:creator>
+		<pubDate>Sat, 09 Apr 2016 19:59:05 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-17849</guid>
+
+					<description><![CDATA[Hey James, thanks for the nice tutorial! I was going through Memamug&#039;s webpack config file. I couldn&#039;t understand much between 7th to 19th line. Could you please help me understand those lines.]]></description>
+			<content:encoded><![CDATA[<p>Hey James, thanks for the nice tutorial! I was going through Memamug&#8217;s webpack config file. I couldn&#8217;t understand much between 7th to 19th line. Could you please help me understand those lines.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jessica Koch		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-17064</link>
+
+		<dc:creator><![CDATA[Jessica Koch]]></dc:creator>
+		<pubDate>Mon, 28 Mar 2016 10:05:43 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-17064</guid>
+
+					<description><![CDATA[this is by far the best webpack tutorial I have found thanks so much!]]></description>
+			<content:encoded><![CDATA[<p>this is by far the best webpack tutorial I have found thanks so much!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Inanc Gumus		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-8939</link>
+
+		<dc:creator><![CDATA[Inanc Gumus]]></dc:creator>
+		<pubDate>Sat, 16 Jan 2016 15:23:39 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-8939</guid>
+
+					<description><![CDATA[There are too much to tell as soon as it involves something about Webpack. It&#039;s complex and non-intuitive.]]></description>
+			<content:encoded><![CDATA[<p>There are too much to tell as soon as it involves something about Webpack. It&#8217;s complex and non-intuitive.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Will Myers		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-6398</link>
+
+		<dc:creator><![CDATA[Will Myers]]></dc:creator>
+		<pubDate>Tue, 29 Dec 2015 12:54:46 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-6398</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-6378&quot;&gt;Will Myers&lt;/a&gt;.
+
+EDIT Re previous comment - webpack-dev-server actually does not make the output config redundant, as (for example) the filename is used in the index.html. But it is still confusing that webpack-dev-server does not create any output bundle file. The argument seems to be that you don&#039;t need to have a bundle file in dev mode, but I would disagree with this. I&#039;ve implemented the https://github.com/gajus/write-file-webpack-plugin which forces webpack to write a bundle file]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-6378">Will Myers</a>.</p>
+<p>EDIT Re previous comment &#8211; webpack-dev-server actually does not make the output config redundant, as (for example) the filename is used in the index.html. But it is still confusing that webpack-dev-server does not create any output bundle file. The argument seems to be that you don&#8217;t need to have a bundle file in dev mode, but I would disagree with this. I&#8217;ve implemented the <a href="https://github.com/gajus/write-file-webpack-plugin" rel="nofollow ugc">https://github.com/gajus/write-file-webpack-plugin</a> which forces webpack to write a bundle file</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Will Myers		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-6378</link>
+
+		<dc:creator><![CDATA[Will Myers]]></dc:creator>
+		<pubDate>Tue, 29 Dec 2015 08:03:20 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-6378</guid>
+
+					<description><![CDATA[Thanks for this clearly written post. One point is that webpack-dev-server does not generate a bundle.js by default. So the moment you start using it, the output config becomes redundant. This is confusing - various people are asking for a flag to generate the bundle at https://github.com/webpack/webpack-dev-server/issues/62]]></description>
+			<content:encoded><![CDATA[<p>Thanks for this clearly written post. One point is that webpack-dev-server does not generate a bundle.js by default. So the moment you start using it, the output config becomes redundant. This is confusing &#8211; various people are asking for a flag to generate the bundle at <a href="https://github.com/webpack/webpack-dev-server/issues/62" rel="nofollow ugc">https://github.com/webpack/webpack-dev-server/issues/62</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Little Brainz		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-5217</link>
+
+		<dc:creator><![CDATA[Little Brainz]]></dc:creator>
+		<pubDate>Mon, 07 Dec 2015 11:36:12 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-5217</guid>
+
+					<description><![CDATA[In your &quot;Tweaks&quot; section, point 1, rather that adding &#039;webpack-dev-server/client?http://localhost:8080&/#039; to the &quot;entry&quot; property, just add the &quot;--inline&quot; option to the webpack-dev-server command line.]]></description>
+			<content:encoded><![CDATA[<p>In your &#8220;Tweaks&#8221; section, point 1, rather that adding &#8216;webpack-dev-server/client?<a href="http://localhost:8080/" rel="nofollow ugc">http://localhost:8080/</a>&#8216; to the &#8220;entry&#8221; property, just add the &#8220;&#8211;inline&#8221; option to the webpack-dev-server command line.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Edward Beckett		</title>
+		<link>/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/#comment-3718</link>
+
+		<dc:creator><![CDATA[Edward Beckett]]></dc:creator>
+		<pubDate>Wed, 04 Nov 2015 04:42:14 +0000</pubDate>
+		<guid isPermaLink="false">/?p=241#comment-3718</guid>
+
+					<description><![CDATA[Great shares man... succinct and to the point... JS dependency management is definitely starting to mature to the point that front-end developers are now &#039;accepting&#039; that convention over configuration is the most effective way to produce stable builds...]]></description>
+			<content:encoded><![CDATA[<p>Great shares man&#8230; succinct and to the point&#8230; JS dependency management is definitely starting to mature to the point that front-end developers are now &#8216;accepting&#8217; that convention over configuration is the most effective way to produce stable builds&#8230;</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

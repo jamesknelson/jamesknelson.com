@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Structuring React Applications: Higher-Order Components	</title>
+	<atom:link href="/structuring-react-applications-higher-order-components/feed/" rel="self" type="application/rss+xml" />
+	<link>/structuring-react-applications-higher-order-components/</link>
+	<description></description>
+	<lastBuildDate>Wed, 07 Sep 2016 03:07:42 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Jason Boxman		</title>
+		<link>/structuring-react-applications-higher-order-components/#comment-23133</link>
+
+		<dc:creator><![CDATA[Jason Boxman]]></dc:creator>
+		<pubDate>Wed, 07 Sep 2016 03:07:42 +0000</pubDate>
+		<guid isPermaLink="false">/?p=338#comment-23133</guid>
+
+					<description><![CDATA[Thanks for writing this.
+
+You mangled a &#039;prototype&#039;:
+
+component.propotype.cPrefix = function() {};]]></description>
+			<content:encoded><![CDATA[<p>Thanks for writing this.</p>
+<p>You mangled a &#8216;prototype&#8217;:</p>
+<p>component.propotype.cPrefix = function() {};</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Michael		</title>
+		<link>/structuring-react-applications-higher-order-components/#comment-20068</link>
+
+		<dc:creator><![CDATA[Michael]]></dc:creator>
+		<pubDate>Fri, 20 May 2016 19:47:35 +0000</pubDate>
+		<guid isPermaLink="false">/?p=338#comment-20068</guid>
+
+					<description><![CDATA[Ctrl + f &#039;propotype&#039;
+
+Replace with &#039;prototype&#039;]]></description>
+			<content:encoded><![CDATA[<p>Ctrl + f &#8216;propotype&#8217;</p>
+<p>Replace with &#8216;prototype&#8217;</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Ivan		</title>
+		<link>/structuring-react-applications-higher-order-components/#comment-19349</link>
+
+		<dc:creator><![CDATA[Ivan]]></dc:creator>
+		<pubDate>Thu, 05 May 2016 06:02:32 +0000</pubDate>
+		<guid isPermaLink="false">/?p=338#comment-19349</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/structuring-react-applications-higher-order-components/#comment-1415&quot;&gt;Egor&lt;/a&gt;.
+
+Hey, that&#039;s cool. I&#039;m looking for a method to implement this, and your answer gives me the solution.  
+
+Thanks a lot.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/structuring-react-applications-higher-order-components/#comment-1415">Egor</a>.</p>
+<p>Hey, that&#8217;s cool. I&#8217;m looking for a method to implement this, and your answer gives me the solution.  </p>
+<p>Thanks a lot.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Marian		</title>
+		<link>/structuring-react-applications-higher-order-components/#comment-13680</link>
+
+		<dc:creator><![CDATA[Marian]]></dc:creator>
+		<pubDate>Thu, 03 Mar 2016 13:45:24 +0000</pubDate>
+		<guid isPermaLink="false">/?p=338#comment-13680</guid>
+
+					<description><![CDATA[This is soo much different from any other other examples of using HO func. All examples I&#039;ve seen rendered decorated component in render method and used React.Component as base class. Your decorator extends directly decorating class and calling super.render instead. I like it.]]></description>
+			<content:encoded><![CDATA[<p>This is soo much different from any other other examples of using HO func. All examples I&#8217;ve seen rendered decorated component in render method and used React.Component as base class. Your decorator extends directly decorating class and calling super.render instead. I like it.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Egor		</title>
+		<link>/structuring-react-applications-higher-order-components/#comment-1415</link>
+
+		<dc:creator><![CDATA[Egor]]></dc:creator>
+		<pubDate>Thu, 13 Aug 2015 09:49:13 +0000</pubDate>
+		<guid isPermaLink="false">/?p=338#comment-1415</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/structuring-react-applications-higher-order-components/#comment-1414&quot;&gt;Egor&lt;/a&gt;.
+
+sorry, ticketReactElement instead of questionBodyDivElement, of course
+&lt;code&gt;
+render() {
+ticketReactElement.props.children.push(Bla-bla-bla);
+return ticketReactElement;
+}
+&lt;/code&gt;]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/structuring-react-applications-higher-order-components/#comment-1414">Egor</a>.</p>
+<p>sorry, ticketReactElement instead of questionBodyDivElement, of course<br />
+<code><br />
+render() {<br />
+ticketReactElement.props.children.push(Bla-bla-bla);<br />
+return ticketReactElement;<br />
+}<br />
+</code></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Egor		</title>
+		<link>/structuring-react-applications-higher-order-components/#comment-1414</link>
+
+		<dc:creator><![CDATA[Egor]]></dc:creator>
+		<pubDate>Thu, 13 Aug 2015 09:47:03 +0000</pubDate>
+		<guid isPermaLink="false">/?p=338#comment-1414</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/structuring-react-applications-higher-order-components/#comment-1401&quot;&gt;Egor&lt;/a&gt;.
+
+It seems that I found the answer.
+
+We could define ticketReactElement = super.render() and after that we could modify all his children just as: 
+&lt;code&gt;
+questionBodyDivElement.props.children.push(Bla-bla-bla)
+&lt;/code&gt;;
+
+It&#039;s awesome because we could inherit one from another and modify.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/structuring-react-applications-higher-order-components/#comment-1401">Egor</a>.</p>
+<p>It seems that I found the answer.</p>
+<p>We could define ticketReactElement = super.render() and after that we could modify all his children just as:<br />
+<code><br />
+questionBodyDivElement.props.children.push(Bla-bla-bla)<br />
+</code>;</p>
+<p>It&#8217;s awesome because we could inherit one from another and modify.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Egor		</title>
+		<link>/structuring-react-applications-higher-order-components/#comment-1401</link>
+
+		<dc:creator><![CDATA[Egor]]></dc:creator>
+		<pubDate>Wed, 12 Aug 2015 20:23:08 +0000</pubDate>
+		<guid isPermaLink="false">/?p=338#comment-1401</guid>
+
+					<description><![CDATA[Hey James,
+
+It&#039;s a great article. Thank you!
+
+And did you think about component inheritance?
+
+For example, we have class Ticket extends React.Component ... with basic markup.
+
+And, what if I want Ticket that could be edited but I do not want to create bunch of if/else in one component. I want to inherit from it.
+
+I could create class TicketEditable extends Ticket ... And invoke super.render() inside render method.
+
+But! How could I modify this react element tree that was rendered after super.render had invoked?]]></description>
+			<content:encoded><![CDATA[<p>Hey James,</p>
+<p>It&#8217;s a great article. Thank you!</p>
+<p>And did you think about component inheritance?</p>
+<p>For example, we have class Ticket extends React.Component &#8230; with basic markup.</p>
+<p>And, what if I want Ticket that could be edited but I do not want to create bunch of if/else in one component. I want to inherit from it.</p>
+<p>I could create class TicketEditable extends Ticket &#8230; And invoke super.render() inside render method.</p>
+<p>But! How could I modify this react element tree that was rendered after super.render had invoked?</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

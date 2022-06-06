@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Building a Router with Raw React	</title>
+	<atom:link href="/routing-with-raw-react/feed/" rel="self" type="application/rss+xml" />
+	<link>/routing-with-raw-react/</link>
+	<description></description>
+	<lastBuildDate>Fri, 11 Mar 2016 14:43:25 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Marcos Rodrigues		</title>
+		<link>/routing-with-raw-react/#comment-14846</link>
+
+		<dc:creator><![CDATA[Marcos Rodrigues]]></dc:creator>
+		<pubDate>Fri, 11 Mar 2016 14:43:25 +0000</pubDate>
+		<guid isPermaLink="false">/?p=504#comment-14846</guid>
+
+					<description><![CDATA[I&#039;ve found the final implementation for submitContactForm extremely complex. One of the things I like the most in React applications is the explicitness and easiness to reason about the data flow, avoiding exactly the kind of complex algorithms that make you stop and run in your mind each step to be able to grasp what that local state is doing there. I&#039;ll try to work on a simplification and create a PR! :)
+
+Also, is it a good idea to access the state directly from the actions -- and even worse, update it, like in https://github.com/jamesknelson/raw-react-part-3/blob/master/src/actions/contact.js#L35 --?]]></description>
+			<content:encoded><![CDATA[<p>I&#8217;ve found the final implementation for submitContactForm extremely complex. One of the things I like the most in React applications is the explicitness and easiness to reason about the data flow, avoiding exactly the kind of complex algorithms that make you stop and run in your mind each step to be able to grasp what that local state is doing there. I&#8217;ll try to work on a simplification and create a PR! 🙂</p>
+<p>Also, is it a good idea to access the state directly from the actions &#8212; and even worse, update it, like in <a href="https://github.com/jamesknelson/raw-react-part-3/blob/master/src/actions/contact.js#L35" rel="nofollow ugc">https://github.com/jamesknelson/raw-react-part-3/blob/master/src/actions/contact.js#L35</a> &#8211;?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: azi		</title>
+		<link>/routing-with-raw-react/#comment-3291</link>
+
+		<dc:creator><![CDATA[azi]]></dc:creator>
+		<pubDate>Sun, 25 Oct 2015 02:55:51 +0000</pubDate>
+		<guid isPermaLink="false">/?p=504#comment-3291</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/routing-with-raw-react/#comment-3290&quot;&gt;azi&lt;/a&gt;.
+
+by the way.. nice post thanks., james.. : )]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/routing-with-raw-react/#comment-3290">azi</a>.</p>
+<p>by the way.. nice post thanks., james.. : )</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: azi		</title>
+		<link>/routing-with-raw-react/#comment-3290</link>
+
+		<dc:creator><![CDATA[azi]]></dc:creator>
+		<pubDate>Sun, 25 Oct 2015 02:50:49 +0000</pubDate>
+		<guid isPermaLink="false">/?p=504#comment-3290</guid>
+
+					<description><![CDATA[contribute:
+&lt;code&gt;
+  
+// with #/product/id
+var normalizedHash = window.location
+  .hash.slice(2);
+  // reproduce product/id
+window.location
+  .hash.slice(1);
+  // /product/id
+  
+&lt;/code&gt;
+the state:
+&lt;code&gt;
+  
+ window.location
+  .hash.slice(1).split(&#039;/&#039;)
+// out: [&quot;&quot;,&quot;product&quot;,&quot;id&quot;]
+window.location
+  .hash.slice(1).split(&#039;/&#039;).splice(1,2);
+// out: [&quot;product&quot;,&#039;id&#039;]
+
+&lt;/code&gt;
+
+the next issue: approach routing more &quot;expressive&quot;,
+and use RegEXP `*, + ? /:`?
+
+`/product/:id`
+`/product/category/:id*`
+`/product/:number(\\d+)`
+`/product/?search`
+
+test case:
+&lt;code&gt;
+  &#039;/product/:id&#039;.match(/^\/product\/([^\/]+?)\/?$/i)
+  // out: path:&#039;product&#039;,   catch:&#039;:id&#039;
+&lt;/code&gt;
+
+trying1:
+route:  &#039;/product/:120&#039;
+path: /product/id
+&lt;code&gt;
+  RegEXP: /^\/product\/([^\\/]+?)(?:\/(?=$))?$/i
+  Keys: 120,
+  path:id=120
+&lt;/code&gt;]]></description>
+			<content:encoded><![CDATA[<p>contribute:<br />
+<code></p>
+<p>// with #/product/id<br />
+var normalizedHash = window.location<br />
+  .hash.slice(2);<br />
+  // reproduce product/id<br />
+window.location<br />
+  .hash.slice(1);<br />
+  // /product/id</p>
+<p></code><br />
+the state:<br />
+<code></p>
+<p> window.location<br />
+  .hash.slice(1).split('/')<br />
+// out: ["","product","id"]<br />
+window.location<br />
+  .hash.slice(1).split('/').splice(1,2);<br />
+// out: ["product",'id']</p>
+<p></code></p>
+<p>the next issue: approach routing more &#8220;expressive&#8221;,<br />
+and use RegEXP `*, + ? /:`?</p>
+<p>`/product/:id`<br />
+`/product/category/:id*`<br />
+`/product/:number(\\d+)`<br />
+`/product/?search`</p>
+<p>test case:<br />
+<code><br />
+  '/product/:id'.match(/^\/product\/([^\/]+?)\/?$/i)<br />
+  // out: path:'product',   catch:':id'<br />
+</code></p>
+<p>trying1:<br />
+route:  &#8216;/product/:120&#8217;<br />
+path: /product/id<br />
+<code><br />
+  RegEXP: /^\/product\/([^\\/]+?)(?:\/(?=$))?$/i<br />
+  Keys: 120,<br />
+  path:id=120<br />
+</code></p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

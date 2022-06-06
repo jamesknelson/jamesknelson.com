@@ -1,0 +1,2630 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Build Systems &#8211; James K Nelson</title>
+	<atom:link href="/category/build-systems/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description></description>
+	<lastBuildDate>Fri, 31 Mar 2017 16:06:40 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>Introducing MDXC: A new way to write Markdown for React</title>
+		<link>/introducing-mdxc/</link>
+					<comments>/introducing-mdxc/#respond</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Fri, 31 Mar 2017 14:55:13 +0000</pubDate>
+				<category><![CDATA[Build Systems]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[React]]></category>
+		<guid isPermaLink="false">/?p=1140</guid>
+
+					<description><![CDATA[<p>Read the README and browse the source on GitHub, or mess around with the live demo. Markdown is a fantastic tool. It makes writing simple. Markdown documents are plain text, so you don&#8217;t need to worry about tags and HTML and all that. You just write. And when you need a &#60;a&#62;, or a &#60;h1&#62;,... <a class="more-link" href="/introducing-mdxc/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/introducing-mdxc/">Introducing MDXC: A new way to write Markdown for React</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><em>Read the README and <a href="https://github.com/jamesknelson/mdxc">browse the source</a> on GitHub, or <a href="http://dump.jamesknelson.com/mdxc-playground.html">mess around with the live demo</a>.</em></p>
+<p>Markdown is a fantastic tool. It makes writing <em>simple</em>. Markdown documents are plain text, so you don&#8217;t need to worry about tags and HTML and all that. You just write. And when you need a <code>&lt;a&gt;</code>, or a <code>&lt;h1&gt;</code>, it&#8217;s already there. It&#8217;s like magic!</p>
+<p>But say you&#8217;re writing a React app with <code>pushState</code>, and you don&#8217;t want your links to use <code>&lt;a&gt;</code> tags; they break your smooth navigation. You want them to use react-router or <a href="https://junctions.js.org/">react-junctions&#8217;</a> <code>&lt;Link&gt;</code> tags instead. And you&#8217;re shit outta luck, because you can&#8217;t. Or you couldn&#8217;t, before MDXC.</p>
+<p>MDXC is a tool to make Markdown and React best buddies. Unlike traditional Markdown, <strong>MDXC produces actual JavaScript</strong> &#8212; not strings of HTML. <strong>MDXC lets you embed raw JSX within your Markdown</strong>, and even lets you <code>import</code> components and accept <code>props</code>. And to top it all off, <strong>MDXC lets you configure how each element is rendered</strong>, giving you all sorts of ways to confuse your users and also a few ways to genuinely improve their experience.</p>
+<p>If you can&#8217;t tell yet, I&#8217;m pretty excited about MDXC. So please indulge me and take a gander at this example:</p>
+<p><span id="more-1140"></span></p>
+<h2>Example 0: Hello, {yourName}!</h2>
+<p>One of the things about React components is that they take props. And since MDXC produces React Components, MDX documents can have props too!</p>
+<p>To use a prop within your document, just declare it at the top of your MDX file with a <code>prop &lt;propname&gt;</code> line. Once declared, it will be available within any <code>{brace}</code> expressions.</p>
+<p>But how do brace expressions work? Actually, they&#8217;re almost the same as brace expressions in JSX. In fact, when your paragraph starts and ends with a matching pair of tags, they&#8217;re <em>exactly</em> the same &#8212; the entire paragraph is processed as JSX. For example:</p>
+<pre><code>prop value
+prop onChange
+
+# Hello!
+
+May I kindly ask your name?
+
+&lt;input
+  value={value}
+  onChange={onChange}
+/&gt;
+
+&lt;p&gt;{value &amp;&amp; `Thanks, ${value}!`}&lt;/p&gt;
+</code></pre>
+<p>MDXC will compile the above document to something like this:</p>
+<pre><code>import { createElement, createFactory } from 'react'
+
+export default function({ factories={}, value, onChange }) {
+    const wrapper = factories.wrapper || createFactory('div')
+    const h1 = factories.h1 || createFactory('h1')
+    const p = factories.p || createFactory('p')
+
+    return wrapper({},
+        h1({}, 'Hello!'),
+        p({}, "May I kindly ask your name?"),
+        createElement("input", {
+            value: value,
+            onChange: onChange
+        })
+        createElement("p", null, value &amp;&amp; `Thanks, ${value}!`),
+    )
+}
+</code></pre>
+<p>But why is it that one of our paragraphs compiles to <code>createElement("p", ...)</code>, while the other compiles to <code>p(...)</code>?</p>
+<h2>Factories vs. Elements</h2>
+<p>When you use <code>&lt;tags&gt;</code> in an MDX document, they&#8217;re treated exactly like tags in JSX. That is, they&#8217;re compiled to <code>React.createElement(...)</code> calls.</p>
+<p>But what about the elements that are generated by Markdown itself; for example, <code>&lt;p&gt;</code> and <code>&lt;h1&gt;</code> elements? As you might have noticed from the example above, this markup is actually produced by <em>factory functions</em>. These functions take <code>props</code> and <code>children</code>, and return a <a href="https://facebook.github.io/react/docs/rendering-elements.html">ReactElement</a>. Each factory function is kind of like a special <code>createElement</code> call for a single type of tag.</p>
+<p>The advantage of factory functions is that they&#8217;re <em>configurable</em>. Unfortunately, this does add a teensy bit of complexity to the generated components. But this is ok, because it can also add a whole lot of awesome to your users&#8217; experience.</p>
+<h2>Using <code>&lt;Link&gt;</code> components with Markdown</h2>
+<p>If you&#8217;re loading content within a React app, then in all likelihood your app is using HTML5 history through a library like <a href="https://reacttraining.com/react-router/web/guides/quick-start">react-router</a> or <a href="https://junctions.js.org/guide">react-junctions</a>.</p>
+<p>The great thing about HTML5 history is that it provides a way to navigate without reloading the page. The crap thing about it is that <em>ye olde&#8217; <code>&lt;a&gt;</code> tags will still reload the page</em>.</p>
+<p>If you want your content to feel snappy and nice, you&#8217;ll want to use <code>&lt;Link&gt;</code> elements instead. And happily, this is as simple as wrapping your Document component and replacing the default <code>&lt;a&gt;</code> factory with a <code>&lt;Link&gt;</code> factory.</p>
+<pre><code>// Assume './document' is a file generated by mdxc
+import Document from './document'
+import React, { createFactory } from 'react'
+import { Link } from 'react-router'
+
+export default function DocumentWrapper(props) {
+  return (
+    &lt;Document
+      {...props}
+      factories={{ a: createFactory(Link) }}
+    /&gt;
+  )
+}
+</code></pre>
+<p>Of course, the usefulness of factories is not limited to links. You can also use them to do cool things like <a href="https://github.com/jamesknelson/mdxc/blob/ee551e91e10bf4f587bc9910fa756763aaa97101/examples/factories.wrapper.jsx">adding anchor links to your headings</a>, or even to replace code blocks with code <em>editors</em>. The world is your burrito.</p>
+<p>MDX also let&#8217;s you do a bunch of other cool things &#8212; you can <code>import</code> external React components and even write their children in Markdown! But a reader can only stand so much excitement at once, and the <a href="github.com/jamesknelson/mdxc">docs</a> are waiting for you 24-7. So let&#8217;s move on to how to actually <em>use</em> MDXC.</p>
+<h2>How to actually <em>use</em> MDXC</h2>
+<p><em>Why, I thought you&#8217;d never ask!</em></p>
+<p>A tool wouldn&#8217;t be a tool if it didn&#8217;t include a command-line tool. So let&#8217;s start with the command line tool.</p>
+<pre><code># Install the `mdxc` command line tool using npm
+&gt; npm install -g mdxc
+
+# Create a boring markdown file for an example
+echo '# Hello, World' &gt; example.mdx
+
+# Pass the boring example to the command line tool to compile it
+mdxc example.mdx
+
+# You'll forget all this anyway so just use `--help`
+mdxc --help
+</code></pre>
+<p>But with that out of the way, let&#8217;s talk about how you should <em>actually</em> use MDXC.</p>
+<h3>Webpack</h3>
+<p>If you&#8217;d like to use MDX within an existing React app, chances are you&#8217;ll want to use <strong>mdx-loader</strong>. To do so, just add it to your project and then update the your <code>webpack.config.js</code>. Bear in mind that MDXC outputs ES2015, so you&#8217;ll need to run the output through Babel if you want to support older browsers or Webpack 1.</p>
+<pre><code># Add mdx-loader to your project
+npm install --save-dev mdx-loader
+</code></pre>
+<p>Assuming you&#8217;re using Webpack 2, you&#8217;ll need to add an entry to your <code>module.rules</code> array:</p>
+<pre><code>module: {
+  rules: [
+    /**
+     * MDX is a tool that converts Markdown files to React components. This 
+     * loader uses MDX to create Page objects for Markdown files. As it
+     * produces ES2015, the result is then passed through babel.
+     */
+    { test: /\.mdx?$/,
+      use: [
+        'babel-loader',
+        'mdx-loader',
+      ]
+    },
+
+    // ...
+  ]
+},
+</code></pre>
+<p>Then import and use your components as you&#8217;d do with standard JavaScript!</p>
+<p>But what if you haven&#8217;t got an existing React app? Or what if you don&#8217;t want an app, but want a website? In that case, I have another treat for you.</p>
+<h3>Sitepack</h3>
+<p>MDXC was originally created for Sitepack. But what is Sitepack?</p>
+<p><a href="http://github.com/jamesknelson/sitepack">Sitepack</a> is a wrapper around Webpack. It gives you a way to add pages to your website using plain-old <code>require()</code>, it handles the nasty parts of Webpack configuration for you, and it does all this while performing the magic required to build a static HTML version of each of your pages. As it happens, my MDXC and <a href="https://junctions.js.org/">junctions.js</a> websites are built with Sitepack.</p>
+<p>Sitepack&#8217;s documentation is still in its infancy (I&#8217;ll let you know via my Newsletter when it improves). But if your plan is to use MDX to write an actual <em>website</em> (you know, with pages and links and no &#8220;login&#8221; button), it is definitely worth trying out. To do so, use the <strong>sitepack-react-starter-kit</strong> &#8212; it supports MDX out of the box.</p>
+<pre><code>git clone https://github.com/jamesknelson/sitepack-react-starter-kit.git
+cd sitepack-react-starter-kit
+npm install
+npm start
+</code></pre>
+<p>Once you&#8217;ve cloned, installed and started your Sitepack website, open your browser at <a href="http://localhost:4000/">http://localhost:4000/</a> and start editing the <code>md</code> files in the <code>content</code> directory &#8212; changes will be reflected live! When you&#8217;re ready to release, build your site with <code>npm run build</code>. You&#8217;ll be a webmaster faster than you can say 1995.</p>
+<h3>The API. Or, <code>class MDXC extends MarkdownIt</code></h3>
+<p>At its core, MDXC is just a wrapper around the excellent and highly configurable <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> project. This means MDXC has an API. It also means that the API is excellent and highly configurable. But probably not as excellent or highly configurable as markdown-it.</p>
+<p>I won&#8217;t go into any more details here, but if you&#8217;re the type of person who likes details then <a href="https://github.com/jamesknelson/mdxc">the README</a> has a little more info.</p>
+<h2>Contributing</h2>
+<p>MDXC is a young project. That means a lot of it is still pretty shit. Help would be greatly appreciated, especially in the following areas:</p>
+<ul>
+<li>Improved tests</li>
+<li>Refactoring existing code to be prettier and faster</li>
+<li>Generating more concise JavaScript output</li>
+</ul>
+<p>If you&#8217;d like to contribute, you can create an Issue or PR <a href="https://github.com/jamesknelson/mdxc">on GitHub</a>.</p>
+<p>But if tests and refactoring aren&#8217;t your thing, I&#8217;d still be pretty darn happy if you use MDXC to make awesome stuff. Or quirky stuff. Or whatever, really. Then tell me about what you&#8217;ve made so I can add it to <a href="https://github.com/jamesknelson/mdxc#mdx-in-the-wild">the list</a>.</p>
+<p>Finally, if you&#8217;re not one of the <a href="https://www.youtube.com/watch?v=SiMHTK15Pik">over 9000</a> people who&#8217;ve joined already, <em>join my Newsletter</em>! I don&#8217;t send many e-mails. But when I <em>do</em> send e-mails, they&#8217;re guaranteed to contain useful information and/or tools that you don&#8217;t want to miss. And in return for your e-mail, you&#8217;ll get a bunch of <em>free</em> React and JavaScript cheatsheets the moment you join.</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>Oh, and <em>one more thing</em> &#8211; I love hearing your questions, offers and opinions. If you have something to say, leave a comment or send me an e-mail at <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>. I&#8217;m looking forward to hearing from you!</p>
+<p>The post <a rel="nofollow" href="/introducing-mdxc/">Introducing MDXC: A new way to write Markdown for React</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/introducing-mdxc/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>How I learned to stop worrying and love the JSX</title>
+		<link>/learned-stop-worrying-love-jsx/</link>
+					<comments>/learned-stop-worrying-love-jsx/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sun, 08 May 2016 06:38:10 +0000</pubDate>
+				<category><![CDATA[Build Systems]]></category>
+		<category><![CDATA[ES6]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<category><![CDATA[React]]></category>
+		<guid isPermaLink="false">/?p=991</guid>
+
+					<description><![CDATA[<p>So you&#8217;ve heard the commotion about React, and thought you&#8217;d take a look. And you&#8217;ve liked what you&#8217;ve seen! Or you did, until you saw this: &#60;div onClick={this.handleClick}&#62;JSX butters my toast&#60;/div&#62; OK. You&#8217;re happy to give a new technology the benefit of the doubt. But this? Didn&#8217;t we escape PHP years ago? And what ever... <a class="more-link" href="/learned-stop-worrying-love-jsx/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/learned-stop-worrying-love-jsx/">How I learned to stop worrying and love the JSX</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>So you&#8217;ve heard the commotion about React, and thought you&#8217;d take a look. And you&#8217;ve liked what you&#8217;ve seen! Or you did, until you saw this:</p>
+<pre><code>&lt;div onClick={this.handleClick}&gt;JSX butters my toast&lt;/div&gt;
+</code></pre>
+<p>OK. You&#8217;re happy to give a new technology the benefit of the doubt. But this? Didn&#8217;t we escape PHP years ago? And what ever happened to separation of concerns?!</p>
+<p>But I&#8217;m here to reassure you that not everything is as it seems. The above code is <em>not</em> JavaScript-in-HTML. If anything it actually <em>promotes</em> separation of concerns, especially compared to &#8220;competitor framework A&#8221;. And its best feature?</p>
+<p><span id="more-991"></span></p>
+<h2>JSX is optional.</h2>
+<p>See that code above? It is actually an illusion. This is its true form:</p>
+<pre><code>React.createElement(
+    'div',
+    {onClick: this.handleClick},
+    "JSX butters my toast"
+)
+</code></pre>
+<p>Not so bad, huh? I mean, the only way you could make this <em>less</em> like JavaScript-in-HTML would be to use <code>document.createElement</code>. Or to rearrange bits on a hard drive platter with a magnetic needle.</p>
+<p>But dad jokes aside, you may now be asking why-the-fuck have we invented an entire new language just so we can avoid a couple characters of JavaScript? This is a good question, but if you&#8217;ve read my <a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Raw React</a> series, you probably already know the answer. It looks something like this:</p>
+<pre><code>var rootElement =
+  React.createElement('div', {}, 
+    React.createElement('h1', {}, "Contacts"),
+    React.createElement('ul', {},
+      React.createElement('li', {},
+        React.createElement('h2', {}, "James Nelson"),
+        React.createElement('a', {href: 'mailto:james@jamesknelson.com'}, 'james@jamesknelson.com')
+      ),
+      React.createElement('li', {},
+        React.createElement('h2', {}, "Joe Citizen"),
+        React.createElement('a', {href: 'mailto:joe@example.com'}, 'joe@example.com')
+      )
+    )
+  )
+</code></pre>
+<div class="hint">
+Can you grok the above code? If not, you need to read <a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Raw React</a>. Learning JSX without knowing <code>React.createElement</code> is like learning to drive a semi before you learn to crawl.
+</div>
+<p>Typing this kind of thing out is error-prone and downright <em>painful</em>. Of course, there are solutions.</p>
+<p>One is to do this:</p>
+<pre><code>var c = React.createElement
+var element = c('h1', {}, "I'm so minimalist that")`
+</code></pre>
+<p>And this is a <em>good solution</em>. It saves you keystrokes, it doesn&#8217;t require a build system, and it makes you look really smart/hipster. But it is also harder to read, it won&#8217;t save you from parenthesis hell, and if you want to write code like this then you should probably learn LISP.</p>
+<p>JSX is another solution.</p>
+<h2>But what <em>is</em> JSX?</h2>
+<p>JSX is a bunch of shortcuts to make calling <code>React.createElement</code> less painful.</p>
+<p>Let me repeat that. <em>JSX is a bunch of shortcuts</em>. That means that unlike PHP, ASP or Angular JS, JSX is <em>not</em> a way of adding control flow to HTML. If you <em>must</em> think about JSX in terms of HTML, it is closer to HTML-in-JavaScript than JavaScript-controlling-HTML. But it isn&#8217;t that either. <strong>It really is just a bunch of shortcuts for writing <code>React.createElement</code></strong>. In particular:</p>
+<h3><code>React.createElement</code> is written with <code>&lt;tags&gt;</code></h3>
+<p>The capitalisation of the tag indicates whether you&#8217;re creating a <code>ReactElement</code> representing a DOM element, or one representing a custom component:</p>
+<ul>
+<li><code>&lt;Jack /&gt;</code> becomes <code>React.createElement(Jack)</code></li>
+<li><code>&lt;jack /&gt;</code> becomes <code>React.createElement('jack')</code></li>
+</ul>
+<h3><code>props</code> look like &#8220;attributes&#8221;</h3>
+<p>String attributes are denoted with quotes (just like in HTML), while expressions are denoted with curly braces:</p>
+<ul>
+<li><code>&lt;Something propA='a' /&gt;</code> becomes <code>React.createElement(Something, {propA: 'a'})</code></li>
+<li><code>&lt;Something propB={b} /&gt;</code> becomes <code>React.createElement(Something, {propB: b})</code></li>
+</ul>
+<h3>An element&#8217;s <code>props.children</code> is denoted by the tag&#8217;s child nodes</h3>
+<p>Or in other words, anything inside a tag is passed as the third argument to the corresponding <code>React.createElement</code> call:</p>
+<ul>
+<li><code>&lt;Something&gt;text&lt;/Something&gt;</code> <br />becomes <br /><code>React.createElement(Something, {}, 'text')</code></li>
+<li><code>&lt;Something&gt;&lt;something /&gt;&lt;somethingElse /&gt;&lt;/Something&gt;</code> <br />becomes <br /><code>React.createElement(Something, {}, React.createElement('something'), React.createElement('somethingElse'))</code></li>
+</ul>
+<h3><code>{}</code> lets you interpolate within children:</h3>
+<p>Just like PHP let&#8217;s you interpolate with <code>&lt;?php</code>&#8230; JSX let&#8217;s you interpolate with <code>{}</code>. <em>Just like PHP</em>.</p>
+<ul>
+<li><code>&lt;Something&gt;{c}&lt;/Something&gt;</code> becomes <code>React.createElement(Something, {}, c)</code></li>
+</ul>
+<h3><code>{...object}</code> lets you merge props</h3>
+<p>And last (but not least), JSX allows you to add multiple props at once by adding an <code>{...object}</code> inside your attribute list. React will use <code>Object.assign</code> to merge this object with any individual props:</p>
+<ul>
+<li><code>&lt;Something {...propsA} propB='B' /&gt;</code> <br />becomes <br /><code>React.createElement(Something, Object.assign({}, propsA, {probB: 'B'}))</code></li>
+</ul>
+<h3>Let&#8217;s do an exercise</h3>
+<p>Remember that big nasty tangle of <code>React.createElement</code> from above? Let&#8217;s convert it to JSX. Here it is again:</p>
+<pre><code>var rootElement =
+  React.createElement('div', {}, 
+    React.createElement('h1', {}, "Contacts"),
+    React.createElement('ul', {},
+      React.createElement('li', {},
+        React.createElement('h2', {}, "James Nelson"),
+        React.createElement('a', {href: 'mailto:james@jamesknelson.com'}, 'james@jamesknelson.com')
+      ),
+      React.createElement('li', {},
+        React.createElement('h2', {}, "Joe Citizen"),
+        React.createElement('a', {href: 'mailto:joe@example.com'}, 'joe@example.com')
+      )
+    )
+  )
+</code></pre>
+<p>When you&#8217;re done, hover over or touch the box below to see my answer. But only when you&#8217;re done. Practice makes perfect.</p>
+<div class="spoiler">
+<div class="spoiler-mask"></div>
+</p>
+<pre><code>var rootElement =
+    &lt;div&gt;
+        &lt;h1&gt;Contacts&lt;/h1&gt;
+        &lt;ul&gt;
+            &lt;li&gt;
+                &lt;h2&gt;James Nelson&lt;/h2&gt;
+                &lt;a href='mailto:james@jamesknelson.com'&gt;james@jamesknelson.com&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;h2&gt;Joe Citizen&lt;/h2&gt;
+                &lt;a href='mailto:joe@example.com'&gt;joe@example.com&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+</code></pre>
+<p>
+</div>
+<p><strong>And there you have it.</strong> JSX is really just five simple rules which make your app&#8217;s source cleaner and simpler. Of course, learning the rules takes time.  And you don&#8217;t want to have to come back to this article every time you want to look up the rules. That is why why subscribers to my newsletter receive a <em>high-res</em> PDF of this <a href="#newsletter">handy dandy JSX cheatsheet</a>! But I&#8217;m getting ahead of myself &#8211; didn&#8217;t I mention earlier that we don&#8217;t actually <em>need</em> JSX?</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=18"></script>
+<link rel="stylesheet" href="ck_form.html" />
+<div class="ck_form single_line">
+
+  <div class="ck_form_fields">
+  
+    <h3>Get the PDF cheatsheet!</h3>
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/50776/subscribe" data-remote="true">
+      <input type="hidden" name="id" value="50776" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+        <div>
+          <label class="ck_label" for="ck_firstNameField" style="display:none">First Name</label>
+        
+          <input type="text" name="first_name" placeholder="First name" class="ck_first_name" id="ck_firstNameField" required></input>
+        </div>
+        <div class="field">
+          <label class="ck_label" for="ck_emailField" style="display:none">Email Address</label>
+        
+          <input type="email" name="email" placeholder="Email address" class="ck_email_address" id="ck_emailField" required></input>
+        </div>
+
+        <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+          Subscribe to my Newsletter
+        </button>
+    </form>
+  </div>
+ </div>
+ <style type="text/css">
+.ck_form.single_line {
+  /* divider image */
+  background: #f9f9f9;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border: solid 1px #d1d1d1;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  clear: both;
+  margin: 20px auto;
+  text-align: center;
+  width: 85%;
+  border-radius: 6px;
+}
+
+
+.ck_form.single_line h3, #content .ck_form.single_line h3 { 
+  text-align: center; 
+  margin: 0px 0px 10px; 
+  font-size: 24px;
+}
+
+.ck_form.single_line p {
+  padding: 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+.ck_form.single_line .ck_form_fields {
+  width: 100%;
+  float: left;
+  padding: 24px 0;
+}
+/* Form fields */
+
+.ck_errorArea {
+  display: none; /* temporary */
+}
+
+#ck_success_msg {
+  margin: 0 30px;
+  padding: 0 10px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_form.single_line input[type="text"], .ck_form.single_line input[type="email"] {
+  font-size: 18px;
+  padding: 10px 8px;
+  width: 68%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; /* border radius */
+  background-color: #fff; /* layer fill content */
+  height: auto;
+  margin: 5px 0;
+  height: 42px;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+} 
+
+.ck_form.single_line .ck_checkbox {
+  display: none;
+}
+
+.ck_form.single_line .ck_subscribe_button {
+    color: #fff;
+    margin: 0px;
+    padding:  11px 22px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+    margin: 10px 0 0;
+    height: 42px;
+    width: auto;
+  }
+  
+  
+.ck_form.single_line .ck_guarantee {
+  color: #626262;
+  font-size: 15px;
+  text-align: center;
+  padding: 15px 0px 0px;
+  display: block;
+  clear: both;
+}
+ </style>
+<h2>When you shouldn&#8217;t use JSX</h2>
+<p>For all of the benefits that JSX can have, it is not always appropriate. Here are a few reasons you may want to skip JSX in favour of Raw React:</p>
+<h3>A build step can be overkill</h3>
+<p>If you&#8217;re building a reasonable size application and you&#8217;re going to need a build step anyway, JSX is great. But if you&#8217;re building a tiny library which calls <code>React.createElement</code> once or twice? JSX will just add unneeded complexity.</p>
+<h3>When you&#8217;re not writing components</h3>
+<p>The vast majority of <code>React.createElement</code> calls are made within custom components. <em>JSX feels like it was made for these scenarios</em> &#8211; it helps eliminate typos in large tree structures, it eases conversion from HTML mockups to <code>ReactElement</code> trees, and it generally just kicks ass.</p>
+<p>But <code>React.createElement</code> isn&#8217;t just used in components. In particular, you&#8217;ll also need to call <code>React.createElement</code> when bootstrapping your application, often following a pattern like this:</p>
+<pre><code>ReactDOM.render(
+    React.createElement(Application, { data: store.getState() }),
+    'app-id'
+)
+</code></pre>
+<p>While you <em>could</em> use JSX here, I&#8217;d argue that it only serves to hide what is actually going on &#8211; and to add a funny <code>x</code> character to the end of your filename.</p>
+<h3>When it just doesn&#8217;t feel as clear</h3>
+<p>This is something which will come with experience, but sometimes a piece of code just <em>feels</em> like it shouldn&#8217;t be JSX. This sounds like a cop-out, so let&#8217;s look at a real example from a higher-order component in one of my applications. The main purpose of the component is to add lifecycle handlers to an existing component.</p>
+<pre><code>render() {
+    // This feels easier to grok than `&lt;WrappedComponent {...this.props} /&gt;`
+    return React.createElement(WrappedComponent, this.props)
+}
+</code></pre>
+<p>Of course, knowing how and when to use JSX is only like one tenth of the battle. The rest is actually making the damned build process work.</p>
+<h2>How to turn JSX into JavaScript</h2>
+<p>If you just want something that works <em>right now</em>, you can skip the build process dance by using the now-deprecated <a href="https://facebook.github.io/react/docs/language-tooling.html">Babel 5 in-browser transform tool</a>. Just add this one simple line to your <code>index.html</code> and behold the power of old software:</p>
+<pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"&gt;&lt;/script&gt;
+</code></pre>
+<p>Of course, those amongst us who need to have something which will actually work for the foreseeable future (or for whom performance matters in the slightest) will need to convert our JSX into JavaScript <em>before</em> it hits the browser. There are two ways to approach this:  using the command line, or compiling files as part of a larger build system. Let&#8217;s start with the easier of the two.</p>
+<h3>Compiling JSX on the command line</h3>
+<p>There are two ways to get babel to compile JSX on the command line. One is to install Babel 5 globally:</p>
+<pre><code>npm install babel@5 -g
+</code></pre>
+<p>And then to compile your file using the <code>babel</code> command line interface:</p>
+<pre><code>babel filename.jsx --out-file filename.js
+</code></pre>
+<p>Easy as one-two. But I mentioned there are two ways to compile JSX on the command line &#8211; and that was only one?</p>
+<p>The other way is Babel 6. You&#8217;d <em>think</em> that not much would change with a single version number increment, but you&#8217;d be wrong. From my article on Babel 6:</p>
+<blockquote>
+<p>Over the last year, Babel has become the go-to tool for transforming ES2015 and JSX into boring old JavaScript. But seemingly overnight, Babel 6 changed everything. The babel package was deprecated, and running babel doesn’t actually transform ES2015 to ES5.</p>
+</blockquote>
+<p>If you&#8217;re just learning, I recommend sticking to Babel 5. It is easier. But if you <em>need</em> to use Babel 6, you can find out how at my <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Introduction to the Babel 6 CLI</a> &#8211; just add <code>babel-react-preset</code> in addition to the other presets mentioned in the article.</p>
+<p>Of course, compiling every file manually on the command line won&#8217;t scale. So if you&#8217;re already committed to a serious React/JSX project, you&#8217;ll probably want to use Webpack.</p>
+<h3>Building JSX with Webpack</h3>
+<p>The heading for this section is a little white lie &#8211; Webpack doesn&#8217;t actually build JSX. It just delegates the JSX compile step to Babel. And this means that a Webpack build has the same Babel configuration issues as CLI compilation.</p>
+<p>If your project is serious enough that Webpack makes sense, you probably want to skip Babel 5, grab some hard liquor, and then read my guide to <a href="/using-es6-in-the-browser-with-babel-6-and-webpack/">Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</a> &#8211; just add <code>babel-react-preset</code> to the other preset packages I mention to get JSX support in addition to ES6.</p>
+<h2>Still reading?</h2>
+<p>All the blog in the world isn&#8217;t going to convince you that this weird-looking syntax is really quite loveable. To get to that point, you&#8217;re going to need to get out there and write some JSX!</p>
+<p>But what should you actually <em>write</em>? Well, the contacts app which you&#8217;ll build in my <a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Raw React</a> series would be a great place to start. The series uses pure <code>React.createElement</code>, giving you the opportunity to convert it to JSX yourself (and to use the PDF cheatsheet which subscribers receive).</p>
+<p>But Raw React and JSX will only get you so far. A real app still needs <em>structure</em> &#8211; for its data store, for its components, and for its file tree. And as it happens, you’re in luck! Because I&#8217;ll be publishing guides to each of these in the lead-up to my book on <em>Real</em> React. Get on my newsletter now to make sure you don’t miss it &#8211; and to get <em>five</em> free high-res JavaScript and React cheatsheets. Including this JSX one:</p>
+<p><a id="newsletter"></a></p>
+<p><img src="/wp-content/uploads/2016/05/jsx-cheatsheet.png" alt="JSX cheatsheet" /></p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React — no JSX, Flux, ES6, Webpack…</a></li>
+<li><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Using the Babel 6 CLI</a></li>
+<li><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/">Using ES6 in the browser with Babel 6</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/learned-stop-worrying-love-jsx/">How I learned to stop worrying and love the JSX</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/learned-stop-worrying-love-jsx/feed/</wfw:commentRss>
+			<slash:comments>2</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>The Complete Guide to ES6 with Babel 6</title>
+		<link>/the-complete-guide-to-es6-with-babel-6/</link>
+					<comments>/the-complete-guide-to-es6-with-babel-6/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sat, 14 Nov 2015 09:27:31 +0000</pubDate>
+				<category><![CDATA[Build Systems]]></category>
+		<category><![CDATA[ES6]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<guid isPermaLink="false">/?p=876</guid>
+
+					<description><![CDATA[<p>Over the last year, Babel has become the go-to tool for transforming ES2015 and JSX into boring old JavaScript. Which makes it kinda hilarious that by default, Babel 6 no longer transforms either: james$ echo "export function component() { return &#60;div /&#62; }" &#124; babel SyntaxError: unknown: Unexpected token (1:37) &#62; 1 &#124; export function... <a class="more-link" href="/the-complete-guide-to-es6-with-babel-6/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/the-complete-guide-to-es6-with-babel-6/">The Complete Guide to ES6 with Babel 6</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Over the last year, Babel has become <em>the</em> go-to tool for transforming ES2015 and JSX into boring old JavaScript. Which makes it kinda hilarious that by default, Babel 6 no longer transforms either:</p>
+<pre><code>james$ echo "export function component() { return &lt;div /&gt; }" | babel
+SyntaxError: unknown: Unexpected token (1:37)
+&gt; 1 | export function component() { return &lt;div /&gt; }
+    |                                      ^
+</code></pre>
+<p>So what happened? Well, in the brave new world of Babel 6, you need to <em>choose</em> which transforms to run. This promotes <a href="https://en.wikipedia.org/wiki/Separation_of_concerns">separation of concerns</a>, a decidedly good thing. It also tends to promote a &#8220;shit shit&#8221; moment when suddenly nothing works.</p>
+<p>But luckily, this <em>doesn&#8217;t</em> mean that you&#8217;ll now need to comb through the bug trackers and documentation for seemingly every part of your build system. Instead, just follow these five guides to get your app, libraries, tasks and tests modernised in no time!</p>
+<p><span id="more-876"></span></p>
+<h2>What&#8217;s changed in Babel 6?</h2>
+<p>If you&#8217;re already familiar with Babel, the first thing you&#8217;ll want to do is learn what has changed. In particular, you&#8217;ll want to get familiar with the <strong>new package structure</strong>, the new concept of <strong>presets</strong>, and the <strong><code>.babelrc</code> file</strong> which you now can&#8217;t do without. A two minute skim through <a href="/the-six-things-you-need-to-know-about-babel-6">The Six Things You Need To Know About Babel 6</a> will sort you out.</p>
+<h2>Using Babel 6</h2>
+<p>Once you&#8217;ve managed to unlearn most what you knew about Babel 5, you might need a little help to learn Babel 6:</p>
+<ul>
+<li><a href="writing-npm-packages-with-es6-using-the-babel-6-cli"><strong>Transforming NPM Packages</strong> with the Babel 6 CLI</a></li>
+<li><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/"><strong>Using ES6 in the Browser</strong> with Webpack&#8217;s babel-loader</a></li>
+<li><a href="/testing-in-es6-with-mocha-and-babel-6/"><strong>Testing with Mocha</strong> and Babel&#8217;s <code>register</code> script</a></li>
+<li><a href="/teaching-gulp-es6-with-babel-6/"><strong>Running tasks</strong> with <code>gulpfile.babel.js</code></a></li>
+</ul>
+<h2>Keeping up to date</h2>
+<p>Here&#8217;s a little story: while writing these guides, I learned that the <a href="https://babeljs.io/docs/usage/require/">require hook</a> in <code>babel-core</code> used by Gulp and Mocha is <em>already</em> set to be deprecated (it will now be placed in a new package called <code>babel-require</code>). This is despite the fact that Babel 6 already introduced a new way of doing this <em>only a few weeks ago</em>.</p>
+<p>Staying up to date in our JavaScript-driven world can be tough &#8212; and that&#8217;s why I provide my Newsletter! Subscribe to receive my latest guides to writing small apps with React. And in return for your e-mail, you&#8217;ll <em>immediately receive</em> three bonus <em>print-optimised</em> PDF cheatsheets &#8211; on React <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">(see preview)</a>, ES6 and JavaScript promises. All for free!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Example Projects</h2>
+<ul>
+<li><a href="https://github.com/unicorn-standard/starter-kit">webpack-black-triangle: A minimal boilerplate using Babel and Webpack</a></li>
+<li><a href="https://github.com/unicorn-standard/starter-kit">Unicorn Standard Starter Kit: A React boilerplate using Babel and Webpack</a></li>
+<li><a href="https://github.com/unicorn-standard/react-pacomo">react-pacomo: An NPM library compiled and tested with Babel</a></li>
+</ul>
+<h2>Read More</h2>
+<ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 &#8211; The Bits You’ll Actually Use</a></li>
+<li><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack Made Simple: Building ES6/LESS with Autorefresh</a></li>
+</ul>
+<h2>Relevant Babel Documentation</h2>
+<ul>
+<li><a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="https://babeljs.io/docs/usage/babelrc/">.babelrc</a></li>
+<li><a href="https://babeljs.io/docs/usage/cli/">Command Line Interface</a></li>
+<li><a href="https://babeljs.io/docs/usage/require/">Require Hook</a></li>
+<li><a href="https://babeljs.io/docs/usage/polyfill/">Polyfill</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/the-complete-guide-to-es6-with-babel-6/">The Complete Guide to ES6 with Babel 6</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/the-complete-guide-to-es6-with-babel-6/feed/</wfw:commentRss>
+			<slash:comments>5</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Teaching Gulp ES6, with Babel 6</title>
+		<link>/teaching-gulp-es6-with-babel-6/</link>
+					<comments>/teaching-gulp-es6-with-babel-6/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2015 13:45:48 +0000</pubDate>
+				<category><![CDATA[Build Systems]]></category>
+		<category><![CDATA[ES6]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<guid isPermaLink="false">/?p=929</guid>
+
+					<description><![CDATA[<p>This guide is part of The Complete Guide to ES6 with Babel 6 series. If you&#8217;re having trouble upgrading to Babel 6, start with Six Things You Need To Know About Babel 6. So you&#8217;ve written your app, your tests and your libraries in ES6. You&#8217;ve gotten so used to the new syntax that it... <a class="more-link" href="/teaching-gulp-es6-with-babel-6/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/teaching-gulp-es6-with-babel-6/">Teaching Gulp ES6, with Babel 6</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><em>This guide is part of <a href="/the-complete-guide-to-es6-with-babel-6">The Complete Guide to ES6 with Babel 6</a> series. If you&#8217;re having trouble upgrading to Babel 6, start with <a href="/the-six-things-you-need-to-know-about-babel-6">Six Things You Need To Know About Babel 6</a>.</em></p>
+<p>So you&#8217;ve written your app, your tests and your libraries in ES6. You&#8217;ve gotten so used to the new syntax that it feels unnatural even <em>trying</em> to write ES5. And this makes it all the more jarring when you add a Gulp file with an <code>import</code> statement, and suddenly this happens:</p>
+<pre><code>/unicorn-standard-boilerplate/gulpfile.js:1
+(function (exports, require, module, __filename, __dirname) { import del from
+                                                              ^^^^^^
+SyntaxError: Unexpected reserved word
+</code></pre>
+<p>Oops, <code>gulpfile.js</code> only supports ES5. But lucky for you, teaching it ES6 is <em>almost</em> as simple as renaming a file. Almost&#8230;</p>
+<p><span id="more-929"></span></p>
+<h2>Installing dependencies</h2>
+<p><em>Skip this section if you&#8217;ve already added Babel 6 and any required presets/plugins to your project.</em></p>
+<p>Babel 6 doesn&#8217;t play well with its younger self, so start by removing any older Babel packages from <code>package.json</code> &#8212; <code>babel</code>, <code>babel-core</code>, etc. Next, clean up what&#8217;s left by deleting your <code>node_modules</code> directory and reinstalling your non-babel dependencies with <code>npm install</code>.</p>
+<p>We&#8217;ll need to install the <code>babel-core</code> package to get access to the Babel <a href="https://babeljs.io/docs/usage/require/">require hook</a> (which Gulp uses), and the <code>babel-preset-es2015</code> package to get access to Babel&#8217;s collection of ES2015 transforms:</p>
+<pre><code>npm install babel-core babel-preset-es2015 --save-dev
+</code></pre>
+<p>If you want to use any of ES6&#8217;s new built-ins in your Babel tasks &#8212; e.g.  <code>Set</code>, <code>Symbol</code> or Promise` &#8212; you&#8217;ll also need to install the Babel polyfill:</p>
+<pre><code>npm install babel-polyfill --save-dev
+</code></pre>
+<div class="hint">
+<strong>But other tutorials say to install babel-polyfill with <code>--save</code>, not <code>--save-dev</code>?</strong></p>
+<p>Yep, and they&#8217;re correct. The difference is that for Gulp, <code>babel-polyfill</code> only needs to run while Gulp is running &#8212; not while your app is. If you&#8217;re using <code>babel-polyfill</code> in your application too, keep it is a a <code>dependency</code>, not a <code>devDependency</code>.
+</div>
+<h2>Configuring Babel</h2>
+<p>Here&#8217;s a fun facts about Babel 6: it won&#8217;t actually <em>use</em> the ES2015 package which you&#8217;ve uninstalled until you tell it to do so. Unfortunately, there is no way to get Gulp to pass this configuration to Babel. So instead we&#8217;ll need to create a <code>.babelrc</code> file in the project&#8217;s root directory, which applies to the entire project:</p>
+<pre><code>{
+  "presets": ["es2015"]
+}
+</code></pre>
+<div class="hint">
+<strong>Hint: Global configuration</strong></p>
+<p>Unfortunately, <code>.babelrc</code> is shared between all tools which can&#8217;t set their own configuration. For example, the Mocha test runner <em>also</em> reads <code>.babelrc</code> when used with the Babel register script.  Plan accordingly, and try not to put anything in there which is going to surprise you later on.
+</div>
+<h2>Telling Gulp to Babel</h2>
+<p>Once you&#8217;ve got Babel installed and configured, teaching Gulp to pass the gulpfile through Babel is surprisingly simple. Just rename your <code>gulpfile.js</code> to <code>gulpfile.babel.js</code>! You can then use the <code>gulp</code> command as before, but with ES6 syntax too!</p>
+<p>The only caveat is that if you also want to use ES6 built-ins like <code>Set</code>, <code>Promise</code> and <code>Symbol</code>, you&#8217;ll need to require the <code>babel-polyfill</code> package that you installed earlier. To do so, just add an <code>import</code> statement to the very top of your <code>gulpfile.babel.js</code>:</p>
+<pre><code>import `babel-polyfill`;
+</code></pre>
+<p>My experience is that the new built-ins aren&#8217;t always needed in gulpfiles, so don&#8217;t add this import unless you have a reason to.</p>
+<h2>Examples</h2>
+<p>For an example of a package with a <code>gulpfile.babel.js</code> using Babel 6, see Unicorn Standard&#8217;s <a href="https://github.com/unicorn-standard/starter-kit">starter-kit</a>.</p>
+<h2>OK, it works! But for how long?</h2>
+<p>Here&#8217;s a little story: while writing this article, I learned that the <a href="https://babeljs.io/docs/usage/require/">require hook</a> in <code>babel-core</code> which Gulp uses is <em>already</em> set to be deprecated. Despite the fact that Babel 6 already introduced a new way of doing this <em>only a few weeks ago</em>. Unfortunately we can&#8217;t use the new package just yet, as Gulp hasn&#8217;t quite caught up yet.</p>
+<p>Staying up to date in our JavaScript-driven world can be tough &#8212; and that&#8217;s why I provide my Newsletter! Subscribe to receive my latest guides on writing <em>small</em> apps with React. And in return for your e-mail, you&#8217;ll <em>immediately receive</em> three bonus <em>print-optimised</em> PDF cheatsheets &#8211; on React <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">(see preview)</a>, ES6 and JavaScript promises. All for free!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="https://babeljs.io/docs/usage/require/">Babel Documentation: Require Hook</a></li>
+<li><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Compiling ES6 NPM packages with the Babel 6 CLI</a></li>
+<li><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/">Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li><a href="https://github.com/unicorn-standard/starter-kit">See an ES6 Gulpfile in action at the Unicorn Standard Starter Kit</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/teaching-gulp-es6-with-babel-6/">Teaching Gulp ES6, with Babel 6</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/teaching-gulp-es6-with-babel-6/feed/</wfw:commentRss>
+			<slash:comments>4</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Testing in ES6 with Mocha and Babel 6</title>
+		<link>/testing-in-es6-with-mocha-and-babel-6/</link>
+					<comments>/testing-in-es6-with-mocha-and-babel-6/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Wed, 11 Nov 2015 10:52:18 +0000</pubDate>
+				<category><![CDATA[Build Systems]]></category>
+		<category><![CDATA[ES6]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<guid isPermaLink="false">/?p=922</guid>
+
+					<description><![CDATA[<p>This guide is part of The Complete Guide to ES6 with Babel 6 series. If you&#8217;re having trouble upgrading to Babel 6, start with Six Things You Need To Know About Babel 6. So you&#8217;ve written a useful little app with ES6, and being the excellent developer that you are, you want to test it.... <a class="more-link" href="/testing-in-es6-with-mocha-and-babel-6/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/testing-in-es6-with-mocha-and-babel-6/">Testing in ES6 with Mocha and Babel 6</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><em>This guide is part of <a href="/the-complete-guide-to-es6-with-babel-6">The Complete Guide to ES6 with Babel 6</a> series. If you&#8217;re having trouble upgrading to Babel 6, start with <a href="/the-six-things-you-need-to-know-about-babel-6">Six Things You Need To Know About Babel 6</a>.</em></p>
+<p>So you&#8217;ve written a useful little app with ES6, and being the excellent developer that you are, you want to <em>test</em> it. You&#8217;ve got some experience testing with <a href="https://mochajs.org/">Mocha</a>, so you write a few tests and run them. And <em>bam</em>, nothing works. Why? Because by default, Mocha only knows ES5. But luckily, teaching Mocha ES6 only takes about a minute and 30 seconds!</p>
+<p><span id="more-922"></span></p>
+<h2>Dependencies</h2>
+<p><em>Skip this section if you&#8217;ve already installed Babel 6 and any required presets/plugins.</em></p>
+<p>Babel 6 doesn&#8217;t play well with its younger self, so start by removing any older Babel packages from <code>package.json</code> &#8212; <code>babel</code>, <code>babel-core</code>, etc. Make sure you <code>npm uninstall &lt;package-name&gt;</code> each one to remove them from <code>node_modules</code> too.</p>
+<p>We&#8217;ll need to install the <code>babel-core</code> package to get access to its <a href="https://babeljs.io/docs/usage/require/">require hook</a>:</p>
+<pre><code>npm install babel-core --save-dev
+</code></pre>
+<p>Once complete, you&#8217;ll need to install the <a href="https://babeljs.io/docs/plugins/">presets and plugins</a> you want to use to transform your code. Start with <code>babel-preset-es2015</code> &#8211; Babel&#8217;s collection of ES6 transforms. If you want to use <a href="https://facebook.github.io/jsx/">JSX</a> in your tests, you&#8217;ll also want <code>babel-preset-react</code>. You can also use experimental ES7 features by adding <code>babel-preset-stage-0</code>, but please take a long, hard think about your life before you do.</p>
+<pre><code># For ES6/ES2015 support
+npm install babel-preset-es2015 --save-dev
+
+# If you want to use JSX
+npm install babel-preset-react --save-dev
+
+# If you *must* use experimental ES7 features
+npm install babel-preset-stage-0 --save-dev
+</code></pre>
+<h2>Configuring Babel</h2>
+<p>Of course, just having Babel&#8217;s packages installed isn&#8217;t enough. We still need to tell Babel to use them!</p>
+<p>For the <a href="/using-es6-in-the-browser-with-babel-6-and-webpack/">Webpack</a> and <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Babel CLI</a> episodes, we were able to do this with configuration specific to each tool. But while Mocha let&#8217;s us run our tests through Babel, <em>it provides no way to configure it</em>. This means we&#8217;ll need to configure Babel with a <code>.babelrc</code> file in the project&#8217;s root directory:</p>
+<pre><code>{
+  "presets": ["es2015"]
+}
+</code></pre>
+<p>If you want to use the <code>react</code> or <code>stage-0</code> presets, just add them to the <code>presets</code> array.</p>
+<div class="hint">
+<strong>Hint: Global configuration</strong></p>
+<p>Unfortunately, <code>.babelrc</code> is shared between all tools which can&#8217;t set their own configuration. For example, Gulp also reads <code>.babelrc</code> when used with a <code>gulpfile.babel.js</code>.  Plan accordingly, and try not to put anything in there which is going to surprise you later on.
+</div>
+<h2>Running ES6 tests</h2>
+<p>Once Babel is installed and configured, all that is left is to tell Mocha to use it!</p>
+<pre><code>mocha --compilers js:babel-core/register
+</code></pre>
+<p>Assuming you haven&#8217;t used any of ES6&#8217;S new built-in&#8217;s, your tests should pass with flying colours. But what if you have?</p>
+<h2>Now my tests compile, but fail?!</h2>
+<p>While the <code>babel-core/register</code> script transforms your tests into ES5 JavaScript, it takes care not to change the global environment. That means that if <code>Promise</code>, <code>Map</code>, <code>Set</code> or <code>Object.assign</code> are missing from your JavaScript environment, they&#8217;ll <em>stay</em> missing.</p>
+<p>For testing, this has a definite upside: your tests see what the consumer sees. But maybe you&#8217;re package isn&#8217;t meant to be published, or maybe you&#8217;re testing an app instead of a library. In this case, you don&#8217;t <em>care</em> about the global environment. And in all likelihood, you want to use ES6 &#8212; not a confusing subset of it. So install the built-ins with <code>babel-polyfill</code>:</p>
+<pre><code>npm install babel-polyfill --save
+</code></pre>
+<p>And then require them by adding it to the top of your tests:</p>
+<pre><code>import 'babel-polyfill'
+</code></pre>
+<p>But keep in mind that if you&#8217;re publishing a library, this <em>will</em> eventually cause you to publish code which will not run on the majority of JavaScript runtimes. Loading <code>babel-polyfill</code> in your tests won&#8217;t load it for your consumers too. <em>Be careful.</em></p>
+<h2>Tests vs Source</h2>
+<p>Talking about published code, let&#8217;s say you&#8217;re writing a library which you&#8217;d like to publish to NPM. Because you&#8217;ve done your research, you know that your <em>published</em> source should be ES5. And to make this happen, you&#8217;ve <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">set up your project</a> to compile your <code>src</code> directory&#8217;s files to a <code>lib</code> directory before publishing.</p>
+<p>Naturally, your tests import the <code>lib</code> code which you&#8217;re actually publishing, not the original <code>src</code> files. And while this may go without saying, <em>make sure you compile your code before testing!</em></p>
+<p>Assuming you&#8217;ve followed <a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">part 1</a> and configured <code>npm run compile</code> to compile your source, that means running your tests <em>after</em> the compilation step:</p>
+<pre><code>npm run compile &amp;&amp; mocha --compilers js:babel-core/register
+</code></pre>
+<p>Of course, even though you <em>know</em> you should run your tests like this, you may well forget. And that&#8217;s why you should&#8230;</p>
+<h2>Configure your tests in <code>package.json</code></h2>
+<p>By adding a <code>test</code> entry to the <code>scripts</code> object in <code>package.json</code>, NPM will know to run the above test command whenever we call <code>npm test</code> from the terminal:</p>
+<pre><code>"scripts": {
+    "test": "npm run compile &amp;&amp; mocha --compilers js:babel-core/register"
+},
+</code></pre>
+<div class="hint">
+<strong>Hint: Upgrading from previous Babel versions</strong></p>
+<p>Babel 5&#8217;s <code>register</code> script was located in the <code>babel</code> package, not the <code>babel-core</code> package. So if you&#8217;re upgrading, make sure to update the package name in the <code>test</code> script in <code>package.json</code>!
+</div>
+<h2>Examples</h2>
+<p>For an example of a package with tests run with Mocha and Babel 6, see <a href="https://github.com/unicorn-standard/react-pacomo">react-pacomo</a>.</p>
+<h2>OK, it works! But for how long?</h2>
+<p>Here&#8217;s a little story: while writing these guides, I learned that the <a href="https://babeljs.io/docs/usage/require/">require hook</a> in <code>babel-core</code> used by Mocha is <em>already</em> set to be deprecated (it will now be placed in a new package called <code>babel-require</code>). This is despite the fact that Babel 6 only introduced the current way of doing things <em>a few weeks ago</em>.</p>
+<p>Staying up to date in our JavaScript-driven world can be tough &#8212; and that&#8217;s why I provide my Newsletter! Subscribe to receive my latest guides to writing small apps with React. And in return for your e-mail, you&#8217;ll <em>immediately receive</em> three bonus <em>print-optimised</em> PDF cheatsheets &#8211; on React <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">(see preview)</a>, ES6 and JavaScript promises. All for free!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="https://babeljs.io/docs/usage/require/">Babel Documentation: Require Hook</a></li>
+<li><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Compiling ES6 NPM packages with the Babel 6 CLI</a></li>
+<li><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/">Using ES6 and ES7 in the Browser, with Babel 6 and Webpack</a></li>
+<li><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack Made Simple: Building ES6/LESS with Autorefresh</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li><a href="https://github.com/unicorn-standard/react-pacomo">See compiling and testing an NPM package in action at react-pacomo</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/testing-in-es6-with-mocha-and-babel-6/">Testing in ES6 with Mocha and Babel 6</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/testing-in-es6-with-mocha-and-babel-6/feed/</wfw:commentRss>
+			<slash:comments>10</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Writing NPM packages with ES6 using the Babel 6 CLI</title>
+		<link>/writing-npm-packages-with-es6-using-the-babel-6-cli/</link>
+					<comments>/writing-npm-packages-with-es6-using-the-babel-6-cli/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Mon, 09 Nov 2015 09:27:36 +0000</pubDate>
+				<category><![CDATA[Build Systems]]></category>
+		<category><![CDATA[ES6]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<guid isPermaLink="false">/?p=877</guid>
+
+					<description><![CDATA[<p>This guide is part of The Complete Guide to ES6 with Babel 6 series. If you&#8217;re having trouble upgrading to Babel 6, start with Six Things You Need To Know About Babel 6. Even if you write your NPM package with ES2015, it is important that the code you publish is compatible with everyone else&#8217;s... <a class="more-link" href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Writing NPM packages with ES6 using the Babel 6 CLI</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><em>This guide is part of <a href="/the-complete-guide-to-es6-with-babel-6">The Complete Guide to ES6 with Babel 6</a> series. If you&#8217;re having trouble upgrading to Babel 6, start with <a href="/the-six-things-you-need-to-know-about-babel-6">Six Things You Need To Know About Babel 6</a>.</em></p>
+<p>Even if you write your NPM package with ES2015, it is important that the code you publish is compatible with <em>everyone else&#8217;s</em> JavaScript environments. That means compiling your code to ES5 before publishing it. And of course, the best way to do so is with the Babel CLI.</p>
+<p><span id="more-877"></span></p>
+<p>Before we set up compilation with Babel 6, make sure to delete any <em>previous</em> Babel-related packages from your project&#8217;s <code>node_modules</code> directory &#8212; <code>babel</code>, <code>babel-core</code>, etc.. Once you&#8217;ve done so, install the <code>babel-cli</code> package and ES2015 preset:</p>
+<pre><code>npm install babel-cli babel-preset-es2015 --save-dev
+</code></pre>
+<p>If you&#8217;d like to use proposed ES7 features, you&#8217;ll also need to install the <code>babel-preset-stage-0</code> package:</p>
+<pre><code>npm install babel-preset-stage-0 --save-dev
+</code></pre>
+<p>To instruct Babel to <em>use</em> the installed presets, pass them to to the <code>--presets</code> option as a comma-separated list. So assuming your source is in a <code>src</code> directory and you want to place your output in <code>lib</code>, you&#8217;d do this:</p>
+<pre><code>./node_modules/.bin/babel --presets es2015,stage-0 -d lib/ src/
+</code></pre>
+<p>We call Babel from <code>./node_modules/.bin/babel</code> instead of installing babel globally with <code>npm install babel-cli -g</code> to ensure that we&#8217;re not messing up the environment of any other projects using Babel 5. But typing out this command sure doesn&#8217;t sound like much fun, so let&#8217;s record this in <code>package.json</code> as a <code>compile</code> script:</p>
+<pre><code>"scripts": {
+    "compile": "babel --presets es2015,stage-0 -d lib/ src/"
+}
+</code></pre>
+<p>You can now compile your project by just typing <code>npm run compile</code> from your project root.</p>
+<p>Finally, let&#8217;s add a <code>prepublish</code> script to ensure compilation happens automatically before uploading to NPM:</p>
+<pre><code>"scripts": {
+    "compile": "babel --presets es2015,stage-0 -d lib/ src/",
+    "prepublish": "npm run compile"
+}
+</code></pre>
+<p>Don&#8217;t forget to add <code>lib</code> to your <code>.gitignore</code> file, and <code>src/</code> to your <code>.npmignore</code> file!</p>
+<pre><code># .gitignore - the files to not push via git
+lib
+
+# .npmignore - the files to not push to NPM
+src/
+</code></pre>
+<div class="hint">
+<strong>Hint: <code>.babelrc</code></strong></p>
+<p>Note that you <em>could</em> omit the <code>--presets es2015,stage-0</code>, and instead add a <code>.babelrc</code> file:</p>
+<pre><code>{
+  "presets": ["es2015","stage-0"]
+}
+</code></pre>
+<p>However, my recommendation is to keep the options to your command-line tools on the command line.
+</div>
+<h2>Babel Runtime</h2>
+<p>Babel can&#8217;t support all of ES6 with compilation alone &#8211; it also needs to add some code to your application.</p>
+<p>This is generally solved by requiring the <a href="https://babeljs.io/docs/usage/polyfill/">babel-polyfill</a> package at the entry point of your application. This package polyfills new ES6 Built-ins like Map, Set and Promise, while also requiring <a href="https://www.npmjs.com/package/babel-runtime">babel-runtime</a> to add runtime support for Babel&#8217;s generators.</p>
+<p><em>However.</em> If you&#8217;re publishing a library to NPM, it is bad practice to mess with the entire global environment. In this case, you have three options:</p>
+<ol>
+<li>Avoid features which require runtime support (including new Built-ins and generators)</li>
+<li>Require <code>babel-runtime</code> directly, allowing usage of generators, but not polyfills which would modify the global environment</li>
+<li>Require <code>babel-polyfill</code> as a peer dependency and document that the consuming app must require it</li>
+</ol>
+<h2>Examples</h2>
+<p>For an example of an NPM package configured with Babel 6, see <a href="https://github.com/unicorn-standard/react-pacomo">react-pacomo</a>.</p>
+<h2>More ways to Babel</h2>
+<p>Now that you&#8217;ve got your library building with ES6, why not test it with ES6 too? And write your tasks with it. And write your app with it&#8230;</p>
+<ul>
+<li><a href="/testing-in-es6-with-mocha-and-babel-6/"><strong>Testing with Mocha</strong> and Babel&#8217;s <code>register</code> script</a></li>
+<li><a href="/teaching-gulp-es6-with-babel-6/"><strong>Running tasks</strong> with <code>gulpfile.babel.js</code></a></li>
+<li><a href="/using-es6-in-the-browser-with-babel-6-and-webpack/"><strong>Using ES6 in the Browser</strong> with Webpack&#8217;s babel-loader</a></li>
+</ul>
+<h2>Keeping up to date</h2>
+<p>So you&#8217;ve made Babel 6 work. But the JavaScript world moves fast &#8212; how long will it <em>stay</em> working?</p>
+<p>If trying to keep up feel overwhelming, I&#8217;d love to help! Just subscribe to my free Newsletter to receive news and guides on the most important tools for <strong>people making small apps with React</strong>. And in return for your e-mail, you&#8217;ll <em>immediately receive</em> three bonus <em>print-optimised</em> PDF cheatsheets &#8211; on React <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">(see preview)</a>, ES6 and JavaScript promises. All for free!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/es6-the-bits-youll-actually-use/">ES6 &#8211; The Bits You’ll Actually Use</a></li>
+<li><a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="/the-six-things-you-need-to-know-about-babel-6">The Six Things You Need To Know About Babel 6</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Writing NPM packages with ES6 using the Babel 6 CLI</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/writing-npm-packages-with-es6-using-the-babel-6-cli/feed/</wfw:commentRss>
+			<slash:comments>10</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>The Six Things You Need To Know About Babel 6</title>
+		<link>/the-six-things-you-need-to-know-about-babel-6/</link>
+					<comments>/the-six-things-you-need-to-know-about-babel-6/#comments</comments>
+		
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Mon, 09 Nov 2015 09:12:18 +0000</pubDate>
+				<category><![CDATA[Build Systems]]></category>
+		<category><![CDATA[ES6]]></category>
+		<category><![CDATA[Javascript]]></category>
+		<guid isPermaLink="false">/?p=873</guid>
+
+					<description><![CDATA[<p>Over the last year, Babel has become the go-to tool for transforming ES2015 and JSX into boring old JavaScript. But seemingly overnight, Babel 6 changed everything. The babel package was deprecated, running babel doesn&#8217;t actually transform ES2015 to ES5, and the old docs have basically disappeared. But Don&#8217;t Panic! To get you up to speed,... <a class="more-link" href="/the-six-things-you-need-to-know-about-babel-6/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
+<p>The post <a rel="nofollow" href="/the-six-things-you-need-to-know-about-babel-6/">The Six Things You Need To Know About Babel 6</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Over the last year, Babel has become the go-to tool for transforming ES2015 and JSX into boring old JavaScript. But seemingly overnight, <em>Babel 6 changed everything</em>. The <code>babel</code> package was deprecated, running <code>babel</code> doesn&#8217;t actually transform ES2015 to ES5, and the old docs have basically <em><a href="https://github.com/babel/babel.github.io/tree/862b43db93e48762671267034a50c30c00e433e2">disappeared</a></em>.</p>
+<p>But Don&#8217;t Panic! To get you up to speed, I&#8217;ve put together a brief list of the <em>six most important</em> changes. And if you need a little more help, my <a href="/the-complete-guide-to-es6-with-babel-6/">Complete Guide to ES6 with Babel 6</a> will walk you through the practical details; including the CLI, Webpack, Mocha and Gulp.</p>
+<p><span id="more-873"></span><a id="content"></a></p>
+<ol>
+<li>
+<p><strong>The <code>babel</code> npm package no longer exists.</strong> Instead, Babel has been split into multiple packages:</p>
+<ul>
+<li><a href="http://npmjs.com/package/babel-cli">babel-cli</a>, which contains the <code>babel</code> command line interface</li>
+<li><a href="https://www.npmjs.com/package/babel-core">babel-core</a>, which contains the Node API and <code>require</code> hook</li>
+<li><a href="https://www.npmjs.com/package/babel-polyfill">babel-polyfill</a>, which when <code>require</code>d, sets you up with a full ES2015-ish environment</li>
+</ul>
+<p>To avoid accidental conflicts, make sure to remove any previous Babel packages like <code>babel</code>, <code>babel-core</code>, etc. from your <code>package.json</code>, and then <code>npm uninstall</code> them.</p>
+</li>
+<li>
+<p><strong>Every single transform is now a plugin, <em>including</em>  ES2015 and JSX.</strong> And as a result, <em>nothing happens</em> by default &#8211; so you&#8217;ll need to install the correct plugins. Actually, ES2015 consists of about <em>20</em> plugins. You don&#8217;t want to install each of these manually, which is why Babel has added presets.</p>
+</li>
+<li>
+<p><strong>Babel 6 adds presets, or collections of plugins.</strong> And it provides two presets for the functionality provided by default in Babel 5:</p>
+<pre><code>  npm install babel-preset-es2015 babel-preset-react --save-dev
+</code></pre>
+<p>But even after installing a preset, you need to tell Babel to use it.</p>
+</li>
+<li>
+<p><strong><code>.babelrc</code> is kinda a necessity now.</strong> Since Babel no longer uses ES2015 and React transforms by default, the <code>require</code> hook used by <code>gulpfile.babel.js</code> and <a href="https://mochajs.org/">mocha</a> will <em>not actually do anything</em>. Fix this by creating a <code>.babelrc</code> in your project directory:</p>
+<pre><code>{
+  "presets": ["es2015", "react"]
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Stage 0 is now a separate preset, not an option.</strong> Previously, you enabled ES7 features like decorators and <code>async</code>/<code>await</code> by passing <code>--stage 0</code> to babel. Now, you install and load the <code>babel-preset-stage-0</code> package.</p>
+</li>
+<li>
+<p><strong>The <code>--external-helpers</code> option is now a plugin.</strong> To avoid repeated inclusion of Babel&#8217;s helper functions, you&#8217;ll now need to install and apply the <code>babel-plugin-transform-runtime</code> package, and then require the <code>babel-runtime</code> package within your code (yes, even if you&#8217;re using the polyfill).</p>
+</li>
+</ol>
+<p>And there you have it, you&#8217;re now up to speed on Babel 6&#8217;s packages, plugins, presets and options! But what about Webpack? What about passing presets via the CLI? I&#8217;ve tried to keep this list as <em>succinct</em> as possible, and to do so I&#8217;ve kept my <a href="/the-complete-guide-to-es6-with-babel-6/">Complete Guide to ES6 with Babel 6</a> as a separate series &#8212; covering the CLI, Webpack, Gulp and Mocha.</p>
+<h2>But everything moves so fast. How will I keep up to date?</h2>
+<p>With ES2015 already standardised, there is no argument that Babel is a necessary tool for most JavaScript developers. But does the thought of integrating an entire <em>platform</em> for transforming JavaScript into <em>every new project</em> worry you a little bit? The speed at which the JavaScript ecosystem is growing can feel demoralising. But luckily, it doesn&#8217;t have to be that way!</p>
+<p>The thing is that for most projects, <em>scaling is a problem you&#8217;d like to have</em>. And until you&#8217;re at that point, you&#8217;ll be more productive by <strong>focusing on a few important tools</strong> than trying to grasp everything.</p>
+<p>One way to keep focussed on the tools which count is to join my Newsletter. You&#8217;ll receive one e-mail every couple weeks with information tailored to <em>small</em> apps using React. And in return for your e-mail, you&#8217;ll <em>immediately receive</em> three bonus <em>print-optimised</em> PDF cheatsheets &#8211; on React <a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">(see preview)</a>, ES6 and JavaScript promises. All for free!</p>
+<script src="https://app.convertkit.com/assets/CKJS4.js?v=21"></script>
+
+<div class="ck_form ck_vertical_subscription_form">
+  <div class="ck_form_content">
+      <h3 class="ck_form_title">I will send you useful articles, cheatsheets and code.</h3>
+      <div class="ck_description">
+          I won't send you useless inbox filler. <em>No spam, ever.</em>
+      </div>
+  </div>
+
+  <div class="ck_form_fields">
+
+    <div id='ck_success_msg'  style='display:none;'>
+      <p>Thanks! Please check your email for the link to your cheatsheets.</p>
+    </div>
+
+    <!--  Form starts here  -->
+    <form id="ck_subscribe_form" class="ck_subscribe_form" action="https://app.convertkit.com/landing_pages/4375/subscribe" data-remote="true">
+      <input type="hidden" value="{&quot;embed_style&quot;:&quot;inline&quot;,&quot;embed_trigger&quot;:&quot;scroll_percentage&quot;,&quot;scroll_percentage&quot;:&quot;70&quot;,&quot;delay_seconds&quot;:&quot;10&quot;,&quot;display_position&quot;:&quot;br&quot;,&quot;display_devices&quot;:&quot;all&quot;,&quot;days_no_show&quot;:&quot;15&quot;,&quot;converted_behavior&quot;:&quot;show&quot;}" id="ck_form_options"></input>
+      <input type="hidden" name="id" value="4375" id="landing_page_id"></input>
+      <div class="ck_errorArea">
+        <div id="ck_error_msg" style="display:none">
+          <p>There was an error submitting your subscription. Please try again.</p>
+        </div>
+      </div>
+      <div class="ck_control_group ck_first_name_field_group">
+        <label class="ck_label" for="ck_firstNameField">First Name</label>
+        <input type="text" name="first_name" class="ck_first_name" id="ck_firstNameField"></input>
+      </div>
+      <div class="ck_control_group ck_email_field_group">
+        <label class="ck_label" for="ck_emailField">Email Address</label>
+          <input type="email" name="email" class="ck_email_address" id="ck_emailField" required></input>
+      </div>
+      <label class='ck_checkbox' style='display:none;'>
+        <input class="optIn ck_course_opted" name='course_opted' type="checkbox" id="optIn" checked />
+        <span class='ck_opt_in_prompt'>I'd like to receive the free email course.</span>
+      </label>
+
+      <button class="subscribe_button ck_subscribe_button btn fields" id='ck_subscribe_button'>
+       Join over 13,000 subscribers
+      </button>
+      <span class="ck_guarantee">
+        Unsubscribe at any time.
+      </span>
+    </form>
+  </div>
+
+ </div>
+
+
+<style type="text/css">/* Layout */
+  .ck_form {
+  /* divider image */
+  background: #fff url(data:image/gif;base64,R0lGODlhAQADAIABAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUQ5NjM5RjgxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUQ5NjM5RjkxQUVEMTFFNEJBQTdGNTQwMjc5MTZDOTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDk2MzlGNjFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxRDk2MzlGNzFBRUQxMUU0QkFBN0Y1NDAyNzkxNkM5NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAABAAMAAAICRFIAOw==) repeat-y center top;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  line-height: 1.5em;
+  overflow: hidden;
+  color: #666;
+  font-size: 16px;
+  border-top: solid 20px #3071b0;
+  border-top-color: #b30e2f;
+  border-bottom: solid 10px #3d3d3d;
+  border-bottom-color: #5f0719;
+  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+  clear: both;
+  margin: 20px 0px;
+}
+
+.ck_form * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#ck_subscribe_form {
+  clear: both;
+}
+
+/* Element Queries — uses JS */
+
+.ck_form_content, .ck_form_fields {
+  width: 50%;
+  float: left;
+  padding: 5%;
+}
+
+.ck_form.ck_horizontal {
+}
+
+.ck_form_content {
+  border-bottom: none;
+}
+
+.ck_form.ck_vertical {
+  background: #fff;
+}
+
+.ck_vertical .ck_form_content, .ck_vertical .ck_form_fields {
+  padding: 10%;
+  width: 100%;
+  float: none;
+}
+
+.ck_vertical .ck_form_content {
+  border-bottom: 1px dotted #aaa;
+  overflow: hidden;
+}
+
+/* Trigger the vertical layout with media queries as well */
+
+@media all and (max-width: 499px) {
+
+  .ck_form {
+    background: #fff;
+  }
+
+  .ck_form_content, .ck_form_fields {
+    padding: 10%;
+    width: 100%;
+    float: none;
+  }
+
+  .ck_form_content {
+    border-bottom: 1px dotted #aaa;
+  }
+
+}
+
+/* Content */
+
+.ck_form_content h3 {
+  margin: 0px 0px 15px;
+  font-size: 24px;
+  padding: 0px;
+}
+
+
+.ck_form_content p {
+  font-size: 14px;
+}
+
+.ck_image {
+  float: left;
+  margin-right: 5px;
+}
+
+/* Form fields */
+
+.ck_errorArea {
+  display: none;
+}
+
+#ck_success_msg {
+  padding: 10px 10px 0px;
+  border: solid 1px #ddd;
+  background: #eee;
+}
+
+.ck_label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ck_form input[type="text"], .ck_form input[type="email"] {
+  font-size: 14px;
+  padding: 10px 8px;
+  width: 100%;
+  border: 1px solid #d6d6d6; /* stroke */
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; /* border radius */
+  background-color: #f8f7f7; /* layer fill content */
+  margin-bottom: 5px;
+  height: auto;
+}
+
+.ck_form input[type="text"]:focus, .ck_form input[type="email"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.ck_checkbox {
+  padding: 10px 0px 10px 20px;
+  display: block;
+  clear: both;
+}
+
+.ck_checkbox input.optIn {
+  margin-left: -20px;
+  margin-top: 0;
+}
+.ck_form .ck_opt_in_prompt {
+  margin-left: 4px;
+}
+.ck_form .ck_opt_in_prompt p {
+  display: inline;
+}
+
+.ck_form .ck_subscribe_button {
+    width: 100%;
+    color: #fff;
+    margin: 10px 0px 0px;
+    padding:  10px 0px;
+    font-size: 18px;
+    background: #b30e2f;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px; /* border radius */
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+  }
+
+
+.ck_form .ck_guarantee {
+  color: #626262;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0px;
+  display: block;
+}
+
+.ck_form .ck_powered_by {
+  display: block;
+  color: #aaa;
+}
+
+.ck_form .ck_powered_by:hover {
+  display: block;
+  color: #444;
+}
+
+.ck_converted_content {
+  display: none;
+  padding: 5%;
+  background: #fff;
+}
+
+
+
+</style>
+<p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#97;&#109;&#101;&#115;&#64;&#106;&#97;&#109;&#101;&#115;k&#x6e;&#x65;&#x6c;&#x73;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>. I&#8217;m looking forward to hearing from you!</p>
+<h2>Read More</h2>
+<ul>
+<li><a href="/the-complete-guide-to-es6-with-babel-6/">The Complete Guide to ES6 with Babel 6</a></li>
+<li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
+<li><a href="/webpack-made-simple-build-es6-less-with-autorefresh-in-26-lines/">Webpack Made Simple: Building ES6/LESS with Autorefresh</a></li>
+</ul>
+<h2>Related Projects</h2>
+<ul>
+<li><a href="https://github.com/unicorn-standard/starter-kit">See Babel and Webpack in action in the Unicorn Standard Starter Kit</a></li>
+</ul>
+<p>The post <a rel="nofollow" href="/the-six-things-you-need-to-know-about-babel-6/">The Six Things You Need To Know About Babel 6</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
+]]></content:encoded>
+					
+					<wfw:commentRss>/the-six-things-you-need-to-know-about-babel-6/feed/</wfw:commentRss>
+			<slash:comments>17</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

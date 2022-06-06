@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Can I dispatch multiple actions from Redux action creators?	</title>
+	<atom:link href="/can-i-dispatch-multiple-actions-from-redux-action-creators/feed/" rel="self" type="application/rss+xml" />
+	<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/</link>
+	<description></description>
+	<lastBuildDate>Thu, 16 Jun 2016 18:41:45 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Robert Plummer		</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-21266</link>
+
+		<dc:creator><![CDATA[Robert Plummer]]></dc:creator>
+		<pubDate>Thu, 16 Jun 2016 18:41:45 +0000</pubDate>
+		<guid isPermaLink="false">/?p=742#comment-21266</guid>
+
+					<description><![CDATA[This may make it in: https://github.com/reactjs/redux/pull/1813/commits]]></description>
+			<content:encoded><![CDATA[<p>This may make it in: <a href="https://github.com/reactjs/redux/pull/1813/commits" rel="nofollow ugc">https://github.com/reactjs/redux/pull/1813/commits</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Gábor Ottlik		</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-21080</link>
+
+		<dc:creator><![CDATA[Gábor Ottlik]]></dc:creator>
+		<pubDate>Tue, 14 Jun 2016 11:14:35 +0000</pubDate>
+		<guid isPermaLink="false">/?p=742#comment-21080</guid>
+
+					<description><![CDATA[This is an other alternative:
+redux-batched-actions
+https://github.com/tshelburne/redux-batched-actions
+
+Dan Abramov suggest handling with this way:
+https://github.com/reactjs/redux/issues/959#issuecomment-151446296]]></description>
+			<content:encoded><![CDATA[<p>This is an other alternative:<br />
+redux-batched-actions<br />
+<a href="https://github.com/tshelburne/redux-batched-actions" rel="nofollow ugc">https://github.com/tshelburne/redux-batched-actions</a></p>
+<p>Dan Abramov suggest handling with this way:<br />
+<a href="https://github.com/reactjs/redux/issues/959#issuecomment-151446296" rel="nofollow ugc">https://github.com/reactjs/redux/issues/959#issuecomment-151446296</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Max Hilland		</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-20022</link>
+
+		<dc:creator><![CDATA[Max Hilland]]></dc:creator>
+		<pubDate>Thu, 19 May 2016 21:14:39 +0000</pubDate>
+		<guid isPermaLink="false">/?p=742#comment-20022</guid>
+
+					<description><![CDATA[I&#039;m trying to use the redux-multi method of dispatching an array of action creators, and it seems to work except for one small oddity - my redux-logger middleware is reporting that the encapsulating array is itself an action, which gets dispatched and logged as &quot;undefined&quot; before the actual action creators themselves get dispatched. is there a way to have it ignore the encapsulating array?]]></description>
+			<content:encoded><![CDATA[<p>I&#8217;m trying to use the redux-multi method of dispatching an array of action creators, and it seems to work except for one small oddity &#8211; my redux-logger middleware is reporting that the encapsulating array is itself an action, which gets dispatched and logged as &#8220;undefined&#8221; before the actual action creators themselves get dispatched. is there a way to have it ignore the encapsulating array?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Jonathon Hibbard		</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-17309</link>
+
+		<dc:creator><![CDATA[Jonathon Hibbard]]></dc:creator>
+		<pubDate>Fri, 01 Apr 2016 15:48:39 +0000</pubDate>
+		<guid isPermaLink="false">/?p=742#comment-17309</guid>
+
+					<description><![CDATA[Great write up!]]></description>
+			<content:encoded><![CDATA[<p>Great write up!</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Boris		</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-4532</link>
+
+		<dc:creator><![CDATA[Boris]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2015 14:07:16 +0000</pubDate>
+		<guid isPermaLink="false">/?p=742#comment-4532</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3449&quot;&gt;James K Nelson&lt;/a&gt;.
+
+Hi James, 
+
+sorry for this late reply.
+You&#039;re right ! The expected behavior would be just one rendering after all the actions are done.
+
+I&#039;ll try to use the redux-multi and redux-batched-subscribe middlewares for that !
+
+Thank you.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3449">James K Nelson</a>.</p>
+<p>Hi James, </p>
+<p>sorry for this late reply.<br />
+You&#8217;re right ! The expected behavior would be just one rendering after all the actions are done.</p>
+<p>I&#8217;ll try to use the redux-multi and redux-batched-subscribe middlewares for that !</p>
+<p>Thank you.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3449</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2015 10:42:16 +0000</pubDate>
+		<guid isPermaLink="false">/?p=742#comment-3449</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3442&quot;&gt;Boris&lt;/a&gt;.
+
+Hi Boris,
+
+I think I could probably make this a little clear in the article, but what the batching does is ensures that all of the actions dispatched from a single `dispatch` call &lt;em&gt;in one tick&lt;/em&gt; result in only a single call to the handler function passed to &lt;code&gt;subscribe&lt;/code&gt;.
+
+So in your example, most of the dispatched items will result in separate renders. Since &lt;code&gt;closeModal&lt;/code&gt; and &lt;code&gt;cleanCheckout&lt;/code&gt; are synchronous, they should be batched into a single render call. I believe this is the behaviour you expect?]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3442">Boris</a>.</p>
+<p>Hi Boris,</p>
+<p>I think I could probably make this a little clear in the article, but what the batching does is ensures that all of the actions dispatched from a single `dispatch` call <em>in one tick</em> result in only a single call to the handler function passed to <code>subscribe</code>.</p>
+<p>So in your example, most of the dispatched items will result in separate renders. Since <code>closeModal</code> and <code>cleanCheckout</code> are synchronous, they should be batched into a single render call. I believe this is the behaviour you expect?</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Boris		</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3442</link>
+
+		<dc:creator><![CDATA[Boris]]></dc:creator>
+		<pubDate>Thu, 29 Oct 2015 07:16:14 +0000</pubDate>
+		<guid isPermaLink="false">/?p=742#comment-3442</guid>
+
+					<description><![CDATA[Hi James,
+
+I&#039;ve just read your latest articles, and thanks for sharing all this stuff !
+
+About the topic of this post and the fact of dispatching multiples actions ending up to only one render (if I get it right), how would you handle the case of fetching some date and providing info about the loading status ?
+let&#039;s say just displaying a spinner when the fetching starts and hiding it when it&#039;s done...
+If you render just once, it doesn&#039;t work.
+
+I&#039;m using the promise middleware of redux which allows us to dispatch 3 actions when fetching data : REQUEST, SUCCESS, FAILURE.
+
+I modified these middleware so that it always returns a promise even if the action creator was not a promise.
+
+It allows me to do things like that in my component : 
+
+buyVideoHandler (assetId, priceId) {
+    const { dispatch, video } = this.props
+    const payload = {
+        priceId,
+        productId : video._id,
+        assetId
+    }
+
+    dispatch(buyVideo(payload)).then(() =&#062; {
+        return dispatch(closeModal())
+    }).then(() =&#062; {
+        return dispatch(cleanCheckout())
+    }).then(() =&#062; {
+        this.context.history.pushState(null, `/${this.props.locale}/${ Routes.PATH.JOURNEY_VIEW }`)
+    }).catch((err) =&#062; {
+        debug(&#039;Error while buying video&#039;, err)
+    })
+}
+
+Here buyVideo make a call to an API endpoint, closeModal and cleanCheckout are just synchronous actions but which still return promises so that I can chain them.
+
+I prefer chaining the actions here (instead of inside the first action) because perhaps I don&#039;t want to chain all these actions every time the buyVideo action will be called but only in this specific component.
+
+What do you think about that ?
+
+Thanks.
+Boris.]]></description>
+			<content:encoded><![CDATA[<p>Hi James,</p>
+<p>I&#8217;ve just read your latest articles, and thanks for sharing all this stuff !</p>
+<p>About the topic of this post and the fact of dispatching multiples actions ending up to only one render (if I get it right), how would you handle the case of fetching some date and providing info about the loading status ?<br />
+let&#8217;s say just displaying a spinner when the fetching starts and hiding it when it&#8217;s done&#8230;<br />
+If you render just once, it doesn&#8217;t work.</p>
+<p>I&#8217;m using the promise middleware of redux which allows us to dispatch 3 actions when fetching data : REQUEST, SUCCESS, FAILURE.</p>
+<p>I modified these middleware so that it always returns a promise even if the action creator was not a promise.</p>
+<p>It allows me to do things like that in my component : </p>
+<p>buyVideoHandler (assetId, priceId) {<br />
+    const { dispatch, video } = this.props<br />
+    const payload = {<br />
+        priceId,<br />
+        productId : video._id,<br />
+        assetId<br />
+    }</p>
+<p>    dispatch(buyVideo(payload)).then(() =&gt; {<br />
+        return dispatch(closeModal())<br />
+    }).then(() =&gt; {<br />
+        return dispatch(cleanCheckout())<br />
+    }).then(() =&gt; {<br />
+        this.context.history.pushState(null, `/${this.props.locale}/${ Routes.PATH.JOURNEY_VIEW }`)<br />
+    }).catch((err) =&gt; {<br />
+        debug(&#8216;Error while buying video&#8217;, err)<br />
+    })<br />
+}</p>
+<p>Here buyVideo make a call to an API endpoint, closeModal and cleanCheckout are just synchronous actions but which still return promises so that I can chain them.</p>
+<p>I prefer chaining the actions here (instead of inside the first action) because perhaps I don&#8217;t want to chain all these actions every time the buyVideo action will be called but only in this specific component.</p>
+<p>What do you think about that ?</p>
+<p>Thanks.<br />
+Boris.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3302</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sun, 25 Oct 2015 23:18:26 +0000</pubDate>
+		<guid isPermaLink="false">/?p=742#comment-3302</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3296&quot;&gt;ivan quintero&lt;/a&gt;.
+
+Hi Ivan,
+
+Don&#039;t worry - there is nothing anti-patternish about this. Dispatching actions from action creators is ok - after all, that is why they&#039;re called action creators! It is dispatching actions &lt;em&gt;after&lt;/em&gt; actions have been processed which is frowned upon. For example, in a Redux `subscribe` function.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3296">ivan quintero</a>.</p>
+<p>Hi Ivan,</p>
+<p>Don&#8217;t worry &#8211; there is nothing anti-patternish about this. Dispatching actions from action creators is ok &#8211; after all, that is why they&#8217;re called action creators! It is dispatching actions <em>after</em> actions have been processed which is frowned upon. For example, in a Redux `subscribe` function.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: ivan quintero		</title>
+		<link>/can-i-dispatch-multiple-actions-from-redux-action-creators/#comment-3296</link>
+
+		<dc:creator><![CDATA[ivan quintero]]></dc:creator>
+		<pubDate>Sun, 25 Oct 2015 16:10:49 +0000</pubDate>
+		<guid isPermaLink="false">/?p=742#comment-3296</guid>
+
+					<description><![CDATA[Hello. I have been dispatching actions from other actions in an application and so far no problems. But after reading your article I am thinking that maybe I am doing an anti-pattern.
+
+This is more or less what I do in an action.
+
+-----------------------
+export function(payload)
+{
+  return function(dispatch)
+ {
+   return addRecordPromise.then(actionUpdateListRecords())
+ }
+}
+-------------------------
+
+What do you think?]]></description>
+			<content:encoded><![CDATA[<p>Hello. I have been dispatching actions from other actions in an application and so far no problems. But after reading your article I am thinking that maybe I am doing an anti-pattern.</p>
+<p>This is more or less what I do in an action.</p>
+<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;<br />
+export function(payload)<br />
+{<br />
+  return function(dispatch)<br />
+ {<br />
+   return addRecordPromise.then(actionUpdateListRecords())<br />
+ }<br />
+}<br />
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-</p>
+<p>What do you think?</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>

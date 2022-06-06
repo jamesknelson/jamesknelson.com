@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: Unlocking decorators and other ES7 features with Webpack and Babel	</title>
+	<atom:link href="/unlocking-decorators-and-other-es7-features-with-webpack-and-babel/feed/" rel="self" type="application/rss+xml" />
+	<link>/unlocking-decorators-and-other-es7-features-with-webpack-and-babel/</link>
+	<description></description>
+	<lastBuildDate>Wed, 30 Dec 2015 03:49:08 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.9.3</generator>
+	<item>
+		<title>
+		By: Josh H		</title>
+		<link>/unlocking-decorators-and-other-es7-features-with-webpack-and-babel/#comment-6461</link>
+
+		<dc:creator><![CDATA[Josh H]]></dc:creator>
+		<pubDate>Wed, 30 Dec 2015 03:49:08 +0000</pubDate>
+		<guid isPermaLink="false">/?p=301#comment-6461</guid>
+
+					<description><![CDATA[I wrote a post on how to add ES7 decorators to Babel 6 for those interested. I&#039;d appreciate a backlink if you feel it&#039;s worth it:
+
+http://technologyadvice.github.io/es7-decorators-babel6/]]></description>
+			<content:encoded><![CDATA[<p>I wrote a post on how to add ES7 decorators to Babel 6 for those interested. I&#8217;d appreciate a backlink if you feel it&#8217;s worth it:</p>
+<p><a href="http://technologyadvice.github.io/es7-decorators-babel6/" rel="nofollow ugc">http://technologyadvice.github.io/es7-decorators-babel6/</a></p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: James K Nelson		</title>
+		<link>/unlocking-decorators-and-other-es7-features-with-webpack-and-babel/#comment-3885</link>
+
+		<dc:creator><![CDATA[James K Nelson]]></dc:creator>
+		<pubDate>Sun, 08 Nov 2015 11:30:19 +0000</pubDate>
+		<guid isPermaLink="false">/?p=301#comment-3885</guid>
+
+					<description><![CDATA[In reply to &lt;a href=&quot;/unlocking-decorators-and-other-es7-features-with-webpack-and-babel/#comment-3823&quot;&gt;Richard&lt;/a&gt;.
+
+Thanks for leaving this comment - Babel 6&#039;s syntax has completely changed. I&#039;ve added a comment to the top and hope to release a guide for Babel 6 soon.]]></description>
+			<content:encoded><![CDATA[<p>In reply to <a href="/unlocking-decorators-and-other-es7-features-with-webpack-and-babel/#comment-3823">Richard</a>.</p>
+<p>Thanks for leaving this comment &#8211; Babel 6&#8217;s syntax has completely changed. I&#8217;ve added a comment to the top and hope to release a guide for Babel 6 soon.</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Richard		</title>
+		<link>/unlocking-decorators-and-other-es7-features-with-webpack-and-babel/#comment-3823</link>
+
+		<dc:creator><![CDATA[Richard]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2015 08:07:06 +0000</pubDate>
+		<guid isPermaLink="false">/?p=301#comment-3823</guid>
+
+					<description><![CDATA[I&#039;ve tried both the syntax in the article and in the first comment for webpack and I keep getting:  Unknown option: base.stage]]></description>
+			<content:encoded><![CDATA[<p>I&#8217;ve tried both the syntax in the article and in the first comment for webpack and I keep getting:  Unknown option: base.stage</p>
+]]></content:encoded>
+		
+			</item>
+		<item>
+		<title>
+		By: Arnold		</title>
+		<link>/unlocking-decorators-and-other-es7-features-with-webpack-and-babel/#comment-1643</link>
+
+		<dc:creator><![CDATA[Arnold]]></dc:creator>
+		<pubDate>Sat, 22 Aug 2015 09:20:33 +0000</pubDate>
+		<guid isPermaLink="false">/?p=301#comment-1643</guid>
+
+					<description><![CDATA[Thanks for the info. Here is the same but with query string:
+{
+        test: /\.js$/,
+        loader: &#039;react-hot!babel?stage=0&#038;optional=runtime&#039;,//for Object.assign
+        exclude: /node_modules/
+      }
+Maybe it can be useful for someone.]]></description>
+			<content:encoded><![CDATA[<p>Thanks for the info. Here is the same but with query string:<br />
+{<br />
+        test: /\.js$/,<br />
+        loader: &#8216;react-hot!babel?stage=0&amp;optional=runtime&#8217;,//for Object.assign<br />
+        exclude: /node_modules/<br />
+      }<br />
+Maybe it can be useful for someone.</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
+</rss>
