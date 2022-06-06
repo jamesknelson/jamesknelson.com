@@ -1,0 +1,14 @@
+{
+    "name": "jamesknelson.com",
+    "version": "0.1.0",
+    "private": true,
+    "author": "James K Nelson <hello@jamesknelson.com>",
+    "packageManager": "yarn@3.2.1",
+    "scripts": {
+        "clean": "rimraf -f dist/*",
+        "build": "npm run clean && mkdir -p dist && cp -R public-archive/* dist"
+    },
+    "devDependencies": {
+        "rimraf": "^3.0.2"
+    }
+}
