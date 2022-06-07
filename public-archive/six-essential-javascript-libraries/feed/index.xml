@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
 	
 	>
 <channel>
@@ -40,8 +40,8 @@
 		<pubDate>Fri, 03 Jun 2016 17:05:04 +0000</pubDate>
 		<guid isPermaLink="false">/?p=225#comment-20656</guid>
 
-					<description><![CDATA[There&#039;s also `sugar` @ http://sugarjs.com/ that&#039;s note-worthy!]]></description>
-			<content:encoded><![CDATA[<p>There&#8217;s also `sugar` @ <a href="http://sugarjs.com/" rel="nofollow ugc">http://sugarjs.com/</a> that&#8217;s note-worthy!</p>
+					<description><![CDATA[There&#039;s also `sugar` @ https://sugarjs.com/ that&#039;s note-worthy!]]></description>
+			<content:encoded><![CDATA[<p>There&#8217;s also `sugar` @ <a href="https://sugarjs.com/" rel="nofollow ugc">https://sugarjs.com/</a> that&#8217;s note-worthy!</p>
 ]]></content:encoded>
 		
 			</item>

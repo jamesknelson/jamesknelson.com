@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="https://wellformedweb.org.commentAPI/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="https://purl.org/rss/1.0/modules/slash/"
 	>
 
 <channel>
@@ -68,11 +68,11 @@ loaders: [
 <p>But beware! When <em>selectors</em> creep into this <code>theme</code> directory, they&#8217;ll infect <em>every stylesheet which imports them</em>. Stylesheets like to stay fit and healthy; importing globals is sure to result in tears.</p>
 <div class="hint">
 <strong>A note to Stylesheets from the land of LESS</strong></p>
-<p>LESS, in its great wisdom, provides the <code>@import (reference)</code> <a href="http://lesscss.org/features/#import-directives-feature">command</a>. Use this command when importing <code>theme</code> dependencies to banish any globals to the depths of <code>/dev/null</code>.
+<p>LESS, in its great wisdom, provides the <code>@import (reference)</code> <a href="https://lesscss.org/features/#import-directives-feature">command</a>. Use this command when importing <code>theme</code> dependencies to banish any globals to the depths of <code>/dev/null</code>.
 </div>
 <h2>Shun the globals. Shuuuunnnnnnn.</h2>
 <p>But often, globals are a necessary evil. Sometimes you can&#8217;t avoid them, no matter how hard you try:</p>
-<pre><code>@import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500');
+<pre><code>@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
 html, body {
   position: relative;
@@ -115,7 +115,7 @@ loaders: [
 <pre><code>new ExtractTextPlugin("style.css", {allChunks: false})
 </code></pre>
 <p><em>You don&#8217;t need <code>ExtractTextPlugin</code> in development.</em> Use your browser&#8217;s debugging tools to view the loaded CSS instead.</p>
-<p><em>If you want to see this in action, or don&#8217;t want to do it yourself, or just like reading other people&#8217;s code, then check out the <a href="http://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Starter Kit</a>.</em></p>
+<p><em>If you want to see this in action, or don&#8217;t want to do it yourself, or just like reading other people&#8217;s code, then check out the <a href="https://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Starter Kit</a>.</em></p>
 <h2>Wow, my CSS feels <em>structured</em> now! Can you structure my JavaScript, too?</h2>
 <p>Why, certainly &#8212; I&#8217;m so glad that you asked! I&#8217;m currently in the midst of a series on structuring <strong>Small Scale React</strong> applications, and the only way to make sure you don&#8217;t miss out on the next part is to <em>join my Newsletter</em>!</p>
 <p>And to sweeten the deal, in return for your e-mail you&#8217;ll <em>immediately</em> receive three <em>print-optimised</em> PDF cheatsheets. One on React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), another for ES6 and yet another for JavaScript promises. <em>All for free!</em></p>
@@ -368,13 +368,13 @@ loaders: [
 <li><a href="/why-you-shouldnt-use-inline-style-with-react">Why You Shouldn&#8217;t Use Inline Style with React</a></li>
 <li><a href="/taming-css-globals-with-react-without-webpack-or-inline-style/">Automatic CSS Namespacing with React</a></li>
 <li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
-<li><a href="http://lesscss.org/features/#parent-selectors-feature">LESS Parent Selector</a></li>
+<li><a href="https://lesscss.org/features/#parent-selectors-feature">LESS Parent Selector</a></li>
 </ul>
 <h2>Related Projects</h2>
 <ul>
-<li><a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
-<li><a href="http://unicornstandard.com/packages/boilerplate.html">See react-pacomo in action with the Unicorn Standard Starter Kit</a></li>
-<li><a href="http://unicornstandard.com/packages/pacomo.html">The Pacomo Specification</a> </li>
+<li><a href="https://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
+<li><a href="https://unicornstandard.com/packages/boilerplate.html">See react-pacomo in action with the Unicorn Standard Starter Kit</a></li>
+<li><a href="https://unicornstandard.com/packages/pacomo.html">The Pacomo Specification</a> </li>
 </ul>
 <p>The post <a rel="nofollow" href="/writing-happy-stylesheets-with-webpack/">Writing Happy Stylesheets with Webpack</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></content:encoded>
@@ -442,9 +442,9 @@ loaders: [
   }
 }
 </code></pre>
-<p>And on the React side, there are <a href="http://unicornstandard.com/packages/react-pacomo.html">tools to generate these scoped class names for you</a>. Or if you&#8217;re stuck outside the kingdom of React, <a href="https://github.com/css-modules/css-modules">CSS modules</a> will accomplish basically the same thing.</p>
+<p>And on the React side, there are <a href="https://unicornstandard.com/packages/react-pacomo.html">tools to generate these scoped class names for you</a>. Or if you&#8217;re stuck outside the kingdom of React, <a href="https://github.com/css-modules/css-modules">CSS modules</a> will accomplish basically the same thing.</p>
 <p>But then again, sometimes you <em>want</em> global styles, like this:</p>
-<pre><code>@import url('http://fonts.googleapis.com/css?family=Roboto:300,400');
+<pre><code>@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
 </code></pre>
 <p>Or this:</p>
 <pre><code>html, body {
@@ -483,8 +483,8 @@ loaders: [
 <h3>You can&#8217;t use any existing tooling</h3>
 <p>Sure, CSS is a bit shit. But that is why people have made a number of amazingly useful tools which <em>aren&#8217;t</em>:</p>
 <ul>
-<li><a href="http://lesscss.org/">LESS</a></li>
-<li><a href="http://sass-lang.com/">SCSS</a></li>
+<li><a href="https://lesscss.org/">LESS</a></li>
+<li><a href="https://sass-lang.com/">SCSS</a></li>
 <li><a href="https://github.com/postcss/postcss">PostCSS</a></li>
 <li><a href="https://github.com/postcss/autoprefixer">Autoprefixer</a></li>
 </ul>
@@ -766,9 +766,9 @@ loaders: [
 </ul>
 <h2>Related Projects</h2>
 <ul>
-<li><a href="http://unicornstandard.com/packages/pacomo.html">pacomo</a></li>
-<li><a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
-<li><a href="http://unicornstandard.com/packages/boilerplate.html">See namespaced CSS in action in the Unicorn Standard Starter Kit</a></li>
+<li><a href="https://unicornstandard.com/packages/pacomo.html">pacomo</a></li>
+<li><a href="https://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
+<li><a href="https://unicornstandard.com/packages/boilerplate.html">See namespaced CSS in action in the Unicorn Standard Starter Kit</a></li>
 </ul>
 <p>The post <a rel="nofollow" href="/why-you-shouldnt-style-with-javascript/">Why You Shouldn&#8217;t Style React Components With JavaScript</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></content:encoded>
@@ -1085,10 +1085,10 @@ loaders: [
 					<description><![CDATA[<p>View the source or see it live One of the biggest pains I hear from new and old developers alike is that once they&#8217;ve learned the basics of a new technology, they struggle to apply them to an actual project. Actually, this isn&#8217;t just a problem I&#8217;ve heard about &#8211; I&#8217;ve experienced it myself. In... <a class="more-link" href="/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
 <p>The post <a rel="nofollow" href="/introducing-memamug-a-small-open-source-app-made-with-react-and-rails-api/">Introducing Memamug, a small open-source app made with React and Rails-api</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></description>
-										<content:encoded><![CDATA[<p><em>View the <a href="https://github.com/search?q=user%3Ajamesknelson+memamug">source</a> or see it <a href="http://www.memamug.com/">live</a></em></p>
+										<content:encoded><![CDATA[<p><em>View the <a href="https://github.com/search?q=user%3Ajamesknelson+memamug">source</a> or see it <a href="https://www.memamug.com/">live</a></em></p>
 <p>One of the biggest pains I hear from new and old developers alike is that once they&#8217;ve learned the basics of a new technology, they struggle to apply them to an actual project.</p>
-<p>Actually, this isn&#8217;t just a problem I&#8217;ve heard about &#8211; I&#8217;ve experienced it myself. In particular, learning React has been as much about figuring out what to do with it as learning the API itself. So to cut a long story short &#8211; I&#8217;ve built a single-page app with <a href="http://facebook.github.io/react/">React</a> and <a href="https://github.com/rails-api/rails-api">Rails-api</a>. And I&#8217;d like to share it with you. And it&#8217;s not a todo list!</p>
-<p><a href="http://www.memamug.com/">Memamug</a> is a tiny app to help you remember people you meet. However, putting it together wasn&#8217;t a tiny job. It demonstrates a number of patterns and techniques which apply to larger projects, including how to:</p>
+<p>Actually, this isn&#8217;t just a problem I&#8217;ve heard about &#8211; I&#8217;ve experienced it myself. In particular, learning React has been as much about figuring out what to do with it as learning the API itself. So to cut a long story short &#8211; I&#8217;ve built a single-page app with <a href="https://facebook.github.io/react/">React</a> and <a href="https://github.com/rails-api/rails-api">Rails-api</a>. And I&#8217;d like to share it with you. And it&#8217;s not a todo list!</p>
+<p><a href="https://www.memamug.com/">Memamug</a> is a tiny app to help you remember people you meet. However, putting it together wasn&#8217;t a tiny job. It demonstrates a number of patterns and techniques which apply to larger projects, including how to:</p>
 <p><span id="more-276"></span></p>
 <ul>
 <li>structure your app</li>

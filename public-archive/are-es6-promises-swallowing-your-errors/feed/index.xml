@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
 	
 	>
 <channel>
@@ -48,9 +48,9 @@ saved my ass. JESUS why didn&#039;t I know this!!!!!!]]></description>
 
 					<description><![CDATA[See here before you try this with Bluebird 2.7 and up
 
-http://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events]]></description>
+https://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events]]></description>
 			<content:encoded><![CDATA[<p>See here before you try this with Bluebird 2.7 and up</p>
-<p><a href="http://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events" rel="nofollow ugc">http://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events</a></p>
+<p><a href="https://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events" rel="nofollow ugc">https://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events</a></p>
 ]]></content:encoded>
 		
 			</item>
@@ -77,8 +77,8 @@ http://bluebirdjs.com/docs/api/error-management-configuration.html#global-reject
 		<pubDate>Mon, 08 Jun 2015 04:03:35 +0000</pubDate>
 		<guid isPermaLink="false">/?p=164#comment-344</guid>
 
-					<description><![CDATA[Good article, while I always suggest using &lt;em&gt;.done()&lt;/em&gt; in the promise chains, see &lt;a href=&quot;http://glebbahmutov.com/blog/why-promises-need-to-be-done/&quot; rel=&quot;nofollow&quot;&gt;Why promises need to be done&lt;/a&gt;, your idea that the promises need to always throw the error might be overkill. The dynamic nature of promises means that someone can later attach error handler to a promise chain and handle an error.]]></description>
-			<content:encoded><![CDATA[<p>Good article, while I always suggest using <em>.done()</em> in the promise chains, see <a href="http://glebbahmutov.com/blog/why-promises-need-to-be-done/" rel="nofollow">Why promises need to be done</a>, your idea that the promises need to always throw the error might be overkill. The dynamic nature of promises means that someone can later attach error handler to a promise chain and handle an error.</p>
+					<description><![CDATA[Good article, while I always suggest using &lt;em&gt;.done()&lt;/em&gt; in the promise chains, see &lt;a href=&quot;https://glebbahmutov.com/blog/why-promises-need-to-be-done/&quot; rel=&quot;nofollow&quot;&gt;Why promises need to be done&lt;/a&gt;, your idea that the promises need to always throw the error might be overkill. The dynamic nature of promises means that someone can later attach error handler to a promise chain and handle an error.]]></description>
+			<content:encoded><![CDATA[<p>Good article, while I always suggest using <em>.done()</em> in the promise chains, see <a href="https://glebbahmutov.com/blog/why-promises-need-to-be-done/" rel="nofollow">Why promises need to be done</a>, your idea that the promises need to always throw the error might be overkill. The dynamic nature of promises means that someone can later attach error handler to a promise chain and handle an error.</p>
 ]]></content:encoded>
 		
 			</item>

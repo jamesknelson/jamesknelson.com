@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
 	
 	>
 <channel>
@@ -105,7 +105,7 @@ Regarding reducers being able to be actors - this would undermine Redux&#039;s s
 
 
 I agree with your pattern, mostly for coordination purpose. In the backend / CQRS / DDD / EventSourcing world, we use Sagas for this. I&#039;ve written a little bit about that here and this pattern can be applied to React too. 
-http://stackoverflow.com/a/33501899/82609
+https://stackoverflow.com/a/33501899/82609
 
 
 I don&#039;t really agree with the implementation detail, and think this coordinator should be able to manage its own state instead of calling store.getState(). A reducer could be an actor actually if that actor needs state to take a decision.
@@ -117,15 +117,15 @@ I don&#039;t really agree with the implementation detail, and think this coordin
 One more thing: connect of redux is also done to solve potential performance issues when rendering from the very top. At Stample we have a production app that renders from the very top, and manage all state outside of React (even text inputs), and we start to see the performance limits of this approach (on inputs mostly) particularly on mobile devices that have a bad CPU.
 See also: 
 -  https://www.youtube.com/watch?v=zxN8FYYBcrI
--  http://stackoverflow.com/questions/25791034/om-but-in-javascript/25806145#25806145]]></description>
+-  https://stackoverflow.com/questions/25791034/om-but-in-javascript/25806145#25806145]]></description>
 			<content:encoded><![CDATA[<p>I don&#8217;t really like the term &#8220;actor&#8221; because it makes me think of the actor pattern used in Akka / Erlang. </p>
 <p>I agree with your pattern, mostly for coordination purpose. In the backend / CQRS / DDD / EventSourcing world, we use Sagas for this. I&#8217;ve written a little bit about that here and this pattern can be applied to React too.<br />
-<a href="http://stackoverflow.com/a/33501899/82609" rel="nofollow ugc">http://stackoverflow.com/a/33501899/82609</a></p>
+<a href="https://stackoverflow.com/a/33501899/82609" rel="nofollow ugc">https://stackoverflow.com/a/33501899/82609</a></p>
 <p>I don&#8217;t really agree with the implementation detail, and think this coordinator should be able to manage its own state instead of calling store.getState(). A reducer could be an actor actually if that actor needs state to take a decision.</p>
 <p>One more thing: connect of redux is also done to solve potential performance issues when rendering from the very top. At Stample we have a production app that renders from the very top, and manage all state outside of React (even text inputs), and we start to see the performance limits of this approach (on inputs mostly) particularly on mobile devices that have a bad CPU.<br />
 See also:<br />
 &#8211;  <a href="https://www.youtube.com/watch?v=zxN8FYYBcrI" rel="nofollow ugc">https://www.youtube.com/watch?v=zxN8FYYBcrI</a><br />
-&#8211;  <a href="http://stackoverflow.com/questions/25791034/om-but-in-javascript/25806145#25806145" rel="nofollow ugc">http://stackoverflow.com/questions/25791034/om-but-in-javascript/25806145#25806145</a></p>
+&#8211;  <a href="https://stackoverflow.com/questions/25791034/om-but-in-javascript/25806145#25806145" rel="nofollow ugc">https://stackoverflow.com/questions/25791034/om-but-in-javascript/25806145#25806145</a></p>
 ]]></content:encoded>
 		
 			</item>

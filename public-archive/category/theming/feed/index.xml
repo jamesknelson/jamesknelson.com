@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="https://wellformedweb.org.commentAPI/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="https://purl.org/rss/1.0/modules/slash/"
 	>
 
 <channel>
@@ -386,11 +386,11 @@ loaders: [
 <p>But beware! When <em>selectors</em> creep into this <code>theme</code> directory, they&#8217;ll infect <em>every stylesheet which imports them</em>. Stylesheets like to stay fit and healthy; importing globals is sure to result in tears.</p>
 <div class="hint">
 <strong>A note to Stylesheets from the land of LESS</strong></p>
-<p>LESS, in its great wisdom, provides the <code>@import (reference)</code> <a href="http://lesscss.org/features/#import-directives-feature">command</a>. Use this command when importing <code>theme</code> dependencies to banish any globals to the depths of <code>/dev/null</code>.
+<p>LESS, in its great wisdom, provides the <code>@import (reference)</code> <a href="https://lesscss.org/features/#import-directives-feature">command</a>. Use this command when importing <code>theme</code> dependencies to banish any globals to the depths of <code>/dev/null</code>.
 </div>
 <h2>Shun the globals. Shuuuunnnnnnn.</h2>
 <p>But often, globals are a necessary evil. Sometimes you can&#8217;t avoid them, no matter how hard you try:</p>
-<pre><code>@import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500');
+<pre><code>@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
 html, body {
   position: relative;
@@ -433,7 +433,7 @@ loaders: [
 <pre><code>new ExtractTextPlugin("style.css", {allChunks: false})
 </code></pre>
 <p><em>You don&#8217;t need <code>ExtractTextPlugin</code> in development.</em> Use your browser&#8217;s debugging tools to view the loaded CSS instead.</p>
-<p><em>If you want to see this in action, or don&#8217;t want to do it yourself, or just like reading other people&#8217;s code, then check out the <a href="http://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Starter Kit</a>.</em></p>
+<p><em>If you want to see this in action, or don&#8217;t want to do it yourself, or just like reading other people&#8217;s code, then check out the <a href="https://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Starter Kit</a>.</em></p>
 <h2>Wow, my CSS feels <em>structured</em> now! Can you structure my JavaScript, too?</h2>
 <p>Why, certainly &#8212; I&#8217;m so glad that you asked! I&#8217;m currently in the midst of a series on structuring <strong>Small Scale React</strong> applications, and the only way to make sure you don&#8217;t miss out on the next part is to <em>join my Newsletter</em>!</p>
 <p>And to sweeten the deal, in return for your e-mail you&#8217;ll <em>immediately</em> receive three <em>print-optimised</em> PDF cheatsheets. One on React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), another for ES6 and yet another for JavaScript promises. <em>All for free!</em></p>
@@ -686,13 +686,13 @@ loaders: [
 <li><a href="/why-you-shouldnt-use-inline-style-with-react">Why You Shouldn&#8217;t Use Inline Style with React</a></li>
 <li><a href="/taming-css-globals-with-react-without-webpack-or-inline-style/">Automatic CSS Namespacing with React</a></li>
 <li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
-<li><a href="http://lesscss.org/features/#parent-selectors-feature">LESS Parent Selector</a></li>
+<li><a href="https://lesscss.org/features/#parent-selectors-feature">LESS Parent Selector</a></li>
 </ul>
 <h2>Related Projects</h2>
 <ul>
-<li><a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
-<li><a href="http://unicornstandard.com/packages/boilerplate.html">See react-pacomo in action with the Unicorn Standard Starter Kit</a></li>
-<li><a href="http://unicornstandard.com/packages/pacomo.html">The Pacomo Specification</a> </li>
+<li><a href="https://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
+<li><a href="https://unicornstandard.com/packages/boilerplate.html">See react-pacomo in action with the Unicorn Standard Starter Kit</a></li>
+<li><a href="https://unicornstandard.com/packages/pacomo.html">The Pacomo Specification</a> </li>
 </ul>
 <p>The post <a rel="nofollow" href="/writing-happy-stylesheets-with-webpack/">Writing Happy Stylesheets with Webpack</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></content:encoded>
@@ -731,7 +731,7 @@ loaders: [
   &lt;span class='app-NavItem-label'&gt;Contacts&lt;/span&gt;
 &lt;/a&gt;
 </code></pre>
-<p>But while namespaces eliminate problems caused by globals, long class names are an issue by themselves. And while the LESS/SCSS <a href="http://lesscss.org/features/#parent-selectors-feature">parent selector</a> will solve this for you on the CSS side, it won&#8217;t magically shorten the class names in your JSX. And that&#8217;s where <a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a> comes in!</p>
+<p>But while namespaces eliminate problems caused by globals, long class names are an issue by themselves. And while the LESS/SCSS <a href="https://lesscss.org/features/#parent-selectors-feature">parent selector</a> will solve this for you on the CSS side, it won&#8217;t magically shorten the class names in your JSX. And that&#8217;s where <a href="https://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a> comes in!</p>
 <h2>Transforming your Components with react-pacomo</h2>
 <p>The best way to understand how this works is with an example, so let&#8217;s start by rewriting the above <code>NavItem</code> component with JSX:</p>
 <pre><code>var NavItem = React.createClass({
@@ -750,7 +750,7 @@ loaders: [
 <pre><code>// Returns a `ReactElement`
 React.createElement(NavItem, {type: 'contacts', label: "Contacts"})
 </code></pre>
-<p>To cut a long story short, it is possible to <em>transform</em> this <code>ReactElement</code>. <a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a> implements a transform which prefixes your <code>className</code> props with namespaces based on your component&#8217;s <code>displayName</code>. And thus, the above JSX reduces to this:</p>
+<p>To cut a long story short, it is possible to <em>transform</em> this <code>ReactElement</code>. <a href="https://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a> implements a transform which prefixes your <code>className</code> props with namespaces based on your component&#8217;s <code>displayName</code>. And thus, the above JSX reduces to this:</p>
 <pre><code>var NavItem = pacomoDecorator(React.createClass({
   render: function() {
     return &lt;a href="/contacts" className={this.props.active ? 'active' : null}&gt;
@@ -964,7 +964,7 @@ export const {
 <p>Finally, decorate or transform your components with <code>pacomoDecorator</code> or <code>pacomoTransformer</code>. Since you&#8217;re already using <code>className</code> attributes, it is as simple as that. Really!</p>
 <h2>So James, do you have any <em>more</em> tips for making CSS bearable?</h2>
 <p>While namespacing is <em>critical</em> to ensuring that your CSS is maintainable, there are many other tools you can use to build on this foundation.</p>
-<p>First, if you haven&#8217;t done so yet, <em>make sure you&#8217;re using LESS or SCSS</em>. This will allow you to use the <a href="http://lesscss.org/features/#parent-selectors-feature">parent selector</a> to avoid repetition in your stylesheets themselves.</p>
+<p>First, if you haven&#8217;t done so yet, <em>make sure you&#8217;re using LESS or SCSS</em>. This will allow you to use the <a href="https://lesscss.org/features/#parent-selectors-feature">parent selector</a> to avoid repetition in your stylesheets themselves.</p>
 <p>But assuming you&#8217;re already using LESS or SCSS, the next step is to <em>decouple your component stylesheets</em>. What do I mean by this?</p>
 <h2>Decoupling component stylesheets</h2>
 <p>Single Page Applications are often structured with a single <code>main.scss</code> which imports variables, mixins, and component stylesheets. This makes it possible for component stylesheets to easily use the application&#8217;s mixins and variables. It also ties them to the application, impeding reusability.</p>
@@ -1220,13 +1220,13 @@ export const {
 <li><a href="/why-you-shouldnt-use-inline-style-with-react">Why You Shouldn&#8217;t Use Inline Style with React</a></li>
 <li><a href="/learn-raw-react-no-jsx-flux-es6-webpack/">Learn Raw React</a></li>
 <li><a href="/structuring-react-applications-higher-order-components/">React Higher Order Components</a></li>
-<li><a href="http://lesscss.org/features/#parent-selectors-feature">LESS Parent Selector</a></li>
+<li><a href="https://lesscss.org/features/#parent-selectors-feature">LESS Parent Selector</a></li>
 </ul>
 <h2>Related Projects</h2>
 <ul>
-<li><a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
-<li><a href="http://unicornstandard.com/packages/boilerplate.html">See react-pacomo in action with the Unicorn Standard Starter Kit</a></li>
-<li><a href="http://unicornstandard.com/packages/pacomo.html">The Pacomo Specification</a></li>
+<li><a href="https://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
+<li><a href="https://unicornstandard.com/packages/boilerplate.html">See react-pacomo in action with the Unicorn Standard Starter Kit</a></li>
+<li><a href="https://unicornstandard.com/packages/pacomo.html">The Pacomo Specification</a></li>
 </ul>
 <p>The post <a rel="nofollow" href="/taming-css-globals-with-react-without-webpack-or-inline-style/">Introducing react-pacomo: Automatic namespacing for className</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></content:encoded>
@@ -1294,9 +1294,9 @@ export const {
   }
 }
 </code></pre>
-<p>And on the React side, there are <a href="http://unicornstandard.com/packages/react-pacomo.html">tools to generate these scoped class names for you</a>. Or if you&#8217;re stuck outside the kingdom of React, <a href="https://github.com/css-modules/css-modules">CSS modules</a> will accomplish basically the same thing.</p>
+<p>And on the React side, there are <a href="https://unicornstandard.com/packages/react-pacomo.html">tools to generate these scoped class names for you</a>. Or if you&#8217;re stuck outside the kingdom of React, <a href="https://github.com/css-modules/css-modules">CSS modules</a> will accomplish basically the same thing.</p>
 <p>But then again, sometimes you <em>want</em> global styles, like this:</p>
-<pre><code>@import url('http://fonts.googleapis.com/css?family=Roboto:300,400');
+<pre><code>@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
 </code></pre>
 <p>Or this:</p>
 <pre><code>html, body {
@@ -1335,8 +1335,8 @@ export const {
 <h3>You can&#8217;t use any existing tooling</h3>
 <p>Sure, CSS is a bit shit. But that is why people have made a number of amazingly useful tools which <em>aren&#8217;t</em>:</p>
 <ul>
-<li><a href="http://lesscss.org/">LESS</a></li>
-<li><a href="http://sass-lang.com/">SCSS</a></li>
+<li><a href="https://lesscss.org/">LESS</a></li>
+<li><a href="https://sass-lang.com/">SCSS</a></li>
 <li><a href="https://github.com/postcss/postcss">PostCSS</a></li>
 <li><a href="https://github.com/postcss/autoprefixer">Autoprefixer</a></li>
 </ul>
@@ -1618,9 +1618,9 @@ export const {
 </ul>
 <h2>Related Projects</h2>
 <ul>
-<li><a href="http://unicornstandard.com/packages/pacomo.html">pacomo</a></li>
-<li><a href="http://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
-<li><a href="http://unicornstandard.com/packages/boilerplate.html">See namespaced CSS in action in the Unicorn Standard Starter Kit</a></li>
+<li><a href="https://unicornstandard.com/packages/pacomo.html">pacomo</a></li>
+<li><a href="https://unicornstandard.com/packages/react-pacomo.html">react-pacomo</a></li>
+<li><a href="https://unicornstandard.com/packages/boilerplate.html">See namespaced CSS in action in the Unicorn Standard Starter Kit</a></li>
 </ul>
 <p>The post <a rel="nofollow" href="/why-you-shouldnt-style-with-javascript/">Why You Shouldn&#8217;t Style React Components With JavaScript</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></content:encoded>

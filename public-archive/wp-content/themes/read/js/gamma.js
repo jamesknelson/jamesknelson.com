@@ -1,12 +1,12 @@
 /**
  * gamma.js v1.0.0
- * http://www.codrops.com
+ * https://www.codrops.com
  *
  * Licensed under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
+ * https://www.opensource.org/licenses/mit-license.php
  * 
  * Copyright 2012, Codrops
- * http://www.codrops.com
+ * https://www.codrops.com
  */
  
 /**
@@ -18,10 +18,10 @@
  * @version 1.1.0
  * @date July 16, 2010
  * @since 1.0.0, June 30, 2010
- * @package jquery-sparkle {@link http://www.balupton/projects/jquery-sparkle}
- * @author Benjamin "balupton" Lupton {@link http://www.balupton.com}
- * @copyright (c) 2009-2010 Benjamin Arthur Lupton {@link http://www.balupton.com}
- * @license GNU Affero General Public License version 3 {@link http://www.gnu.org/licenses/agpl-3.0.html}
+ * @package jquery-sparkle {@link https://www.balupton/projects/jquery-sparkle}
+ * @author Benjamin "balupton" Lupton {@link https://www.balupton.com}
+ * @copyright (c) 2009-2010 Benjamin Arthur Lupton {@link https://www.balupton.com}
+ * @license GNU Affero General Public License version 3 {@link https://www.gnu.org/licenses/agpl-3.0.html}
  */
 String.prototype.queryStringToJSON = String.prototype.queryStringToJSON || function ( )
 {	// Turns a params string or url into an array of params
@@ -102,7 +102,7 @@ String.prototype.queryStringToJSON = String.prototype.queryStringToJSON || funct
 };
 
 // checks if an element is partially inside the viewport
-// inspired by James Padolsey's snippet (http://remysharp.com/2009/01/26/element-in-view-event-plugin/#comment-127058)
+// inspired by James Padolsey's snippet (https://remysharp.com/2009/01/26/element-in-view-event-plugin/#comment-127058)
 (function($) {
 
 	$.extend( $.expr[':'], {
@@ -123,7 +123,7 @@ String.prototype.queryStringToJSON = String.prototype.queryStringToJSON || funct
 })(jQuery);
 
 // HTML5 PageVisibility API
-// http://www.html5rocks.com/en/tutorials/pagevisibility/intro/
+// https://www.html5rocks.com/en/tutorials/pagevisibility/intro/
 // by Joe Marini (@joemarini)
 function getHiddenProp(){
     var prefixes = ['webkit','moz','ms','o'];
@@ -215,7 +215,7 @@ var Gamma = ( function( $ ) {
 				// opens the single view if an image id is passed in the url
 				// we will assume for this demo that the id is the index of the item 
 				// where the image is
-				// example: http://www.sitename.com/gamma/?img=12
+				// example: https://www.sitename.com/gamma/?img=12
 				if( Gamma.settings.historyapi ) {
 
 					_goto();
@@ -809,7 +809,7 @@ var Gamma = ( function( $ ) {
 					// set the overflow-y to hidden
 					$body.css( 'overflow-y', 'hidden' );
 					// force repaint. Chrome in Windows does not remove overflow..
-					// http://stackoverflow.com/a/3485654/989439
+					// https://stackoverflow.com/a/3485654/989439
 					var el = Gamma.overlay[0];
 					el.style.display='none';
 					el.offsetHeight; // no need to store this anywhere, the reference is enough
@@ -1233,7 +1233,7 @@ var Gamma = ( function( $ ) {
 					var visProp = getHiddenProp();
 					
 					// HTML5 PageVisibility API
-					// http://www.html5rocks.com/en/tutorials/pagevisibility/intro/
+					// https://www.html5rocks.com/en/tutorials/pagevisibility/intro/
 					// by Joe Marini (@joemarini)
 					if (visProp) {
 

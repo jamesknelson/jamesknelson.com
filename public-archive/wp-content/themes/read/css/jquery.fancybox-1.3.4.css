@@ -11,8 +11,8 @@
  * Requires: jQuery v1.3+
  *
  * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
+ *   https://www.opensource.org/licenses/mit-license.php
+ *   https://www.gnu.org/licenses/gpl.html
  */
 #fancybox-loading { position: fixed; top: 50%; left: 50%; width: 110px; height: 50px; margin-top: -25px; margin-left: -55px; cursor: pointer; overflow: hidden; z-index: 1104; display: none; background: url(/wp-content/themes/read/images/bckg/loader_dark.gif) center center no-repeat; background-color: #000; background-color: rgba(0,0,0,.8); border-radius: 4px; }
 #fancybox-loading div { display: none; }

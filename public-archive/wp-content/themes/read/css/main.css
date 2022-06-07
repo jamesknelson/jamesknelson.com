@@ -19,7 +19,7 @@ a { color: #CE6607; text-decoration:none; }
 a:hover { color:#A35208; }
 a:focus { outline: none; }
 h1 a { color:#333; }
-/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+/* Clearfix hack by Nicolas Gallagher: https://nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before,
 .clearfix:after { content: " "; display: table; }
 .clearfix:after { clear: both; }

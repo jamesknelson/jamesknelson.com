@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<html lang="en-US">
 <head>
 	<meta charset="UTF-8">
 	
@@ -12,8 +12,8 @@
 	<title>Introduction to ES6 Promises - 4 functions to avoid callback hell</title>
     
     <!--[if lte IE 9]>
-        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
-        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+        <script src="https://jamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="https://jamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
     <![endif]-->
 	
 		
@@ -28,7 +28,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to ES6 Promises - 4 functions to avoid callback hell">
 <meta property="og:description" content="Promises are a great way to clean up your code, reduce dependencies on external libraries, and prepare yourself for `async` and `await` in ES7.">
-<meta property="og:url" content="httpjamesknelson.com/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">
+<meta property="og:url" content="https://jamesknelson.com/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/">
 <meta property="og:site_name" content="James K Nelson">
 <meta property="article:section" content="ES6">
 <meta property="article:published_time" content="2015-05-31T15:29:54+00:00">
@@ -39,7 +39,7 @@
 <meta name="twitter:title" content="Introduction to ES6 Promises - 4 functions to avoid callback hell">
 <meta name="twitter:site" content="@james_k_nelson">
 <meta name="twitter:creator" content="@james_k_nelson">
-<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"https://jamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
 <!-- / Yoast SEO plugin. -->
 
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -48,7 +48,7 @@
 <link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
 <link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Introduction to ES6 Promises &#8211; The Four Functions You Need To Avoid Callback Hell Comments Feed" href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/feed/">
 <script type="text/javascript">
-window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https://jamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
 /*! This file is auto-generated */
 !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
 </script>
@@ -66,9 +66,9 @@ img.emoji {
 }</style>
 	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
 <style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
-<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
-<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
-<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="https://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
 <link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
 <link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
 <link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
@@ -506,7 +506,7 @@ delay(1000)
 </code>
 </pre>
 </div>
-<p><a href="http://jsbin.com/xiviha/4/edit?js,console">Edit &amp; run this code</a></p>
+<p><a href="https://jsbin.com/xiviha/4/edit?js,console">Edit &amp; run this code</a></p>
 <p>Which one do you find easier to understand? The promise version, or the callback version? Let me know in the comments!</p>
 <p>While everything so far has been relatively straightforward, there are a couple of things which trip people up. For example:</p>
 <h4>Rejection handlers in <code>promise.then</code> return resolved promises, not rejected ones.</h4>
@@ -531,7 +531,7 @@ delay(1000)
     resolved: some description of 🙁
   </p>
 </div>
-<p><a href="http://jsbin.com/gaduza/1/edit?js,console">Edit &amp; run the above code</a></p>
+<p><a href="https://jsbin.com/gaduza/1/edit?js,console">Edit &amp; run the above code</a></p>
 <p>The take-away here is that if you want to process your errors, make sure you don&#8217;t just return the processed value: reject the processed value. So, instead of:</p>
 <pre><code>return 'some description of :('
 </code></pre>
@@ -638,7 +638,7 @@ parallel animation 2  /
 <code>finalRequest(options, callback)</code> retrieves the third file from the server, calling <code>callback(error, data)</code> when done. <code>data</code> is <code>undefined</code> in case of an error, and <code>error</code> is <code>undefined</code> in case of success <em>(note: this is a common pattern in node.js)</em>
 </li>
 </ul>
-<p>You can test your work with <a href="http://jsbin.com/hotile/15/edit?js,console">this jsbin</a>, where I&#8217;ve set up the above functions for you.</p>
+<p>You can test your work with <a href="https://jsbin.com/hotile/15/edit?js,console">this jsbin</a>, where I&#8217;ve set up the above functions for you.</p>
 <p><em>Once you&#8217;ve written your own answer</em>, check it with mine by touching or hovering over the box below.</p>
 <div class="spoiler">
 <div class="spoiler-mask">
@@ -958,7 +958,7 @@ Promise
 	<div class="row-fluid author-bio">
 		<div class="span2 author-img">
 			<a href="/author/jamesknelson/">
-				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+				<img alt="James K Nelson" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
 		</div>
 		<!-- end .author-img -->
 		
@@ -997,7 +997,7 @@ Promise
 					<li class="comment even thread-even depth-1" id="li-comment-252">
 						<article id="comment-252" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">pik </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-252"><time datetime="2015-06-01T19:59:24+00:00">June 1, 2015 at 7:59 pm</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">pik </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-252"><time datetime="2015-06-01T19:59:24+00:00">June 1, 2015 at 7:59 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1017,7 +1017,7 @@ Promise
 					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-255">
 						<article id="comment-255" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-255"><time datetime="2015-06-02T12:06:04+00:00">June 2, 2015 at 12:06 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-255"><time datetime="2015-06-02T12:06:04+00:00">June 2, 2015 at 12:06 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1037,7 +1037,7 @@ Promise
 					<li class="comment even depth-3" id="li-comment-263">
 						<article id="comment-263" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">pik </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-263"><time datetime="2015-06-03T02:38:11+00:00">June 3, 2015 at 2:38 am</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/0c7703d4f45d4e2c254baacf55cdc960?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">pik </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-263"><time datetime="2015-06-03T02:38:11+00:00">June 3, 2015 at 2:38 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1067,7 +1067,7 @@ Promise
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-276">
 						<article id="comment-276" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/63519114020a2d8f2018c17a552e13b8?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/63519114020a2d8f2018c17a552e13b8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.jscriptworld.com/" rel="external nofollow ugc" class="url">Chetan Wadhwa</a> </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-276"><time datetime="2015-06-03T21:04:45+00:00">June 3, 2015 at 9:04 pm</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/63519114020a2d8f2018c17a552e13b8?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/63519114020a2d8f2018c17a552e13b8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://www.jscriptworld.com/" rel="external nofollow ugc" class="url">Chetan Wadhwa</a> </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-276"><time datetime="2015-06-03T21:04:45+00:00">June 3, 2015 at 9:04 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1088,7 +1088,7 @@ Promise
 					<li class="comment even thread-even depth-1" id="li-comment-285">
 						<article id="comment-285" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/5990e725aa966b4675ade1020d0226ef?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/5990e725aa966b4675ade1020d0226ef?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">JW </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-285"><time datetime="2015-06-05T10:08:41+00:00">June 5, 2015 at 10:08 am</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/5990e725aa966b4675ade1020d0226ef?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/5990e725aa966b4675ade1020d0226ef?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">JW </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-285"><time datetime="2015-06-05T10:08:41+00:00">June 5, 2015 at 10:08 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1109,7 +1109,7 @@ Promise
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-289">
 						<article id="comment-289" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/e141e6cccd5f9cf8fe25507cfb81f254?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/e141e6cccd5f9cf8fe25507cfb81f254?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">kspice </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-289"><time datetime="2015-06-05T18:51:36+00:00">June 5, 2015 at 6:51 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/e141e6cccd5f9cf8fe25507cfb81f254?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/e141e6cccd5f9cf8fe25507cfb81f254?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">kspice </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-289"><time datetime="2015-06-05T18:51:36+00:00">June 5, 2015 at 6:51 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1140,7 +1140,7 @@ Promise.<br>
 					<li class="comment even thread-even depth-1" id="li-comment-298">
 						<article id="comment-298" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/42f3e2b96cf08e3c8346597ade12506e?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/42f3e2b96cf08e3c8346597ade12506e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Eric </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-298"><time datetime="2015-06-06T13:21:10+00:00">June 6, 2015 at 1:21 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/42f3e2b96cf08e3c8346597ade12506e?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/42f3e2b96cf08e3c8346597ade12506e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Eric </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-298"><time datetime="2015-06-06T13:21:10+00:00">June 6, 2015 at 1:21 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1161,7 +1161,7 @@ Promise.<br>
 					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-299">
 						<article id="comment-299" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-299"><time datetime="2015-06-06T13:41:32+00:00">June 6, 2015 at 1:41 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-299"><time datetime="2015-06-06T13:41:32+00:00">June 6, 2015 at 1:41 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1186,7 +1186,7 @@ Promise.<br>
 					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-307">
 						<article id="comment-307" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/05f6bda380f1de974ee04b846869adaf?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/05f6bda380f1de974ee04b846869adaf?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://backspaces.net/" rel="external nofollow ugc" class="url">Owen Densmore</a> </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-307"><time datetime="2015-06-06T16:41:11+00:00">June 6, 2015 at 4:41 pm</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/05f6bda380f1de974ee04b846869adaf?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/05f6bda380f1de974ee04b846869adaf?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://backspaces.net/" rel="external nofollow ugc" class="url">Owen Densmore</a> </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-307"><time datetime="2015-06-06T16:41:11+00:00">June 6, 2015 at 4:41 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1208,7 +1208,7 @@ Promise.<br>
 					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-320">
 						<article id="comment-320" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-320"><time datetime="2015-06-07T00:25:43+00:00">June 7, 2015 at 12:25 am</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-320"><time datetime="2015-06-07T00:25:43+00:00">June 7, 2015 at 12:25 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1228,7 +1228,7 @@ Promise.<br>
 					<li class="comment even depth-3" id="li-comment-754">
 						<article id="comment-754" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/405efe275ceff3492be8b0985531fa19?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/405efe275ceff3492be8b0985531fa19?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Kevin L. </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-754"><time datetime="2015-07-11T19:20:12+00:00">July 11, 2015 at 7:20 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/405efe275ceff3492be8b0985531fa19?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/405efe275ceff3492be8b0985531fa19?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Kevin L. </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-754"><time datetime="2015-07-11T19:20:12+00:00">July 11, 2015 at 7:20 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1250,7 +1250,7 @@ Promise.<br>
 					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-4" id="li-comment-794">
 						<article id="comment-794" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-794"><time datetime="2015-07-14T10:55:12+00:00">July 14, 2015 at 10:55 am</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-794"><time datetime="2015-07-14T10:55:12+00:00">July 14, 2015 at 10:55 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1283,7 +1283,7 @@ Promise.<br>
 					<li class="comment even thread-even depth-1" id="li-comment-377">
 						<article id="comment-377" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/bbba4cea31d006c626613a38b31a6d7c?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/bbba4cea31d006c626613a38b31a6d7c?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Dan </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-377"><time datetime="2015-06-09T18:32:19+00:00">June 9, 2015 at 6:32 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/bbba4cea31d006c626613a38b31a6d7c?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/bbba4cea31d006c626613a38b31a6d7c?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Dan </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-377"><time datetime="2015-06-09T18:32:19+00:00">June 9, 2015 at 6:32 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1304,7 +1304,7 @@ Promise.<br>
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-390">
 						<article id="comment-390" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/813092033de7af2e9161a5569625ebdf?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/813092033de7af2e9161a5569625ebdf?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">titouandk </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-390"><time datetime="2015-06-10T18:26:44+00:00">June 10, 2015 at 6:26 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/813092033de7af2e9161a5569625ebdf?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/813092033de7af2e9161a5569625ebdf?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">titouandk </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-390"><time datetime="2015-06-10T18:26:44+00:00">June 10, 2015 at 6:26 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1325,7 +1325,7 @@ Promise.<br>
 					<li class="comment even thread-even depth-1" id="li-comment-15663">
 						<article id="comment-15663" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/4142062863592fa8087190bf10375b46?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4142062863592fa8087190bf10375b46?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://maggiesavovska.com/" rel="external nofollow ugc" class="url">Maggie Jones</a> </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-15663"><time datetime="2016-03-17T13:56:53+00:00">March 17, 2016 at 1:56 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/4142062863592fa8087190bf10375b46?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/4142062863592fa8087190bf10375b46?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://maggiesavovska.com/" rel="external nofollow ugc" class="url">Maggie Jones</a> </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-15663"><time datetime="2016-03-17T13:56:53+00:00">March 17, 2016 at 1:56 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1346,7 +1346,7 @@ Promise.<br>
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-16559">
 						<article id="comment-16559" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/171f44964531a48fb3fec46a901a3957?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/171f44964531a48fb3fec46a901a3957?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Mark </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-16559"><time datetime="2016-03-22T03:45:59+00:00">March 22, 2016 at 3:45 am</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/171f44964531a48fb3fec46a901a3957?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/171f44964531a48fb3fec46a901a3957?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Mark </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-16559"><time datetime="2016-03-22T03:45:59+00:00">March 22, 2016 at 3:45 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1367,7 +1367,7 @@ Promise.<br>
 					<li class="comment even thread-even depth-1" id="li-comment-18219">
 						<article id="comment-18219" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/dc27005b322f172596b5aed547834e34?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/dc27005b322f172596b5aed547834e34?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Daniel </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-18219"><time datetime="2016-04-13T21:33:31+00:00">April 13, 2016 at 9:33 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/dc27005b322f172596b5aed547834e34?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/dc27005b322f172596b5aed547834e34?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Daniel </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-18219"><time datetime="2016-04-13T21:33:31+00:00">April 13, 2016 at 9:33 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1390,7 +1390,7 @@ Promise.<br>
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-20109">
 						<article id="comment-20109" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/b3a378287436352e881152a1c936ee63?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b3a378287436352e881152a1c936ee63?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Oleg </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-20109"><time datetime="2016-05-22T14:08:57+00:00">May 22, 2016 at 2:08 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/b3a378287436352e881152a1c936ee63?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/b3a378287436352e881152a1c936ee63?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Oleg </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-20109"><time datetime="2016-05-22T14:08:57+00:00">May 22, 2016 at 2:08 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1411,7 +1411,7 @@ Promise.<br>
 					<li class="comment even thread-even depth-1" id="li-comment-20666">
 						<article id="comment-20666" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/c0415fa9a08d2c4483e9c8244d1bfee9?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/c0415fa9a08d2c4483e9c8244d1bfee9?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">An Vad </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-20666"><time datetime="2016-06-04T00:43:28+00:00">June 4, 2016 at 12:43 am</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/c0415fa9a08d2c4483e9c8244d1bfee9?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/c0415fa9a08d2c4483e9c8244d1bfee9?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">An Vad </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-20666"><time datetime="2016-06-04T00:43:28+00:00">June 4, 2016 at 12:43 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1432,7 +1432,7 @@ Promise.<br>
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-21727">
 						<article id="comment-21727" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/982478cb0ce3e73937ad1689accf84bb?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/982478cb0ce3e73937ad1689accf84bb?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">TienTran </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-21727"><time datetime="2016-07-04T03:23:23+00:00">July 4, 2016 at 3:23 am</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/982478cb0ce3e73937ad1689accf84bb?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/982478cb0ce3e73937ad1689accf84bb?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">TienTran </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-21727"><time datetime="2016-07-04T03:23:23+00:00">July 4, 2016 at 3:23 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1455,7 +1455,7 @@ Promise.<br>
 					<li class="comment even thread-even depth-1" id="li-comment-22893">
 						<article id="comment-22893" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/a6d55a1f8cf6c87e1227e8586dab82b8?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/a6d55a1f8cf6c87e1227e8586dab82b8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Nate </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-22893"><time datetime="2016-08-24T02:57:26+00:00">August 24, 2016 at 2:57 am</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/a6d55a1f8cf6c87e1227e8586dab82b8?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/a6d55a1f8cf6c87e1227e8586dab82b8?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Nate </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-22893"><time datetime="2016-08-24T02:57:26+00:00">August 24, 2016 at 2:57 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1477,7 +1477,7 @@ Promise.<br>
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-22894">
 						<article id="comment-22894" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/94b75b82dfcd3bf44c6deaf32be077dc?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/94b75b82dfcd3bf44c6deaf32be077dc?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">david </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-22894"><time datetime="2016-08-24T05:45:11+00:00">August 24, 2016 at 5:45 am</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/94b75b82dfcd3bf44c6deaf32be077dc?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/94b75b82dfcd3bf44c6deaf32be077dc?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">david </cite><a href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#comment-22894"><time datetime="2016-08-24T05:45:11+00:00">August 24, 2016 at 5:45 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1502,7 +1502,7 @@ Promise.<br>
 		<div id="respond" class="comment-respond">
 		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/grokking-es6-promises-the-four-functions-you-need-to-avoid-callback-hell/#respond" style="display:none;">Cancel reply</a></small>
 </h3>
-<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<form action="https://jamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
 <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
 <p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
 <p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
@@ -1605,7 +1605,7 @@ Promise.<br>
 	<li><a href="/2014/12/">December 2014</a></li>
 			</ul>
 
-			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="https://jamesknelson.com/">
 	<div>
 		<label class="screen-reader-text" for="s">Search for:</label>
 		

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="https://wellformedweb.org.commentAPI/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="https://purl.org/rss/1.0/modules/slash/"
 	>
 
 <channel>
@@ -34,7 +34,7 @@
 					<description><![CDATA[<p>Read the README and browse the source on GitHub, or mess around with the live demo. Markdown is a fantastic tool. It makes writing simple. Markdown documents are plain text, so you don&#8217;t need to worry about tags and HTML and all that. You just write. And when you need a &#60;a&#62;, or a &#60;h1&#62;,... <a class="more-link" href="/introducing-mdxc/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
 <p>The post <a rel="nofollow" href="/introducing-mdxc/">Introducing MDXC: A new way to write Markdown for React</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></description>
-										<content:encoded><![CDATA[<p><em>Read the README and <a href="https://github.com/jamesknelson/mdxc">browse the source</a> on GitHub, or <a href="http://dump.jamesknelson.com/mdxc-playground.html">mess around with the live demo</a>.</em></p>
+										<content:encoded><![CDATA[<p><em>Read the README and <a href="https://github.com/jamesknelson/mdxc">browse the source</a> on GitHub, or <a href="https://jamesknelson.com/mdxc">mess around with the live demo</a>.</em></p>
 <p>Markdown is a fantastic tool. It makes writing <em>simple</em>. Markdown documents are plain text, so you don&#8217;t need to worry about tags and HTML and all that. You just write. And when you need a <code>&lt;a&gt;</code>, or a <code>&lt;h1&gt;</code>, it&#8217;s already there. It&#8217;s like magic!</p>
 <p>But say you&#8217;re writing a React app with <code>pushState</code>, and you don&#8217;t want your links to use <code>&lt;a&gt;</code> tags; they break your smooth navigation. You want them to use react-router or <a href="https://junctions.js.org/">react-junctions&#8217;</a> <code>&lt;Link&gt;</code> tags instead. And you&#8217;re shit outta luck, because you can&#8217;t. Or you couldn&#8217;t, before MDXC.</p>
 <p>MDXC is a tool to make Markdown and React best buddies. Unlike traditional Markdown, <strong>MDXC produces actual JavaScript</strong> &#8212; not strings of HTML. <strong>MDXC lets you embed raw JSX within your Markdown</strong>, and even lets you <code>import</code> components and accept <code>props</code>. And to top it all off, <strong>MDXC lets you configure how each element is rendered</strong>, giving you all sorts of ways to confuse your users and also a few ways to genuinely improve their experience.</p>
@@ -146,7 +146,7 @@ npm install --save-dev mdx-loader
 <p>But what if you haven&#8217;t got an existing React app? Or what if you don&#8217;t want an app, but want a website? In that case, I have another treat for you.</p>
 <h3>Sitepack</h3>
 <p>MDXC was originally created for Sitepack. But what is Sitepack?</p>
-<p><a href="http://github.com/jamesknelson/sitepack">Sitepack</a> is a wrapper around Webpack. It gives you a way to add pages to your website using plain-old <code>require()</code>, it handles the nasty parts of Webpack configuration for you, and it does all this while performing the magic required to build a static HTML version of each of your pages. As it happens, my MDXC and <a href="https://junctions.js.org/">junctions.js</a> websites are built with Sitepack.</p>
+<p><a href="https://github.com/jamesknelson/sitepack">Sitepack</a> is a wrapper around Webpack. It gives you a way to add pages to your website using plain-old <code>require()</code>, it handles the nasty parts of Webpack configuration for you, and it does all this while performing the magic required to build a static HTML version of each of your pages. As it happens, my MDXC and <a href="https://junctions.js.org/">junctions.js</a> websites are built with Sitepack.</p>
 <p>Sitepack&#8217;s documentation is still in its infancy (I&#8217;ll let you know via my Newsletter when it improves). But if your plan is to use MDX to write an actual <em>website</em> (you know, with pages and links and no &#8220;login&#8221; button), it is definitely worth trying out. To do so, use the <strong>sitepack-react-starter-kit</strong> &#8212; it supports MDX out of the box.</p>
 <pre><code>git clone https://github.com/jamesknelson/sitepack-react-starter-kit.git
 cd sitepack-react-starter-kit
@@ -1293,7 +1293,7 @@ SyntaxError: unknown: Unexpected token (1:37)
 </ul>
 <h2>Relevant Babel Documentation</h2>
 <ul>
-<li><a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="https://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
 <li><a href="https://babeljs.io/docs/usage/babelrc/">.babelrc</a></li>
 <li><a href="https://babeljs.io/docs/usage/cli/">Command Line Interface</a></li>
 <li><a href="https://babeljs.io/docs/usage/require/">Require Hook</a></li>
@@ -2297,7 +2297,7 @@ src/
 <h2>Read More</h2>
 <ul>
 <li><a href="/es6-the-bits-youll-actually-use/">ES6 &#8211; The Bits You’ll Actually Use</a></li>
-<li><a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="https://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
 <li><a href="/the-six-things-you-need-to-know-about-babel-6">The Six Things You Need To Know About Babel 6</a></li>
 </ul>
 <p>The post <a rel="nofollow" href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Writing NPM packages with ES6 using the Babel 6 CLI</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
@@ -2330,7 +2330,7 @@ src/
 <li>
 <p><strong>The <code>babel</code> npm package no longer exists.</strong> Instead, Babel has been split into multiple packages:</p>
 <ul>
-<li><a href="http://npmjs.com/package/babel-cli">babel-cli</a>, which contains the <code>babel</code> command line interface</li>
+<li><a href="https://npmjs.com/package/babel-cli">babel-cli</a>, which contains the <code>babel</code> command line interface</li>
 <li><a href="https://www.npmjs.com/package/babel-core">babel-core</a>, which contains the Node API and <code>require</code> hook</li>
 <li><a href="https://www.npmjs.com/package/babel-polyfill">babel-polyfill</a>, which when <code>require</code>d, sets you up with a full ES2015-ish environment</li>
 </ul>

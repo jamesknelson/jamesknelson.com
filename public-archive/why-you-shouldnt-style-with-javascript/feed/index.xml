@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
 	
 	>
 <channel>
@@ -78,9 +78,9 @@ hi guys. i have a problem.can you help me ? how can i let many Namespace CSS mod
 
 					<description><![CDATA[In reply to &lt;a href=&quot;/why-you-shouldnt-style-with-javascript/#comment-21392&quot;&gt;Steve Tomlin&lt;/a&gt;.
 
-I am wondering how exactly libraries like Material-UI (http://www.material-ui.com)/ exist which run directly contrary to what you are saying and have a thriving ecosystem? Your open mind must make you a treat to work with :P]]></description>
+I am wondering how exactly libraries like Material-UI (https://www.material-ui.com)/ exist which run directly contrary to what you are saying and have a thriving ecosystem? Your open mind must make you a treat to work with :P]]></description>
 			<content:encoded><![CDATA[<p>In reply to <a href="/why-you-shouldnt-style-with-javascript/#comment-21392">Steve Tomlin</a>.</p>
-<p>I am wondering how exactly libraries like Material-UI (<a href="http://www.material-ui.com/" rel="nofollow ugc">http://www.material-ui.com/</a>) exist which run directly contrary to what you are saying and have a thriving ecosystem? Your open mind must make you a treat to work with 😛</p>
+<p>I am wondering how exactly libraries like Material-UI (<a href="https://www.material-ui.com/" rel="nofollow ugc">https://www.material-ui.com/</a>) exist which run directly contrary to what you are saying and have a thriving ecosystem? Your open mind must make you a treat to work with 😛</p>
 ]]></content:encoded>
 		
 			</item>

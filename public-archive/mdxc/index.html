@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDX Playground</title>
+
+  
+    <link rel="stylesheet" type="text/css" href="/mdxc/site-bundle.0d47f6df.css">
+  
+</head>
+<body>
+  <div id="app">
+    <div data-reactroot="" data-reactid="1" data-react-checksum="469323184"><div class="fullscreenMDXBreadboardTheme  " data-reactid="2"><nav data-reactid="3"><span class="fullscreenMDXBreadboardTheme-modes" data-reactid="4"><span class="fullscreenMDXBreadboardTheme-mode" data-reactid="5">Output</span><span class="fullscreenMDXBreadboardTheme-mode fullscreenMDXBreadboardTheme-active" data-reactid="6">Preview</span></span></nav><textarea class="fullscreenMDXBreadboardTheme-editor" style="position:relative;flex-basis:600px;flex-grow:0;flex-shrink:1;" data-reactid="7">&lt;img src=&quot;https://raw.githubusercontent.com/jamesknelson/mdxc/master/media/logo.png&quot; alt=&quot;MDXC&quot; width=&quot;250&quot; /&gt;
+
+
+
+
+*A tool to convert Markdown files into React components.* [Try it yourself](http://dump.jamesknelson.com/mdxc-playground.html) with the MDXC Playground.
+
+MDX is a simpler way to write content for you React applications. While standard Markdown compiles to a string of HTML, MDX compiles directly to JavaScript. **If you&#x27;re writing a React app, MDX is both easier to use *and* more flexible than standard Markdown.**
+
+Writing with MDX let&#x27;s you use the full power of React, even when writing content.
+
+- You can import and use custom components within your content
+- You can replace Markdown&#x27;s default elements with your own, allowing you to add custom behavior to links, headings, etc.
+- You can nest Markdown-formatted content within JSX elements
+
+
+
+
+
+## Try it yourself
+
+The easiest way to try MDX is to edit the source on the left of this page!
+
+Otherwise, you can try the old fashioned way:
+
+```bash
+# Install the `mdxc` command line tool using npm
+npm install -g mdxc
+
+# Create a file with a single heading
+echo &#x27;# Hello, World&#x27; &gt; example.mdx
+
+# Output the compiled component to your console
+mdxc example.mdx
+```
+
+Other ways to use MDX include:
+
+- Use it with [Sitepack](#sitepack) to build static websites
+- Use it with [Webpack](#webpack-with-mdx-loader)
+- Use the [API](#api) directly
+
+For details, jump to the [usage](#using-mdx) section
+
+
+
+
+
+## Examples
+
+Let&#x27;s go over some of the basics -- we&#x27;ll leave out the boilerplate on the JavaScript output. For more detailed examples or examples which can be run locally, see the `examples` directory.
+
+
+### Tags
+
+MDX, like JSX, requires all tags to be closed. This means that unclosed tags like `&lt;br&gt;` are just treated as plain text, while properly closed tags result in React elements.
+
+```mdx
+The tag &lt;br&gt; is not closed. The tag &lt;br /&gt; is closed.
+
+Mixing &lt;span&gt;unclosed and &lt;span&gt;closed&lt;/span&gt; treats the outermost tags as text.
+```
+
+
+### Attributes
+
+Because an MDX file compiles to a React Component, you&#x27;ll need to name use React-style attributes.
+
+```mdx
+&lt;p className=&#x27;super-classy&#x27; style={{textTransform: &#x27;uppercase&#x27;}}&gt;classy&lt;/p&gt;
+```
+
+
+### Children
+
+For tags which are &quot;inline&quot; -- i.e. within a paragraph of text, the tag&#x27;s content is treated as Markdown -- you can use \`backticks\`, \*asterisks\*\*, etc. Inline tags can also contain nested tags, but unlike JSX, `{braces}` are treated as text.
+
+```mdx
+Within inline tags, &lt;sup&gt;{braces} are **text** and &lt;sub&gt;nested elements are ok&lt;/sub&gt;&lt;/sup&gt;.
+```
+
+
+For tag &quot;blocks&quot; -- where a paragraph starts and ends with the same tag -- the content is treated as it would be in a JSX document. This means that whitespace is ignored, `backticks` are plain text and `{braces}` can be used to break out to JavaScript. If you&#x27;d like to pass Markdown-formatted text as children, wrap it in the special `&lt;markdown&gt;` tag.
+
+
+```mdx
+&lt;p&gt;
+  # Markdown {&quot;doesn&#x27;t&quot;.toUpperCase()} work here.
+  &lt;markdown&gt;
+    *But does work here*.
+  &lt;/markdown&gt;
+&lt;/p&gt;
+```
+
+### Imports
+
+Markdown is limited in functionality by design, and MDX is no different. When you want to do something complex, you&#x27;ll need to delegate to an old fashioned React component. And to access custom React components, you&#x27;ll need to use `import`.
+
+The syntax for MDX `import` is identical to ES2015 `import`. The only difference is that `import` statements must come before any whitespace or blank lines.
+
+Say you have a `&lt;Playground&gt;` component that compiles and runs some example code on the fly. You might use it like this:
+
+
+
+
+```mdx
+import MDXBreadboard from &#x27;mdx-breadboard&#x27;
+
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;MDXBreadboard defaultSource={`
+  # Turtles!
+
+  &lt;br /&gt;
+`} /&gt;
+```
+
+Notice how your content in the generated code uses a different indentation level to the wrapper code. This ensures that any strings within your MDX do not have unwanted spaces inserted at the start of each line.
+
+
+### Props
+
+You can declare that your generated component accepts a prop by adding a `prop [propname]` at the top of your file, after any imports. This variable can then be used within your embedded elements. Remember that `{braces}` are treated as strings within inline tags; if you want to interpolate a prop within your text, you&#x27;ll need to do it within a JSX block!
+
+```mdx
+prop value
+prop onChange
+
+&lt;h1&gt;Hello{value ? &#x27;, &#x27;+value : &#x27;&#x27;}!&lt;/h1&gt;
+
+&lt;input
+  placeholder=&#x27;What is your name?&#x27;
+  value={value}
+  onChange={onChange}
+/&gt;
+```
+
+
+
+### Factories
+
+When MDX generates code for your Markdown, it doesn&#x27;t directly generate a JSX `&lt;tag /&gt;` (or its JavaScript equivalent `React.createElement(&#x27;tag&#x27;)`). Instead, it calls a *factory function* with the tag&#x27;s props and children.
+
+Generally, you don&#x27;t need to worry about factories. MDX provides default factories that just render the tag -- as expected. But variety is the spice of life, so in all likelihood you&#x27;ll sometimes want to customize the behavior of certain tags. And doing so is as simple as passing an object to your generated component&#x27;s `factories` prop!
+
+
+
+
+#### Adding `pushState` support to links
+
+If you&#x27;re loading content within a React app, then in all likelihood your app is using HTML5 history through a library like [react-router](https://reacttraining.com/react-router/web/guides/quick-start) or [react-junctions](https://junctions.js.org/guide).
+
+The great thing about HTML5 history is that it provides a way to navigate without reloading the page. The crap thing about it is that *good-ol&#x27; `&lt;a&gt;` tags will still reload the page*. So if you want your content to feel snappy and not out of place, you&#x27;ll want it to use a `&lt;Link&gt;` component instead.
+
+```js
+// Assume &#x27;./content&#x27; is a file generated by mdxc
+import Content from &#x27;./content&#x27;
+import { Link } from &#x27;react-router&#x27;
+
+export default function ContentWrapper(props) {
+  return (
+    &lt;Content
+      {...props}
+      factories={{ a: Link }}
+    /&gt;
+  )
+}
+```
+
+
+
+
+
+
+#### Adding anchor links to headings
+
+Another use for factories is to add &quot;anchor links&quot; to your headings. To do so, you&#x27;d pass in custom factories for tags like `h1` and `h2`.
+
+```js
+// Assume &#x27;./content&#x27; is a file generated by mdxc
+import Content from &#x27;./content&#x27;
+
+function headingFactory(type, props, ...children) {
+  // Render the same props and children that were passed in, but prepend a
+  // link to this title with the text &#x27;#&#x27;. Note that MDX already adds a slug
+  // to each title under its `id` attribute.
+  return React.createElement(
+    type,
+    props,
+    &lt;a href={&#x27;#&#x27;+props.id}&gt;#&lt;/a&gt;,
+    ...children
+  )
+}
+
+export default function ContentWrapper(props) {
+  return (
+    &lt;Content
+      {...props}
+      factories={{
+        h1: (props, children) =&gt; headingFactory(&#x27;h1&#x27;, props, children),
+        h2: (props, children) =&gt; headingFactory(&#x27;h2&#x27;, props, children),
+        h3: (props, children) =&gt; headingFactory(&#x27;h3&#x27;, props, children),
+      }}
+    /&gt;
+  )
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Using MDX
+
+### Command line
+
+A tool wouldn&#x27;t be a tool without a good old CLI. It probably isn&#x27;t that useful, but hey. It&#x27;s the vibe, and all that. What I mean is, if you must, you may use the CLI to create `js` files from `mdx` files by hand.
+
+```bash
+# Install the `mdxc` command line tool using npm
+&gt; npm install -g mdxc
+
+# Then call `mdxc --help` to see how to use it
+&gt; mdxc --help
+
+Usage: mdxc [options] &lt;file&gt;
+
+Compile mdx to js
+
+Options:
+
+  -h, --help           output usage information
+  -V, --version        output the version number
+  -c, --common         use commonJS modules (i.e. module.exports and require)
+  -o, --output &lt;file&gt;  output to file instead of console
+  -u, --unwrapped      don&#x27;t wrap the content in a React component
+```
+
+
+
+
+
+
+
+
+
+### Sitepack
+
+**MDXC was originally created as a plugin for Sitepack.**
+
+[Sitepack](http://github.com/jamesknelson/sitepack) is a wrapper around Webpack. It gives you a way to add pages to your website using plain-old `require()`, it handles the nasty parts of Webpack configuration for you, and it does all this while performing the magic required to build a static HTML version of each of your pages. As it happens, the MDXC website is built with Sitepack.
+
+If your plan is to use MDX to write an actual *website* (you know, with pages and links and no &quot;login&quot; button), then Sitepack is worth giving a try. It&#x27;s documentation is still in its infancy, but you can get around this by using the **sitepack-react-starter-kit** which supports MDX out of the box.
+
+
+
+
+```bash
+git clone https://github.com/jamesknelson/sitepack-react-starter-kit.git
+cd sitepack-react-starter-kit
+npm install
+npm start
+```
+
+
+
+Once you&#x27;ve cloned, installed and started sitepack, open your browser at &lt;http://localhost:4000&gt; and start editing the `md` files in the `content` directory -- changes will be reflected live! When you&#x27;re ready to release, build your site with `npm run build`.
+
+
+### Webpack with mdx-loader
+
+If you&#x27;d like to use MDX within an existing react app, chances are you&#x27;ll want to use [mdx-loader](http://github.com/jamesknelson/mdx-loader). To do so, just add it to your project and then update the your `webpack.config.js`. Bear in mind that MDXC outputs ES2015, so you&#x27;ll need to run the output through Babel if you want to support older browsers.
+
+
+```bash
+# Add mdx-loader to your project
+npm install --save-dev mdx-loader
+```
+
+Assuming you&#x27;re using Webpack 2, you&#x27;ll need to add an entry to your `module.rules` array:
+
+```js
+module: {
+  rules: [
+    /**
+     * MDX is a tool that converts Markdown files to React components. This 
+     * loader uses MDX to create Page objects for Markdown files. As it
+     * produces ES2015, the result is then passed through babel.
+     */
+    { test: /\.mdx?$/,
+      use: [
+        &#x27;babel-loader&#x27;,
+        &#x27;mdx-loader&#x27;,
+      ]
+    },
+
+    // ...
+  ]
+},
+```
+
+Then import and use your components as you&#x27;d do with standard JavaScript!
+
+
+
+
+
+
+
+
+
+
+
+### API
+
+At its core, MDXC is just a wrapper around the excellent and highly configurable [markdown-it](https://github.com/markdown-it/markdown-it) project. This means that its API is mostly the same.
+
+The major difference is that the default renderer from markdown-it has been replaced with a non-configurable renderer. Existing markdown-it plugins will work, but any hooks on the renderer will silently fail. This is the behavior you want, as these hooks transform HTML strings, and MDXC doesn&#x27;t use any HTML strings. If you need to transform the output, use factories instead.
+
+To transform MDX into JavaScript, create an instance of the `MDXC` class and then call its `render` method. If you&#x27;d like to load any markdown-it plugins, call the `use` method on your `MDXC` instance before calling `render`.
+
+
+
+
+
+```js
+import MDXC from &#x27;mdxc&#x27;
+
+var mdxc = new MDXC({
+  linkify: true,
+  typographer: true,
+})
+
+var js = mdxc.render(&#x27;# This is a heading&#x27;)
+```
+
+
+
+The options to `mdxc` are mostly the same as the options for markdown-it. For details, see the [markdown-it](https://markdown-it.github.io/markdown-it/) API docs. 
+
+MDXC also provides a few extra options.
+
+- `commonJS` *bool* If true, your imports/exports will be transformed to use `require()` and `module.exports`
+- `unwrapped` *bool` If true, the component definition boilerplate will be omitted
+
+To see this all in use, here is a slimmed-down version of the `mdx-loader` package:
+
+
+```js
+const url = require(&#x27;url&#x27;)
+const path = require(&#x27;path&#x27;)
+const loaderUtils = require(&#x27;loader-utils&#x27;)
+const Prism = require(&#x27;prismjs&#x27;)
+const MDXC = require(&#x27;mdxc&#x27;)
+
+// Set up syntax highlighting for code blocks with PrismJS
+const aliases = {
+  &#x27;js&#x27;: &#x27;jsx&#x27;,
+  &#x27;html&#x27;: &#x27;markup&#x27;
+}
+function highlight(str, lang) {
+  if (!lang) {
+    return str
+  }
+  else {
+    lang = aliases[lang] || lang
+    require(`prismjs/components/prism-${lang}.js`)
+    if (Prism.languages[lang]) {
+      return Prism.highlight(str, Prism.languages[lang])
+    } else {
+      return str
+    }
+  }
+}
+
+// A markdown-it plugin that requires your images with Webpack
+function mdImageReplacer(md) {
+  md.core.ruler.push(&#x27;imageReplacer&#x27;, function(state) {
+    function applyFilterToTokenHierarchy(token) {
+      if (token.children) {
+        token.children.map(applyFilterToTokenHierarchy);
+      }
+      if (token.type === &#x27;image&#x27;) {
+        const src = token.attrGet(&#x27;src&#x27;)
+        if(!loaderUtils.isUrlRequest(src)) return;
+        const uri = url.parse(src);
+        uri.hash = null;
+        token.attrSet(&#x27;src&#x27;, { __jsx: &#x27;require(&quot;&#x27;+uri.format()+&#x27;&quot;)&#x27; });
+      }
+    }
+    state.tokens.map(applyFilterToTokenHierarchy);
+  })
+}
+
+module.exports = function mdxLoader(content) {
+  const mdxc =
+    new MDXC({
+      commonJS: true,
+      linkify: true,
+      typographer: true,
+      highlight: highlight,
+    })
+      .use(mdImageReplacer)
+
+  return mdxc.render(content);
+}
+```
+
+
+
+
+
+
+
+
+## MDX in the wild
+
+- [junctions](https://junctions.js.org), a router for React ([website source](https://github.com/jamesknelson/junctions/tree/master/docs))
+- *create a PR to add your own site!*
+
+## Acknowledgments
+
+Mad props to [markdown-it](https://github.com/markdown-it/markdown-it) for doing the hard yards which make MDXC possible. Also, [markdown-it-jsx](https://github.com/osnr/markdown-it-jsx) provided the base for parsing JSX tags out of Markdown files. Finally, there would be no use making MDXC unless React, Webpack and Babel already existed.
+
+## Contributing
+
+Help is muchly appreciated! In particular, PRs for the following would be super duper great:
+
+- Improved tests
+- Refactoring existing code to be prettier and faster
+- Generating more concise JavaScript</textarea><div class="fullscreenMDXBreadboardTheme-preview" style="position:relative;flex-basis:600px;flex-grow:1;flex-shrink:1;overflow:auto;" data-reactid="8"><div data-reactid="9"><div data-reactroot="" data-reactid="1" data-react-checksum="-48280746"><img src="https://raw.githubusercontent.com/jamesknelson/mdxc/master/media/logo.png" alt="MDXC" width="250" data-reactid="2"/><p data-reactid="3"><em data-reactid="4">A tool to convert Markdown files into React components.</em><!-- react-text: 5 --> <!-- /react-text --><a href="http://dump.jamesknelson.com/mdxc-playground.html" data-reactid="6">Try it yourself</a><!-- react-text: 7 --> with the MDXC Playground.<!-- /react-text --></p><p data-reactid="8"><!-- react-text: 9 -->MDX is a simpler way to write content for you React applications. While standard Markdown compiles to a string of HTML, MDX compiles directly to JavaScript. <!-- /react-text --><strong data-reactid="10"><!-- react-text: 11 -->If you’re writing a React app, MDX is both easier to use <!-- /react-text --><em data-reactid="12">and</em><!-- react-text: 13 --> more flexible than standard Markdown.<!-- /react-text --></strong></p><p data-reactid="14">Writing with MDX let’s you use the full power of React, even when writing content.</p><ul data-reactid="15"><li data-reactid="16">You can import and use custom components within your content</li><li data-reactid="17">You can replace Markdown’s default elements with your own, allowing you to add custom behavior to links, headings, etc.</li><li data-reactid="18">You can nest Markdown-formatted content within JSX elements</li></ul><h2 id="Try-it-yourself" data-reactid="19">Try it yourself</h2><p data-reactid="20">The easiest way to try MDX is to edit the source on the left of this page!</p><p data-reactid="21">Otherwise, you can try the old fashioned way:</p><pre class="undefined language-bash" data-reactid="22"><code data-reactid="23"><span class="token comment" spellcheck="true"># Install the `mdxc` command line tool using npm</span>
+<span class="token function">npm</span> <span class="token function">install</span> -g mdxc
+
+<span class="token comment" spellcheck="true"># Create a file with a single heading</span>
+<span class="token keyword">echo</span> <span class="token string">'# Hello, World'</span> <span class="token operator">></span> example.mdx
+
+<span class="token comment" spellcheck="true"># Output the compiled component to your console</span>
+mdxc example.mdx
+</code></pre><p data-reactid="24">Other ways to use MDX include:</p><ul data-reactid="25"><li data-reactid="26"><!-- react-text: 27 -->Use it with <!-- /react-text --><a href="#sitepack" data-reactid="28">Sitepack</a><!-- react-text: 29 --> to build static websites<!-- /react-text --></li><li data-reactid="30"><!-- react-text: 31 -->Use it with <!-- /react-text --><a href="#webpack-with-mdx-loader" data-reactid="32">Webpack</a></li><li data-reactid="33"><!-- react-text: 34 -->Use the <!-- /react-text --><a href="#api" data-reactid="35">API</a><!-- react-text: 36 --> directly<!-- /react-text --></li></ul><p data-reactid="37"><!-- react-text: 38 -->For details, jump to the <!-- /react-text --><a href="#using-mdx" data-reactid="39">usage</a><!-- react-text: 40 --> section<!-- /react-text --></p><h2 id="Examples" data-reactid="41">Examples</h2><p data-reactid="42"><!-- react-text: 43 -->Let’s go over some of the basics – we’ll leave out the boilerplate on the JavaScript output. For more detailed examples or examples which can be run locally, see the <!-- /react-text --><code data-reactid="44">examples</code><!-- react-text: 45 --> directory.<!-- /react-text --></p><h3 id="Tags" data-reactid="46">Tags</h3><p data-reactid="47"><!-- react-text: 48 -->MDX, like JSX, requires all tags to be closed. This means that unclosed tags like <!-- /react-text --><code data-reactid="49">&lt;br&gt;</code><!-- react-text: 50 --> are just treated as plain text, while properly closed tags result in React elements.<!-- /react-text --></p><div style="max-width:none;width:100%;" data-reactid="51"><div class="defaultMDXBreadboardTheme  " data-reactid="52"><nav data-reactid="53"><span class="defaultMDXBreadboardTheme-modes" data-reactid="54"><span class="defaultMDXBreadboardTheme-mode" data-reactid="55">Output</span><span class="defaultMDXBreadboardTheme-mode defaultMDXBreadboardTheme-active" data-reactid="56">Preview</span></span></nav><textarea class="defaultMDXBreadboardTheme-editor" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:0;height:0;" data-reactid="57">The tag &lt;br&gt; is not closed. The tag &lt;br /&gt; is closed.
+
+Mixing &lt;span&gt;unclosed and &lt;span&gt;closed&lt;/span&gt; treats the outermost tags as text.</textarea><div class="defaultMDXBreadboardTheme-preview" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:1;overflow:auto;" data-reactid="58"><div data-reactid="59"><div data-reactroot="" data-reactid="1" data-react-checksum="-2127918231"><p data-reactid="2"><!-- react-text: 3 -->The tag &lt;br&gt; is not closed. The tag <!-- /react-text --><br data-reactid="4"/><!-- react-text: 5 --> is closed.<!-- /react-text --></p><p data-reactid="6"><!-- react-text: 7 -->Mixing &lt;span&gt;unclosed and <!-- /react-text --><span data-reactid="8">closed</span><!-- react-text: 9 --> treats the outermost tags as text.<!-- /react-text --></p></div></div></div></div></div><h3 id="Attributes" data-reactid="60">Attributes</h3><p data-reactid="61">Because an MDX file compiles to a React Component, you’ll need to name use React-style attributes.</p><div style="max-width:none;width:100%;" data-reactid="62"><div class="defaultMDXBreadboardTheme  " data-reactid="63"><nav data-reactid="64"><span class="defaultMDXBreadboardTheme-modes" data-reactid="65"><span class="defaultMDXBreadboardTheme-mode" data-reactid="66">Output</span><span class="defaultMDXBreadboardTheme-mode defaultMDXBreadboardTheme-active" data-reactid="67">Preview</span></span></nav><textarea class="defaultMDXBreadboardTheme-editor" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:0;height:0;" data-reactid="68">&lt;p className=&#x27;super-classy&#x27; style={{textTransform: &#x27;uppercase&#x27;}}&gt;classy&lt;/p&gt;</textarea><div class="defaultMDXBreadboardTheme-preview" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:1;overflow:auto;" data-reactid="69"><div data-reactid="70"><div data-reactroot="" data-reactid="1" data-react-checksum="-623956511"><p class="super-classy" style="text-transform:uppercase;" data-reactid="2">classy</p></div></div></div></div></div><h3 id="Children" data-reactid="71">Children</h3><p data-reactid="72"><!-- react-text: 73 -->For tags which are “inline” – i.e. within a paragraph of text, the tag’s content is treated as Markdown – you can use `backticks`, *asterisks**, etc. Inline tags can also contain nested tags, but unlike JSX, <!-- /react-text --><code data-reactid="74">{braces}</code><!-- react-text: 75 --> are treated as text.<!-- /react-text --></p><div style="max-width:none;width:100%;" data-reactid="76"><div class="defaultMDXBreadboardTheme  " data-reactid="77"><nav data-reactid="78"><span class="defaultMDXBreadboardTheme-modes" data-reactid="79"><span class="defaultMDXBreadboardTheme-mode" data-reactid="80">Output</span><span class="defaultMDXBreadboardTheme-mode defaultMDXBreadboardTheme-active" data-reactid="81">Preview</span></span></nav><textarea class="defaultMDXBreadboardTheme-editor" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:0;height:0;" data-reactid="82">Within inline tags, &lt;sup&gt;{braces} are **text** and &lt;sub&gt;nested elements are ok&lt;/sub&gt;&lt;/sup&gt;.</textarea><div class="defaultMDXBreadboardTheme-preview" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:1;overflow:auto;" data-reactid="83"><div data-reactid="84"><div data-reactroot="" data-reactid="1" data-react-checksum="-1351517079"><p data-reactid="2"><!-- react-text: 3 -->Within inline tags, <!-- /react-text --><sup data-reactid="4"><!-- react-text: 5 -->{braces} are <!-- /react-text --><strong data-reactid="6">text</strong><!-- react-text: 7 --> and <!-- /react-text --><sub data-reactid="8">nested elements are ok</sub></sup><!-- react-text: 9 -->.<!-- /react-text --></p></div></div></div></div></div><p data-reactid="85"><!-- react-text: 86 -->For tag “blocks” – where a paragraph starts and ends with the same tag – the content is treated as it would be in a JSX document. This means that whitespace is ignored, <!-- /react-text --><code data-reactid="87">backticks</code><!-- react-text: 88 --> are plain text and <!-- /react-text --><code data-reactid="89">{braces}</code><!-- react-text: 90 --> can be used to break out to JavaScript. If you’d like to pass Markdown-formatted text as children, wrap it in the special <!-- /react-text --><code data-reactid="91">&lt;markdown&gt;</code><!-- react-text: 92 --> tag.<!-- /react-text --></p><div style="max-width:none;width:100%;" data-reactid="93"><div class="defaultMDXBreadboardTheme  " data-reactid="94"><nav data-reactid="95"><span class="defaultMDXBreadboardTheme-modes" data-reactid="96"><span class="defaultMDXBreadboardTheme-mode" data-reactid="97">Output</span><span class="defaultMDXBreadboardTheme-mode defaultMDXBreadboardTheme-active" data-reactid="98">Preview</span></span></nav><textarea class="defaultMDXBreadboardTheme-editor" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:0;height:0;" data-reactid="99">&lt;p&gt;
+  # Markdown {&quot;doesn&#x27;t&quot;.toUpperCase()} work here.
+  &lt;markdown&gt;
+    *But does work here*.
+  &lt;/markdown&gt;
+&lt;/p&gt;</textarea><div class="defaultMDXBreadboardTheme-preview" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:1;overflow:auto;" data-reactid="100"><div data-reactid="101"><div data-reactroot="" data-reactid="1" data-react-checksum="-902336344"><p data-reactid="2"><!-- react-text: 3 --># Markdown <!-- /react-text --><!-- react-text: 4 -->DOESN&#x27;T<!-- /react-text --><!-- react-text: 5 --> work here.<!-- /react-text --><div data-reactid="6"><p data-reactid="7"><em data-reactid="8">But does work here</em><!-- react-text: 9 -->.<!-- /react-text --></p></div></p></div></div></div></div></div><h3 id="Imports" data-reactid="102">Imports</h3><p data-reactid="103"><!-- react-text: 104 -->Markdown is limited in functionality by design, and MDX is no different. When you want to do something complex, you’ll need to delegate to an old fashioned React component. And to access custom React components, you’ll need to use <!-- /react-text --><code data-reactid="105">import</code><!-- react-text: 106 -->.<!-- /react-text --></p><p data-reactid="107"><!-- react-text: 108 -->The syntax for MDX <!-- /react-text --><code data-reactid="109">import</code><!-- react-text: 110 --> is identical to ES2015 <!-- /react-text --><code data-reactid="111">import</code><!-- react-text: 112 -->. The only difference is that <!-- /react-text --><code data-reactid="113">import</code><!-- react-text: 114 --> statements must come before any whitespace or blank lines.<!-- /react-text --></p><p data-reactid="115"><!-- react-text: 116 -->Say you have a <!-- /react-text --><code data-reactid="117">&lt;Playground&gt;</code><!-- react-text: 118 --> component that compiles and runs some example code on the fly. You might use it like this:<!-- /react-text --></p><div style="max-width:none;width:100%;" data-reactid="119"><div class="defaultMDXBreadboardTheme  " data-reactid="120"><nav data-reactid="121"><span class="defaultMDXBreadboardTheme-modes" data-reactid="122"><span class="defaultMDXBreadboardTheme-mode" data-reactid="123">Output</span><span class="defaultMDXBreadboardTheme-mode defaultMDXBreadboardTheme-active" data-reactid="124">Preview</span></span></nav><textarea class="defaultMDXBreadboardTheme-editor" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:0;height:0;" data-reactid="125">import MDXBreadboard from &#x27;mdx-breadboard&#x27;
+
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;MDXBreadboard defaultSource={`
+  # Turtles!
+
+  &lt;br /&gt;
+`} /&gt;</textarea><div class="defaultMDXBreadboardTheme-preview" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:1;overflow:auto;" data-reactid="126"><div data-reactid="127"><div data-reactroot="" data-reactid="1" data-react-checksum="359024704"><br data-reactid="2"/><br data-reactid="3"/><div class="defaultMDXBreadboardTheme  " data-reactid="4"><nav data-reactid="5"><span class="defaultMDXBreadboardTheme-modes" data-reactid="6"><span class="defaultMDXBreadboardTheme-mode" data-reactid="7">Output</span><span class="defaultMDXBreadboardTheme-mode defaultMDXBreadboardTheme-active" data-reactid="8">Preview</span></span></nav><textarea class="defaultMDXBreadboardTheme-editor" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:0;height:0;" data-reactid="9">  # Turtles!
+
+  &lt;br /&gt;</textarea><div class="defaultMDXBreadboardTheme-preview" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:1;overflow:auto;" data-reactid="10"><div data-reactid="11"><div data-reactroot="" data-reactid="1" data-react-checksum="-868670033"><h1 id="Turtles!" data-reactid="2">Turtles!</h1><br data-reactid="3"/></div></div></div></div></div></div></div></div></div><p data-reactid="128">Notice how your content in the generated code uses a different indentation level to the wrapper code. This ensures that any strings within your MDX do not have unwanted spaces inserted at the start of each line.</p><h3 id="Props" data-reactid="129">Props</h3><p data-reactid="130"><!-- react-text: 131 -->You can declare that your generated component accepts a prop by adding a <!-- /react-text --><code data-reactid="132">prop [propname]</code><!-- react-text: 133 --> at the top of your file, after any imports. This variable can then be used within your embedded elements. Remember that <!-- /react-text --><code data-reactid="134">{braces}</code><!-- react-text: 135 --> are treated as strings within inline tags; if you want to interpolate a prop within your text, you’ll need to do it within a JSX block!<!-- /react-text --></p><div style="max-width:none;width:100%;" data-reactid="136"><div class="defaultMDXBreadboardTheme  " data-reactid="137"><nav data-reactid="138"><span class="defaultMDXBreadboardTheme-modes" data-reactid="139"><span class="defaultMDXBreadboardTheme-mode" data-reactid="140">Output</span><span class="defaultMDXBreadboardTheme-mode defaultMDXBreadboardTheme-active" data-reactid="141">Preview</span></span></nav><textarea class="defaultMDXBreadboardTheme-editor" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:0;height:0;" data-reactid="142">prop value
+prop onChange
+
+&lt;h1&gt;Hello{value ? &#x27;, &#x27;+value : &#x27;&#x27;}!&lt;/h1&gt;
+
+&lt;input
+  placeholder=&#x27;What is your name?&#x27;
+  value={value}
+  onChange={onChange}
+/&gt;</textarea><div class="defaultMDXBreadboardTheme-preview" style="position:relative;flex-basis:500px;flex-grow:0;flex-shrink:1;overflow:auto;" data-reactid="143"><div data-reactid="144"><div data-reactroot="" data-reactid="1" data-react-checksum="1964986567"><h1 data-reactid="2"><!-- react-text: 3 -->Hello<!-- /react-text --><!-- react-text: 4 --><!-- /react-text --><!-- react-text: 5 -->!<!-- /react-text --></h1><input placeholder="What is your name?" data-reactid="6"/></div></div></div></div></div><h3 id="Factories" data-reactid="145">Factories</h3><p data-reactid="146"><!-- react-text: 147 -->When MDX generates code for your Markdown, it doesn’t directly generate a JSX <!-- /react-text --><code data-reactid="148">&lt;tag /&gt;</code><!-- react-text: 149 --> (or its JavaScript equivalent <!-- /react-text --><code data-reactid="150">React.createElement(&#x27;tag&#x27;)</code><!-- react-text: 151 -->). Instead, it calls a <!-- /react-text --><em data-reactid="152">factory function</em><!-- react-text: 153 --> with the tag’s props and children.<!-- /react-text --></p><p data-reactid="154"><!-- react-text: 155 -->Generally, you don’t need to worry about factories. MDX provides default factories that just render the tag – as expected. But variety is the spice of life, so in all likelihood you’ll sometimes want to customize the behavior of certain tags. And doing so is as simple as passing an object to your generated component’s <!-- /react-text --><code data-reactid="156">factories</code><!-- react-text: 157 --> prop!<!-- /react-text --></p><h4 id="Adding-pushState-support-to-links" data-reactid="158"><!-- react-text: 159 -->Adding <!-- /react-text --><code data-reactid="160">pushState</code><!-- react-text: 161 --> support to links<!-- /react-text --></h4><p data-reactid="162"><!-- react-text: 163 -->If you’re loading content within a React app, then in all likelihood your app is using HTML5 history through a library like <!-- /react-text --><a href="https://reacttraining.com/react-router/web/guides/quick-start" data-reactid="164">react-router</a><!-- react-text: 165 --> or <!-- /react-text --><a href="https://junctions.js.org/guide" data-reactid="166">react-junctions</a><!-- react-text: 167 -->.<!-- /react-text --></p><p data-reactid="168"><!-- react-text: 169 -->The great thing about HTML5 history is that it provides a way to navigate without reloading the page. The crap thing about it is that <!-- /react-text --><em data-reactid="170"><!-- react-text: 171 -->good-ol’ <!-- /react-text --><code data-reactid="172">&lt;a&gt;</code><!-- react-text: 173 --> tags will still reload the page<!-- /react-text --></em><!-- react-text: 174 -->. So if you want your content to feel snappy and not out of place, you’ll want it to use a <!-- /react-text --><code data-reactid="175">&lt;Link&gt;</code><!-- react-text: 176 --> component instead.<!-- /react-text --></p><pre class="undefined language-js" data-reactid="177"><code data-reactid="178"><span class="token comment" spellcheck="true">// Assume './content' is a file generated by mdxc</span>
+<span class="token keyword">import</span> Content <span class="token keyword">from</span> <span class="token string">'./content'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Link <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-router'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">ContentWrapper</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>Content
+      <span class="token punctuation">{</span><span class="token operator">...</span>props<span class="token punctuation">}</span>
+      factories<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> a<span class="token punctuation">:</span> Link <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><h4 id="Adding-anchor-links-to-headings" data-reactid="179">Adding anchor links to headings</h4><p data-reactid="180"><!-- react-text: 181 -->Another use for factories is to add “anchor links” to your headings. To do so, you’d pass in custom factories for tags like <!-- /react-text --><code data-reactid="182">h1</code><!-- react-text: 183 --> and <!-- /react-text --><code data-reactid="184">h2</code><!-- react-text: 185 -->.<!-- /react-text --></p><pre class="undefined language-js" data-reactid="186"><code data-reactid="187"><span class="token comment" spellcheck="true">// Assume './content' is a file generated by mdxc</span>
+<span class="token keyword">import</span> Content <span class="token keyword">from</span> <span class="token string">'./content'</span>
+
+<span class="token keyword">function</span> <span class="token function">headingFactory</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> props<span class="token punctuation">,</span> <span class="token operator">...</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// Render the same props and children that were passed in, but prepend a</span>
+  <span class="token comment" spellcheck="true">// link to this title with the text '#'. Note that MDX already adds a slug</span>
+  <span class="token comment" spellcheck="true">// to each title under its `id` attribute.</span>
+  <span class="token keyword">return</span> React<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>
+    type<span class="token punctuation">,</span>
+    props<span class="token punctuation">,</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token string">'#'</span><span class="token operator">+</span>props<span class="token punctuation">.</span>id<span class="token punctuation">}</span></span><span class="token punctuation">></span></span>#<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span><span class="token punctuation">,</span>
+    <span class="token operator">...</span>children
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">ContentWrapper</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>Content
+      <span class="token punctuation">{</span><span class="token operator">...</span>props<span class="token punctuation">}</span>
+      factories<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
+        h1<span class="token punctuation">:</span> <span class="token punctuation">(</span>props<span class="token punctuation">,</span> children<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">headingFactory</span><span class="token punctuation">(</span><span class="token string">'h1'</span><span class="token punctuation">,</span> props<span class="token punctuation">,</span> children<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        h2<span class="token punctuation">:</span> <span class="token punctuation">(</span>props<span class="token punctuation">,</span> children<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">headingFactory</span><span class="token punctuation">(</span><span class="token string">'h2'</span><span class="token punctuation">,</span> props<span class="token punctuation">,</span> children<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        h3<span class="token punctuation">:</span> <span class="token punctuation">(</span>props<span class="token punctuation">,</span> children<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">headingFactory</span><span class="token punctuation">(</span><span class="token string">'h3'</span><span class="token punctuation">,</span> props<span class="token punctuation">,</span> children<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="Using-MDX" data-reactid="188">Using MDX</h2><h3 id="Command-line" data-reactid="189">Command line</h3><p data-reactid="190"><!-- react-text: 191 -->A tool wouldn’t be a tool without a good old CLI. It probably isn’t that useful, but hey. It’s the vibe, and all that. What I mean is, if you must, you may use the CLI to create <!-- /react-text --><code data-reactid="192">js</code><!-- react-text: 193 --> files from <!-- /react-text --><code data-reactid="194">mdx</code><!-- react-text: 195 --> files by hand.<!-- /react-text --></p><pre class="undefined language-bash" data-reactid="196"><code data-reactid="197"><span class="token comment" spellcheck="true"># Install the `mdxc` command line tool using npm</span>
+<span class="token operator">></span> <span class="token function">npm</span> <span class="token function">install</span> -g mdxc
+
+<span class="token comment" spellcheck="true"># Then call `mdxc --help` to see how to use it</span>
+<span class="token operator">></span> mdxc --help
+
+Usage: mdxc <span class="token punctuation">[</span>options<span class="token punctuation">]</span> <span class="token operator">&lt;</span>file<span class="token operator">></span>
+
+Compile mdx to js
+
+Options:
+
+  -h, --help           output usage information
+  -V, --version        output the version number
+  -c, --common         use commonJS modules <span class="token punctuation">(</span>i.e. module.exports and require<span class="token punctuation">)</span>
+  -o, --output <span class="token operator">&lt;</span>file<span class="token operator">></span>  output to <span class="token function">file</span> instead of console
+  -u, --unwrapped      don't wrap the content <span class="token keyword">in</span> a React component
+</code></pre><h3 id="Sitepack" data-reactid="198">Sitepack</h3><p data-reactid="199"><strong data-reactid="200">MDXC was originally created as a plugin for Sitepack.</strong></p><p data-reactid="201"><a href="http://github.com/jamesknelson/sitepack" data-reactid="202">Sitepack</a><!-- react-text: 203 --> is a wrapper around Webpack. It gives you a way to add pages to your website using plain-old <!-- /react-text --><code data-reactid="204">require()</code><!-- react-text: 205 -->, it handles the nasty parts of Webpack configuration for you, and it does all this while performing the magic required to build a static HTML version of each of your pages. As it happens, the MDXC website is built with Sitepack.<!-- /react-text --></p><p data-reactid="206"><!-- react-text: 207 -->If your plan is to use MDX to write an actual <!-- /react-text --><em data-reactid="208">website</em><!-- react-text: 209 --> (you know, with pages and links and no “login” button), then Sitepack is worth giving a try. It’s documentation is still in its infancy, but you can get around this by using the <!-- /react-text --><strong data-reactid="210">sitepack-react-starter-kit</strong><!-- react-text: 211 --> which supports MDX out of the box.<!-- /react-text --></p><pre class="undefined language-bash" data-reactid="212"><code data-reactid="213"><span class="token function">git</span> clone https://github.com/jamesknelson/sitepack-react-starter-kit.git
+<span class="token function">cd</span> sitepack-react-starter-kit
+<span class="token function">npm</span> <span class="token function">install</span>
+<span class="token function">npm</span> start
+</code></pre><p data-reactid="214"><!-- react-text: 215 -->Once you’ve cloned, installed and started sitepack, open your browser at <!-- /react-text --><a href="http://localhost:4000" data-reactid="216">http://localhost:4000</a><!-- react-text: 217 --> and start editing the <!-- /react-text --><code data-reactid="218">md</code><!-- react-text: 219 --> files in the <!-- /react-text --><code data-reactid="220">content</code><!-- react-text: 221 --> directory – changes will be reflected live! When you’re ready to release, build your site with <!-- /react-text --><code data-reactid="222">npm run build</code><!-- react-text: 223 -->.<!-- /react-text --></p><h3 id="Webpack-with-mdx-loader" data-reactid="224">Webpack with mdx-loader</h3><p data-reactid="225"><!-- react-text: 226 -->If you’d like to use MDX within an existing react app, chances are you’ll want to use <!-- /react-text --><a href="http://github.com/jamesknelson/mdx-loader" data-reactid="227">mdx-loader</a><!-- react-text: 228 -->. To do so, just add it to your project and then update the your <!-- /react-text --><code data-reactid="229">webpack.config.js</code><!-- react-text: 230 -->. Bear in mind that MDXC outputs ES2015, so you’ll need to run the output through Babel if you want to support older browsers.<!-- /react-text --></p><pre class="undefined language-bash" data-reactid="231"><code data-reactid="232"><span class="token comment" spellcheck="true"># Add mdx-loader to your project</span>
+<span class="token function">npm</span> <span class="token function">install</span> --save-dev mdx-loader
+</code></pre><p data-reactid="233"><!-- react-text: 234 -->Assuming you’re using Webpack 2, you’ll need to add an entry to your <!-- /react-text --><code data-reactid="235">module.rules</code><!-- react-text: 236 --> array:<!-- /react-text --></p><pre class="undefined language-js" data-reactid="237"><code data-reactid="238">module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  rules<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token comment" spellcheck="true">/**
+     * MDX is a tool that converts Markdown files to React components. This 
+     * loader uses MDX to create Page objects for Markdown files. As it
+     * produces ES2015, the result is then passed through babel.
+     */</span>
+    <span class="token punctuation">{</span> test<span class="token punctuation">:</span> <span class="token regex">/\.mdx?$/</span><span class="token punctuation">,</span>
+      use<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+        <span class="token string">'mdx-loader'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token comment" spellcheck="true">// ...</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre><p data-reactid="239">Then import and use your components as you’d do with standard JavaScript!</p><h3 id="API" data-reactid="240">API</h3><p data-reactid="241"><!-- react-text: 242 -->At its core, MDXC is just a wrapper around the excellent and highly configurable <!-- /react-text --><a href="https://github.com/markdown-it/markdown-it" data-reactid="243">markdown-it</a><!-- react-text: 244 --> project. This means that its API is mostly the same.<!-- /react-text --></p><p data-reactid="245">The major difference is that the default renderer from markdown-it has been replaced with a non-configurable renderer. Existing markdown-it plugins will work, but any hooks on the renderer will silently fail. This is the behavior you want, as these hooks transform HTML strings, and MDXC doesn’t use any HTML strings. If you need to transform the output, use factories instead.</p><p data-reactid="246"><!-- react-text: 247 -->To transform MDX into JavaScript, create an instance of the <!-- /react-text --><code data-reactid="248">MDXC</code><!-- react-text: 249 --> class and then call its <!-- /react-text --><code data-reactid="250">render</code><!-- react-text: 251 --> method. If you’d like to load any markdown-it plugins, call the <!-- /react-text --><code data-reactid="252">use</code><!-- react-text: 253 --> method on your <!-- /react-text --><code data-reactid="254">MDXC</code><!-- react-text: 255 --> instance before calling <!-- /react-text --><code data-reactid="256">render</code><!-- react-text: 257 -->.<!-- /react-text --></p><pre class="undefined language-js" data-reactid="258"><code data-reactid="259"><span class="token keyword">import</span> MDXC <span class="token keyword">from</span> <span class="token string">'mdxc'</span>
+
+<span class="token keyword">var</span> mdxc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MDXC</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  linkify<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  typographer<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> js <span class="token operator">=</span> mdxc<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'# This is a heading'</span><span class="token punctuation">)</span>
+</code></pre><p data-reactid="260"><!-- react-text: 261 -->The options to <!-- /react-text --><code data-reactid="262">mdxc</code><!-- react-text: 263 --> are mostly the same as the options for markdown-it. For details, see the <!-- /react-text --><a href="https://markdown-it.github.io/markdown-it/" data-reactid="264">markdown-it</a><!-- react-text: 265 --> API docs.<!-- /react-text --></p><p data-reactid="266">MDXC also provides a few extra options.</p><ul data-reactid="267"><li data-reactid="268"><code data-reactid="269">commonJS</code><!-- react-text: 270 --> <!-- /react-text --><em data-reactid="271">bool</em><!-- react-text: 272 --> If true, your imports/exports will be transformed to use <!-- /react-text --><code data-reactid="273">require()</code><!-- react-text: 274 --> and <!-- /react-text --><code data-reactid="275">module.exports</code></li><li data-reactid="276"><code data-reactid="277">unwrapped</code><!-- react-text: 278 --> *bool` If true, the component definition boilerplate will be omitted<!-- /react-text --></li></ul><p data-reactid="279"><!-- react-text: 280 -->To see this all in use, here is a slimmed-down version of the <!-- /react-text --><code data-reactid="281">mdx-loader</code><!-- react-text: 282 --> package:<!-- /react-text --></p><pre class="undefined language-js" data-reactid="283"><code data-reactid="284"><span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'url'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> loaderUtils <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'loader-utils'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> Prism <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'prismjs'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> MDXC <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mdxc'</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// Set up syntax highlighting for code blocks with PrismJS</span>
+<span class="token keyword">const</span> aliases <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">'js'</span><span class="token punctuation">:</span> <span class="token string">'jsx'</span><span class="token punctuation">,</span>
+  <span class="token string">'html'</span><span class="token punctuation">:</span> <span class="token string">'markup'</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">highlight</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> lang<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>lang<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> str
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    lang <span class="token operator">=</span> aliases<span class="token punctuation">[</span>lang<span class="token punctuation">]</span> <span class="token operator">||</span> lang
+    <span class="token function">require</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`prismjs/components/prism-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>lang<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.js`</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Prism<span class="token punctuation">.</span>languages<span class="token punctuation">[</span>lang<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> Prism<span class="token punctuation">.</span><span class="token function">highlight</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> Prism<span class="token punctuation">.</span>languages<span class="token punctuation">[</span>lang<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> str
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// A markdown-it plugin that requires your images with Webpack</span>
+<span class="token keyword">function</span> <span class="token function">mdImageReplacer</span><span class="token punctuation">(</span>md<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  md<span class="token punctuation">.</span>core<span class="token punctuation">.</span>ruler<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'imageReplacer'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">applyFilterToTokenHierarchy</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>token<span class="token punctuation">.</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        token<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>applyFilterToTokenHierarchy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>token<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'image'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> src <span class="token operator">=</span> token<span class="token punctuation">.</span><span class="token function">attrGet</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>loaderUtils<span class="token punctuation">.</span><span class="token function">isUrlRequest</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> uri <span class="token operator">=</span> url<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        uri<span class="token punctuation">.</span>hash <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        token<span class="token punctuation">.</span><span class="token function">attrSet</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> __jsx<span class="token punctuation">:</span> <span class="token string">'require("'</span><span class="token operator">+</span>uri<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">'")'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    state<span class="token punctuation">.</span>tokens<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>applyFilterToTokenHierarchy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">mdxLoader</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> mdxc <span class="token operator">=</span>
+    <span class="token keyword">new</span> <span class="token class-name">MDXC</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      commonJS<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      linkify<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      typographer<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      highlight<span class="token punctuation">:</span> highlight<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>mdImageReplacer<span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> mdxc<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="MDX-in-the-wild" data-reactid="285">MDX in the wild</h2><ul data-reactid="286"><li data-reactid="287"><a href="https://junctions.js.org" data-reactid="288">junctions</a><!-- react-text: 289 -->, a router for React (<!-- /react-text --><a href="https://github.com/jamesknelson/junctions/tree/master/docs" data-reactid="290">website source</a><!-- react-text: 291 -->)<!-- /react-text --></li><li data-reactid="292"><em data-reactid="293">create a PR to add your own site!</em></li></ul><h2 id="Acknowledgments" data-reactid="294">Acknowledgments</h2><p data-reactid="295"><!-- react-text: 296 -->Mad props to <!-- /react-text --><a href="https://github.com/markdown-it/markdown-it" data-reactid="297">markdown-it</a><!-- react-text: 298 --> for doing the hard yards which make MDXC possible. Also, <!-- /react-text --><a href="https://github.com/osnr/markdown-it-jsx" data-reactid="299">markdown-it-jsx</a><!-- react-text: 300 --> provided the base for parsing JSX tags out of Markdown files. Finally, there would be no use making MDXC unless React, Webpack and Babel already existed.<!-- /react-text --></p><h2 id="Contributing" data-reactid="301">Contributing</h2><p data-reactid="302">Help is muchly appreciated! In particular, PRs for the following would be super duper great:</p><ul data-reactid="303"><li data-reactid="304">Improved tests</li><li data-reactid="305">Refactoring existing code to be prettier and faster</li><li data-reactid="306">Generating more concise JavaScript</li></ul></div></div></div></div></div>
+  </div>
+
+  
+    <script type="text/javascript" src="/mdxc/vendor-68ac145ef59145690d9a.js"></script>
+  
+    <script type="text/javascript" src="/mdxc/entry-1fa63ee4cdd9f4595c6b.js"></script>
+  
+</body>
+</html>

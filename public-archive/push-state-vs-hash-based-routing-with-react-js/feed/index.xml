@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
 	
 	>
 <channel>
@@ -93,11 +93,11 @@ https://www.youtube.com/watch?v=yiAF9VdvRPw]]></description>
 
 					<description><![CDATA[I humbly disagree. The hash tag in the URL is a barrier to a true hypermedia service that can exist in a browser just as it would in a under-the-hood http client using the API. 
 
-Plus, having the full address means seeing the address as the referrer, which means server access logs and error logs go from an endless sea of &quot;http://blah.com/index.php&quot; to &quot;http://blah.com/cars/xyz&quot; (&quot;hmm, seems like a lot of incoming requests are for that one record. That&#039;s interesting. Oh look! A picture of boobs!&quot; Or &quot;you say the page fails to load &#039;randomly&#039;? Oh hey, looks like errors always trace back to these addresses! Always records where there is a special character in the title! Thank goodness I wasn&#039;t depending on you to notice!&quot;)
+Plus, having the full address means seeing the address as the referrer, which means server access logs and error logs go from an endless sea of &quot;https://blah.com/index.php&quot; to &quot;https://blah.com/cars/xyz&quot; (&quot;hmm, seems like a lot of incoming requests are for that one record. That&#039;s interesting. Oh look! A picture of boobs!&quot; Or &quot;you say the page fails to load &#039;randomly&#039;? Oh hey, looks like errors always trace back to these addresses! Always records where there is a special character in the title! Thank goodness I wasn&#039;t depending on you to notice!&quot;)
 
 I agree that using the history API with expectations of huge performance boosts is probably unrealistic. But there are benefits similar to SEO that aren&#039;t actually dealing with search engine indexing.  Having the data mappable and visible at both the server level and client level is *not* a bad thing.]]></description>
 			<content:encoded><![CDATA[<p>I humbly disagree. The hash tag in the URL is a barrier to a true hypermedia service that can exist in a browser just as it would in a under-the-hood http client using the API. </p>
-<p>Plus, having the full address means seeing the address as the referrer, which means server access logs and error logs go from an endless sea of &#8220;http://blah.com/index.php&#8221; to &#8220;http://blah.com/cars/xyz&#8221; (&#8220;hmm, seems like a lot of incoming requests are for that one record. That&#8217;s interesting. Oh look! A picture of boobs!&#8221; Or &#8220;you say the page fails to load &#8216;randomly&#8217;? Oh hey, looks like errors always trace back to these addresses! Always records where there is a special character in the title! Thank goodness I wasn&#8217;t depending on you to notice!&#8221;)</p>
+<p>Plus, having the full address means seeing the address as the referrer, which means server access logs and error logs go from an endless sea of &#8220;https://blah.com/index.php&#8221; to &#8220;https://blah.com/cars/xyz&#8221; (&#8220;hmm, seems like a lot of incoming requests are for that one record. That&#8217;s interesting. Oh look! A picture of boobs!&#8221; Or &#8220;you say the page fails to load &#8216;randomly&#8217;? Oh hey, looks like errors always trace back to these addresses! Always records where there is a special character in the title! Thank goodness I wasn&#8217;t depending on you to notice!&#8221;)</p>
 <p>I agree that using the history API with expectations of huge performance boosts is probably unrealistic. But there are benefits similar to SEO that aren&#8217;t actually dealing with search engine indexing.  Having the data mappable and visible at both the server level and client level is *not* a bad thing.</p>
 ]]></content:encoded>
 		

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="https://wellformedweb.org.commentAPI/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="https://purl.org/rss/1.0/modules/slash/"
 	>
 
 <channel>
@@ -36,7 +36,7 @@
 <p>When I started this blog though, I wanted to share what I&#8217;d created. Twitter was a way of doing that. I&#8217;d written about things that I thought might be helpful, and I had a Twitter account, so why not try tweeting about them? And surprisingly, it worked. Even though I had no followers, if I tagged something as #javascript or #reactjs, I&#8217;d get a few stars. It was a nice feeling.</p>
 <p>Fast forward to 2020. I now have 6700 followers and change &#8212; partly because I helped people learn a new and useful tool, and partly because some people who won the fame lottery spread the word about this blog. It took a combination of luck and hard work. I&#8217;d say it was more luck than hard work, but as far as I can tell, that&#8217;s how life seems to go.</p>
 <p>Here&#8217;s the thing though. At first, Twitter was a way of sharing what I&#8217;d created <em>despite</em> Twitter. It was a means to an end. But as time passes, Twitter becomes the end. It starts to fuck with your head.</p>
-<p>Joseph Gordon-Levitt puts it better than I ever could in this amazing <a href="http://www.youtube.com/watch?v=3VTsIju1dLI&amp;t=5m20s">TED talk</a> which you should watch three times and then watch again:</p>
+<p>Joseph Gordon-Levitt puts it better than I ever could in this amazing <a href="https://www.youtube.com/watch?v=3VTsIju1dLI&amp;t=5m20s">TED talk</a> which you should watch three times and then watch again:</p>
 <blockquote><p>I&#8217;d be sitting there like, reading a script. And instead of thinking, k, how can I personally identify with this character, or, how is the audience going to relate to this story, I&#8217;m like, what are people gonna say about this movie on Twitter and what will I say back that will be good and snarky enough to get a lot of retweets but not too harsh because people love to get offended and I don&#8217;t want to get cancelled&#8230;</p></blockquote>
 <p>For me, the biggest effect that Twitter had was that I started to censor myself out of fear that bigger fish would stop retweeting me. I stopped calling out patterns that I didn&#8217;t think were helpful; important people liked those patterns. I stopped teaching people ideas I found helpful when I knew important people didn&#8217;t agree with them; I didn&#8217;t want to be called out and made to look like a fool. Sometimes, ignorance really <em>is</em> bliss.</p>
 <p>There&#8217;s more though. Where once upon a time, I would have posted a quick-and-dirty blog post upon learning a new thing, I started tweeting instead. It was easier, and gave me more immediate validation &#8212; only to get lost in the ether within a day or two. I stopped posting content to this blog, and instead started working for Twitter for free, creating content that helps them to capture the attention of others&#8230; which they&#8217;d then sell to the highest bidder.</p>
@@ -44,7 +44,7 @@
 <p>&#8212; <a href="https://www.youtube.com/watch?v=3VTsIju1dLI&amp;t=8m42s">Joseph Gordon-Levitt</a></p></blockquote>
 <p>But the worst part? I started to let the politics of Twitter get to me. Last year, I let attacks against a certain subset of the community rile me up, despite those attacks being 100% unrelated to technology. The outrage I felt caused me to lash out at people I care about in the real world, in large part because of my attachment to imaginary internet points.</p>
 <p>I&#8217;ll say it again &#8212; Twitter fucks with your head.</p>
-<p>I&#8217;ve been unhappy with Twitter for a while, but watching Joseph Gordon-Levitt&#8217;s <a href="http://www.youtube.com/watch?v=3VTsIju1dLI&amp;t=5m20s">TED talk</a> made me realize that I&#8217;m not alone. Hell, if someone with over 4 million followers feels this way, there&#8217;s absolutely no hope for the rest of us.</p>
+<p>I&#8217;ve been unhappy with Twitter for a while, but watching Joseph Gordon-Levitt&#8217;s <a href="https://www.youtube.com/watch?v=3VTsIju1dLI&amp;t=5m20s">TED talk</a> made me realize that I&#8217;m not alone. Hell, if someone with over 4 million followers feels this way, there&#8217;s absolutely no hope for the rest of us.</p>
 <p>But actually, there <em>is</em> hope. You see, the wonder of the internet (at least as of May 2020) is that anyone can publish anything. I don&#8217;t need a Twitter account to get my message out. The fact that you&#8217;re reading this shitty WordPress-based blog is proof of that. <small>(Seriously though, I love you WordPress <img src="https://s.w.org/images/core/emoji/13.1.0/72x72/2764.png" alt="❤" class="wp-smiley" style="height: 1em; max-height: 1em;" />)</small></p>
 <p>Sure, deactivating my Twitter account means that there are some people who won&#8217;t hear what I have to say. But the thing is, letting Twitter live in my head rent-free means it&#8217;s less likely that I&#8217;ll have anything <em>worth</em> saying in the first place. So farewell for now, Twitter.</p>
 <p>One of these days, I hope to launch a social network that <a href="https://frontarm.com/james-k-nelson/vouch/">isn&#8217;t structured to encourage outrage</a>. But until then, I&#8217;ll be writing here and at <a href="https://frontarm.com/">Frontend Armory</a>, and you can always get in touch by sending me an email at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>.</p>
@@ -103,7 +103,7 @@ But support sounds truly lethargic</p>
 But manufacture is too slow</p>
 <p>I trailed the <a href="https://www.diatec.co.jp/en/det.php?prod_c=775">Filco Ninja</a><br />
 With staggered keys which may cause injure</p>
-<p>So stuck with <a href="http://www.kinesis-ergo.com/shop/advantage-for-pc-mac/">Kinesis Advantage</a><br />
+<p>So stuck with <a href="https://www.kinesis-ergo.com/shop/advantage-for-pc-mac/">Kinesis Advantage</a><br />
 Somewhat like an unwilling hostage</p>
 <p>As jamming shift causes excitement<br />
 And coloured keys make <a href="https://colemak.com/">Colemak</a> blighted</p>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="https://wellformedweb.org.commentAPI/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="https://purl.org/rss/1.0/modules/slash/"
 	>
 
 <channel>
@@ -391,7 +391,7 @@ npm install babel-plugin-transform-runtime --save-dev
 <p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
 <h2>Read More</h2>
 <ul>
-<li><a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="https://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
 <li><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Writing NPM packages with ES6 using the Babel 6 CLI</a></li>
 <li><a href="/the-six-things-you-need-to-know-about-babel-6">The Six Things You Need To Know About Babel 6</a></li>
 <li><a href="/es6-the-bits-youll-actually-use/">ES6 &#8211; The Bits You’ll Actually Use</a></li>
@@ -417,7 +417,7 @@ npm install babel-plugin-transform-runtime --save-dev
 					<description><![CDATA[<p>This year, I had a fuck this moment. I decided that I want to be able to do something interesting with my life. And with the help of 30&#215;500, I actually started working towards it. To me, &#8220;doing something interesting with my life&#8221; means making things people love. In my position, the most immediate way... <a class="more-link" href="/the-road-to-one-hundred-signups/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
 <p>The post <a rel="nofollow" href="/the-road-to-one-hundred-signups/">The Road To 100 Signups</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></description>
-										<content:encoded><![CDATA[<p>This year, I had a <a href="https://unicornfree.com/2014/your-fuck-this-moment-changes-everything"><em>fuck this moment</em></a>. I decided that I want to be able to do something interesting with my life. And with the help of <a href="http://courses.30x500.com/">30&#215;500</a>, I actually started working towards it.</p>
+										<content:encoded><![CDATA[<p>This year, I had a <a href="https://unicornfree.com/2014/your-fuck-this-moment-changes-everything"><em>fuck this moment</em></a>. I decided that I want to be able to do something interesting with my life. And with the help of <a href="https://courses.30x500.com/">30&#215;500</a>, I actually started working towards it.</p>
 <p>To me, &#8220;doing something interesting with my life&#8221; means making things people love. In my position, the most immediate way I can achieve this is by writing about the Web &#8211; it is the thing I&#8217;ve spent the most hours of my life doing, and I care possibly a <em>little too much</em> about making it better.</p>
 <p>But enough being serious &#8211; the real reason I&#8217;m writing this is that 100 signups is the best excuse I&#8217;ll get to look back at what went well, what didn&#8217;t, and how to improve things. And to show you lots of pretty graphs!</p>
 <p>And since it&#8217;s <em>that</em> kind of article, I&#8217;m going to put the meat before the veggies and start with:</p>
@@ -440,7 +440,7 @@ npm install babel-plugin-transform-runtime --save-dev
 <p><em>Newsletter signups, March 1 &#8211; July 19, 2015</em></p>
 <p>A lot of the variability here can be explained by the traffic&#8217;s source. In particular, some research and commiseration with other bloggers seems to show that Reddit/Hacker News mostly consists of people with a highly developed &#8220;anti-commercial&#8221; filter. While this doesn&#8217;t make me any less happy about the readership they provide, it does leave me puzzling over how to get them to help me pay the bills (which obviously is a pre-requisite to writing).</p>
 <h3>The 1000-pound gorillas out there are actually kinda friendly</h3>
-<p>Surprisingly, Reddit/Hacker News weren&#8217;t my biggest sources of traffic &#8211; other industry-specific publications were. In particular, <a href="http://javascriptweekly.com/">JavaScript Weekly</a> and <a href="https://fivejs.codeschool.com/">FiveJS</a> provided some big boosts in readership and newsletter signups.</p>
+<p>Surprisingly, Reddit/Hacker News weren&#8217;t my biggest sources of traffic &#8211; other industry-specific publications were. In particular, <a href="https://javascriptweekly.com/">JavaScript Weekly</a> and <a href="https://fivejs.codeschool.com/">FiveJS</a> provided some big boosts in readership and newsletter signups.</p>
 <p><img src="/the-road-to-100-signups/acquisition-may-july.png" alt="Acquisition, May 1 - July 19, 2015" /></p>
 <p><em>Acquisition, May 1 &#8211; July 19, 2015</em></p>
 <p>While it is obviously not a good idea to rely too much on help from others, I am <em>incredibly</em> thankful for the leg-up these heavyweights provided. The traffic certainly helped, but even more than this the fact that people who know what they&#8217;re doing found enough use in my work to feature it helped hugely with the motivation to keep going.</p>
@@ -465,7 +465,7 @@ npm install babel-plugin-transform-runtime --save-dev
 <p><img src="/the-road-to-100-signups/source-breakdown.png" alt="Source breakdown for &quot;Are ES6 promises swallowing your errors?&quot;, July 6 - 19, 2015" /></p>
 <p><em>Source breakdown for <a href="/are-es6-promises-swallowing-your-errors/">Are ES6 promises swallowing your errors?</a>, July 6 &#8211; 19, 2015</em></p>
 <p>To give an even more extreme example of this, <a href="/rendering-react-components-to-the-document-body/">rendering react components to the document body</a> was my first article. I never publicized it <em>at all</em>, so all of the traffic is effectively search traffic. But it is already getting more search traffic than a number of articles which a month back were <em>much</em> more popular.</p>
-<p><em>Note: I obviously still have a lot of learning to do, seeing how long this article is. <a href="http://jisho.org/search/%E9%A0%91%E5%BC%B5%E3%82%8B">頑張ります！</a></em></p>
+<p><em>Note: I obviously still have a lot of learning to do, seeing how long this article is. <a href="https://jisho.org/search/%E9%A0%91%E5%BC%B5%E3%82%8B">頑張ります！</a></em></p>
 <h3>Too much focus on networks of people who wouldn&#8217;t give you their e-mail address to save their life</h3>
 <p>Or to be a little less dramatic, too much focus on Reddit and Hacker News. The huge increase in conversion rate I noticed when I was featured on FiveJS really drove this one home for me &#8211; I went from something like one newsletter signup per 200-300 views to one for every 20.</p>
 <p>Now it should be said that my goal isn&#8217;t collecting e-mail addresses &#8211; it is helping people create amazing things. However, my hunch is that signups are a better metric for whether I&#8217;m accomplishing this than page views &#8211; people who want to stay in the loop are probably more excited about what they&#8217;re learning than people who just close the tab.</p>

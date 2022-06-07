@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="https://wellformedweb.org.commentAPI/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="https://purl.org/rss/1.0/modules/slash/"
 	>
 
 <channel>
@@ -203,9 +203,9 @@ store.updateState({
 <p>So I admit it. I&#8217;ve basically made a shit version of Redux.</p>
 <p>Honestly, I wouldn&#8217;t use the code I&#8217;ve written above &#8212; Redux is better. Reasons:</p>
 <ul>
-<li>Instead of allowing direct mutation of the stored state, it forces you to write <a href="http://redux.js.org/docs/basics/Actions.html">actions</a> and <a href="http://redux.js.org/docs/basics/Reducers.html">reducers</a> which make it easier to understand what-the-hell is going on.</li>
+<li>Instead of allowing direct mutation of the stored state, it forces you to write <a href="https://redux.js.org/docs/basics/Actions.html">actions</a> and <a href="https://redux.js.org/docs/basics/Reducers.html">reducers</a> which make it easier to understand what-the-hell is going on.</li>
 <li>Redux gives you the <code>connect</code> function to automate creation of container components (my container above is based on the internals of <code>connect</code>).</li>
-<li>It gives you extensibility via <a href="http://redux.js.org/docs/advanced/Middleware.html">middleware</a>, and a whole bunch of neat <a href="https://github.com/gaearon/redux-devtools">tooling</a>.</li>
+<li>It gives you extensibility via <a href="https://redux.js.org/docs/advanced/Middleware.html">middleware</a>, and a whole bunch of neat <a href="https://github.com/gaearon/redux-devtools">tooling</a>.</li>
 </ul>
 <p>So what I&#8217;m saying is that if you want to manage state, <em>Redux is the bees knees</em>. By putting it all in one place, it becomes possible to share state between Containers and cache data between page views. And by keeping most of your components stateless, testing and design becomes a breeze.</p>
 <p>But while Redux does a great job of <em>managing</em> your state, it still leaves you with the problem of <em>structuring</em> it.</p>
@@ -1188,8 +1188,8 @@ export default function renderer(state, dispatch) {
 <p>The post <a rel="nofollow" href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/">Join The Dark Side Of The Flux: Responding to Actions with Actors</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[<p>Have you ever wanted to respond to a change in your Redux store&#8217;s state by dispatching <em>another action?</em></p>
-<p>Now you <em>know</em> that this is frowned on. You know that if you have enough information to dispatch an action <em>after</em> the <a href="http://redux.js.org/docs/basics/Reducers.html">reducer</a> does its thing, then it is a mathematical certainty that you can do what you want <em>without</em> dispatching another action.</p>
-<p>But for some reason, <em>you just don&#8217;t care</em>. Maybe your store is structured in such a way that it is easier to send requests <em>after</em> an action is processed. Maybe you don&#8217;t want your <a href="http://redux.js.org/docs/basics/Actions.html">actions</a> or <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.izaxa7eri">components</a> to be in charge of fetching remote data for each new route. Or maybe you&#8217;re just a <em>dark side</em> kind of person. Whatever the reason, actors will allow you to <em>dispatch with impunity</em>.</p>
+<p>Now you <em>know</em> that this is frowned on. You know that if you have enough information to dispatch an action <em>after</em> the <a href="https://redux.js.org/docs/basics/Reducers.html">reducer</a> does its thing, then it is a mathematical certainty that you can do what you want <em>without</em> dispatching another action.</p>
+<p>But for some reason, <em>you just don&#8217;t care</em>. Maybe your store is structured in such a way that it is easier to send requests <em>after</em> an action is processed. Maybe you don&#8217;t want your <a href="https://redux.js.org/docs/basics/Actions.html">actions</a> or <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.izaxa7eri">components</a> to be in charge of fetching remote data for each new route. Or maybe you&#8217;re just a <em>dark side</em> kind of person. Whatever the reason, actors will allow you to <em>dispatch with impunity</em>.</p>
 <p><span id="more-747"></span></p>
 <h2>Why you need actors</h2>
 <p>But before we jump into the details, lets review the alternative: <code>connect</code>. Here&#8217;s an example using <a href="https://github.com/rackt/react-redux/blob/master/docs/quick-start.md#quick-start">react-redux</a>:</p>
@@ -1592,7 +1592,7 @@ function renderer(state, dispatch) {
 </ul>
 <h2>Related Projects</h2>
 <ul>
-<li>See actors in action in Unicorn Standard&#8217;s <a href="http://unicornstandard.com/packages/boilerplate.html">Redux/React Boilerplate</a></li>
+<li>See actors in action in Unicorn Standard&#8217;s <a href="https://unicornstandard.com/packages/boilerplate.html">Redux/React Boilerplate</a></li>
 </ul>
 <p>The post <a rel="nofollow" href="/join-the-dark-side-of-the-flux-responding-to-actions-with-actors/">Join The Dark Side Of The Flux: Responding to Actions with Actors</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></content:encoded>
@@ -1666,7 +1666,7 @@ function renderer(state, dispatch) {
 <p>In this case, you&#8217;re clearly only dispatching one array object, even if the action objects it contains are then individually dispatched by the appropriate middleware.</p>
 <h2>Gotchas</h2>
 <p>The one thing to be careful of is that <em>one</em> call to <code>store.dispatch</code> may now result in <em>many</em> calls to your store&#8217;s subscribers:</p>
-<p><a class="jsbin-embed" href="http://jsbin.com/yopami/embed?js,console">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.2"></script></p>
+<p><a class="jsbin-embed" href="https://jsbin.com/yopami/embed?js,console">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.2"></script></p>
 <p>Sometimes this is what you actually want. But more likely, you only care about the last state from a given <code>dispatch</code>. In that case, batch up your listeners using the <a href="https://github.com/tappleby/redux-batched-subscribe">redux-batched-subscribe</a> store enhancer:</p>
 <pre><code>import { createStore, applyMiddleware } from 'redux'
 import reduxMulti from 'redux-multi'
@@ -1960,7 +1960,7 @@ store.dispatch([
 </ul>
 <h2>Related Projects</h2>
 <ul>
-<li>See multiple dispatch in action in Unicorn Standard&#8217;s <a href="http://unicornstandard.com/packages/boilerplate.html">Redux/React Boilerplate</a></li>
+<li>See multiple dispatch in action in Unicorn Standard&#8217;s <a href="https://unicornstandard.com/packages/boilerplate.html">Redux/React Boilerplate</a></li>
 </ul>
 <p>The post <a rel="nofollow" href="/can-i-dispatch-multiple-actions-from-redux-action-creators/">Can I dispatch multiple actions from Redux action creators?</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></content:encoded>

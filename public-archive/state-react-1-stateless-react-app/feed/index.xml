@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
 	
 	>
 <channel>
@@ -54,13 +54,13 @@ Also you won&#039;t be able to use ReactRouter easily with this approach as RR d
 For these reasons we are migrating to Redux.
 
 
-For some details of our legacy stack: http://stackoverflow.com/questions/25791034/om-but-in-javascript]]></description>
+For some details of our legacy stack: https://stackoverflow.com/questions/25791034/om-but-in-javascript]]></description>
 			<content:encoded><![CDATA[<p>Hey,</p>
 <p>I&#8217;ve been using React this way from React 0.5.2 more than 2 years ago.</p>
 <p>The result is that it does not perform so well even with very agressive shouldComponentUpdate everywhere (particularly on text inputs on mobile devices), and is very hard to maintain as props have to be passed down to a lot of intermediate components (unlike Redux&#8217;s connect())</p>
 <p>Also you won&#8217;t be able to use ReactRouter easily with this approach as RR does not like the routing code to render everytime, and it&#8217;s generally placed at the root of your app so&#8230;</p>
 <p>For these reasons we are migrating to Redux.</p>
-<p>For some details of our legacy stack: <a href="http://stackoverflow.com/questions/25791034/om-but-in-javascript" rel="nofollow ugc">http://stackoverflow.com/questions/25791034/om-but-in-javascript</a></p>
+<p>For some details of our legacy stack: <a href="https://stackoverflow.com/questions/25791034/om-but-in-javascript" rel="nofollow ugc">https://stackoverflow.com/questions/25791034/om-but-in-javascript</a></p>
 ]]></content:encoded>
 		
 			</item>

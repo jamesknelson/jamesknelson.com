@@ -18,7 +18,7 @@
 	position: relative;
 }
 
-/* http://nicolasgallagher.com/micro-clearfix-hack/ */
+/* https://nicolasgallagher.com/micro-clearfix-hack/ */
 .gamma-gallery:before,
 .gamma-gallery:after {
     content: " ";

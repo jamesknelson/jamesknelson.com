@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="https://wellformedweb.org.commentAPI/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="https://purl.org/rss/1.0/modules/slash/"
 	>
 
 <channel>
@@ -1320,7 +1320,7 @@ export default function renderer(state, dispatch) {
 <p>In this case, you&#8217;re clearly only dispatching one array object, even if the action objects it contains are then individually dispatched by the appropriate middleware.</p>
 <h2>Gotchas</h2>
 <p>The one thing to be careful of is that <em>one</em> call to <code>store.dispatch</code> may now result in <em>many</em> calls to your store&#8217;s subscribers:</p>
-<p><a class="jsbin-embed" href="http://jsbin.com/yopami/embed?js,console">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.2"></script></p>
+<p><a class="jsbin-embed" href="https://jsbin.com/yopami/embed?js,console">JS Bin on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?3.35.2"></script></p>
 <p>Sometimes this is what you actually want. But more likely, you only care about the last state from a given <code>dispatch</code>. In that case, batch up your listeners using the <a href="https://github.com/tappleby/redux-batched-subscribe">redux-batched-subscribe</a> store enhancer:</p>
 <pre><code>import { createStore, applyMiddleware } from 'redux'
 import reduxMulti from 'redux-multi'
@@ -1614,7 +1614,7 @@ store.dispatch([
 </ul>
 <h2>Related Projects</h2>
 <ul>
-<li>See multiple dispatch in action in Unicorn Standard&#8217;s <a href="http://unicornstandard.com/packages/boilerplate.html">Redux/React Boilerplate</a></li>
+<li>See multiple dispatch in action in Unicorn Standard&#8217;s <a href="https://unicornstandard.com/packages/boilerplate.html">Redux/React Boilerplate</a></li>
 </ul>
 <p>The post <a rel="nofollow" href="/can-i-dispatch-multiple-actions-from-redux-action-creators/">Can I dispatch multiple actions from Redux action creators?</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></content:encoded>
@@ -1663,9 +1663,9 @@ store.dispatch([
 <li><a href="#redux">Redux</a></li>
 </ul>
 <h2>The Shootout</h2>
-<h3><a href="http://facebook.github.io/flux/" id="flux">Facebook&#8217;s Flux</a></h3>
+<h3><a href="https://facebook.github.io/flux/" id="flux">Facebook&#8217;s Flux</a></h3>
 <p>If Facebook both invented Flux <em>and</em> provide a Flux repository, you may be wondering why we&#8217;re having this conversation at all?</p>
-<p>Somewhat surprisingly, <em>Facebook itself</em> uses <a href="https://discuss.reactjs.org/t/lost-on-what-flux-implementation-to-use/545/12">multiple implementations</a> internally. This indicates that Facebook&#8217;s Flux repository is not meant as a canonical implementation. Supporting this is the fact that until recently, Facebook only provided an implementation of the flux <a href="http://facebook.github.io/flux/docs/dispatcher.html#content">Dispatcher</a>, with <a href="http://facebook.github.io/flux/docs/flux-utils.html#stores">stores</a>, <a href="http://facebook.github.io/flux/docs/flux-utils.html#actions">actions</a> and <a href="http://facebook.github.io/flux/docs/flux-utils.html#containers">containers</a> left as an exercise to the reader.</p>
+<p>Somewhat surprisingly, <em>Facebook itself</em> uses <a href="https://discuss.reactjs.org/t/lost-on-what-flux-implementation-to-use/545/12">multiple implementations</a> internally. This indicates that Facebook&#8217;s Flux repository is not meant as a canonical implementation. Supporting this is the fact that until recently, Facebook only provided an implementation of the flux <a href="https://facebook.github.io/flux/docs/dispatcher.html#content">Dispatcher</a>, with <a href="https://facebook.github.io/flux/docs/flux-utils.html#stores">stores</a>, <a href="https://facebook.github.io/flux/docs/flux-utils.html#actions">actions</a> and <a href="https://facebook.github.io/flux/docs/flux-utils.html#containers">containers</a> left as an exercise to the reader.</p>
 <h4>Community</h4>
 <p>Given that this project is where Flux started, it is no surprise that it has a large following in the community. In fact, Facebook&#8217;s <code>Dispatcher</code> is used in a number of alternative Flux implementations &#8211; so it isn&#8217;t going to be disappearing any time soon. As a bonus, Facebook&#8217;s Dispatcher is the same one they use in production.</p>
 <h4>Simplicity</h4>
@@ -1688,7 +1688,7 @@ store.dispatch([
 <h4>Documentation</h4>
 <p>Reflux has a reasonably comprehensive README. Unfortunately, if the information you need isn&#8217;t in the README, you&#8217;re going to have trouble googling for it amongst all the information on Acid Reflux.</p>
 <hr />
-<h3><a href="http://alt.js.org/" id="alt">Alt</a></h3>
+<h3><a href="https://alt.js.org/" id="alt">Alt</a></h3>
 <p>Alt &#8212; like Reflux &#8212; places emphasis on terseness. Unlike Reflux, it still places emphasis on being <em>Flux</em>.</p>
 <h4>Community</h4>
 <p>Alt has a smaller community than the two implementations we&#8217;ve already looked at. However, despite the smaller community, it has almost twice as many Pull Requests as Reflux.</p>
@@ -1702,7 +1702,7 @@ store.dispatch([
 <h4>Functionality</h4>
 <p>Alt provides you with most of the benefit of Flux, but with a nicer syntax. The only caveat is that if you want meaningful logs in production, you&#8217;ll need to ensure that action function names aren&#8217;t mangled by your minifier.</p>
 <h4>Documentation</h4>
-<p>Alt&#8217;s <a href="http://alt.js.org/guide/">documentation</a> is <em>excellent</em>. I wish I had access to Alt&#8217;s documentation when I was learning Flux.</p>
+<p>Alt&#8217;s <a href="https://alt.js.org/guide/">documentation</a> is <em>excellent</em>. I wish I had access to Alt&#8217;s documentation when I was learning Flux.</p>
 <hr />
 <h3><a href="https://www.npmjs.com/package/redux" id="redux">Redux</a></h3>
 <p>With its first commit dated May this year, Redux is the new kid on the block. But despite this, it now seems more popular than <em>Flux itself</em>.</p>
@@ -1719,9 +1719,9 @@ store.dispatch([
 <p>The brilliance of Redux is that while it is in many ways <em>simpler</em> than Flux, it <em>doesn&#8217;t</em> lose out on any of the functionality.</p>
 <p>Action objects are still created with action creators. You still have a central <code>store</code> object which allows you to inspect and debug user input. And with the help of <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a>, it is still possible to dispatch multiple actions from one action creator.</p>
 <h4>Documentation</h4>
-<p>But while the community, simplicity and functionality of Redux are worth getting excited about, the <a href="http://rackt.github.io/redux/docs/introduction/Motivation.html">documentation</a> is <em>bloody amazing</em>.</p>
+<p>But while the community, simplicity and functionality of Redux are worth getting excited about, the <a href="https://rackt.github.io/redux/docs/introduction/Motivation.html">documentation</a> is <em>bloody amazing</em>.</p>
 <h2>The Verdict</h2>
-<p>And the winner of the award for the most simple, well documented Flux implementation with the largest community is &#8230; <a href="http://alt.js.org/">Alt</a>! But why limit ourselves to Flux?</p>
+<p>And the winner of the award for the most simple, well documented Flux implementation with the largest community is &#8230; <a href="https://alt.js.org/">Alt</a>! But why limit ourselves to Flux?</p>
 <p>The motivation behind Flux is to <em>simplify</em> our application architecture, making it easier to reason about and maintain. And <strong>unless you have a <em>really</em> unusual use case, <a href="https://www.npmjs.com/package/redux">Redux</a> is currently the best way to achieve this.</strong></p>
 <p>Of course, knowing how to structure your application&#8217;s <em>data</em> is only half the battle. <em>What about structuring your CSS, your build system and your routes?</em></p>
 <p><strong>In return for your e-mail address, I’ll also send you guides to CSS, build systems and routing tools as they&#8217;re released</strong>. As a bonus you&#8217;ll also immediately receive three <em>print-optimised</em> PDF cheatsheets &#8211; on React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), ES6 and JavaScript promises.</p>

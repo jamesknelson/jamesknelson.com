@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<html lang="en-US">
 <head>
 	<meta charset="UTF-8">
 	
@@ -12,8 +12,8 @@
 	<title>Which Flux Implementation Should I Use With React?</title>
     
     <!--[if lte IE 9]>
-        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
-        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+        <script src="https://jamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="https://jamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
     <![endif]-->
 	
 		
@@ -28,22 +28,22 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Which Flux Implementation Should I Use With React?">
 <meta property="og:description" content="React only solves half the problem. Learn the pros and cons of the four most popular Flux implementations.">
-<meta property="og:url" content="httpjamesknelson.com/which-flux-implementation-should-i-use-with-react/">
+<meta property="og:url" content="https://jamesknelson.com/which-flux-implementation-should-i-use-with-react/">
 <meta property="og:site_name" content="James K Nelson">
 <meta property="article:section" content="Flux">
 <meta property="article:published_time" content="2015-10-13T12:38:31+00:00">
 <meta property="article:modified_time" content="2017-01-31T08:35:10+00:00">
 <meta property="og:updated_time" content="2017-01-31T08:35:10+00:00">
-<meta property="og:image" content="httpjamesknelson.com/wp-content/uploads/2015/10/which-flux-banner.png">
+<meta property="og:image" content="https://jamesknelson.com/wp-content/uploads/2015/10/which-flux-banner.png">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="512">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:description" content="React only solves half the problem. Learn the pros and cons of the four most popular Flux implementations.">
 <meta name="twitter:title" content="Which Flux Implementation Should I Use With React?">
 <meta name="twitter:site" content="@james_k_nelson">
-<meta name="twitter:image" content="httpjamesknelson.com/wp-content/uploads/2015/10/which-flux-banner.png">
+<meta name="twitter:image" content="https://jamesknelson.com/wp-content/uploads/2015/10/which-flux-banner.png">
 <meta name="twitter:creator" content="@james_k_nelson">
-<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"https://jamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
 <!-- / Yoast SEO plugin. -->
 
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -52,7 +52,7 @@
 <link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
 <link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Which Flux Implementation Should I Use With React? Comments Feed" href="/which-flux-implementation-should-i-use-with-react/feed/">
 <script type="text/javascript">
-window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https://jamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
 /*! This file is auto-generated */
 !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
 </script>
@@ -70,9 +70,9 @@ img.emoji {
 }</style>
 	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
 <style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
-<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
-<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
-<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="https://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
 <link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
 <link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
 <link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
@@ -368,9 +368,9 @@ blockquote {
 <li><a href="#redux">Redux</a></li>
 </ul>
 <h2>The Shootout</h2>
-<h3><a href="http://facebook.github.io/flux/" id="flux">Facebook&#8217;s Flux</a></h3>
+<h3><a href="https://facebook.github.io/flux/" id="flux">Facebook&#8217;s Flux</a></h3>
 <p>If Facebook both invented Flux <em>and</em> provide a Flux repository, you may be wondering why we&#8217;re having this conversation at all?</p>
-<p>Somewhat surprisingly, <em>Facebook itself</em> uses <a href="https://discuss.reactjs.org/t/lost-on-what-flux-implementation-to-use/545/12">multiple implementations</a> internally. This indicates that Facebook&#8217;s Flux repository is not meant as a canonical implementation. Supporting this is the fact that until recently, Facebook only provided an implementation of the flux <a href="http://facebook.github.io/flux/docs/dispatcher.html#content">Dispatcher</a>, with <a href="http://facebook.github.io/flux/docs/flux-utils.html#stores">stores</a>, <a href="http://facebook.github.io/flux/docs/flux-utils.html#actions">actions</a> and <a href="http://facebook.github.io/flux/docs/flux-utils.html#containers">containers</a> left as an exercise to the reader.</p>
+<p>Somewhat surprisingly, <em>Facebook itself</em> uses <a href="https://discuss.reactjs.org/t/lost-on-what-flux-implementation-to-use/545/12">multiple implementations</a> internally. This indicates that Facebook&#8217;s Flux repository is not meant as a canonical implementation. Supporting this is the fact that until recently, Facebook only provided an implementation of the flux <a href="https://facebook.github.io/flux/docs/dispatcher.html#content">Dispatcher</a>, with <a href="https://facebook.github.io/flux/docs/flux-utils.html#stores">stores</a>, <a href="https://facebook.github.io/flux/docs/flux-utils.html#actions">actions</a> and <a href="https://facebook.github.io/flux/docs/flux-utils.html#containers">containers</a> left as an exercise to the reader.</p>
 <h4>Community</h4>
 <p>Given that this project is where Flux started, it is no surprise that it has a large following in the community. In fact, Facebook&#8217;s <code>Dispatcher</code> is used in a number of alternative Flux implementations &#8211; so it isn&#8217;t going to be disappearing any time soon. As a bonus, Facebook&#8217;s Dispatcher is the same one they use in production.</p>
 <h4>Simplicity</h4>
@@ -393,7 +393,7 @@ blockquote {
 <h4>Documentation</h4>
 <p>Reflux has a reasonably comprehensive README. Unfortunately, if the information you need isn&#8217;t in the README, you&#8217;re going to have trouble googling for it amongst all the information on Acid Reflux.</p>
 <hr>
-<h3><a href="http://alt.js.org/" id="alt">Alt</a></h3>
+<h3><a href="https://alt.js.org/" id="alt">Alt</a></h3>
 <p>Alt &#8212; like Reflux &#8212; places emphasis on terseness. Unlike Reflux, it still places emphasis on being <em>Flux</em>.</p>
 <h4>Community</h4>
 <p>Alt has a smaller community than the two implementations we&#8217;ve already looked at. However, despite the smaller community, it has almost twice as many Pull Requests as Reflux.</p>
@@ -407,7 +407,7 @@ blockquote {
 <h4>Functionality</h4>
 <p>Alt provides you with most of the benefit of Flux, but with a nicer syntax. The only caveat is that if you want meaningful logs in production, you&#8217;ll need to ensure that action function names aren&#8217;t mangled by your minifier.</p>
 <h4>Documentation</h4>
-<p>Alt&#8217;s <a href="http://alt.js.org/guide/">documentation</a> is <em>excellent</em>. I wish I had access to Alt&#8217;s documentation when I was learning Flux.</p>
+<p>Alt&#8217;s <a href="https://alt.js.org/guide/">documentation</a> is <em>excellent</em>. I wish I had access to Alt&#8217;s documentation when I was learning Flux.</p>
 <hr>
 <h3><a href="https://www.npmjs.com/package/redux" id="redux">Redux</a></h3>
 <p>With its first commit dated May this year, Redux is the new kid on the block. But despite this, it now seems more popular than <em>Flux itself</em>.</p>
@@ -424,9 +424,9 @@ blockquote {
 <p>The brilliance of Redux is that while it is in many ways <em>simpler</em> than Flux, it <em>doesn&#8217;t</em> lose out on any of the functionality.</p>
 <p>Action objects are still created with action creators. You still have a central <code>store</code> object which allows you to inspect and debug user input. And with the help of <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a>, it is still possible to dispatch multiple actions from one action creator.</p>
 <h4>Documentation</h4>
-<p>But while the community, simplicity and functionality of Redux are worth getting excited about, the <a href="http://rackt.github.io/redux/docs/introduction/Motivation.html">documentation</a> is <em>bloody amazing</em>.</p>
+<p>But while the community, simplicity and functionality of Redux are worth getting excited about, the <a href="https://rackt.github.io/redux/docs/introduction/Motivation.html">documentation</a> is <em>bloody amazing</em>.</p>
 <h2>The Verdict</h2>
-<p>And the winner of the award for the most simple, well documented Flux implementation with the largest community is &#8230; <a href="http://alt.js.org/">Alt</a>! But why limit ourselves to Flux?</p>
+<p>And the winner of the award for the most simple, well documented Flux implementation with the largest community is &#8230; <a href="https://alt.js.org/">Alt</a>! But why limit ourselves to Flux?</p>
 <p>The motivation behind Flux is to <em>simplify</em> our application architecture, making it easier to reason about and maintain. And <strong>unless you have a <em>really</em> unusual use case, <a href="https://www.npmjs.com/package/redux">Redux</a> is currently the best way to achieve this.</strong></p>
 <p>Of course, knowing how to structure your application&#8217;s <em>data</em> is only half the battle. <em>What about structuring your CSS, your build system and your routes?</em></p>
 <p><strong>In return for your e-mail address, I’ll also send you guides to CSS, build systems and routing tools as they&#8217;re released</strong>. As a bonus you&#8217;ll also immediately receive three <em>print-optimised</em> PDF cheatsheets &#8211; on React (<a href="/wp-content/uploads/2015/09/react-cheatsheet-thumbnail.png">see preview</a>), ES6 and JavaScript promises.</p>
@@ -688,7 +688,7 @@ blockquote {
 	<div class="row-fluid author-bio">
 		<div class="span2 author-img">
 			<a href="/author/jamesknelson/">
-				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+				<img alt="James K Nelson" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
 		</div>
 		<!-- end .author-img -->
 		
@@ -727,12 +727,12 @@ blockquote {
 					<li class="comment even thread-even depth-1" id="li-comment-3000">
 						<article id="comment-3000" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/e79a3fd6f28fc611c455e8ebc67a3080?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/e79a3fd6f28fc611c455e8ebc67a3080?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://grigio.org/" rel="external nofollow ugc" class="url">Luigi maselli</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3000"><time datetime="2015-10-13T15:05:18+00:00">October 13, 2015 at 3:05 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/e79a3fd6f28fc611c455e8ebc67a3080?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/e79a3fd6f28fc611c455e8ebc67a3080?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://gri.io.org/" rel="external nofollow ugc" class="url">Luigi maselli</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3000"><time datetime="2015-10-13T15:05:18+00:00">October 13, 2015 at 3:05 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
 							<section class="comment-content comment">
-								<p>I would also consider Cerebral. It feels to me the most &#8220;natural&#8221; <a href="http://christianalfoni.com/cerebral/#/0" rel="nofollow ugc">http://christianalfoni.com/cerebral/#/0</a></p>
+								<p>I would also consider Cerebral. It feels to me the most &#8220;natural&#8221; <a href="https://christianalfoni.com/cerebral/#/0" rel="nofollow ugc">https://christianalfoni.com/cerebral/#/0</a></p>
 								
 															</section>
 							<!-- end .comment-content -->
@@ -748,12 +748,12 @@ blockquote {
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-3002">
 						<article id="comment-3002" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/7acb668248379f3c4247a1d924a1f4ee?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/7acb668248379f3c4247a1d924a1f4ee?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jason </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3002"><time datetime="2015-10-13T16:32:26+00:00">October 13, 2015 at 4:32 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/7acb668248379f3c4247a1d924a1f4ee?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/7acb668248379f3c4247a1d924a1f4ee?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jason </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3002"><time datetime="2015-10-13T16:32:26+00:00">October 13, 2015 at 4:32 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
 							<section class="comment-content comment">
-								<p>Any chance you&#8217;ve taken a look at FluxThis (<a href="http://www.fluxthis.io/" rel="nofollow ugc">http://www.fluxthis.io</a>)? I&#8217;d be interested in your thoughts on it. It seems to accomplish some of the same things as Redux (less boilerplate, more immutability), though I&#8217;m less equipped to say for sure because I haven&#8217;t used Redux myself.</p>
+								<p>Any chance you&#8217;ve taken a look at FluxThis (<a href="https://www.fluxthis.io/" rel="nofollow ugc">https://www.fluxthis.io</a>)? I&#8217;d be interested in your thoughts on it. It seems to accomplish some of the same things as Redux (less boilerplate, more immutability), though I&#8217;m less equipped to say for sure because I haven&#8217;t used Redux myself.</p>
 								
 															</section>
 							<!-- end .comment-content -->
@@ -769,7 +769,7 @@ blockquote {
 					<li class="comment even thread-even depth-1" id="li-comment-3004">
 						<article id="comment-3004" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/809e6ba5da40ef597bc6ab28630d71ea?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/809e6ba5da40ef597bc6ab28630d71ea?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://arqex.com/" rel="external nofollow ugc" class="url">Javi Marquez</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3004"><time datetime="2015-10-13T17:41:07+00:00">October 13, 2015 at 5:41 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/809e6ba5da40ef597bc6ab28630d71ea?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/809e6ba5da40ef597bc6ab28630d71ea?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://arqex.com/" rel="external nofollow ugc" class="url">Javi Marquez</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3004"><time datetime="2015-10-13T17:41:07+00:00">October 13, 2015 at 5:41 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -792,7 +792,7 @@ blockquote {
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-3005">
 						<article id="comment-3005" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/5b0a1648d5cedae2a6b862a20eac620d?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/5b0a1648d5cedae2a6b862a20eac620d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.3nit.com/" rel="external nofollow ugc" class="url">Jonas Windey</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3005"><time datetime="2015-10-13T17:51:41+00:00">October 13, 2015 at 5:51 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/5b0a1648d5cedae2a6b862a20eac620d?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/5b0a1648d5cedae2a6b862a20eac620d?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://www.3nit.com/" rel="external nofollow ugc" class="url">Jonas Windey</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3005"><time datetime="2015-10-13T17:51:41+00:00">October 13, 2015 at 5:51 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -813,7 +813,7 @@ blockquote {
 					<li class="comment byuser comment-author-jamesknelson bypostauthor even depth-2" id="li-comment-3013">
 						<article id="comment-3013" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3013"><time datetime="2015-10-13T23:21:50+00:00">October 13, 2015 at 11:21 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">James K Nelson <span></span></cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3013"><time datetime="2015-10-13T23:21:50+00:00">October 13, 2015 at 11:21 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -838,7 +838,7 @@ blockquote {
 					<li class="comment odd alt thread-even depth-1" id="li-comment-3018">
 						<article id="comment-3018" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/8d9aba79be37c3e972c9d572ee7dc66b?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/8d9aba79be37c3e972c9d572ee7dc66b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://franciskim.co/" rel="external nofollow ugc" class="url">Francis Kim</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3018"><time datetime="2015-10-14T10:50:55+00:00">October 14, 2015 at 10:50 am</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/8d9aba79be37c3e972c9d572ee7dc66b?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/8d9aba79be37c3e972c9d572ee7dc66b?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://franciskim.co/" rel="external nofollow ugc" class="url">Francis Kim</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-3018"><time datetime="2015-10-14T10:50:55+00:00">October 14, 2015 at 10:50 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -859,7 +859,7 @@ blockquote {
 					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-4568">
 						<article id="comment-4568" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/3296564afe913ffc37e687e7b4fb22ef?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/3296564afe913ffc37e687e7b4fb22ef?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Andrej </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-4568"><time datetime="2015-11-21T21:07:04+00:00">November 21, 2015 at 9:07 pm</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/3296564afe913ffc37e687e7b4fb22ef?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/3296564afe913ffc37e687e7b4fb22ef?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Andrej </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-4568"><time datetime="2015-11-21T21:07:04+00:00">November 21, 2015 at 9:07 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -880,7 +880,7 @@ blockquote {
 					<li class="comment odd alt thread-even depth-1" id="li-comment-5369">
 						<article id="comment-5369" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/b1036664a7c3bcf61f62157a305d2a50?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b1036664a7c3bcf61f62157a305d2a50?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://SethsPopupCreator.com/" rel="external nofollow ugc" class="url">Seth Livingston</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-5369"><time datetime="2015-12-10T23:49:50+00:00">December 10, 2015 at 11:49 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/b1036664a7c3bcf61f62157a305d2a50?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/b1036664a7c3bcf61f62157a305d2a50?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://SethsPopupCreator.com/" rel="external nofollow ugc" class="url">Seth Livingston</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-5369"><time datetime="2015-12-10T23:49:50+00:00">December 10, 2015 at 11:49 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -901,7 +901,7 @@ blockquote {
 					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-6793">
 						<article id="comment-6793" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/1869d3ec1b42609ac9de7fa0d00fb32a?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/1869d3ec1b42609ac9de7fa0d00fb32a?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Kiril </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-6793"><time datetime="2016-01-01T15:44:17+00:00">January 1, 2016 at 3:44 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/1869d3ec1b42609ac9de7fa0d00fb32a?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/1869d3ec1b42609ac9de7fa0d00fb32a?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Kiril </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-6793"><time datetime="2016-01-01T15:44:17+00:00">January 1, 2016 at 3:44 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -922,7 +922,7 @@ blockquote {
 					<li class="comment odd alt thread-even depth-1" id="li-comment-13640">
 						<article id="comment-13640" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/43675ac6f4ef94f40b5e44add2a984c1?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/43675ac6f4ef94f40b5e44add2a984c1?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://callanbryant.co.uk/" rel="external nofollow ugc" class="url">Callan Bryant</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-13640"><time datetime="2016-03-02T06:27:27+00:00">March 2, 2016 at 6:27 am</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/43675ac6f4ef94f40b5e44add2a984c1?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/43675ac6f4ef94f40b5e44add2a984c1?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://callanbryant.co.uk/" rel="external nofollow ugc" class="url">Callan Bryant</a> </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-13640"><time datetime="2016-03-02T06:27:27+00:00">March 2, 2016 at 6:27 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -943,7 +943,7 @@ blockquote {
 					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-17580">
 						<article id="comment-17580" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/ee61c48645435f4ba0875cdb09137ce1?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/ee61c48645435f4ba0875cdb09137ce1?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Basavaraj </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-17580"><time datetime="2016-04-07T06:41:55+00:00">April 7, 2016 at 6:41 am</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/ee61c48645435f4ba0875cdb09137ce1?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/ee61c48645435f4ba0875cdb09137ce1?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Basavaraj </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-17580"><time datetime="2016-04-07T06:41:55+00:00">April 7, 2016 at 6:41 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -965,7 +965,7 @@ blockquote {
 					<li class="comment odd alt thread-even depth-1" id="li-comment-21761">
 						<article id="comment-21761" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/2c152d046a739606173deb08de36c7fe?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/2c152d046a739606173deb08de36c7fe?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">pma </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-21761"><time datetime="2016-07-04T19:03:50+00:00">July 4, 2016 at 7:03 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/2c152d046a739606173deb08de36c7fe?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/2c152d046a739606173deb08de36c7fe?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">pma </cite><a href="/which-flux-implementation-should-i-use-with-react/#comment-21761"><time datetime="2016-07-04T19:03:50+00:00">July 4, 2016 at 7:03 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -990,7 +990,7 @@ blockquote {
 		<div id="respond" class="comment-respond">
 		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/which-flux-implementation-should-i-use-with-react/#respond" style="display:none;">Cancel reply</a></small>
 </h3>
-<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<form action="https://jamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
 <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
 <p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
 <p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
@@ -1093,7 +1093,7 @@ blockquote {
 	<li><a href="/2014/12/">December 2014</a></li>
 			</ul>
 
-			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="https://jamesknelson.com/">
 	<div>
 		<label class="screen-reader-text" for="s">Search for:</label>
 		

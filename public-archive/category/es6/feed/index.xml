@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
-	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="https://wellformedweb.org.commentAPI/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="https://purl.org/rss/1.0/modules/slash/"
 	>
 
 <channel>
@@ -613,7 +613,7 @@ var element = c('h1', {}, "I'm so minimalist that")`
 					<description><![CDATA[<p>One of my favourite blog posts on the internet is Steven Luscher&#8216;s guest post on the Babel blog, React on ES6+. It manages to be both incredibly helpful and easy to understand, while being short enough that when you hit the end you&#8217;re like &#8220;wait, is that it?&#8221;. And as it happens, one of the... <a class="more-link" href="/react-babel-cheatsheet/">Continue reading <span class="meta-nav">&#8594;</span></a></p>
 <p>The post <a rel="nofollow" href="/react-babel-cheatsheet/">React with Babel Cheatsheet</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></description>
-										<content:encoded><![CDATA[<p>One of my favourite blog posts on the internet is <a href="https://twitter.com/steveluscher">Steven Luscher</a>&#8216;s guest post on the Babel blog, <a href="http://babeljs.io/blog/2015/06/07/react-on-es6-plus">React on ES6+</a>. It manages to be both incredibly helpful and easy to understand, while being short enough that when you hit the end you&#8217;re like &#8220;wait, is that it?&#8221;.</p>
+										<content:encoded><![CDATA[<p>One of my favourite blog posts on the internet is <a href="https://twitter.com/steveluscher">Steven Luscher</a>&#8216;s guest post on the Babel blog, <a href="https://babeljs.io/blog/2015/06/07/react-on-es6-plus">React on ES6+</a>. It manages to be both incredibly helpful and easy to understand, while being short enough that when you hit the end you&#8217;re like &#8220;wait, is that it?&#8221;.</p>
 <p>And as it happens, one of the most frequent requests I get is for an updated version of my React cheatsheet, showing the newer React component syntax using ES6 classes and <code>React.Component</code>.</p>
 <p>So what I&#8217;m trying to say is I&#8217;ve finally gotten my act together and made your React/ES6 cheatsheet. And I&#8217;ve based it on Steven Luscher&#8217;s post. I&#8217;ve even made it free; as in <a href="https://github.com/jamesknelson/javascript-cheatsheets/tree/master/react-with-babel-cheatsheet">speech</a>, and as in beer:</p>
 <p><span id="more-966"></span></p>
@@ -1174,7 +1174,7 @@ SyntaxError: unknown: Unexpected token (1:37)
 </ul>
 <h2>Relevant Babel Documentation</h2>
 <ul>
-<li><a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="https://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
 <li><a href="https://babeljs.io/docs/usage/babelrc/">.babelrc</a></li>
 <li><a href="https://babeljs.io/docs/usage/cli/">Command Line Interface</a></li>
 <li><a href="https://babeljs.io/docs/usage/require/">Require Hook</a></li>
@@ -2227,7 +2227,7 @@ npm install babel-plugin-transform-runtime --save-dev
 <p>One more thing &#8211; <em>I love hearing your questions, offers and opinions.</em> If you have something to say, leave a comment or send me an e-mail at <a href="mailto:james@jamesknelson.com">james@jamesknelson.com</a>. I&#8217;m looking forward to hearing from you!</p>
 <h2>Read More</h2>
 <ul>
-<li><a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="https://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
 <li><a href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Writing NPM packages with ES6 using the Babel 6 CLI</a></li>
 <li><a href="/the-six-things-you-need-to-know-about-babel-6">The Six Things You Need To Know About Babel 6</a></li>
 <li><a href="/es6-the-bits-youll-actually-use/">ES6 &#8211; The Bits You’ll Actually Use</a></li>
@@ -2563,7 +2563,7 @@ src/
 <h2>Read More</h2>
 <ul>
 <li><a href="/es6-the-bits-youll-actually-use/">ES6 &#8211; The Bits You’ll Actually Use</a></li>
-<li><a href="http://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
+<li><a href="https://babeljs.io/blog/2015/10/31/setting-up-babel-6/">Setting up Babel 6</a> at the Babel Blog</li>
 <li><a href="/the-six-things-you-need-to-know-about-babel-6">The Six Things You Need To Know About Babel 6</a></li>
 </ul>
 <p>The post <a rel="nofollow" href="/writing-npm-packages-with-es6-using-the-babel-6-cli/">Writing NPM packages with ES6 using the Babel 6 CLI</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
@@ -2596,7 +2596,7 @@ src/
 <li>
 <p><strong>The <code>babel</code> npm package no longer exists.</strong> Instead, Babel has been split into multiple packages:</p>
 <ul>
-<li><a href="http://npmjs.com/package/babel-cli">babel-cli</a>, which contains the <code>babel</code> command line interface</li>
+<li><a href="https://npmjs.com/package/babel-cli">babel-cli</a>, which contains the <code>babel</code> command line interface</li>
 <li><a href="https://www.npmjs.com/package/babel-core">babel-core</a>, which contains the Node API and <code>require</code> hook</li>
 <li><a href="https://www.npmjs.com/package/babel-polyfill">babel-polyfill</a>, which when <code>require</code>d, sets you up with a full ES2015-ish environment</li>
 </ul>
@@ -2909,7 +2909,7 @@ src/
 										<content:encoded><![CDATA[<p>When starting a new JavaScript project, one of the first things you&#8217;ll do is set up a build system. But with so many options, deciding on tools often gets in the way of building the app itself.</p>
 <p>Imagine if there was a simple rule you could follow to choose which build tools to use &#8211; wouldn&#8217;t it be great being able to just get stuck into <em>writing your app</em>? Actually, after spending five years writing apps with automatic build systems, I&#8217;ve come upon just such a guide. I know what to use and where to use it &#8212; and after reading this article, <em>you will too!</em></p>
 <p><span id="more-692"></span></p>
-<p><em>Want a boilerplate for your Single Page App with my recommended build system? Check out the Unicorn Standard <a href="http://unicornstandard.com/packages/boilerplate.html">React/Redux Boilerplate</a>!</em></p>
+<p><em>Want a boilerplate for your Single Page App with my recommended build system? Check out the Unicorn Standard <a href="https://unicornstandard.com/packages/boilerplate.html">React/Redux Boilerplate</a>!</em></p>
 <h2>The Short Answer</h2>
 <p>It is easy to decide which tools you need:</p>
 <ul>
@@ -2921,21 +2921,21 @@ src/
 <ul>
 <li>For compiling and polyfilling ES6, use <a href="https://babeljs.io/">Babel</a></li>
 <li>For bundling your JavaScript files and dependencies into static assets, use <a href="https://webpack.github.io/">Webpack</a></li>
-<li>If your have other tasks like renaming files to avoid caching or publishing to the web, automate them with <a href="http://gulpjs.com/">Gulp</a></li>
+<li>If your have other tasks like renaming files to avoid caching or publishing to the web, automate them with <a href="https://gulpjs.com/">Gulp</a></li>
 </ul>
 <p>But why are these tools the right ones for the job?</p>
 <h2>The Details</h2>
 <p>To get the above answer, I looked at the strengths and weaknesses of a number of popular JavaScript build tools. Since compilers are the thing you&#8217;ll definitely need, let&#8217;s start with them.</p>
 <h3>Compilers</h3>
 <p>ES5 JavaScript is not the <em>prettiest</em> of languages. ES6 and ES7 improve things a lot, but that doesn&#8217;t help when the browsers are stuck in the past.</p>
-<p>Luckily, a number of enterprising engineers have built compilers which turn <em>new</em> JavaScript into <em>old</em> JavaScript! Some even added extra features &#8211; like Microsoft&#8217;s <a href="http://www.typescriptlang.org/">TypeScript</a>. But if we limit ourselves to standardised JavaScript, there is one tool which stands head and shoulders above the rest: @sebmck&#8217;s <a href="https://babeljs.io/">Babel</a>.</p>
+<p>Luckily, a number of enterprising engineers have built compilers which turn <em>new</em> JavaScript into <em>old</em> JavaScript! Some even added extra features &#8211; like Microsoft&#8217;s <a href="https://www.typescriptlang.org/">TypeScript</a>. But if we limit ourselves to standardised JavaScript, there is one tool which stands head and shoulders above the rest: @sebmck&#8217;s <a href="https://babeljs.io/">Babel</a>.</p>
 <h4>Babel</h4>
 <p>If there is one tool you should learn to use after reading this guide, it is Babel.</p>
 <p>Babel isn&#8217;t full of surprises &#8211; it just transforms ES6 to ES5 as you&#8217;d expect. But the wonderful thing about Babel is that it also allows you to add your <em>own</em> transforms &#8211; and the community has created a lot of them. In particular, Babel has transforms for ES7 features like <code>async</code>/<code>await</code> and decorators. It also transforms your React JSX.</p>
 <p>But while Babel is great at transforming JavaScript, it can&#8217;t do anything else. In fact, it can&#8217;t even bundle together multiple files using ES6&#8217;s <code>import</code> and <code>export</code> statements. Which is why you&#8217;ll also need a module bundler.</p>
 <h3>Module bundlers</h3>
 <p>Most projects of any scale will have their code split between a number of files. And while you <em>could</em> just include each file with an individual <code>&lt;script&gt;</code> tag, you&#8217;d then be in charge of manually ordering them based on dependencies. Computers can do that better than you can, and <em>that</em> is why you should use a tool to automatically bundle everything into a single file.</p>
-<p>While the internet has spawned a bewildering array of module bundling tools, there are two which dominate the landscape: <a href="http://browserify.org/">Browserify</a>, and <a href="https://webpack.github.io/">Webpack</a>.</p>
+<p>While the internet has spawned a bewildering array of module bundling tools, there are two which dominate the landscape: <a href="https://browserify.org/">Browserify</a>, and <a href="https://webpack.github.io/">Webpack</a>.</p>
 <h4>Browserify</h4>
 <p>Browserify is a tool for bundling Node packages for the browser. It <em>also</em> happens to work for browser-based apps pretending to be Node packages.</p>
 <p>This Node-centric philosophy has a number of benefits; bundling an app with Browserify is <em>simple</em>, you can using built-in Node modules like <code>path</code>, and you can use any code you&#8217;ve written for Node as is. The downside, of course, is that your Single Page App will generally need types of resources that Node apps won&#8217;t: CSS, images and fonts.</p>
@@ -3216,7 +3216,7 @@ src/
 </ul>
 <h2>Related Links</h2>
 <ul>
-<li><a href="http://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Boilerplate &#8211; Webpack, Babel and Gulp with React and Redux</a></li>
+<li><a href="https://unicornstandard.com/packages/boilerplate.html">Unicorn Standard Boilerplate &#8211; Webpack, Babel and Gulp with React and Redux</a></li>
 </ul>
 <p>The post <a rel="nofollow" href="/which-build-system-should-i-use-for-my-javascript-app/">Choosing a JavaScript Build Tool &#8211; Babel, Browserify, Webpack, Grunt and Gulp</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></content:encoded>
@@ -3241,7 +3241,7 @@ src/
 <p>The post <a rel="nofollow" href="/es6-the-bits-youll-actually-use/">A Quick Tour Of ES6 (Or, The Bits You&#8217;ll Actually Use)</a> appeared first on <a rel="nofollow" href="/">James K Nelson</a>.</p>
 ]]></description>
 										<content:encoded><![CDATA[<p><em>Just want examples of ES6 in use? I&#8217;ve put four ES6 projects on <a href="#examples">Github</a>.</em></p>
-<p>ES6 has been getting a lot of press lately. And with all of the benefits that the new syntax and built-ins bring, it damn well should. But given the breadth of the <a href="http://kangax.github.io/compat-table/es6/">changes</a>, how is a forward-thinking developer to know where to start? What is worth practicing <em>now</em>, and what is best left for a rainy day?</p>
+<p>ES6 has been getting a lot of press lately. And with all of the benefits that the new syntax and built-ins bring, it damn well should. But given the breadth of the <a href="https://kangax.github.io.compat-table/es6/">changes</a>, how is a forward-thinking developer to know where to start? What is worth practicing <em>now</em>, and what is best left for a rainy day?</p>
 <p>Well, after spending the last few weeks writing <a href="https://github.com/jamesknelson/maxim">maxim</a> and <a href="https://github.com/jamesknelson/memamug-client">memamug</a> with ES6, and translating <a href="https://github.com/jamesknelson/numbat-ui">numbat-ui</a> from coffeescript, there are a few parts which have stood out to me.</p>
 <p><span id="more-284"></span></p>
 <h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">Destructuring</a></h2>
@@ -3278,7 +3278,7 @@ for (var i = 0; i != entries.length; i++) {
 }
 </code></pre>
 <p><em>ES6 code taken from <a href="https://github.com/jamesknelson/maxim/blob/master/src/index.js#L37">index.js</a> in Maxim</em></p>
-<p>This is nice, but why limit ourselves to iterating through arrays? The beauty of ES6 is that Arrays aren&#8217;t special anymore &#8211; you can use <code>for .. of</code> to iterate through anything which defines an <a href="http://www.2ality.com/2015/02/es6-iteration.html">Iterator</a>. Like:</p>
+<p>This is nice, but why limit ourselves to iterating through arrays? The beauty of ES6 is that Arrays aren&#8217;t special anymore &#8211; you can use <code>for .. of</code> to iterate through anything which defines an <a href="https://www.2ality.com/2015/02/es6-iteration.html">Iterator</a>. Like:</p>
 <h2><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></h2>
 <p>Maps are kind of like objects &#8211; they map keys to values. The two major differences are:</p>
 <ul>
@@ -3356,7 +3356,7 @@ The <code>i</code> variables which holds the result of our first loop is modifie
 <p>Why? Variables defined with <code>var</code> aren&#8217;t actually defined where the <code>var</code> appears &#8211; they&#8217;re defined at the top of the function they appear in (yes &#8211; the function &#8211; not the loop).<br />
 
 </div>
-<p>You may think you won&#8217;t ever make this mistake. But if you&#8217;re using ES5, <a href="http://blog.safeshepherd.com/23/how-one-missing-var-ruined-our-launch/">you will</a>.</p>
+<p>You may think you won&#8217;t ever make this mistake. But if you&#8217;re using ES5, <a href="https://blog.safeshepherd.com/23/how-one-missing-var-ruined-our-launch/">you will</a>.</p>
 <p>However, using <code>let</code> in place of <code>var</code> in the above code would have actually produced the result we expect, as variables defined with <code>let</code> only come into existence in the block of code they&#8217;re defined in. I.e. they&#8217;re block-scoped variables.</p>
 <div class="hint">
 <br />
@@ -3612,7 +3612,7 @@ lyrics.push('mushroom').
 <h2>Example ES6 code</h2>
 <p>It is all available at my <a href="https://github.com/jamesknelson">github</a>, with four projects I&#8217;d recommend:</p>
 <ul>
-<li><a href="https://github.com/jamesknelson/memamug-client">memamug-client</a> (the source for <a href="http://www.memamug.com/">memamug.com</a>)</li>
+<li><a href="https://github.com/jamesknelson/memamug-client">memamug-client</a> (the source for <a href="https://www.memamug.com/">memamug.com</a>)</li>
 <li><a href="https://github.com/jamesknelson/maxim">maxim</a> (to help structure your single page apps)</li>
 <li><a href="https://github.com/jamesknelson/react-base">react-base</a> (provide common utilities to your react components)</li>
 <li><a href="https://github.com/jamesknelson/numbat-ui">numbat-ui</a> (material design component library for react)</li>

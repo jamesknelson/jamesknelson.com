@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
 	
 	>
 <channel>
@@ -28,9 +28,9 @@
 
 					<description><![CDATA[I wrote a post on how to add ES7 decorators to Babel 6 for those interested. I&#039;d appreciate a backlink if you feel it&#039;s worth it:
 
-http://technologyadvice.github.io/es7-decorators-babel6/]]></description>
+https://technologyadvice.github.io/es7-decorators-babel6/]]></description>
 			<content:encoded><![CDATA[<p>I wrote a post on how to add ES7 decorators to Babel 6 for those interested. I&#8217;d appreciate a backlink if you feel it&#8217;s worth it:</p>
-<p><a href="http://technologyadvice.github.io/es7-decorators-babel6/" rel="nofollow ugc">http://technologyadvice.github.io/es7-decorators-babel6/</a></p>
+<p><a href="https://technologyadvice.github.io/es7-decorators-babel6/" rel="nofollow ugc">https://technologyadvice.github.io/es7-decorators-babel6/</a></p>
 ]]></content:encoded>
 		
 			</item>

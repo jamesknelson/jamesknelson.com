@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<html lang="en-US">
 <head>
 	<meta charset="UTF-8">
 	
@@ -12,8 +12,8 @@
 	<title>The three faces of JavaScript`this` - James K Nelson</title>
     
     <!--[if lte IE 9]>
-        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
-        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+        <script src="https://jamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="https://jamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
     <![endif]-->
 	
 		
@@ -27,7 +27,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="The three faces of JavaScript`this` - James K Nelson">
 <meta property="og:description" content="JavaScript is a language which is full of surprises: its type coercion has been the subject of comedy, and one of it&#8217;s most well known books is titled JavaScript: The good parts. But of all of it&#8217;s eccentricities, the this keyword is likely the one which causes the most day-to-day confusion. While there are a... Continue reading &#8594;">
-<meta property="og:url" content="httpjamesknelson.com/demystifying-javascript-the-many-faces-of-this/">
+<meta property="og:url" content="https://jamesknelson.com/demystifying-javascript-the-many-faces-of-this/">
 <meta property="og:site_name" content="James K Nelson">
 <meta property="article:section" content="Javascript">
 <meta property="article:published_time" content="2015-05-30T09:53:27+00:00">
@@ -38,7 +38,7 @@
 <meta name="twitter:title" content="The three faces of JavaScript`this` - James K Nelson">
 <meta name="twitter:site" content="@james_k_nelson">
 <meta name="twitter:creator" content="@james_k_nelson">
-<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"https://jamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
 <!-- / Yoast SEO plugin. -->
 
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -47,7 +47,7 @@
 <link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
 <link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; The three faces of JavaScript`this` Comments Feed" href="/demystifying-javascript-the-many-faces-of-this/feed/">
 <script type="text/javascript">
-window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https://jamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
 /*! This file is auto-generated */
 !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
 </script>
@@ -65,9 +65,9 @@ img.emoji {
 }</style>
 	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
 <style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
-<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
-<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
-<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="https://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
 <link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
 <link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
 <link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
@@ -337,12 +337,12 @@ blockquote {
 								
 																
 								<div class="entry-content clearfix">
-									<p>JavaScript is a language which is full of surprises: its type coercion has been the subject of <a href="https://www.destroyallsoftware.com/talks/wat">comedy</a>, and one of it&#8217;s most well known books is titled <a href="http://www.amazon.com/gp/product/0596517742/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596517742&amp;linkCode=as2&amp;tag=jakne-20&amp;linkId=KBZGHAXCM6TR6CWD">JavaScript: The good parts</a>. But of all of it&#8217;s eccentricities, the <code>this</code> keyword is likely the one which causes the most day-to-day confusion.</p>
+									<p>JavaScript is a language which is full of surprises: its type coercion has been the subject of <a href="https://www.destroyallsoftware.com/talks/wat">comedy</a>, and one of it&#8217;s most well known books is titled <a href="https://www.amazon.com/gp/product/0596517742/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596517742&amp;linkCode=as2&amp;tag=jakne-20&amp;linkId=KBZGHAXCM6TR6CWD">JavaScript: The good parts</a>. But of all of it&#8217;s eccentricities, the <code>this</code> keyword is likely the one which causes the most day-to-day confusion.</p>
 <p>While there are a number of articles about <code>this</code>, they generally take an exhaustive approach to explaining the many ways of using it. This is great for reference, but not so great if you just want to know how you should use <code>this</code> in your next project.</p>
 <p>That&#8217;s why in this tutorial, I explain only the three most common senses of <code>this</code>, by building a simplified version of a component taken from a real project &#8211; <a href="https://github.com/jamesknelson/clubroom/blob/master/server/server.coffee">clubroom</a>. In particular, I explain how <code>this</code> is used in the code which generates unique IDs for users and chat rooms.</p>
 <p>So without further ado, let&#8217;s get started!</p>
 <p><span id="more-177"></span></p>
-<p>Say we&#8217;re building a chat app, and we want to produce unique, <a href="http://en.wikipedia.org/wiki/Hexadecimal">hexadecimal</a> IDs for our users, starting our counter from 1000 so it looks like we&#8217;ve got a lot of users already. Let&#8217;s write the simplest possible code to accomplish this.</p>
+<p>Say we&#8217;re building a chat app, and we want to produce unique, <a href="https://en.wikipedia.org/wiki/Hexadecimal">hexadecimal</a> IDs for our users, starting our counter from 1000 so it looks like we&#8217;ve got a lot of users already. Let&#8217;s write the simplest possible code to accomplish this.</p>
 <pre><code>var userCounter = 1000;
 
 function generateId() {
@@ -353,7 +353,7 @@ function generateId() {
 console.log(generateId()); // "3e8"
 console.log(generateId()); // "3e9"
 </code></pre>
-<p><a href="http://jsbin.com/latasu/1/edit?js,console">edit &amp; run this javascript</a></p>
+<p><a href="https://jsbin.com/latasu/1/edit?js,console">edit &amp; run this javascript</a></p>
 <p>This works great when we only have to produce unique IDs for users, but what if we also want unique IDs for our rooms? We could just repeat this code twice, but this isn&#8217;t ideal &#8211; we&#8217;d inevitably make changes to one copy of the code and forget to make changes to the other. Instead, we could try to create a single function which works with multiple counters:</p>
 <pre><code>var userIdCounter = 1000;
 var roomIdCounter = 1000;
@@ -368,8 +368,8 @@ console.log(generateId(userIdCounter));
 console.log(generateId(roomIdCounter));
 console.log(generateId(roomIdCounter));
 </code></pre>
-<p><a href="http://jsbin.com/lejaze/1/edit?js,console">edit &amp; run this javascript</a></p>
-<p>But this won&#8217;t work, as the counter is a <code>Number</code>. Every time you pass a <code>Number</code> to a function, JavaScript passes a <em>copy</em> of the number instead of the original &#8211; preventing us from modifying the original. You can check this in the linked <a href="http://jsbin.com/lejaze/1/edit?js,console">jsbin</a>.</p>
+<p><a href="https://jsbin.com/lejaze/1/edit?js,console">edit &amp; run this javascript</a></p>
+<p>But this won&#8217;t work, as the counter is a <code>Number</code>. Every time you pass a <code>Number</code> to a function, JavaScript passes a <em>copy</em> of the number instead of the original &#8211; preventing us from modifying the original. You can check this in the linked <a href="https://jsbin.com/lejaze/1/edit?js,console">jsbin</a>.</p>
 <p>We can still accomplish our goal with a similar method, though &#8211; we just need to find a way to pass the actual number into the function instead of a copy. And as luck may have it, JavaScript objects allow us to do this:</p>
 <pre><code>var userIdGenerator = { counter: 1000 };
 var roomIdGenerator = { counter: 1000 };
@@ -384,7 +384,7 @@ console.log(generateId(userIdGenerator));
 console.log(generateId(roomIdGenerator));
 console.log(generateId(roomIdGenerator));
 </code></pre>
-<p><a href="http://jsbin.com/zedaji/1/edit?js,console">edit &amp; run this javascript</a></p>
+<p><a href="https://jsbin.com/zedaji/1/edit?js,console">edit &amp; run this javascript</a></p>
 <p>Having a single function which can produce a unique ID from any counter object is certainly a lot cleaner than needing a separate function for each counter, but there is still one thing we can improve.</p>
 <p>Currently, our two counter objects and our <code>generateId</code> function are accessible from <em>any other javascript code on the same page</em>. What if a 3rd-party script we include also happens to have a function called <code>generateId</code>? We could give our function a funny name to try prevent collisions, but even if this works, it makes our code a lot harder to read. Instead, why don&#8217;t we attach the function to the generator object itself?</p>
 <p>Let&#8217;s go back to an example with just the user id generator and give this a shot:</p>
@@ -398,7 +398,7 @@ console.log(generateId(roomIdGenerator));
 console.log(userIdGenerator.generate(userIdGenerator));
 console.log(userIdGenerator.generate(userIdGenerator));
 </code></pre>
-<p><a href="http://jsbin.com/qubuze/1/edit?js,console">edit &amp; run this javascript</a></p>
+<p><a href="https://jsbin.com/qubuze/1/edit?js,console">edit &amp; run this javascript</a></p>
 <p>Great, we&#8217;ve managed to minimise the surface area where our code can collide with 3rd-party scripts! That said, it really doesn&#8217;t feel right passing <code>userIdGenerator</code> as a parameter to a function which is defined on that same object. And this is where the first sense of <code>this</code> comes in:</p>
 <h2>1&#46; Within a function which was called as a property of an object, <code>this</code> points to that object.</h2>
 <p>To put this in the context of the problem above, <code>generate</code> is a function which is called as a property of the object <code>userIdGenerator</code>. Or, in the lingo, <code>generate</code> is a <strong>method</strong> of <code>userIdGenerator</code>. This means that within the <code>generate</code> function, <code>this</code> will point to <code>userIdGenerator</code>.</p>
@@ -420,7 +420,7 @@ console.log(userIdGenerator.generate());
 </code>
 </pre>
 </div>
-<p><a href="http://jsbin.com/doquqo/1/edit?js,console">edit &amp; run this javascript</a></p>
+<p><a href="https://jsbin.com/doquqo/1/edit?js,console">edit &amp; run this javascript</a></p>
 <p>You can think of <code>this</code> as an invisible argument which is passed to every method, and is defined automatically by the browser to refer to the object which the method was called from.</p>
 <p>One of the interesting things about <code>this</code> is that it doesn&#8217;t matter how or where the function is defined &#8211; <code>this</code> will still be attached to whatever object the function was associated with <em>when it was called</em>. For example, while we wouldn&#8217;t do this in practice, it would be possible to accomplish the same thing as above this way:</p>
 <pre><code>function generate() {
@@ -438,7 +438,7 @@ console.log(userIdGenerator.generate());
 console.log(generate());
 console.log(generate());
 </code></pre>
-<p><a href="http://jsbin.com/pupefe/1/edit?js,console">edit &amp; run this javascript</a></p>
+<p><a href="https://jsbin.com/pupefe/1/edit?js,console">edit &amp; run this javascript</a></p>
 <p>Watch out though &#8211; the same flexibility which allows you to attach a function to an object and then call it as a method can also trip you up. This is demonstrated by the final calls to <code>generate()</code> above &#8211; did you notice that even though they are not associated with <code>userIdGenerator</code>, and thus did not increment <code>userIdGenerator.counter</code>, they still didn&#8217;t throw an error?</p>
 <p>In fact, <code>generate</code> did actually run <code>counter++</code> on something, but it probably isn&#8217;t what you expect. Do you know what <code>this</code> pointed to inside the second call to <code>generate()</code>? <em>Once you&#8217;ve thought about it for a bit</em>, touch or hover over the box below for an answer:</p>
 <div class="spoiler">
@@ -467,13 +467,13 @@ console.log(userIdGenerator.generate());
 console.log(roomIdGenerator.generate());
 console.log(roomIdGenerator.generate());
 </code></pre>
-<p><a href="http://jsbin.com/nuyiga/2/edit?js,console">edit &amp; run this javascript</a></p>
+<p><a href="https://jsbin.com/nuyiga/2/edit?js,console">edit &amp; run this javascript</a></p>
 <p>To avoid conflicts with other libraries, we&#8217;ve defined the <code>generate</code> function directly on <code>userIdGenerator</code>, and then to avoid repeating ourself, we&#8217;ve assigned the same function to <code>roomIdGenerator.generate</code>. Since <code>this</code> is set based on whatever is on the left hand side of the <code>.</code>, we&#8217;ve achieved our goal &#8211; albeit a little messily.</p>
 <p>How could we improve this? Well, it would certainly be nicer if the definition of each object looked the same, instead of having the <code>generate</code> method defined on the first object and then assigned to subsequent ones. It also wouldn&#8217;t hurt if we could create more generator objects without needing to repeat ourselves by defining the <code>counter</code> and <code>generate</code> properties for each one. Happily, we can do this with the <code>new</code> keyword, which provides us with our second sense for <code>this</code>:</p>
 <h2>2&#46; Inside a function called with the <code>new</code> operator, <code>this</code> points to a new, empty object</h2>
 <p>The javascript <code>new</code> operator creates a new object, i.e. <code>{}</code>. It then defines <code>this</code> inside the called function to refer to the new object. Finally, once the function has completed, <code>new</code> will return the newly created object (unless you manually return a separate value within the function &#8211; which you should avoid, unless you&#8217;re a masochist).</p>
 <p>What is the <code>new</code> operator useful for? Well, it allows us to create functions which set up these new objects in a certain way. In fact, these &#8220;setter upper&#8221; functions have a special name &#8211; <strong>constructors</strong>, and the new objects which they create are called <strong>instances</strong>.</p>
-<p>For example, we could use a constructor to set up instances of our &#8220;generator&#8221; objects from the previous examples. Can you write a constructor by filling out the inside of <code>idGenerator</code> below? Aim to make the script outputs the numbers <code>3e8</code>, <code>3e9</code>, <code>3e8</code>, <code>3e9</code>, like our previous scripts &#8211; disregard the final <code>true</code>/<code>false</code> for the moment. Test your work in the linked <a href="http://jsbin.com/modoku/1/edit?js,console">jsbin</a>, and <em>if you get stuck</em>, view an answer by touching or hovering over the below box.</p>
+<p>For example, we could use a constructor to set up instances of our &#8220;generator&#8221; objects from the previous examples. Can you write a constructor by filling out the inside of <code>idGenerator</code> below? Aim to make the script outputs the numbers <code>3e8</code>, <code>3e9</code>, <code>3e8</code>, <code>3e9</code>, like our previous scripts &#8211; disregard the final <code>true</code>/<code>false</code> for the moment. Test your work in the linked <a href="https://jsbin.com/modoku/1/edit?js,console">jsbin</a>, and <em>if you get stuck</em>, view an answer by touching or hovering over the below box.</p>
 <pre><code>function idGenerator() {
 
 }
@@ -489,7 +489,7 @@ console.log(roomIdGenerator.generate());
 
 console.log(userIdGenerator.generate == roomIdGenerator.generate);
 </code></pre>
-<p><a href="http://jsbin.com/modoku/3/edit?js,console">edit &amp; run this javascript</a></p>
+<p><a href="https://jsbin.com/modoku/3/edit?js,console">edit &amp; run this javascript</a></p>
 <div class="spoiler">
 <div class="spoiler-mask">
   </div>
@@ -536,7 +536,7 @@ console.log(roomIdGenerator.generate());
 
 console.log(userIdGenerator.generate == roomIdGenerator.generate);
 </code></pre>
-<p><a href="http://jsbin.com/yayequ/2/edit?js,console">edit &amp; run this javascript</a></p>
+<p><a href="https://jsbin.com/yayequ/2/edit?js,console">edit &amp; run this javascript</a></p>
 <p><code>userIdGenerator.generate</code> and <code>roomIdGenerator.generate</code> are now equal! We could leave it at this, but JavaScript has an even better way of solving this &#8211; using a property of a function called it&#8217;s <code>prototype</code>.</p>
 <p>What is a <code>prototype</code>? It is an object which can be found under the <code>prototype</code> property of every constructor function, defaulting to <code>{}</code>. While you can use it like any normal object, JavaScript has a special behaviour which makes it especially useful: if you try and access a method in an instance which doesn&#8217;t exist, JavaScript will then search the prototype of that instance&#8217;s constructor. It may help to think of a constructor&#8217;s prototype as a shared library of default methods which its instances can use.</p>
 <p>This leads us to the third sense of <code>this</code>:</p>
@@ -561,7 +561,7 @@ console.log(roomIdGenerator.generate());
 
 console.log(userIdGenerator.generate == roomIdGenerator.generate);
 </code></pre>
-<p><a href="http://jsbin.com/yivawu/2/edit?js,console">edit &amp; run this javascript</a></p>
+<p><a href="https://jsbin.com/yivawu/2/edit?js,console">edit &amp; run this javascript</a></p>
 <p>Take a few moments to try and understand this before moving on, then check that your understanding matches mine:</p>
 <div class="spoiler">
 <div class="spoiler-mask">
@@ -816,7 +816,7 @@ console.log(userIdGenerator.generate == roomIdGenerator.generate);
 <p>Want to read more about <code>this</code>? You may find these helpful:</p>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><code>this</code> at Mozilla Developer Network</a></li>
-<li><a href="http://bjorn.tipling.com/all-this">All this</a></li>
+<li><a href="https://bjorn.tipling.com/all-this">All this</a></li>
 </ul>
 									
 																	</div>
@@ -831,7 +831,7 @@ console.log(userIdGenerator.generate == roomIdGenerator.generate);
 	<div class="row-fluid author-bio">
 		<div class="span2 author-img">
 			<a href="/author/jamesknelson/">
-				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+				<img alt="James K Nelson" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
 		</div>
 		<!-- end .author-img -->
 		
@@ -865,7 +865,7 @@ console.log(userIdGenerator.generate == roomIdGenerator.generate);
 		<div id="respond" class="comment-respond">
 		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/demystifying-javascript-the-many-faces-of-this/#respond" style="display:none;">Cancel reply</a></small>
 </h3>
-<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<form action="https://jamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
 <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
 <p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
 <p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
@@ -968,7 +968,7 @@ console.log(userIdGenerator.generate == roomIdGenerator.generate);
 	<li><a href="/2014/12/">December 2014</a></li>
 			</ul>
 
-			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="https://jamesknelson.com/">
 	<div>
 		<label class="screen-reader-text" for="s">Search for:</label>
 		

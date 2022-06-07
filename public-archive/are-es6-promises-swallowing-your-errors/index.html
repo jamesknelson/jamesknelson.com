@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<html lang="en-US">
 <head>
 	<meta charset="UTF-8">
 	
@@ -12,8 +12,8 @@
 	<title>Are JavaScript Promises swallowing your errors? - James K Nelson</title>
     
     <!--[if lte IE 9]>
-        <script src="httpjamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
-        <script src="httpjamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
+        <script src="https://jamesknelson.com/wp-content/themes/read/js/html5shiv.js"></script>
+        <script src="https://jamesknelson.com/wp-content/themes/read/js/selectivizr-min.js"></script>
     <![endif]-->
 	
 		
@@ -27,7 +27,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Are JavaScript Promises swallowing your errors? - James K Nelson">
 <meta property="og:description" content="This article has kindly been turned into a video by the folks at Webucator who do JavaScript training. When dealing with asynchronous code, JavaScript&#8217;s ES6 promises can make your life a lot easier. No more callback pyramids, no more error handling on every second line, and no more reliance on external libraries to do things... Continue reading &#8594;">
-<meta property="og:url" content="httpjamesknelson.com/are-es6-promises-swallowing-your-errors/">
+<meta property="og:url" content="https://jamesknelson.com/are-es6-promises-swallowing-your-errors/">
 <meta property="og:site_name" content="James K Nelson">
 <meta property="article:section" content="ES6">
 <meta property="article:published_time" content="2015-05-29T09:36:19+00:00">
@@ -38,7 +38,7 @@
 <meta name="twitter:title" content="Are JavaScript Promises swallowing your errors? - James K Nelson">
 <meta name="twitter:site" content="@james_k_nelson">
 <meta name="twitter:creator" content="@james_k_nelson">
-<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"httpjamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"https://jamesknelson.com\/","sameAs":["https:\/\/twitter.com\/james_k_nelson"],"@id":"#person","name":"James K Nelson"}</script>
 <!-- / Yoast SEO plugin. -->
 
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -47,7 +47,7 @@
 <link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Comments Feed" href="/comments/feed/">
 <link rel="alternate" type="application/rss+xml" title="James K Nelson &raquo; Are JavaScript Promises swallowing your errors? Comments Feed" href="/are-es6-promises-swallowing-your-errors/feed/">
 <script type="text/javascript">
-window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"httpjamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https://jamesknelson.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.3"}};
 /*! This file is auto-generated */
 !function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
 </script>
@@ -65,9 +65,9 @@ img.emoji {
 }</style>
 	<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3" type="text/css" media="all">
 <style id="global-styles-inline-css" type="text/css">body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}</style>
-<link rel="stylesheet" id="unifrakturmaguntia-css" href="http://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
-<link rel="stylesheet" id="coustard-css" href="http://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
-<link rel="stylesheet" id="lora-css" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="unifrakturmaguntia-css" href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="coustard-css" href="https://fonts.googleapis.com/css?family=Coustard&#038;subset=latin" type="text/css" media="all">
+<link rel="stylesheet" id="lora-css" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&#038;subset=latin" type="text/css" media="all">
 <link rel="stylesheet" id="print-css" href="/wp-content/themes/read/css/print.css" type="text/css" media="print">
 <link rel="stylesheet" id="grid-css" href="/wp-content/themes/read/css/grid.css" type="text/css" media="all">
 <link rel="stylesheet" id="normalize-css" href="/wp-content/themes/read/css/normalize.css" type="text/css" media="all">
@@ -339,7 +339,7 @@ blockquote {
 								<div class="entry-content clearfix">
 									<p><em>This article has kindly been turned into a <a href="https://www.youtube.com/watch?v=Bt-U3f5AFaw&amp;feature=youtu.be">video</a> by the folks at Webucator who do <a href="https://www.webucator.com/webdesign/javascript.cfm">JavaScript training</a>.</em></p>
 <p>When dealing with asynchronous code, JavaScript&#8217;s ES6 promises can make your life a lot easier. No more callback pyramids, no more error handling on every second line, and no more reliance on external libraries to do things as simple as getting the result of a for loop.</p>
-<p>But ES6 Promises can have their own pitfalls, the biggest by far being disappearing error messages. Reddit&#8217;s <a href="http://www.reddit.com/u/ledp">/u/ledp</a> put it better than I ever could:</p>
+<p>But ES6 Promises can have their own pitfalls, the biggest by far being disappearing error messages. Reddit&#8217;s <a href="https://www.reddit.com/u/ledp">/u/ledp</a> put it better than I ever could:</p>
 <blockquote>
 <p>What the actual flying fuck? Promises swallows errors by default! Who&#8217;s idea was that?</p>
 </blockquote>
@@ -368,7 +368,7 @@ new Promise(function(resolve, reject) {
   console.error(error.stack);
 });
 </code></pre>
-<p>But are you seriously going to have the self-control to type that out after every <code>then</code> call? I sure don&#8217;t. Knowing this, some fine people invented the <a href="http://stackoverflow.com/questions/26667598/will-javascript-es6-promise-support-done-api"><code>done</code></a> method, which is functionally equivalent to the above, and can be used just like <code>then</code>, allowing you to write:</p>
+<p>But are you seriously going to have the self-control to type that out after every <code>then</code> call? I sure don&#8217;t. Knowing this, some fine people invented the <a href="https://stackoverflow.com/questions/26667598/will-javascript-es6-promise-support-done-api"><code>done</code></a> method, which is functionally equivalent to the above, and can be used just like <code>then</code>, allowing you to write:</p>
 <pre><code>Promise.resolve('promised value').done(function() {
     throw new Error('error');
 });
@@ -657,7 +657,7 @@ new Promise(function(resolve, reject) {
 	<div class="row-fluid author-bio">
 		<div class="span2 author-img">
 			<a href="/author/jamesknelson/">
-				<img alt="James K Nelson" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
+				<img alt="James K Nelson" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=226&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=452&#038;d=mm&#038;r=g 2x" class="avatar avatar-226 photo" height="226" width="226" loading="lazy">			</a>
 		</div>
 		<!-- end .author-img -->
 		
@@ -696,7 +696,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment even thread-even depth-1" id="li-comment-217">
 						<article id="comment-217" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/2546c07cfd65144522526761439c4e0a?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/2546c07cfd65144522526761439c4e0a?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Stefen </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-217"><time datetime="2015-05-29T17:23:29+00:00">May 29, 2015 at 5:23 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/2546c07cfd65144522526761439c4e0a?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/2546c07cfd65144522526761439c4e0a?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Stefen </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-217"><time datetime="2015-05-29T17:23:29+00:00">May 29, 2015 at 5:23 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -717,7 +717,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-218">
 						<article id="comment-218" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/59a60db57e7b4265f8ba27ad9c09dc15?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/59a60db57e7b4265f8ba27ad9c09dc15?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Josh </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-218"><time datetime="2015-05-29T22:51:27+00:00">May 29, 2015 at 10:51 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/59a60db57e7b4265f8ba27ad9c09dc15?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/59a60db57e7b4265f8ba27ad9c09dc15?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Josh </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-218"><time datetime="2015-05-29T22:51:27+00:00">May 29, 2015 at 10:51 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -737,7 +737,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment even depth-2" id="li-comment-244">
 						<article id="comment-244" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/dae0ae8456c004551da532708807e4df?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/dae0ae8456c004551da532708807e4df?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.joezimjs.com/" rel="external nofollow ugc" class="url">Joe Zim</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-244"><time datetime="2015-06-01T14:36:07+00:00">June 1, 2015 at 2:36 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/dae0ae8456c004551da532708807e4df?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/dae0ae8456c004551da532708807e4df?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://www.joezimjs.com/" rel="external nofollow ugc" class="url">Joe Zim</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-244"><time datetime="2015-06-01T14:36:07+00:00">June 1, 2015 at 2:36 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -762,7 +762,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment odd alt thread-even depth-1" id="li-comment-221">
 						<article id="comment-221" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/38055799f271a72b7d50d91c322ce561?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/38055799f271a72b7d50d91c322ce561?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Yusup </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-221"><time datetime="2015-05-30T10:06:05+00:00">May 30, 2015 at 10:06 am</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/38055799f271a72b7d50d91c322ce561?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/38055799f271a72b7d50d91c322ce561?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Yusup </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-221"><time datetime="2015-05-30T10:06:05+00:00">May 30, 2015 at 10:06 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -782,7 +782,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment byuser comment-author-jamesknelson bypostauthor even depth-2" id="li-comment-222">
 						<article id="comment-222" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/are-es6-promises-swallowing-your-errors/#comment-222"><time datetime="2015-05-30T10:11:28+00:00">May 30, 2015 at 10:11 am</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/are-es6-promises-swallowing-your-errors/#comment-222"><time datetime="2015-05-30T10:11:28+00:00">May 30, 2015 at 10:11 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -803,7 +803,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment odd alt depth-3" id="li-comment-240">
 						<article id="comment-240" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://webplatformdaily.org/" rel="external nofollow ugc" class="url">Šime Vidas</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-240"><time datetime="2015-05-31T23:34:54+00:00">May 31, 2015 at 11:34 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://webplatformdaily.org/" rel="external nofollow ugc" class="url">Šime Vidas</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-240"><time datetime="2015-05-31T23:34:54+00:00">May 31, 2015 at 11:34 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -823,12 +823,12 @@ new Promise(function(resolve, reject) {
 					<li class="comment even depth-4" id="li-comment-241">
 						<article id="comment-241" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://webplatformdaily.org/" rel="external nofollow ugc" class="url">Šime Vidas</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-241"><time datetime="2015-05-31T23:49:30+00:00">May 31, 2015 at 11:49 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://webplatformdaily.org/" rel="external nofollow ugc" class="url">Šime Vidas</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-241"><time datetime="2015-05-31T23:49:30+00:00">May 31, 2015 at 11:49 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
 							<section class="comment-content comment">
-								<p>Scratch that. I’ve tested in both Firefox stable and Firefox Nightly and they behave the same. (Demo: <a href="http://jsbin.com/seteto/quiet" rel="nofollow ugc">http://jsbin.com/seteto/quiet</a>). The thing is, Firefox’s console displays the errors with an *delay*. About 5 to 15 seconds on my machine. The delay could be longer on complex sites and during periods with a lot of activity (just guessing).</p>
+								<p>Scratch that. I’ve tested in both Firefox stable and Firefox Nightly and they behave the same. (Demo: <a href="https://jsbin.com/seteto/quiet" rel="nofollow ugc">https://jsbin.com/seteto/quiet</a>). The thing is, Firefox’s console displays the errors with an *delay*. About 5 to 15 seconds on my machine. The delay could be longer on complex sites and during periods with a lot of activity (just guessing).</p>
 								
 															</section>
 							<!-- end .comment-content -->
@@ -843,7 +843,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment odd alt depth-5" id="li-comment-245">
 						<article id="comment-245" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/dae0ae8456c004551da532708807e4df?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/dae0ae8456c004551da532708807e4df?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://www.joezimjs.com/" rel="external nofollow ugc" class="url">Joe Zim</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-245"><time datetime="2015-06-01T14:43:56+00:00">June 1, 2015 at 2:43 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/dae0ae8456c004551da532708807e4df?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/dae0ae8456c004551da532708807e4df?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://www.joezimjs.com/" rel="external nofollow ugc" class="url">Joe Zim</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-245"><time datetime="2015-06-01T14:43:56+00:00">June 1, 2015 at 2:43 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -864,7 +864,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment even depth-5" id="li-comment-247">
 						<article id="comment-247" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/b45c48fc9e05922e2f368a9d7d7d8de1?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b45c48fc9e05922e2f368a9d7d7d8de1?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://lmorchard.com/" rel="external nofollow ugc" class="url">Les Orchard</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-247"><time datetime="2015-06-01T14:45:45+00:00">June 1, 2015 at 2:45 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/b45c48fc9e05922e2f368a9d7d7d8de1?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/b45c48fc9e05922e2f368a9d7d7d8de1?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://lmorchard.com/" rel="external nofollow ugc" class="url">Les Orchard</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-247"><time datetime="2015-06-01T14:45:45+00:00">June 1, 2015 at 2:45 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -901,7 +901,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-239">
 						<article id="comment-239" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://webplatformdaily.org/" rel="external nofollow ugc" class="url">Šime Vidas</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-239"><time datetime="2015-05-31T23:30:52+00:00">May 31, 2015 at 11:30 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/a9db2cbc6d4e589aec2d25f67771b85e?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://webplatformdaily.org/" rel="external nofollow ugc" class="url">Šime Vidas</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-239"><time datetime="2015-05-31T23:30:52+00:00">May 31, 2015 at 11:30 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -921,7 +921,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment byuser comment-author-jamesknelson bypostauthor even depth-2" id="li-comment-242">
 						<article id="comment-242" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/are-es6-promises-swallowing-your-errors/#comment-242"><time datetime="2015-06-01T02:39:28+00:00">June 1, 2015 at 2:39 am</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/are-es6-promises-swallowing-your-errors/#comment-242"><time datetime="2015-06-01T02:39:28+00:00">June 1, 2015 at 2:39 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -946,7 +946,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment odd alt thread-even depth-1" id="li-comment-246">
 						<article id="comment-246" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/b45c48fc9e05922e2f368a9d7d7d8de1?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/b45c48fc9e05922e2f368a9d7d7d8de1?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://lmorchard.com/" rel="external nofollow ugc" class="url">Les Orchard</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-246"><time datetime="2015-06-01T14:44:09+00:00">June 1, 2015 at 2:44 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/b45c48fc9e05922e2f368a9d7d7d8de1?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/b45c48fc9e05922e2f368a9d7d7d8de1?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://lmorchard.com/" rel="external nofollow ugc" class="url">Les Orchard</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-246"><time datetime="2015-06-01T14:44:09+00:00">June 1, 2015 at 2:44 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -970,7 +970,7 @@ new Promise(function(resolve, reject) {
 					<li class="comment even thread-odd thread-alt depth-1" id="li-comment-253">
 						<article id="comment-253" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/43aea6dc9a69348e3ec5ab88b0ad50c3?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/43aea6dc9a69348e3ec5ab88b0ad50c3?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Pawel </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-253"><time datetime="2015-06-02T08:51:21+00:00">June 2, 2015 at 8:51 am</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/43aea6dc9a69348e3ec5ab88b0ad50c3?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/43aea6dc9a69348e3ec5ab88b0ad50c3?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Pawel </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-253"><time datetime="2015-06-02T08:51:21+00:00">June 2, 2015 at 8:51 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1005,7 +1005,7 @@ var p = p.then(function(){ return 'OK';});<br>
 					<li class="comment byuser comment-author-jamesknelson bypostauthor odd alt depth-2" id="li-comment-254">
 						<article id="comment-254" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/are-es6-promises-swallowing-your-errors/#comment-254"><time datetime="2015-06-02T12:01:46+00:00">June 2, 2015 at 12:01 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/113e10a237958397e3938d73f1c2bb49?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">jamesknelson <span></span></cite><a href="/are-es6-promises-swallowing-your-errors/#comment-254"><time datetime="2015-06-02T12:01:46+00:00">June 2, 2015 at 12:01 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1026,7 +1026,7 @@ var p = p.then(function(){ return 'OK';});<br>
 					<li class="comment even depth-3" id="li-comment-256">
 						<article id="comment-256" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/43aea6dc9a69348e3ec5ab88b0ad50c3?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/43aea6dc9a69348e3ec5ab88b0ad50c3?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Pawel </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-256"><time datetime="2015-06-02T13:35:25+00:00">June 2, 2015 at 1:35 pm</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/43aea6dc9a69348e3ec5ab88b0ad50c3?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/43aea6dc9a69348e3ec5ab88b0ad50c3?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Pawel </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-256"><time datetime="2015-06-02T13:35:25+00:00">June 2, 2015 at 1:35 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1054,7 +1054,7 @@ When you return a promise it means you return a &#8216;future&#8217; value which
 					<li class="comment odd alt depth-2" id="li-comment-273">
 						<article id="comment-273" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/f6dca2295546af21e1cde8e68f2d49bd?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/f6dca2295546af21e1cde8e68f2d49bd?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Benjamin Gruenbaum </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-273"><time datetime="2015-06-03T18:14:07+00:00">June 3, 2015 at 6:14 pm</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/f6dca2295546af21e1cde8e68f2d49bd?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/f6dca2295546af21e1cde8e68f2d49bd?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Benjamin Gruenbaum </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-273"><time datetime="2015-06-03T18:14:07+00:00">June 3, 2015 at 6:14 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1085,7 +1085,7 @@ When you return a promise it means you return a &#8216;future&#8217; value which
 					<li class="comment even thread-even depth-1" id="li-comment-269">
 						<article id="comment-269" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/f6dca2295546af21e1cde8e68f2d49bd?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/f6dca2295546af21e1cde8e68f2d49bd?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Benjamin Gruenbaum </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-269"><time datetime="2015-06-03T18:08:15+00:00">June 3, 2015 at 6:08 pm</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/f6dca2295546af21e1cde8e68f2d49bd?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/f6dca2295546af21e1cde8e68f2d49bd?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Benjamin Gruenbaum </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-269"><time datetime="2015-06-03T18:08:15+00:00">June 3, 2015 at 6:08 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1106,12 +1106,12 @@ When you return a promise it means you return a &#8216;future&#8217; value which
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-344">
 						<article id="comment-344" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://1.gravatar.com/avatar/4ca757a644d8fa2518f6308c6dfe6b24?s=75&#038;d=mm&#038;r=g" srcset="http://1.gravatar.com/avatar/4ca757a644d8fa2518f6308c6dfe6b24?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://glebbahmutov.com/" rel="external nofollow ugc" class="url">Gleb Bahmutov</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-344"><time datetime="2015-06-08T04:03:35+00:00">June 8, 2015 at 4:03 am</time></a>							</header>
+								<img alt="" src="https://1.gravatar.com/avatar/4ca757a644d8fa2518f6308c6dfe6b24?s=75&#038;d=mm&#038;r=g" srcset="https://1.gravatar.com/avatar/4ca757a644d8fa2518f6308c6dfe6b24?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://glebbahmutov.com/" rel="external nofollow ugc" class="url">Gleb Bahmutov</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-344"><time datetime="2015-06-08T04:03:35+00:00">June 8, 2015 at 4:03 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
 							<section class="comment-content comment">
-								<p>Good article, while I always suggest using <em>.done()</em> in the promise chains, see <a href="http://glebbahmutov.com/blog/why-promises-need-to-be-done/" rel="nofollow">Why promises need to be done</a>, your idea that the promises need to always throw the error might be overkill. The dynamic nature of promises means that someone can later attach error handler to a promise chain and handle an error.</p>
+								<p>Good article, while I always suggest using <em>.done()</em> in the promise chains, see <a href="https://glebbahmutov.com/blog/why-promises-need-to-be-done/" rel="nofollow">Why promises need to be done</a>, your idea that the promises need to always throw the error might be overkill. The dynamic nature of promises means that someone can later attach error handler to a promise chain and handle an error.</p>
 								
 															</section>
 							<!-- end .comment-content -->
@@ -1127,7 +1127,7 @@ When you return a promise it means you return a &#8216;future&#8217; value which
 					<li class="comment even thread-even depth-1" id="li-comment-14443">
 						<article id="comment-14443" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/3aefe160da30caa0d7ea0f922f94c257?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/3aefe160da30caa0d7ea0f922f94c257?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Brian Hunt </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-14443"><time datetime="2016-03-08T20:58:08+00:00">March 8, 2016 at 8:58 pm</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/3aefe160da30caa0d7ea0f922f94c257?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/3aefe160da30caa0d7ea0f922f94c257?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Brian Hunt </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-14443"><time datetime="2016-03-08T20:58:08+00:00">March 8, 2016 at 8:58 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1148,13 +1148,13 @@ When you return a promise it means you return a &#8216;future&#8217; value which
 					<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-20063">
 						<article id="comment-20063" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://2.gravatar.com/avatar/293d9d903554a0264600a15907600895?s=75&#038;d=mm&#038;r=g" srcset="http://2.gravatar.com/avatar/293d9d903554a0264600a15907600895?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="http://projectample.com/" rel="external nofollow ugc" class="url">Ben Zichettello</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-20063"><time datetime="2016-05-20T14:48:22+00:00">May 20, 2016 at 2:48 pm</time></a>							</header>
+								<img alt="" src="https://2.gravatar.com/avatar/293d9d903554a0264600a15907600895?s=75&#038;d=mm&#038;r=g" srcset="https://2.gravatar.com/avatar/293d9d903554a0264600a15907600895?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn"><a href="https://projectample.com/" rel="external nofollow ugc" class="url">Ben Zichettello</a> </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-20063"><time datetime="2016-05-20T14:48:22+00:00">May 20, 2016 at 2:48 pm</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
 							<section class="comment-content comment">
 								<p>See here before you try this with Bluebird 2.7 and up</p>
-<p><a href="http://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events" rel="nofollow ugc">http://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events</a></p>
+<p><a href="https://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events" rel="nofollow ugc">https://bluebirdjs.com/docs/api/error-management-configuration.html#global-rejection-events</a></p>
 								
 															</section>
 							<!-- end .comment-content -->
@@ -1170,7 +1170,7 @@ When you return a promise it means you return a &#8216;future&#8217; value which
 					<li class="comment even thread-even depth-1" id="li-comment-23558">
 						<article id="comment-23558" class="comment">
 							<header class="comment-meta comment-author vcard">
-								<img alt="" src="http://0.gravatar.com/avatar/39e8151ad74e548bcb4a7b14415e8d58?s=75&#038;d=mm&#038;r=g" srcset="http://0.gravatar.com/avatar/39e8151ad74e548bcb4a7b14415e8d58?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jason Sebring </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-23558"><time datetime="2016-09-30T03:56:27+00:00">September 30, 2016 at 3:56 am</time></a>							</header>
+								<img alt="" src="https://0.gravatar.com/avatar/39e8151ad74e548bcb4a7b14415e8d58?s=75&#038;d=mm&#038;r=g" srcset="https://0.gravatar.com/avatar/39e8151ad74e548bcb4a7b14415e8d58?s=150&#038;d=mm&#038;r=g 2x" class="avatar avatar-75 photo" height="75" width="75" loading="lazy"><cite class="fn">Jason Sebring </cite><a href="/are-es6-promises-swallowing-your-errors/#comment-23558"><time datetime="2016-09-30T03:56:27+00:00">September 30, 2016 at 3:56 am</time></a>							</header>
 							<!-- end .comment-meta -->
 							
 														
@@ -1197,7 +1197,7 @@ When you return a promise it means you return a &#8216;future&#8217; value which
 		<div id="respond" class="comment-respond">
 		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/are-es6-promises-swallowing-your-errors/#respond" style="display:none;">Cancel reply</a></small>
 </h3>
-<form action="httpjamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<form action="https://jamesknelson.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
 <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message" aria-hidden="true">Required fields are marked <span class="required" aria-hidden="true">*</span></span></p>
 <p class="comment-form-comment"><label for="comment">Comment <span class="required" aria-hidden="true">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p>
 <p class="comment-form-author"><label for="author">Name <span class="required" aria-hidden="true">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
@@ -1300,7 +1300,7 @@ When you return a promise it means you return a &#8216;future&#8217; value which
 	<li><a href="/2014/12/">December 2014</a></li>
 			</ul>
 
-			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="httpjamesknelson.com/">
+			</aside><aside id="search-2" class="widget widget_search"><form role="search" id="searchform" method="get" action="https://jamesknelson.com/">
 	<div>
 		<label class="screen-reader-text" for="s">Search for:</label>
 		

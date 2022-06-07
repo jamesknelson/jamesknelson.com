@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:content="https://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="https://purl.org/dc/elements/1.1/"
+	xmlns:atom="https://www.w3.org/2005/Atom"
+	xmlns:sy="https://purl.org/rss/1.0/modules/syndication/"
 	
 	>
 <channel>
@@ -171,8 +171,8 @@ sometimes that could be not an option]]></description>
 		<pubDate>Tue, 27 Sep 2016 11:02:34 +0000</pubDate>
 		<guid isPermaLink="false">/?p=356#comment-23494</guid>
 
-					<description><![CDATA[I am following your blogs and trying to create a component but stuck with a small problem I am unable to render the ajax response. Can you please guide me what I am doing wrong in that. Here is the code http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002. I am not getting any error in console.]]></description>
-			<content:encoded><![CDATA[<p>I am following your blogs and trying to create a component but stuck with a small problem I am unable to render the ajax response. Can you please guide me what I am doing wrong in that. Here is the code <a href="http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002" rel="nofollow ugc">http://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002</a>. I am not getting any error in console.</p>
+					<description><![CDATA[I am following your blogs and trying to create a component but stuck with a small problem I am unable to render the ajax response. Can you please guide me what I am doing wrong in that. Here is the code https://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002. I am not getting any error in console.]]></description>
+			<content:encoded><![CDATA[<p>I am following your blogs and trying to create a component but stuck with a small problem I am unable to render the ajax response. Can you please guide me what I am doing wrong in that. Here is the code <a href="https://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002" rel="nofollow ugc">https://stackoverflow.com/questions/39720791/fetched-data-from-ajax-in-component-is-not-rendering-in-react/39721002?noredirect=1#comment66740295_39721002</a>. I am not getting any error in console.</p>
 ]]></content:encoded>
 		
 			</item>
