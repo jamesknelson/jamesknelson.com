@@ -1057,7 +1057,7 @@ sed -i '' -e 's/.\/App/.\/routes\/App/g' index.js
 <p>Container components can also communicate with the server. In larger apps, they may delegate this to a Redux or Apollo store. But in smaller apps, they&#8217;ll usually just call the server directly.</p>
 <p>Examples include:</p>
 <ul>
-<li>An <code>&lt;ArticleContainer /&gt;</code> component that loads and wraps <a href="https://jamesknelson.com/mdxc/">MDX documents</a>.</li>
+<li>An <code>&lt;ArticleContainer /&gt;</code> component that loads and wraps <a href="https://mdxc.reactarmory.com/">MDX documents</a>.</li>
 <li>A <code>&lt;CourseLessonContainer /&gt;</code> component that loads course access/progress from the server, and handles user requests to mark lessons as complete.</li>
 <li>An <code>&lt;EditorContainer /&gt;</code> component that handles loading/saving of the students&#8217;s answers for exercises.</li>
 </ul>
@@ -2844,7 +2844,7 @@ document.getElementById('app').innerHTML = hello
 		
 	
 	<div class="entry-content clearfix">
-		<p><em>Read the README and <a href="https://github.com/jamesknelson/mdxc">browse the source</a> on GitHub, or <a href="https://jamesknelson.com/mdxc">mess around with the live demo</a>.</em></p>
+		<p><em>Read the README and <a href="https://github.com/jamesknelson/mdxc">browse the source</a> on GitHub, or <a href="https://mdxc.reactarmory.com">mess around with the live demo</a>.</em></p>
 <p>Markdown is a fantastic tool. It makes writing <em>simple</em>. Markdown documents are plain text, so you don&#8217;t need to worry about tags and HTML and all that. You just write. And when you need a <code>&lt;a&gt;</code>, or a <code>&lt;h1&gt;</code>, it&#8217;s already there. It&#8217;s like magic!</p>
 <p>But say you&#8217;re writing a React app with <code>pushState</code>, and you don&#8217;t want your links to use <code>&lt;a&gt;</code> tags; they break your smooth navigation. You want them to use react-router or <a href="https://junctions.js.org/">react-junctions&#8217;</a> <code>&lt;Link&gt;</code> tags instead. And you&#8217;re shit outta luck, because you can&#8217;t. Or you couldn&#8217;t, before MDXC.</p>
 <p>MDXC is a tool to make Markdown and React best buddies. Unlike traditional Markdown, <strong>MDXC produces actual JavaScript</strong> &#8212; not strings of HTML. <strong>MDXC lets you embed raw JSX within your Markdown</strong>, and even lets you <code>import</code> components and accept <code>props</code>. And to top it all off, <strong>MDXC lets you configure how each element is rendered</strong>, giving you all sorts of ways to confuse your users and also a few ways to genuinely improve their experience.</p>
